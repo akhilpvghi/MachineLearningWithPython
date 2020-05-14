@@ -1,0 +1,54 @@
+DATABASE
+
+database--->Entity--->data v/s information------>
+
+Data mgmt-->(PROS---full form)processing , retrieval, organizing data, security
+
+History of DBMS--->file organisation---->sequential way only in file--->problem =====>1.data redundancy
+
+2.Retrieval and update
+
+1960-70--->IMS(Information mgmt system) by IBM----->
+
+disadv....system complex---->maitainence difficult--->
+
+(1970-90)--->Dr. E.F Codd------>(RDBMS father)
+
+Normalisation in RDBMS
+
+Row/tuples
+column/Attribute
+
+ER Model------>Entity (Rectangle)--->attribute(Oval)--->primary attribute--->with underline
+
+Insert anomaly----->
+Update anomaly--->
+delete anomaly---->
+
+
+Normalisation----->to remove anomalies--->ensure efficiently organised
+
+1st normal form---->atomic values(should not have comma)
+2nd Normal form---->should not have partial dependency-->
+	if two keys are combinely defined as primary key then single shud not represent table
+
+
+3rd Normal form---->no transitive dependency-->transitivity is non key attribute depends on non key attribute
+
+BCNF-----> and for fn dependecy---
+
+__________________________________________________________
+13-05-20
+
+SQL----standard RDBMS--->efficient,functionally complete,
+DML-->select,insert,merge
+
+DDL-->create,alter,delete
+
+
+___________________________________
+
+DISTINCT ---suprassses duplicate
+ 
+
+
