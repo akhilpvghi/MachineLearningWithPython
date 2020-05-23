@@ -49,6 +49,122 @@ DDL-->create,alter,delete
 ___________________________________
 
 DISTINCT ---suprassses duplicate
+
+NULL--anavailable,unassigned or unknown
+
+concatenation operator ( || )--->concates two column
+
+desc table===>description of table
+
+RESTRICT===>where, equal to, in, like
+
+--> where lastname like 'king'
+
  
+----->where dept_id in(10,20); 
+
+----->where hire_date like '%07'  ---->last must have 07
+
+----> _ undersxore represent one char
+
+--->AND, OR, NOT
+
+---->where dept not in(60,70,80);
+
+--->order by salary desc;---->asc by default
+
+---->fetch first 5 rows only;
+
+---->offset fetch???
+___________________________________________
+----->fn in mysql
+
+single row fn and multiple row fn
+
+---->single row fn 
+---->char fn
+lower(last_name) from ....
+initcap(last_name) ===>only first char caps
+concat()
+length()
+instr
+lpad--->left pad
+round()
+trunc()
+ceil()
+floor()
+mod()
+date()
+sysdate()
+
+----->
+
+
+CURRENT_DATE FROM DUAL:
+MONTH_BETWEEN(1ST DATE,2ND DATE)
+
+group function--->operates on set of rows to give one result
+
+avg,sum,min,max,var-->variand,
+
+grp_fn(col name) where--->always ignores null val
+
+count(*)--->total no. of rows
+
+select dept_id, sum(sal) from emp group by dept_id;
+
+having condions on groupfn
+
+having avg(sal)<10000;
+ 
+_____________________________________
+
+JOIN tables====>
+
+natural
+equi
+self
+non exui
+cross 
+cartesian
+
+--->emp natual join jobs;
+equi--->primry key and foreign key-->
+self join---joined to itsef--->we rename as alias
+
+no equi join---->join table 2 on column condn
+
+Outer join---->left,right,full
+
+cartesian product-->every row with wveryrow of other
+
+_______________________
+
+SET operators
+
+multiple query to single query and ne result-===
+
+union===>eliminates dublicates
+select job_id from emp union select job_id from retired_emp;
+
+
+union all===>with duplicates
+select job_id from emp union all select job_id from retired_emp;
+
+intersect
+minus
+
+rules
+
+datatype same
+parenthesis ===>ensures sequence
+
+intersect --->does not ignore null values
+
+
+
+LastWatched
+ Oracle Database - SQL===>
+Displaying Data From Multiple Tables Using Joints
 
 

@@ -244,9 +244,155 @@ np.linspace(0,20,10)====>0 to 20 with equal distance of 10 values
 
 np.eye(5)===>identity matrix of 5*5
 
-np.random.rand(3,2)===>3*2 random matrix
+np.random.rand(3,2)===>3*2 random matrix--->uniform 
+
+np.random.randn(2,3)===>3*2 random matrix
+
+np.random.randint(5,20)===>b/w these no....5 inclusive 20 exlusive
+
+np.random.randint(5,20,10)---->total 10 values
+
+np.arange(30).reshape(5,6)===>must 5*6 = 30
+
+array.argmin()===>position of min in array
+
+array.dtype===>find data type
+
+arr.T====>transpose of matrix
+
+__________________________________________________
+
+samp_array=np.arange(10,21)
+
+ap.array[2:5]===>[2,3,4]
+
+sp_arr[1:2]=100===>broadcasting 1st position as 100
+
+subset=spmp_arr[0:7]
+
+smp_arr[;]=1001==>change/broadcast all to 1001
+
+copy_smp_arr= samp_arr.copy()
+
+otherwise it will change the original array
+
+_________________________________________________________
+
+data frame V/s matrix
+
+smp_matrix= np.array(([50,20,1,23],[78,9,3,24]))
+
+smp_matrix[0][3]====>1st row, 4th column
+
+OR
+
+smp_matrix[0,3]
+
+_______________________________________________
+
+smp_matrix[3,:]===>4th row and all columns
+
+OR
+
+smp_matrix[3]===>same as above
+
+_______________________________________________
+
+smp_matrix[:,(1,3)]===>all rows and 2nd and 4th column
+
+--->columns can be swapped
+
+________________________________________
+
+np.sqrt();
+np.cos();
+np.log(np.exp(5.2))
+mat=np.array([2,5,7],[2,5,7],[2,1,6])
 
 
+np.arange(0,15);
+np.arange(3,21,6)===>3rd parameter is step size
+ar=np.linspace(0,5,10)===>both are inclusive, 3rd is mandatory, will divide into 10 equal parts from 0 to 5
+
+ar.reshape(5,2)====>5 rows , 2cols===>equal to no of mul(row * col)
+
+reshape is immutable--->
+
+____________________________________________________________
+
+rand_vec = np.random.randn(15)===>15*1
+
+print(rand_vec>0)
+print(rand_vec>0)===>array of booleans
+print(rand_vec[rand_vec>0])==>values only greater than 0
+
+________________________________________________________________
+
+Panda is another package.....
+
+panda is datatype like excel.....
+
+import panda as pd;
+
+series===>indiviual column... 
+
+and 
+
+dataframe====>row and column====>more flexible than numpy
+
+naming row according to ourselves
+
+=====>like sql==>merging,sorting,join
+____________________________________________________________
+
+
+
+
+accessing and modifying dataframes--->
+
+df3['second column']---->will give series
+
+dataframe is list of list--->
+
+df3[['second_col','third_col']]--->will give third col
+
+df3.loc['fourth_row']===>if we need row use loc fn
+
+df3.iloc[2]===>certain row
+
+df3.loc[['rows'],['cols']]
+
+df3>0===>will turn datafram of data into dataframe  boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://codelabs.developers.google.com/codelabs/cloud-speech-intro/index.html#2
+
+
+https://console.cloud.google.com/iam-admin/serviceaccounts?folder=&organizationId=&project=edupurpose
+
+https://console.cloud.google.com/apis/library/speech.googleapis.com?q=spech&id=7ae3f475-64e7-4123-880a-a889f34fa714&project=edupurpose&folder&organizationId
+
+
+
+
+
+indo_dispather
+
+aplles@123
 
 
 
