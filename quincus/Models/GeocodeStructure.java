@@ -3,7 +3,7 @@ package com.quincus.Models;
 import lombok.Data;
 
 @Data
-public class IndonesiaDataset {
+public class GeocodeStructure {
     private String order_date = "";
     private String order_time = "";
     private String weight = "";

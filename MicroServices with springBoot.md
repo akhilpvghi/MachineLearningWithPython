@@ -219,6 +219,63 @@ Integer.parseInt(envirnment.getProperty("port"))
 
 EP-72
 
+pom-----data-jpa--->with H2
+
+JPA--->@Entity
+	public class .....
+
+@Id
+
+@Column-name=""-->have var name like from
+
+h2-console with JPA
+_________________________________
+E73
+
+create JPA repsitory as interface
+
+____________________________________________
+
+E74
+
+dependencies---------->web,devTool,Actuator.configClient
+
+in application.poroperties
+appliction.name=currency-conversion-service
+server.port=8100
+
+________________________________________
+E75
+
+new class 
+@restcontroller
+
+@GetMapping("url")
+fn( @pathVariable String fromUrl, @pathVariable String def, ....)
+
+___________________________________________________________
+
+E78
+@SpringBootAplication
+@EnableFeignClients("package_name")
+
+
+
+in interface
+@FeignClient(name="service_name", url="localhost:port")
+
+
+if we use feign pathvariable is necessary("var name")
+
+
+__________________________________________________
+
+E79
+
+Adding ribbon to balance load
+
+
+
 translate----->on progress---output mein h, 
 
 shipment code--->task code
@@ -235,5 +292,180 @@ id---->shipment_code
 
 to make repo public---->open repo--->go to setting---->Danger Zone-->make public
 
- 
+_____________________________________________________
+
+Spring MVC......S14E1...luv2code
+
+Form tags with spring..... Support data binding
+
+Regular html
+
+In be spring tag on jao
+
+Again regular html
+
+_______________________
+S14E2
+
+ShowForm( model model){
+
+}
+
+
+<Form: form modalatteibute="student">
+
+  <Form: input.  >
+
+When submit...... Automatically calls setter methods.....
+
+
+ProcessForm(@Modelattrribute("student") student thestudent)
+
+.....
+
+Create student class
+
+
+Control class
+
+Html form
+
+Handle html
+
+Confirmation page
+
+_________________________
+
+postgres timeStamp Issue
+
+https://medium.com/@AADota/spring-jpa-native-query-for-date-time-mysql-and-postgresql-17b2b8a40e68
+
+
+
+_______________________________________
+
+Spring MVC
+
+
+S14e3
+
+Create Student class.....
+
+Private first name
+
+Private last name...
+
+
+Public No arg constructor...
+
+Generate getter and setter....
+
+------------
+@Controller
+@requestMapping("/student")
+New class-------studentController
+
+@requestMapping( "/showForm")
+Public String showForm( model model)
+
+Student s = new student()
+
+model.add attribute("student", s)
+
+Return string;
+
+---------------------------
+S14e4
+
+
+
+Web-inf ---->view--->Student-form.jsp
+
+taglib uri is necessary....
+
+Doc type html
+
+Html
+Head head
+Body
+
+Form : form action modelattribute
+
+Form; input  path first-name
+
+Input type submit value submit-----> will call setters
+
+
+
+
+
+Body
+
+Html
++==========================
+
+Request mapping process form
+
+Public String process form (   @model attribute(.  "Student") student student)
+
+Student. GetName 
+
+---------------]]]---------------------_----------
+
+S14e5
+Spring MVC form tags...
+Student-confirmation.jsp
+In html
+
+${student.firstName}
+
+Navigate by <a href....
+
+-----------------
+S14e6
+
+Drop down list....
+
+In form....
+
+From: select
+
+Form: option value and label....
+-----------------
+
+S14e7
+In jao
+
+Country :
+
+Form: select path="country"-----will call student.setCountry
+
+${student.country}---->will call student.getCountry
+
+-----------------------------
+
+S14e8
+
+Options in java only...
+
+LinkedHashMap<String, String> country-option = new Linked HashMap<>;
+
+Country_option.put("BR","Brazil");
+.
+.
+. 
+And so on.
+
+First one is value and label is second for jsp
+
+------
+
+In our form.....
+
+Form: options  items=${student. Country Options}
+
+------------------
+
+S14E9
+
 

@@ -1,7 +1,4 @@
 https://olympus.greatlearning.in/courses/10899/pages/basic-installation-of-python?module_item_id=444805
-AKHILPVGHI@GMAIL.COM	
-saregamapa@123
-
 
 
 python is primarily lang...
@@ -364,12 +361,67 @@ df3.loc[['rows'],['cols']]
 
 df3>0===>will turn datafram of data into dataframe  boolean
 
+________________________________________________________________
 
 
+functions in dataframes---->
+
+df8['color'].unique()====>will result in series
+
+df8['color'].value_counts()====>how many tyoe each index shows up
+
+df9.mean()=====>mean of each column
+
+df8.columns===> index(['col1','col2'....])
+
+new_df = df8[df8['customer']!=105 & (df8['color']!=green)]
+
+df8['sales'].mean()
+
+print(df8['distance'].min())
+
+.sum()
+
+___________________________________________
+
+def profit(s):
+	return s*0.5
+
+now--->df8['sales'].apply(profit)===>to every col of sales
+
+_________________________________________________
+
+df8['color'].apply(len)===>any standard python function==>length of string
+
+df11 = df8[['distance','sales']]
+
+df11.applymap(profit)===>to entire dataframe===>entry by entry
+
+del df8['color']
+
+.index
+
+.sort_values(by='distance',inplace=True)===>inplace optional===>will mutate now
 
 
+mydict =(
+'col1': ['',''],
+'col2': ['','']
+)
 
+pd.DataFrame(mydict,index=['row1','row2'])
 
+.groupby('customer').describe()===>pivot table like in excel
+
+or we can use single function like
+
+.groupby('customer').std()===>standard deviation
+
+____________________________________________________________________
+
+CSV
+
+df8.to_csv('df8.csv',index=True) ====>to_csv method of dataFrame
 
 
 

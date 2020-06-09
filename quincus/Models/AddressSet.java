@@ -5,6 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-public class IndonesiaAddressSet {
-    private ArrayList<IndonesiaDataset> addresses;
+public class AddressSet {
+    private ArrayList<GeocodeStructure> addresses;
 }

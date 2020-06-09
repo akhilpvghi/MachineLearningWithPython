@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 @Data
-public class IndonesiaInputStructure {
+public class InputJSONStructure {
     private Location start_point;
     private ArrayList<ProgressData> on_progress;
 }

@@ -1,0 +1,50 @@
+NP-Hard and NP-complete
+
+research topic---->
+
+polynomial time algorithms--->searching--->linear,binary search, merge sort(nlogn)
+
+Exponential time algo----->TSP,graph coloring,hamiltonian cycle--->2^n
+
+
+n^10 < 2^n ---->for larger value of n
+
+--->polynomial non deterministic ---now-->
+
+we know statement and working of algo--->deterministic algo
+
+
+
+non-deterministic algorithm--->
+
+choice()
+
+success()
+
+failure()
+
+
+P- set of deterministic algo takes polynomial time
+
+NP----->non deterministic---->polynomial time algo
+
+
+
+NP{P{}}
+
+
+base problem---->satisfiability---->NP Hard as well as NP Complete
+
+Xi= {x1, x2, x3}
+
+CNF = (x1 v !x2 v x3 ) ^ (!x1 v x2 v !x3)
+
+_____________________
+
+Reduction===>
+
+satisfiabilty(Instance I1) reduced to 0/1 Knapsack (Instance I2)
+ 
+
+
+NP complete ---->non deterministic polynomial 

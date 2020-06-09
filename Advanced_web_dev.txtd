@@ -1,0 +1,356 @@
+Advanced Web Development
+
+S1E1
+
+story of the course--->Hi-->by colt
+
+HTML,CSS,Js--->
+
+with Elie,Tim and Matt--->persons with quality of this tutorial
+
+______________________________________________________________
+
+S1E2
+
+CSS Animation--->CSS Flexbox--->to build layouts--->
+
+Asynchronous javascript--->promise,callbacks--->
+
+Ajax---->asychnronous java ....find fullform.....
+
+then Testing......>testing library jasmine--->
+
+Advanced Array methods--->lodash or underscore library--->
+
+cloure and keyword this...=----->
+
+OOP with Js
+
+--->creating your own apis-->node, mongodb
+
+----->single page App
+
+---------->ES2015--->
+
+--->guess the password--->Refactor-->it's an app
+
+----->D3 and DOM-->js library to make chart
+
+------>D3 and data
+
+------------>scalable vector graphics(SVG) and D3(pie chart and line graph)
+
+---->Advanced D3---->tooltips--->map visualisation
+
+------>D3 climate dashboard
+
+---------->intro to React and JSX
+
+----------->create react app and props
+
+----------->react and state
+
+---------->the virtual dom and react events
+
+---------->the component lifecycle--->
+
+--------->React and AUth
+
+---------------->React router
+
+------------->React & Redux
+
+__________________________________________________________
+
+S1E3
+
+introducing team
+
+________________________________________________________
+
+S2E4
+
+Animation intro
+
+_________________________________________
+
+s2e5
+
+ANimation to css
+
+--->tools css transform,keyframe--->
+
+spieces-in-pieces.com
+
+waark.com
+
+
+site with animation
+
+________________________________________
+
+S2E6
+
+why animation matter??
+
+medium article-----> michael ---->improve the payment experience with animations
+
+shaking--->when error?
+
+sending OTP--->on button
+
+planning is hard--->doing is easy
+
+_____________________________________________
+
+S2E7
+
+how to trigger animation--->by clickeing, hover,focus etc
+
+css 3 psueod classes---->
+
+________________________________________
+S2E8
+
+pseudo class---->hover
+
+div:hover {
+
+background: purpole;
+
+}
+
+on codepen-------------> sign up---->
+
+---->
+
+h1:hover {
+background-color: pink;
+}
+
+button:hover---->etc
+
+______________________________________________________
+
+S2E9
+
+focus---->pseudo class--->when click or tab etc
+
+inpot:focus {
+color:red;
+background-color: teal;
+}
+
+_____________________________________________________
+S2E10
+
+pseudo class--->active
+
+MDN--->:active---->pseudo class site
+
+button:active {
+background-color: orange;
+}
+
+-------------->very brief time---->if we keepbutton clicked then it will be there
+
+----->h1:active, P:active{
+css
+}
+---->another way to mutiple tags
+
+____________________________________________
+
+S2E11--->webpage
+
+_______________________________________________________
+
+S2E12
+
+expt---->
+
+.brn {
+outline: none;=====>by default by browser doing sth so rerender ot to remove button effect
+border: none;
+cursor: pointer;
+display: block;
+position: relative;
+background: color_name;
+font-size: px;
+font-weight: px;
+text-transform: uppercase;
+letter-speacing: px;
+box-shadow: x_offset y_offset color_name;
+}
+
+.btn:hover {
+box-shadow: x_offset y_offset color_name;
+}
+
+#efa424===>bootstrap yellow color
+
+
+.btn:active {
+
+}
+
+_________________________________________________
+
+S2E13
+
+introsuction to transform------->
+
+transform--->cordinate---->move,warp,rotate and scale etc,,,,
+
+---->developer.mozilla.org--->MDN---->Transform--->API may be
+
+_________________________________________________________
+
+S2E14
+
+div {
+	transform: translateX(100px); ======>simply translation ro x axis value can be negative
+}
+
+
+p:hover {
+	transform: translate(x_px, y_px);=====>total will be counted from original origin
+}
+
+mainly reserved for animation----->
+
+_________________________________________________________
+
+S2E15
+
+div {
+transform: scale(2);===> zoom factor = 2 or can be 0.5===>sxaleX or scale(x_factor,y_factor)===>zoom will take place in x direction only
+}
+
+origin of scaling--->can be changed===>{transform-origin: 0 0; ===>or transform-origin: left}
+
+_______________________________________________________
+
+S2E16
+
+rotate
+
+div {
+tansform: rotate(45deg);===>[positive then clockwise
+
+====>origin can be transformed
+--->MDN-->site to know
+
+transform: rotate(90deg) scale(2);===>if did seprately then will be overridden
+}
+
+_________________________________________________________________
+
+S2E17
+
+browser prefixes or vendor prefexis??=====>MSN has article on it
+
+autoprefixer.github.io------>if not working in other browser
+
+pleeease.io====>another vendor prefixer
+
+______________________________________________________________
+
+S2E18
+
+transistion---->to give time to transform
+
+transistion duration
+transition property
+transidtion-timing-function===?linearly or how to consume duration
+transition delay
+
+_____________________________________________________________
+
+S2E19
+
+ytansition duration---->
+
+.animated {
+transition-duration: 1s;
+}
+
++==========================================
+transition-property: all | opacity | transform | background-color >>> or can be used with comma value of this property and hence can assign duration with comma repectively===>by default its all
+
+we cannot seprate differnet transform for transition property
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S2E20
+
+transition-delay====>pause to get ready transition===>4s===> can have comma for respection transforms
+
+-------->
+
+transition-timong-function===>easings.net---->parameter can be found here
+
+or MDN===>have live examples
+
+NOTE---->runs with pseudo class only...? to check
+
+________________________________________________________________________________
+
+
+S2E21
+
+shorthand===>combine 4 property in one
+
+{
+transition: _property_name, _duration_in_second, _timing_function, _delay;
+}
+
+______________________________________________________________
+
+S2E22
+
+performance of transistion
+
+transform : translate(),scale(),rotate(),opacity===>best performance
+
+html5rocks.com==>can be referred
+
+______________________________________________________________
+
+S2E23
+
+expt===>>what we learnt so far....
+
+3 things--->background,image and icon
+
+in css--->we can import
+
+like--->@import url('fontaswsemo.com')
+
+div.item * {
+	transition: all 1s ease-in-out; 
+}
+
+filter: grayscale(100%);===
+
+div.item:hover i {
+transform: scale(2);
+}
+
+________________________________________________________________________
+
+S3E1
+
+introduction to keyframes---->
+
+multi state component--->transition is to single state--->
+
+-------------->multi state animation--->
+
+
+
+
+
+
+
+
