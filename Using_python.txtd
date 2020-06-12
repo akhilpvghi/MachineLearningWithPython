@@ -424,6 +424,29 @@ CSV
 df8.to_csv('df8.csv',index=True) ====>to_csv method of dataFrame
 
 
+_____________________________________________________________________________-
+
+saving and loading dataframe to csv
+
+data frame===>index*keys===>row*col
+
+df8.to_csv('df8.csv',index=true)===>name of csv file, index=True ===>save also indicies--->and will create new column for index with no column name in our case
+
+====>save in your working directory 
+
+---------------------------------
+
+to read
+
+new_df8 = pd.read_csv('df8.csv',index_col=0)====>which column is used to get indicies in this case it is 0th column in csv===>if we keep index_col=1===>then customer column will be taken as indicies===>by default it will create as indicies column
+
+
+df8.to_excel('df8.xlsx',index=False,sheet_name='first sheet')====>at first sheet
+
+new_df = pd.read_excel('df8.xlsx',sheet_name='first sheet')====>if we keep index_col=0, then it will get 0th column only as we not created indicies
+
+
+
 
 
 
@@ -437,14 +460,5 @@ https://codelabs.developers.google.com/codelabs/cloud-speech-intro/index.html#2
 https://console.cloud.google.com/iam-admin/serviceaccounts?folder=&organizationId=&project=edupurpose
 
 https://console.cloud.google.com/apis/library/speech.googleapis.com?q=spech&id=7ae3f475-64e7-4123-880a-a889f34fa714&project=edupurpose&folder&organizationId
-
-
-
-
-
-indo_dispather
-
-aplles@123
-
 
 

@@ -339,13 +339,1266 @@ transform: scale(2);
 
 ________________________________________________________________________
 
-S3E1
+S3E24
 
 introduction to keyframes---->
 
 multi state component--->transition is to single state--->
 
 -------------->multi state animation--->
+
+
+___________________________________________________________________
+
+S3E25
+
+defining and assigning===>two steps with keyframe===?
+
+@keyframes #_name {
+
+time_percent_objects, ..
+}
+
+
+----------------
+
+
+defining---->
+
+p {
+animation-name: rainbow;
+animation-duration: 2s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: infinite; 	
+}
+
+//assigning------>
+
+@keyframes rainbow {
+
+0%{
+color: 'red';
+}
+
+50%{
+color: 'red';
+}
+
+100%{
+color: 'yellow';
+}
+
+
+}
+
+___________________________________________________
+
+S3e26
+
+property of animations---->
+
+animation-iteration-count
+animation-fill-mode: =======>forawrd | backwards | both | none ;===>how to apply styling===>from 0 to 100% or 100% to 0%
+animation-direction:============>forward | reverse | alternate
+animation-play-state: =======> paused | running | resume .... ========>like pause animation
+ 
+_________________________________________________
+S3E27
+
+animated sun/sky===>
+
+timeline is important---->with time and styles===>
+
+___________________________________________________
+
+S3e28
+
+@keyframes _name{
+0%{}
+10%{}  ===========>no comma
+}
+
+
+animation propery will be in somee css blocks called as selector===>
+
+______________________________________________________
+S3E29
+
+shorthand animation
+
+animation duration is first
+
+animation delay is second
+
+animation: slideRight 2s ease-in infinite 2s; ==>slideRight is animation_name that is keyFrame name in my words
+
+____________________________________________--
+
+S3E30
+
+border-top-color: #1abc9c====>teal color===>nice green
+
+margin: auto--->centre
+
+@keyframes spin {
+
+0%{
+	transform: rotate(45deg)
+}
+}
+
+forward===>to keep some animation till end like opacity 1;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S4E31
+
+outline:0 --->to ignore--->by default stylling by browser
+
+ _____________________________________________
+
+ S4E32
+
+ flexbox--->
+
+ what is flexbox?
+
+ space distribution in various way--->
+
+ horizontal or vertical-->both way
+
+ css-tricks complete guide to flexbox--->site 
+
+___________________________________________________________
+
+S4E33
+
+.container {
+	display:flex;====>all elements to the left
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S4e34
+
+terminology====>
+
+flex container===>
+flex-item===>inside flex container
+Main axis===>
+cross axis===> 
+
+both these axis are perpendicular
+
+________________________________________________________
+
+S4E35
+
+flex properties===>
+
+flex-direction: row;====>it is by default
+
+flex-direction: row-reverse====>right to left
+
+flex-direction: column===>top to bottom all flex item
+
+flex-direction: column-reverse;====>bottom to top
+
+_____________________________________________________________
+
+S4E36
+
+flex-wrap: item wants to be in single line or multiple line
+
+flex-wrap: wrap;======>default is no wrap==>now using this property will go on another line
+
+flex-wrap: wrap-reverse
+
+_______________________________________________________
+
+S4E37
+
+justify-content===>specify space distribution
+
+justify-content: flex-end====>right to left===>order will be same
+
+	:centre===>all item will be in centre
+
+	: space-between==>try to understand yourself
+
+	: space-around==>try to understand yourself
+
+	:flex-start======>by default
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+S4E38
+
+remember space-between
+
+_______________________________________________________
+
+S4E39
+
+display: dlex;
+flex-direction: column;
+justify-content: centre | space-between ;
+flex-wrap: wrap;
+
+________________________________________________________
+
+S4E40
+
+Allign-items====>along cross axis==>space between 
+
+whereas justify_content====>along main axis
+
+allig-item: flex-start | flex-end | centre | baseline ===>
+	
+	baseline------>there will bw baaseline and then alligned
+
+flex-wrap: wrap;======>when size is more to adjust
+
+dont worry about the spaces---->
+
+______________________________________________________________
+
+S4E41
+
+allign-content===>along the cross axis==>space is distributed between rows
+
+:stretch | space-betwwen | space-around | centre
+
+by default allign-content: stretch : flex-start | flex-end
+
+
+
+_________________________________________________________________________
+
+S4E42
+
+navbar at right corner
+
+nav {
+display: flex;
+flex-direction:row; //row-reverse===>change order
+justify-content: flex-end; // |centre
+
+
+}
+
+
+@media screen and (max-width: 920px){
+nav {
+justify-content:centre;
+}
+}
+
+@media screen and (max-width: 920px){
+nav {
+flex-direction: column;
+align-item:centre;
+border-bottom: 1px solid blue;
+border-bottom-color: blue;
+transition : color 0.5s ease-in;
+}
+}
+
+
+_________________________________________________________
+
+S4E43
+
+flex item properites===>on individual item
+
+align-self=====>same as align-item but for individual ====>applies on single item
+
+__________________________________________________________________
+
+S4E44
+
+Order===>
+
+by default every item at order 0;
+
+so we need to do like
+
+.box-1 {
+order: -1;
+}
+============>number doesn't matter but how they are related to each element
+
+
+flex direction does matter in order..
+
+________________________________________________________________
+
+S4E45
+
+not same proportion===>
+
+available space====>uses
+
+flex: 
+
+flex-basis====>its like width and height according to flex-direction but not exactly width or height
+
+gedd.ski===?difference between width and flex-basis
+
+_____________________________________________________________________
+
+S4E46
+
+flex-grow====>use unused space extra space===> ratio==>
+
+.box {
+
+flex-grow: 1;
+
+}
+
+.box-2 {
+flex-grow: 2;====>to use double of space available 
+}
+
+_____________________________________________________
+
+S4E47
+
+flex-shrink====>shrink ==>how space shuld shrink
+
+flex-shrink: 0===>never shrink
+
+ 
+gingle line=============> flex:flex_grow_no flex_shrink_no 200px;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S4E48
+
+polygon.com
+
+.container {
+display:flex;
+
+}
+
+.background {
+background: '';
+
+}
+
+
+flex-wrap and flex-basis together.....
+
+flex:  grow_no shrink_no flex_basis_in_px;
+
+font-size:2vw===>according to screen size;;;
+
+_____________________________________________________________
+_______
+
+
+
+S4E49
+
+holy grail(web design)
+
+we can use percentage with flex-basis
+
+spotify====>on holy grail (web dev)
+
+_______________________________________________________________
+
+S4E50
+
+lets create holy grail (web-dev)
+
+body{
+display: flex;
+flex-direction:column;
+margin: 0;
+min-height:100vh;
+}
+
+main {
+display: flex;
+}
+
+article{
+flex-basis:60%
+background: orange;
+}
+
+header, footer {
+
+}
+
+@media all and (max-width: 640px) {
+
+main {
+
+}
+
+}
+
+_____________________________________________________________________
+
+S4E51
+
+problem in past with flex-box===>caniuse.com==>for various browser
+
+autoprefixer.github.io
+
+____________________________________________________________________
+
+S5E52
+
+Matt introduction..............
+
+_____________________________________________________
+
+S5E53
+
+intro
+
+_________________________________________
+S5E54
+
+website intro
+
+___________________________________
+S5E55
+
+<a href="#">====>will back at the top
+
+
+* {
+margin:0;
+padding:0;
+box-sizing: border-box;
+
+}
+
+
+#fff===========>white color
+
+_____________________________________________________
+
+S5E56
+
+fontawesome.io---.>
+
+____________________________________________________________
+
+S5E57
+
+style only
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S5E58
+
+@media (max-width: 800px) {
+
+}
+
+_________________________________________________________
+
+S6E59
+
+introducing tim---->
+
+___________________________-___
+
+S6e60
+
+
+asynch code....
+
+___________________________________________
+S6E61
+
+call back functions--
+
+fn another fn and invoked by another fn
+
+
+higher order fn===> which invokes callback fn
+
+uses===>
+
+advanced array method-->
+
+browser events
+
+ajax request-->
+
+react Development--------->
+
+_____________________________________________________
+
+S6E62
+
+forEach()===>apllication of  callback
+
+forEach callback===>(str, index, array)
+
+__________________________________________________________
+
+S6E63
+
+we get -1 if not available 
+
+____________________________________________________
+
+S6E64
+
+findIndex callback
+
+_________________________________________________
+
+S6E65
+
+the stack and the heap
+
+what is stack==>ordered data structure===>
+
+detail of invocation at top of stack--->
+
+when returns --->its popped
+
+main fn at the bottom of the stack===>
+
+-----------------------------------------
+
+heap===>memory area 
+
+______________________________________________________________
+
+S6E66
+
+.join(" ")===>js function
+
+________________________________________________________________
+
+S6E67
+
+setTimeout and setInterval===>
+
+we get id with every Timeout to clearTimeout(timeoutId);
+
+-----------------------------------------
+var interValId = setInterval(callback, repeat_value); 
+
+clearInterval(intervalId);
+
+
+_____________________________________________________
+
+S6E68
+
+countDown example
+
+_______________________________________________________________________
+
+S6E69
+
+eventloop and queue
+
+Queue==>FIFO
+
+eventloop is functionalty-->checks for queue when stack is empty===>if yes,front of queue is placed in stack
+
+------
+
+square(no.)===>function of Js
+
+-------------------------------------------
+
+Js is singleThreaded
+
+___________________________________________________________________
+
+S6E70
+
+Promises basic--->
+
+p1 = new Promise((resolve, reject)=>{
+
+}) 
+
+
+================>Math.random();=======>0 to 1
+
+______________________________________________________________-
+
+S6E71
+
+Promise chaining
+
+disadvantages of nested callback
+
+code is read to hard
+
+---->logic is difficult
+
+---->code is not modular
+
+
+________________________________________
+
+S7e72
+
+Intro to AJAX........
+
+ASynchronous JavaScript and XML..,.,
+
+Ajax is not library...... Not a framework...
+
+It is approach to development.....
+
+Site on adaptive path....ajax....
+
+Pinterest.....
+
+Ajax-----request in background....
+
+----------------------------
+
+S7e73
+
+XML and json-----data formats
+
+-----------------------0000---------------
+S7e74
+
+Var xhr = new XMLHttpRequest();------earlier......
+
+Xhr.open(.GET, ". URL"    );
+. Status
+. Response Text
+. Ready state == 1,2,3,4
+
+
+
+api.github/zen------always simple api for rest...
+
+
+clear()-----> on Console
+
+
+--------------------------------------------
+
+S7e75
+
+Ajax to use on simple page......
+
+Var BTN = document.querySelector('''#btn")
+Var img = document.querySelector("#imgID");
+BTN.addEventListener("click", ()=>{
+XML request.....
+....
+
+Var url = JSON.parse(Xhr.responseText).key; 
+Img.src=url;
+}
+----0-----------------0
+Pintrest---- console---network.....xhr----see status...,,
+
+Dog api example.....
+
+<Script> tag  will always be under body tag
+
+ 
+
+
+----------------------
+
+S7e76
+
+Bitcoin current price.....api hit assignment...,
+
+USD, euro, gbp....bit coin api....
+
+------------------00000---------------
+
+S7e77
+
+SpanSelector.innerText = data.message;
+
+--------======================
+S7e78
+
+Problems with XHR
+
+Syntax :(
+
+16 years old.....
+
+No streaming....
+
+Now enter the fetch method to fetch api.....
+
+Promise..... Type structure....,,,
+
+
+
+fetch(url).then((Data)=>{
+Data.json();
+Data.status
+}
+)
+.catch((0)=>{});
+
+===================================
+S7e79
+
+
+fetch(url)
+
+fetch(url, {
+method: 'POST',
+body: JSON.stringify({
+key: value
+})
+
+})
+
+
+more resource/option can be added on fetch=====> can be checked on MDN 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S7E80
+
+http status 404 ===>goes to .then==>
+
+.then((data)=>{
+data.status
+})
+
+if(!data.ok)
+throw Error("SOME ERROR!")
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S7E81
+
+randomuser.me/api
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S7E82
+
+var avatar = document.querySelector("#avatarID");
+
+fullname.innerText = fullname;
+
+fetch().then(parseJSON)
+
+let parseJson =(res)=>{
+return res.json()
+}
+
+----------------------->see the above logic---->arguement is passed automatically
+
+___________________________________________________________________
+
+S7E83
+
+problem with fetch!!!
+
+browser support......>internet explorer does not support fetch
+
+________________________________________________________________________________
+
+S8E84
+
+AJAX with jQuery
+
+Jquery library===>write less, do more
+
+$.ajax
+
+$.get
+
+$.post
+
+$.getJSON
+
+
+------------->code.jquery.com====>
+
+pick jquery 3
+
+include script
+
+$('#btn').click(()=>{
+
+})
+
+
+
+----->if code pen--->JS setting --->add external
+
+_______________________________________________________-----
+
+S8E85
+
+
+$.ajax({
+	method: "GET",
+	url: "url" 
+
+})
+.done(()=>{})
+
+
+_-------------------
+
+	method: "GET",
+	url: "url" 
+	data: {}
+	dataType: 'json'
+=============>
+api.jquery.com/jquery.ajax
+
+------------------------------------
+
+$("#btn").click(()=>{
+
+$.ajax({
+method: "GET",
+url: ""
+})
+.done((data)=>{
+console.log(data)
+$("p").text(data[0]);
+})
+
+.fail(()=>{
+
+})
+})
+===========================>data is already parsed json
+
+__________________________________________________________________
+
+S8E86
+
+network----->xhr--->jquery uses ajax
+
+_____________________________________________________________
+
+S8E87
+
+$.get("url")
+.done(fn)
+.fail(fn)
+
+__________________
+
+$.post("url" {key: value})
+ .done(fn)
+ .fail(fn)
+
+_____________________---
+
+$.getJSON("url")
+ .done(fn)
+ .fail(fn)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S8E88
+
+random.cat/meow
+
+.attr()========>to change src of image using Jquery
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S8E89
+
+
+$('#catImg').attr("src",data.file)
+
+note $. n $()============>when to use . and ()
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S8E90
+
+api.jquery.com
+
+=====>youmightnotneedjquery.com
+
+AXIOS====>A lightweight 
+
+github.com/mzabriskie/axios
+
+CDN link on github.....
+
+var url= "";
+
+axios.get(url)
+.then(fn)
+.catch(fn(err))
+
+=====================================================
+
+S8E91
+
+handling error with axios===>
+
+axios.get("url",{
+
+params: {
+
+}
+})
+
+===>it has err.request and err.response
+
+_________________________________________________________
+
+S8E92
+
+exercise video...........
+
+____________________________________________
+
+S8E93
+
+All request in one
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==
+
+S9E94
+
+intro to Ellie
+
+_____________________________________________________
+
+S9E95
+
+testing with jasmine--->
+
+____________________________________________
+
+S9E96
+
+Writing test in browser
+
+unit test====>individually component test===>
+
+jasmine===>testing tool
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S9E97
+
+describe===>function to organise our test
+
+it==========>inside descripe function--->in more detail
+
+expect===>inside it function==>put our expectation
+
+		describe("Earth")
+			it("is round")
+
+expect(value).toBe(true)
+
+
+Matchers====>are the function used on expect
+
+	toBe is ===
+	not.toBe
+	
+toBeCloseTo====>similar
+
+toBeDefined
+
+toBeFalsey/ toBeTruthy
+
+toBeGreaterThan/ toBeLessThan
+
+toContain
+
+toEqual  ====>matches value not refernce
+
+jasmine.any()
+
+____________________________________________________
+
+S9E98
+
+beforeEach(fn)===>runs before it function
+
+afterEach(fn)===>
+
+beforeAll() / afterAll()
+
+____________________________________________________
+
+S9e99
+
+Spies====>spying on existing fn
+
+calls.count()
+
+_____________________________________________
+
+S9E100
+
+time dependent code
+
+CLock---->
+
+______________________________________________
+
+S9E101
+
+TDD
+
+test driven deployment--->
+
+1. write the test
+
+------>
+
+Jasmine is BDD--->Behavioural Driven development
+
+_______________________________________________________
+
+S9E102
+
+integration tests
+
+Acceptance tests
+
+Stress Tests
+
+__________________________________________
+
+S10E103
+
+forEach,map,every====>intro only
+
+__________________________________________
+
+S10E104
+
+forEach===>invoked on array==>and callsback for every element===>always return undefined
+
+[1,2,3].forEach((value,index,array)=>{})
+
+==============>function don't have return statement returnsundefined
+
+_________________________________________________________________________
+
+s10E105
+
+some forEach fn
+
+__________________________________________
+
+S10E106
+
+map===>invoked on array
+returns new array==>of same length
+
+======>return is needed
+
+
+__________________________________________
+
+S10E107
+
+function which have map===
+>can be seen with two return statement
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+__________________________________________
+
+S10E108
+
+filter===>invoked on array===>takes callback==>returns aarray of same or less size
+
+arr.filter((value, index, array)=>{
+
+return value > 2;
+})
+
+__________________________________________
+
+S10E109
+
+exercise on filter----->
+
+__________________________________________
+
+S10E110
+
+some===>fn invokes on array==>is any of the the value returns true then it returns true
+
+------------------------------
+arr.some((val)=>{
+return val>2;
+}) 
+
+
+__________________________________________
+
+S10E111
+
+every---->iterate through an array====>checks for every value in array and returns boolean
+
+
+__________________________________________
+
+S10E112
+
+
+every fnctns
+
+_____________________________________________________
+
+S10E113
+
+reduce====>function(accumulator,nextValue,index,array)
+
+can take two parameter===>if second parameter is not passed then accumulator will be first value
+
+______________________________________________________
+S10E114
+
+"akhil" in {akhil: "kumar"}
+
+true
+
+______________________________________________________________________
+
+S10E115
+
+excercise on reduce
+
+____________________________________________________
+
+S10E116
+
+forEach
+map
+filter
+some
+every===>like and case and return boolean
+reduce==>  
+
+______________________________________________________________________
+
+S11E117
+
+closure and this keyword
+
+intro
+
+
+______________________________________________________________________
+
+S11E118
+
+closure==>is a function that makes
+
+closure is only available when inner function uses some variable of outer function
+
+_____________________________________________________________
+
+S11E19
+
+closure like private variable
+
+______________________________________________________
+
+S11E120
+
+game with closure
+
+___________________________________________
+______________________________________________________________________
+
+S11E121
+
+
+
+closure recap
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+______________________________________________________________________
+
+S11E122
+
+this===>keyword in Js
+
+______________________________________________________________________
+
+S11E123
+
+this in function is bad idea and hence ES% had "use strict" to give error for the same
+
+______________________________________________________________________
+
+S11E124
+
+this in {} object refers to nearest parent key
+
+________________
+called as implicit binding
+
+______________________________________________________
+
+S11E125
+
+
+call
+
+apply 
+
+and
+
+bind
+
+to explicitly set this refernce
+
+explicit binding
+
+______________________________________________________________________
+
+S11E126
+
+
+object.key.call(any parent object, may be person also)====>person={firstName: "akhil"}
+______________________________________________________________________
+
+S11E127
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
