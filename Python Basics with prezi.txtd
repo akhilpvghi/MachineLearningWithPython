@@ -1,0 +1,782 @@
+Python by prezi
+
+S1E1
+
+python Intro
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S1E2
+
+python DS
+
+Numbers
+Strings
+Lists
+Dictionaries
+
+Method and functions
+then project
+
+OOPs
+Object
+Classes
+Methods
+Inheritance
+
+Errors ANd Exception Handling
+
+python Generators
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S1E3
+
+
+Python 2 V/s Python 3
+
+syntax is same almost
+
+python 3 is future of python
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S1E4
+
+presentation type video
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S2E6
+
+python setup
+
+Command line Interface
+
+windows command line--->cmd--->
+
+pwd========>
+cd====>current director
+dir===>contents of directory
+cd Desktop===>to change directory to desktop
+cd full_path---->to directly go to directory
+cls======>to clear screen
+
+
+
+Mac Os or Linus command line--->terminal--->
+
+pwd====>present working directory
+ls===>content of current directory
+cd path===>same as windows
+clear=====>to clear
+cd ..======>to go back
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S2E7
+
+installing python
+
+developed by Guido Van in 1991====>learns quickly==>
+uses indentation=======>syntax easy======>huge open-source library
+
+
+Jupyter is python notebook system
+
+anaconda includes various library===>
+
+www.anaconda.com/downloads===>download for windows/Mac/linux
+
+how to download is also there with pdf.....
+
+miniconda site is also there====>if want mini version of conda
+
+=============>
+
+then after installing it ===>search for anaconda navigator===>
+
+you will see various navigation menu====>
+
+____________________________________________________________
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S2E8
+
+what should be the environment--->
+
+subime 
+atom
+notebook environment
+
+should be personal choice
+
+www.sublimetext.com
+
+download for windows--->
+
+open sublime--->
+
+print('hello world')===>file save as abc.py
+
+==>cd Desktop
+==>python abc.py
+
+OR
+
+==>python
+write one line python code
+===>quit()
+
+_-------------------------
+
+Anconda navigator===>jupytor notebook
+====>your file willl be there
+
+but we will use notebook version===>new==>python3
+
+====>click untite===>to rename 
+
+======>in cells
+print('hello')====>press run button or shift+enter
+
+to create more new line just press enter
+
+
+help==>keyboard shortcut
+
+===>you can change code to markdown to keep notes on notebook
+
+ 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S2E9
+
+to open course notebook
+
+complete=python-3-bootcamp===>github
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S2E10
+
+git overview
+
+gitimmersion.com
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E11
+
+int
+float
+str
+list====[10,"hello"]
+dict===>like json object
+tup===>immutable (10,"hello")
+set
+bool
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E12
+
+====>jupyrt notebook===>VIew===>can toggle menu bar and others
+
+/ and %====>operator you know
+
+2**3 ===>8 ===>it is  raised to power
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E14
+
+variable assignments
+
+rules for choosing variables-===>is same as other almost
+
+dynamic_typing supports in python===>can change type of same variable
+
+
+in jupyter
+
+a=5
+
+a=10
+
+type(a) ===>to know data type
+
+to clear all var=====>kernel==>restart kernel===>in jupyter
+
+then we have to re-run each command====>
+
+
+start coding with multiple lines===> :)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E15
+
+Strings===>can be single quotes or double quotes===>to keep words like "don't"
+
+string indexing start at 0
+
+can use reverse endexing====>0 -4 -3 -2 -1
+
+---------------->
+
+if not used with print===>then only last statemnt will be printed on jupyter
+
+escape sequence===> \n,\t ====>4 spaces
+
+len('hello')====>length of a string
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E16
+
+string indexing and slicing
+
+--->mystring = "Hello world"
+
+=====>mystring[0]=======>H
+
+====>mystring[-1]===>d===>last character
+
+slicing=====>selecting subsection
+
+
+mystring[2:]====>from 2nd index to everything
+
+mystring[:3]====>from staring to go upto 3rd index but do not include
+
+
+stepsize====>
+
+mystring[::2]=====>stepsize 2 means, skip one character in between
+
+mystring[::3]====>skip 2 characters
+
+mystring[start_index:last_index:step_size]
+
+mystring[::-1]============>it will reverse the string
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+S3E17
+
+string properties and methods
+
+string is immutable...
+
+name[0] ='A'====>error
+
+# ===>to comment in jupyter
+
+last_letters = name[1:]
+
+'P' + last_letter ====>string concatenation
+
+multiplication with letter supported
+
+letter ='z'
+letter * 10===>zzzzzzzzz
+
+x.  => after pressing . press tabyou will get method list
+
+x.upper()===>upper case==>does not affect x
+
+x.lower()===>
+
+x.split()  ===>creates list limiter space
+
+x.split('i')====>remove i and create list===>
+
+____________________________________________________________________
+
+S13e19
+
+.format()===>print('this is a string {}'.format('INSERTED'))===>
+
+output//this is a string INSERTED
+
+
+print('the {any_index_bw_0 to 2} {any_index_bw_0 to 2} {any_index_bw_0 to 2}'.format('a','b','c'))
+
+
+print('the {a}'.format(a='akhil'))
+
+floating format {value:width.precisionf}===>f is needed at end
+width is wide space
+
+print("the result was {r}".format(r=10.2222222223434))
+
+print("the result was {10.2222222223434}".format(r=10.2222222223434))
+
+print("the result was {r:1.3f}".format(r=10.2222222223434))
+
+output// 10.222===>1 wide space
+
+
+_________________________________________________
+f-strings--->introced in python 3.6
+
+print(f'{name}')====>like %d %f in C lang
+
+________________________________________________________________
+
+S3E21
+
+list in python====>supports indexing and slicing===like array==>[1,2,3,4]===>hetrogenous
+
+===>len(my_list)
+
+===>mylist[1:]===>you know
+
+conatenate list by +
+
+myList1+ mylist2
+
+===> will give one list
+
+===>mutable==>differentiates from strings
+
+to add element at end===>new_list.append('six')
+
+new_list.pop() //latest elemnt like stack and return last elemnt
+
+can pass index in pop====>0 , -1 etc...
+
+====>sorting of list
+
+==>new_list.sort()
+
+
+can't return anything===sorting
+
+type(sorted)==>NoneType
+
+new_list.sort();
+my_sorted_list = new_list
+
+now--->my_sorted_list==>will give you result
+
+===>.reverse()
+
+__________________________________________________
+
+S3E23
+
+dictionaries===>unordererd==>key value=={'key':'value'}
+
+===>no sorting
+
+===>my_dict ={'key1': 'value1'}
+
+===>my_dict['key1']
+
+value can any object....can be list also
+
+===>you know how to access nested dict
+
+===>can add new key value===>
+
+===>can replace key value==>
+
+same like json
+
+d.keys()==>to access all key
+d.values()====>to access all value
+d.items()===>to access all key value====>returns tuple
+
+_______________________________________________________________________________
+
+S3E25
+
+tuples---->immutable==>hetrogenous==>indexing and reverse indexing
+
+t = (1,2,3)
+
+myList = [1,2,3]
+
+===>len(t)
+
+===> t = ('a','a','b')
+
+==>t.count('a')
+
+==>t.index('a')==>returns first occur index
+
+
+===========>very few use but they don't change
+
+____________________________________________________________
+
+S3E26
+
+sets in python===>unordered==>unique elements
+
+====>myset = set()
+
+myset.add(1)
+
+myset===>{1} //looks like dictionary but dont have key value
+
+set(myList)===>conevrt list to set but unique values
+
+____________________________________________________________________________
+
+S3E27
+
+Booleans in python
+
+True / False===>must be capital T or F
+
+====>1 > 2 ==>False
+
+	
+b = None==>is also like null
+
+______________________________________________________________________
+
+S3E28
+
+FIles I/O
+
+%%writefile myfile.txt ===>will create new file may be in jupyter only
+hello this is a text line
+this is second line
+
+# execute all line at once will create file and will enter content too
+
+myfile = open('myfile.txt')===>if file not there error===>
+
+pwd===>in jupyter==>where your jupyter is working
+
+
+myfile = open('myfile.txt')====>your file should be open
+
+myfile.read()===>will give result with \n if there are new line
+
+if run again===>output will be nothing===>as cursor is at end of file
+
+set cursor at 0===>
+
+====>mifile.seek(0)
+
+myfile.readlines()===>will give list with new lines
+
+----------------------------------------------------------
+
+file in any location
+
+myfile = open("C:\\Users\\usrnAme...")
+
+myfile = open("/user/uourname...")==>in linux
+
+can check on ==>pwd===>
+
+myfile.close()===>manually close 
+
+=========
+
+with open('myfile.txt') as my_new_file:
+	contents = my_new_file.read()===>now no need to close file explicitly
+
+shift+tab===>just in staring of function===>open(|'===>cursor should be here==>
+
+mode='r|w|a|r+|w+'==>read,write,apppend,r+==>reading writing,w+==>overwriting wxisting file
+
+===>with open('my_new_file.txt',mode='r') as f:
+	print(f.read())
+
+=====>will show you the content
+
+with open('my_new_file.txt',mode='a') as f:
+f.write('\nFOUR on fourth')
+
+===>with open('dfjkdjfkd.txt',mode='w') as f:
+	f.write('I created this file') ========>either overwrite or create new file
+
+_________________________________________________________________________
+
+S3E30
+
+Assessment type
+
+
+____________________________________________________________________
+
+S3e31
+
+soln of assessment
+
+_______________________________________________________________________
+
+
+S4e32
+
+comparison operator
+
+===>case sensitive while comparison
+
+
+_________________________________________________________________
+
+S4E33
+
+combinaing comparison ===>(and ? or) ==>logical operator
+
+1 <2 and 2>4 ===>( and | or | not | != ==> are key words)===>
+
+or
+
+(1<2) and (3>4)==> false
+
+(1<2) or (3>4)===>true
+
+not(1==1)===>false===>always asks for boolean
+
+!= ===>is also there in python
+
+
+_________________________________________________________________
+
+S5E34
+control flow===>
+
+if, elif, else
+
+makes use of : and indentation
+
+if some_condition:
+	#execute some_code
+elif some_other_condition:
+	#execute some
+else:
+	#do something else
+
+
+=====>if True:
+		print("it's true")===>jupyter provides automatically indentation
+
+
+
+_________________________________________________________________
+
+S5E35
+
+for loop
+
+for item_name in my_iterable:
+	#execute some
+
+//my_iterable can be list
+//my_iterable can be string
+//my_iterable can be tuple
+//my_iterable can be dictionary
+
+OR
+
+for (a,b) in myList:   // tuple unpacking
+	print(a)
+	print(b)
+
+OR
+
+for a,b in myList:   // tuple unpackingwith no parenthesis
+	print(a)
+	print(b)
+
+
+dictionary
+
+for a in myDict:   // only key will be displayed
+	print(a)
+
+for key,value in myDict.items:   // key and value will be displayed
+	print(key)
+	print(value)      //no guarantee of orders
+
+
+
+print(f'odd number: {num}')===>format in python, string template in JS
+
+_________________________________________________________________
+
+S5E36
+
+while loop......
+
+while some_condition:
+	#do_something
+
+OR
+
+while some_condition:
+	#do_something
+else:
+	#do_somethingelse
+
+
+====>if infinity===>kernel===>interrupt/restart
+
+====>break,continue,pass
+
+pass===>does nothing
+its just pass if nothing is there in loop==
+
+======>continue is like skip can work with condition in loop
+
+====>break===>breaks the loop ==>can work with condition in loop
+
+while some_condition:
+	#do_something
+
+
+_________________________________________________________________
+
+S5E37
+
+Useful operator
+
+for num in range(10):
+	print(num)   // 0 to 9
+
+range(3,10)  // 3 to 9
+range(0,11,2)  // 0,2,4,6,8,10
+
+list(range(0,11,2)) //[0,2,4,6,8,10]
+
+for item in enumerate(iterable)===>returned tuple==>n then we can do tuple unpacking
+
+===================>
+
+zip==>fuction
+
+for item in zip(mylist1,mylist2)===>returns tuple===>of same row data(shortest)
+
+========================>
+
+'x' in mylist======>false
+
+a in 'a world'==>true
+
+'mykey' in {'mykey': 345}
+
+===>min(mylist) // or max(myList)
+
+importing function from library===>
+
+from random import shuffle==>
+
+mylist = [1,2,3,4,5]
+
+shuffle(myList)
+
+now list will be shuffle elements
+
+===>from random import randint
+
+randint(lower_limit,upper_limit)
+
+result = input('enter a no. here: ') //always accepts as string
+
+float(result) or int(result)
+
+OR
+
+result = int(input('Enter no.'))
+
+_____________________________________________________________________________________
+
+
+S5E38
+
+list comprehension in python
+
+myList = [letter for letter in 'hello']
+
+myList = [num**2 for num in range(0,11)]
+
+OR
+
+myList = [num**2 for num in range(0,11) if x%2==0]
+
+fahrenite = (9/5)*celcius +32;
+
+mylist =[x*y for x in [1,2,3] for y in [2,3,4]]===>nested for loop// we are sacrificing readbility
+
+________________________________________________________________________________________________________________
+
+S5E39
+
+Assesment
+
+
+________________________________________________________________________________________________________________
+
+S5E40
+
+Assesment solution
+
+word.lower() =='s'
+
+
+________________________________________________________________________________________________________________
+
+S6E41
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+to check 
+
+3==3.0 ===True
+
+3 + 3.5===type will be float
+
+s[::-1]==>reversing string
+
+[0]*3===>[0,0,0]
+
+sorted(list4)==>another sorting version, in this case no need to call
+
+_____________________________________________________________________________
+
+ 
+=================> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

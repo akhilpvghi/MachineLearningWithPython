@@ -168,3 +168,28 @@ LastWatched
 Displaying Data From Multiple Tables Using Joints
 
 
+______________________________________________
+
+set opertors
+
+UNion
+UNION ALL===>ALL ROWS INCLUDING DUPLICATES
+INTERSECT==>COMMON
+MINUS===>
+
+RULES OF SET 
+
+uinion operator===>remove duplicate records
+
+===>select job_id from employess union selct job_id from retired_employess
+
+===>select job_id from employess union all selct job_id from retired_employess
+
+intersect==>common records, does not ignore null values
+
+
+
+
+
+
+

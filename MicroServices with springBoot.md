@@ -107,7 +107,7 @@ choose group--->com.akhil.microservice
 
 
 dependencies
------>devTools
+----->devTools--->so that server can pick changes directly without restarting
 ---->configClient
 ------>web
 ----->Actuator

@@ -1584,6 +1584,929 @@ ______________________________________________________________________
 
 S11E127
 
+apply()===>function to give this functionality
+
+call(this_refernce,arguement seprated by comma)
+
+apply(this_refernce,single array to pass as paprameter to multiple values)
+
+Math.max(nums); //NaN
+
+Math.max.apply(this, nums); //7
+
+
+______________________________________________________________________
+
+S11E128
+
+bind returns a function so that we can pass more parameter later time
+
+va ellieCalc= addNumbers.bind(elie,1,2);
+ellieCalc(3,4); // Elie just calculated 10
+
+______________________________________________________________________
+
+S11E129
+
+why bind with example
+
+______________________________________________________________________
+
+S11E130
+
+using og call, apply and bind function
+
+
+______________________________________________________________________
+
+S11E131
+
+new keyword inro
+
+______________________________________________________________________
+
+
+S12e132
+
+OOps intro....
+
+==============================
+
+
+S12e133
+
+Oops intro.....
+
+We use function and objects.....
+
+============================
+S12e134
+
+
+Objective of constructor is to create object......
+
+Solution is new keyword........
+
+======================
+
+S12e135
+
+Multiple constructor.......
+
+arguement is key word
+
+====\=\\\\===================
+
+S12e136
+
+Recap.....
+
+===============\\\\\=====
+
+s12e137
+
+Keep constructor with Capital word.....
+
+=======================
+
+S12e138
+
+Prototype is a property added to every object created with constructor...
+
+===========================\\\\======
+
+
+S12e139
+
+Uses of prototype.....
+
+=============================
+
+S12e140
+
+To make common for every Property.....
+
+=================================
+
+
+S12e141
+
+Exercise on Prototype.......
+
+arrray.indexOf(value) ===-1 && person instanceof Person
+
+===================================
+
+S12e142
+
+Inheritance......
+
+Object. Create
+
+=======================
+S12e143
+
+Inheritance exercise........
+
+==============================
+
+S12e144
+
+Recap........
+
+============================
+
+S13e145
+
+Node intro......
+
+==================
+
+S13e146
+
+Minor project into......
+
+==============================
+
+S13e147
+
+Deciding api end points......
+
+=================================
+
+S13e148
+
+Installing node js
+
+Cloud9----online Amazon platform to developer
+-------c9.io------email... Cradit card not it's free....
+
+=================================
+C13e151
+
+Delete everything after selecting nodejs environment.....
+
+mkdir todoAPI
+
+Npm init.....
+
+Npm I --save express
+
+touch index.js
+
+
+var express = reqire(express);
+App = express();
+
+app.get('\',(REQ,RES)=>{
+Res.send("hi server");
+});
+
+App.listen(process.env.PORT, callback);
+
+
+=========>Can view from preview in same Amazon workspace.....
+
+
+==============================
+
+S13e152
+
+Respond with json..,,,,,,
+
+It's automatically
+
+If we pass as string..... It will take as html;
+If we pass object...... It will take as json.....
+Also....
+We have res.json({});
+
+===============================
+
+S3e153
+
+5 commands are there......
+
+Sudo apt install -y mongo
+Mkdir data...
+Npm I --save mongoose
+Echo...
+Chmod a+x mongod
+./mongod=======> start mongo db server and kepp this terminal open.....
+
+Then access this server using mongo cli==-==mongo
+
+
+Show dbs
+exit
+
+==============================
+
+S13e154
+
+Connect app to mongo....,
+
+Create schema....
+
+Create models folder....
+Index.js
+
+Var mongoose = require (.  'mongoose' );
+mongoose.set("debug", true);
+mongoose. Connect('mongo db url');
+
+mongoose.Promise = Promise;
+
+module.export.Todo = require('/todo');
+
+----------------[]]]-----]]]]
+Todo.js
+
+Var mongoose = require('mongoose');
+
+Var todoSchema = new mongoose. Schema({
+name: {
+Type: String;
+Required: "name can't be black"
+},
+
+Completed: {
+
+Type: Boolean;
+default: false
+
+}
+
+CreatedDate: {
+Type: date,
+default: Date.now()
+}
+});
+
+Var  Todo = mongoose. Model(''name of schema", above_defined_schema);
+
+module. Export = Todo;
+
+
+=========\\\\\\\==============
+
+s13e155
+
+
+Use our todoroutes.js and make route.....
+
+
+New folder routes===>
+Index. Js
+
+
+Var express = require ('express');
+Var router = express.Router();
+
+
+router.get('/', callback req ,res)
+module.export = router;
+--------------------------
+
+In main entry point js......
+
+Require this route..,,,
+
+Var Todo routes = require('./route/todos');
+
+app.use('/api/todos', todoRoutes);
+
+============+======================
+
+Now get db in todoRoutes
+
+Var db = require(../model's);
+
+router.get('/',calbback{
+
+db.todo.find()
+.then(todos{
+
+res.jsomn(todos)
+})
+
+============================
+
+13e156
+
+post request in ---->routes-->todos.js
+
+router.post('/',(req,res)=>{
+res.send("");
+})
+
+//npm install --save body-parser
+//www.getpostman.com
+
+in main entry js===>
+
+bodyParser = require('body-parser');
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
+
+====================>
+
+now in todos.js
+
+router.post('/',(req,res)=>{
+console.log(req.body);
+
+db.Todo.create(req.body)
+.then((newTodo)=>
+{
+res.json(newTodo)
+OR
+res.status(201).json(newTodo);
+}
+)
+.catch()
+
+
+
+//res.send("");
+})
+
+=====================>
+to run===> node index.js //note index.js is main entry point
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S13E157
+
+todo.js
+
+router.get('/:todoId', (req,res)=>{
+db.Todo.findById(req.params.todoId)
+.then((founfTodo)=>{
+res.json(foundTodo)
+})
+.catch()
+})
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S13E158
+
+=====>routes===>todos.js
+
+router.put('/:todoId,(req,res)=>{
+	//res.send("UPDATE Route!");
+	db.Todo.findONeAndUpdate({_id: req.param.todoID}, req.body,{new:true}) //rew.body is what to update
+	res.json(toso);  //responds with old data by default ===>in order to repond with new data set one more parameter {new:true} // 3rd marameter in findOneAndUpdate
+})
+.catch((err)=>{})
+
+=====================================================
+
+s13E159
+
+routes===>todos.js
+
+router.delete('/:todoID', (req,res)=>{
+	 //res.send("ok delete");
+	db.Todo.remove({_id: req.params.todoId})
+	.then(()=>{
+	res.json({message: "deleted"})
+	//console.log("deleted")
+	})
+	.catch((console )=>{})
+})
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S13e160
+
+along with models and others create helper folder
+
+====>todos.js
+
+in helper todos....
+
+copy callback fn of get and post request and paste in helper todos.js
+by giving some name to it and export 
+
+like
+var db = require('../models');
+
+exports.createTodo = callback fn()
+exports.getTodos = callback fn()
+
+module.exports = exports;
+
+======================>
+
+
+now we can change/refactor in routes ===>todos.js
+
+var helpers = require('../helper/todos');
+
+router.route('/')
+.get(helpers.getTodos)
+.post(helpers.createTodos)
+
+//we can do same for others which have similar api but change in request type
+
+router.route('/:todoId')
+	.get(getTodo)
+	.put(helpers.appropriate fn)
+	.delete(helpers.appropriate fn)
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S14E161
+
+put request --->form data complete or not can be seen in network tab ??
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S14E162
+
+inn main entry file---->
+
+app.get('/',(req, res)=>{
+res.sendFile("index.html");
+})
+app.use(express.static('/public')); =====>as it is in main file
+
+app.use(express.static(__dirname + '/views'))
+----->make views dir---->index.html
+
+<head>
+<link rel="stylesheet" href="app.css" type="text/css">
+</head>
+<body>
+<h1>Hello<h1>
+</body>
+
+
+
+---------------------
+create dir public 
+
+	====>app.css
+	====>app.js
+	
+in app.css
+
+h1 {
+	color: purple;
+}
+
+==========>
+
+in html-->before body end we can add script tag
+<script type="text/javascript" src="app.js"></script>
+
+=======================>
+
+if tired of starting server===>
+
+npm install -g nodemon
+
+===>
+
+nodemon index.js //now
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+S14E163
+
+code.jquery.com
+
+to get jquery cdn
+
+paste script below <link> tag
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S14E164
+
+in js===>
+
+$(document).ready(()=>{
+	$.getJSON("/api/todos")
+	.then((data)=>{						//.then or .done both are supported
+	console.log(data)
+	})
+
+addTodos=()=>{
+	todos.forEach((data)=>{
+	//console.log(todo.name);
+	var newTodo =  $('<li class="task">'+todo.name+ '</li>');
+	$('.list').append(newTodo);
+	
+	})
+}
+});
+
+_________________________________________________________________
+
+S14E165
+to cross the task which are done
+text-decoration: line-through;
+
+
+addTodos=()=>{
+	todos.forEach((data)=>{
+	//console.log(todo.name);
+	var newTodo =  $('<li class="task">'+todo.name+ '</li>');
+	
+	if(tolo.completed){
+		newTodo.addClass("done");
+	}
+	
+	$('.list').append(newTodo);
+	
+	})
+}
+});
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S14E166
+
+$('#todoInput').keypress((event)=>{
+
+if(event.which == 13){    //checking if entered is pressed everytime
+	//create todo
+	createTodo()
+}
+})
+
+function createTodo(){
+var usrTnput = $('#todoInput').val();
+$.post('/api/todos',{name: usrInput})
+.then((newTodo)=>{
+console.log(newTodo);
+$('#todoInput').val(''); // here we are setting input as blank now
+//can add single li
+})
+.catch((err)=>{
+console.log(err)
+})
+
+}
+_______________________________________________________________
+
+S14E167
+
+deleting functionality
+<li>     <span> X</span></li>
+
+
+in app.js only
+
+$('.list').on('click', 'span', ()=>{
+  //$(this).parent().remove(); //we will get list removed
+	var clickedId = $(this).parent().data('id');
+
+	$.ajax({
+		method: 'DELETE',
+		url: 'api/todos'+clickedId
+	})
+	.then((data)=>{
+	console.log(data);
+	$(this).parent().remove(); 
+	})
+	.catch(()=>{})
+	//console.log($(this).parent().data('id'));
+
+
+}) // we are not directly handling event for span as it is not loading in starting and hence we are doing it on list which have span
+
+
+ //now challenge is to get id
+// use another property of jquery "data"
+
+we can set here
+
+addTodos=()=>{
+	todos.forEach((data)=>{
+	//console.log(todo.name);
+	var newTodo =  $('<li class="task">'+todo.name+ '</li>');
+	newToda.data("id",todo._id);   //to store id seperately by jsquery	
+	if(tolo.completed){
+		newTodo.addClass("done");
+	}
+	
+	$('.list').append(newTodo);
+	
+	})
+}
+});
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+S14E168
+
+we want to set complete true if we click on list, but if we click on span , which is inside list===>we want to delete it
+
+problemm====>
+
+so what we can do is==>
+
+$('.list').on('click', 'span', (e)=>{
+e.stopPropagation();  ///stop bubbling up of event
+
+ //adding in above codeabove
+
+ ----------------------------------->
+ function updateTodo(todo){
+	var updateUrl= '/api/todos' + todo.data('id');
+	var isDone = !todo.data('completed');
+	var updateData = {completed: isDone}
+	$.ajax({
+	method: 'PUT',
+	url: updateUrl,
+	data: updateData
+	}) 
+	.then(()=>{
+	todo.toggleClass("done");  //it is like toggling class 
+	todo.date('completed',isDone) // to synch with db
+	})
+ }
+
+//store one more property completed 
+//newTodo.data('completed', todo.completed) // in above forEach
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E169
+
+javaScript popularity
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E170
+
+ES2015
+
+ES1===>1997===>ECMA==>Europe computer....
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E171
+
+const keyword===>can not change the value of primitives
+
+but can push into array==>
+
+===>can not re-declare it
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E172
+
+let and var==>difference can be seen with the concept of hoitiong....
+
+also let keyword is kind of associated with thw block===>
+
+for e.g var keyword set i value to last in setTimeout==> but let keyword will start to work
+after the working of setTimeOut only.....
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E173
+
+template string or string interpolation
+
+`hello {name}`
+
+===>also allow to write multi line....
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E174
+
+
+arrow fn===>
+
+let add=()=> a+b; ====>if it is single line===>don't put return keyword
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E175
+
+arrow function do not have their this refernce.....
+
+__________________________________________________________________
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E176
+
+if we have one parameter===>no need to put in parenthesis===>in arrow fn
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E177
+
+dafault parameters
+
+function add(a=10,b=12)===>if there is no value ,these will be considered
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E178
+
+for..of loop===>can not be used for object
+
+for in===>for object
+
+=========================================================
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E179
+
+Rest operator==>
+
+add(a,b,...c)===>third parameter automatically will become array of no. of items that are passed
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E180
+
+Spread operator
+
+if not used in function then ... will be spread operaotor
+
+to concat
+arr3= [...arrr1,...arr2]
+
+====>basically spreads the array
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E181
+
+some excercise on spread and rest
+fn findMIn(...args){
+return Math.min(...args);
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S15E182
+
+object enhancement===>
+
+shorthand notation===>
+
+if key and value are same then simply 
+
+var instructor ={
+firstName,
+lastName
+}
+
+------------------------------------------
+
+ in object we can not have arrow function 
+so can simply write as
+
+var instructor ={
+sayhello(){
+return "hello";
+}
+}
+==>in abovve e.g==>kay is sayhello and value is hello
+
+_______________________________________________
+
+computed property name
+fn = "name";
+
+inst {
+[fn]="akhil"
+}
+
+
+_____________________________________________________________
+
+S15E183
+
+Object destructuring object
+
+instructor={
+fn : "a",
+ln : "b"
+}
+var {fn,ln} = instructor;
+or
+to give other name
+var {fn:fname,ln:lname} = instructor;
+
+fname//a
+lname//b
+
+
+_____________________________________________________________
+
+S15E184
+
+Array destructuring===>
+
+arr=[1,2,3];
+var [a,b,c]=arr;
+
+helps in swapping algorithm....
+
+
+_____________________________________________________________
+
+S15E185
+
+destructuring exercise
+
+_____________________________________________________________
+
+S15E186
+
+Recap
+
+_____________________________________________________________
+
+S16E187
+
+Intro
+
+_____________________________________________________________
+
+S16E188
+
+refactoring intro
+
+_____________________________________________________________
+
+S16E189
+
+guess game code understanding....
+
+_____________________________________________________________
+
+S16E190
+
+loop must have let===>
+==>string template
+callback==>to arrow function
+
+_____________________________________________________________
+
+S17E191
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+by akhil
+
+===>models
+            ====>index.js===>this will contain
+                       mongoose setting and export                              
+                      schema
+
+            ====>todo.js===>this is schema
+
+
+
+
 
 
 
