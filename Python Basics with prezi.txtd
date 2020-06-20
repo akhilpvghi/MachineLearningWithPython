@@ -1,4 +1,4 @@
-Python by prezi
+Python by prezi by Jose marzia
 
 S1E1
 
@@ -722,13 +722,1138 @@ ________________________________________________________________________________
 
 S6E41
 
+methods and built-in objects
+
+mylist.append(4)  //to add at last
+
+mylist.  ==>enter tab to explore methods
+
+mylist.insert ====>enter shift+tab
+
+or 
+
+help(myList.insert) ===>to get help other than jupyter
+
+docs.python.org===>Library reference
+
+intro===>
+
+
+________________________________________________________________________________________________________________
+
+S6E42
+
+Functions==>repeated code-->
+
+def name_of_function(name): ===>snake casing
+	'''
+	explanation of fn
+	INPUT:
+	OUTPUT:
+	'''
+	
+	print("hello"+ name)
+
+>>name_of_function("akhil")
+>>hello akhil
+
+def add(num1=3,num2):       //default parameter is provided
+	return num1+num2;
+
+resullt = add(3,5)
+
+___________________________
+
+________________________________________________________________________________________________________________
+
+S6E44
+
+args and kwargs in python
+
+===>sum(tuple)===>fn in python
+
+def myfun(*args): // dynamic number of parameter will become tuple now in function
+
+-----------------------------
+
+can have dictionary also
+
+def myfunc(**kargs):
+	if 'fruit' in kwargs
+		print('my fav fruit is {}'.format(kargs['fruit']))
+
+// calling of above function
+myfunc(fruit='apple', ...) any number of arguement 
+
+_________________________________
+
+both can be used at same time--->* and ** differentiate at function level AND single value  and value with = is differentiating
+at calling of fn level
+
+===>order needs to be maintained
+
+
+________________________________________________________________________________________________________________
+
+S6E45
+
+exercise
+
+________________________________________________________________________________________________________________
+
+S6E46
+
+min(3,4)==>3
+
+soln of exercise
+
+________________________________________________________________________________________________________________
+
+S6E47
+
+'akhil'.capitalize()===>Akhil==>capitalises first character
+
+'_'.join(['a','b','c'])===>a_b_c
+
+
+abs(number)===>returns absolute of anumber===>returns positive of a no.
+
+________________________________________________________________________________________________________________
+
+S6E48
+
+listA == listB===>can also be compared
+
+sum(myList)===>can also be done
+
+________________________________________________________________________________________________________________
+
+S6E49
+
+to mathch order of [0,0,7,'x']-->in LIST
+
+while checking in list ...pop out first element...
+
+list.pop(0)===>will pop out from front end
+
+_________________________________---------------------------
+
+range(3,8,2)===>[3,5,7]
+
+for y in list:
+
+else:
+
+===>if break did not work in for loop then it will go in else
+
+
+____________________________________________________________
+
+S6E50
+
+
+lambda functions==>map and filter
+
+for item in map(fn_name,myList):
+	print(item)
+
+ OR
+
+list(map(fn_name,myList))
+
+-------------------------------------
+
+any function in map which returns something of same size may be
+
+------------------------------------------------
+
+we do not pass fn name with parenthensis () in map===>to note
+
+-----------------------------------------------------
+
+def check_even(num):
+	return num%2==0
+
+list(filter(check_even,mynums))=====>fn should pass boolean which is pass in filter
+
+---------------------------------------
+
+lambda function or anonymous function
+
+square = lambda num: num**2
+
+//call it like // square(3)
+
+so
+
+list(map(lambda num: num**2, myList))
+
+________________________________________________________________________
+
+S6E51
+
+
+nested statement and scope
+
+var stored in space called===>name space
+
+LEGB==>LOCAL ENCLOSING GLOBAL BUIL_IN ==>rule to maintain scope of variable
+
+enclosing is ===>function within function
+
+==============>
+
+to change global, in local scope
+
+def x:
+	global y
+
+=====>
+
+ now we changed y in namespace globally
 
 
 
+______________________________________________________________________
+
+S6E52
+
+Assignment
+
+the quick fox jumps over the lazy dog ====>is pangrams as it contains all letter
+
+import string
+
+string.ascii_lowercase =====>abcdefghijklmnopqrstuvwxyz
+
+-----------------------------------
+
+'c'.isupper() //trie or false
+
+
+---------------------------
+
+total*=x ====>it works in assigmnet
+
+________________________________________________________________________
+
+S7e55
+
+first project tic tac toe
+
+//from IPython.display import clear_output
+
+clear_output() 
+
+OR
+
+print("\n*100")===>prints 100 next line
+
+________________________________________________________________________
+
+S7e57
+
+marker = input('enter player1marker').upper()
+
+
+--------------------
+def getPlayer_marker:
+	return('X','O')
+
+
+====>calling
+
+player1marker,player2marker 
+= getPlayer_marker()
+
+---=============================
+
+import random
+
+flip = random.randint(0,1) ===>either 0 or 1
+
+
+________________________________________________________________________
+
+S7e58
+
+solution of tic tac toe
+
+________________________________________________________________________
+
+S7e59
+
+print "hello"  ====>also works like this
+
+new methos to have tic tac toe
+
+________________________________________________________________________
+
+S8e60
+
+OOPs Intro
+
+class class_name():
+	
+	def __init__(self,param1,param2):
+		self.param1 = param1
+		self.param2 = param2
 
 
 
+	//instance not object creation
 
+
+________________________________________________________________________
+
+S8e61
+
+myset =set()
+
+myset. ===>can see fn
+
+class is blue print defines nature of future object
+
+var name, and fn name---->snake casing
+
+class name--->capitalise camelCase
+
+intance/object creation
+
+class Sample():
+	pass
+
+my_sample = Sample()
+
+type(my+sample)
+_____------------------------------
+
+
+class Dog():
+	def __init__(self,breed_dog):
+		self.breed= breed_dog  //__init__ call at time of instance creation===>like constructor in other language
+
+
+dog = Dog() // error  as breed is needed
+
+dog = Dog(breed='Alsation') // if order is not known
+
+//otherwise siply
+
+dog = Dog('Alsation') 
+
+--now //dog.breed //Alsation
+
+attributes are the properties used in class
+
+________________________________________________________________________
+
+S8e62
+
+OOPS part 2
+
+attributes that are goin to be same for any instance of class===>like static in other languages
+
+any variable not associated with self or methods in class will be same for all instance of the class
+
+method is a function inside the class
+
+
+----------------
+
+in order to use use class attributes to methods....fn must have self as parameter
+
+
+def __init__(self,radius=1): ===>default parameter to radius
+	self.radius = radius
+
+--------------------------------------------------
+
+pi=3.14 ====>declared globally in class
+
+we can use  it by
+
+self.fi 
+
+OR
+
+class_name.pi // in methods or __init__methods
+
+
+________________________________________________________________________________________________
+
+S8E63
+
+
+OOPs Part-3
+
+reusabilty and reduce complexity
+
+Inheritance in python===>
+
+class Animal():
+
+class Dog(Animal):  //Dog is inherits the property of animal
+
+===>constructor of both will be created====>first constructor called will be of parent
+
+override can be done=====>using same name of method in child class as of parent class
+
+==================================================
+
+polymorphism =====> to loop or fn to call same function name using different object===>
+
+------------------------------
+
+class Animal():
+	def __init__(self,name):
+		self.name = name
+
+	def speak(self):
+	raise NotImplementedError("sub class not implemented") //can be used as interface // raise to raise an error
+
+=================>this is also polymorphism
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+S8E64
+
+ OOPs part 4
+
+ ===>len(myList)
+
+class A():
+	def __str__(self):
+		return f"{} and {}" // this is like .toString method in java
+
+a = A()
+print(a) OR str(a)===>will print toString method of the above class
+
+------------------------------------
+
+def __len__(self):
+	return ""    //=====> simlarly len(object of class) can be overridden
+
+--------------------------------------
+
+to delete object of some class from computer memory
+
+==>del object_name
+
+===>we can also do something at the time of deletion
+
+def __del__(self):
+	return " "
+-----------------------------
+
+_________________________________________________________________
+
+S8E65
+
+OOPs HW
+_________________________________________________________________
+
+S8E66
+
+tuple unpacking
+
+x1,y1 = self.coordinate1
+
+_________________________________________________________________
+
+S8E67
+
+exercise
+
+_________________________________________________________________
+
+S8E68
+
+return f"{self.owner} \n balence"
+
+
+_________________________________________________________________
+
+S9E69
+
+pyPi ====>repository to use third library package=====>we already installed pypi as we downloaded anaconda
+
+window user (install pypi)==>
+
+cmd===>pip install package_name requests    // to request from python
+
+===>pip install colorama //print out colorize text
+
+====>python
+
+>>> from colorama import init
+>>> init()
+>>> from colorama import Fore
+>>> print(Fore.RED + "some red text")
+>>> quit()
+
+-----------------------------------
+
+google===>python package for ____can be searched on google
+
+cmd===> pip install package_name
+
+_________________________________________________________________
+
+S9E70
+
+writing own module and packages
+
+===>module is another py scripts==>
+
+------->save one file as .py
+
+------->save one more file as .py
+
+
+one.py
+======
+def oneFn():
+	print("hello from one")
+
+-------------------------
+
+oneMore.py
+======
+
+from one import oneFn
+oneFn()
+
+
+>>>>cmd
+>>>python oneMore.py
+
+----------------------------------
+
+now create a new package
+
+==>mkdir myMainPackage==>in this folder===>create folder subPackage
+
+in main package===>create __init__.py ===>which will have nothing but necessary
+create one more py in main package===>some_main_script.py
+
+==>in sub Package also==>create __init__.py
+
+in sub package create one more file===>my_subScript.py
+
+
+--------
+
+in sub script.py
+
+def sub_report():
+	print("fn in sub script")
+
+-----------------
+
+in main script.py
+
+def main_report():
+	print("fn in main script")
+
+-----------------
+
+from MyMainPackage import some_main_script
+from MyMainPackage.SubPackage import mysubscript
+
+some_main_script.main_report()
+
+mysubscript.sub_report()
+
+>>>python myprogram.py
+
+
+_________________________________________________________________
+
+S9E71
+
+craete two new .py files==>
+
+one.py
+two.py
+
+there's no main fn in python...
+python runs every code having indetation level 0..
+
+so in order to know the instantiation of program or main file which is directly run....
+
+python does===
+
+__name__=__main__
+
+so we can check using if we are the starting file and me be used as destructure at last...
+
+_________________________________________________________________
+
+S10E72
+
+Errors and Exception
+
+try: , except: , finally:
+
+input("enter no")===>remeber it will give you string always
+
+and if we add----->script broken
+
+=====>
+
+or we can explicitly map error type
+
+except TypeError:
+	print("")
+except OSError:     // or IO error acc. to version of python
+	print("")
+
+finally:
+	print("i always run")
+
+Or simply 
+
+except:   ====>will do but lot of work for python
+
+================================
+try:
+	result = int(input("please provide number:"))
+except:
+	print("")
+finally:
+	print("")
+
+===============================
+
+while True: ====>be careful to use while with true===>use with break
+
+
+_________________________________________________________________
+
+S10E73
+
+exercise
+
+_________________________________________________________________
+
+S10E74
+
+exercise solution
+
+try:
+
+except:
+	continue
+
+else:
+	break
+
+
+_________________________________________________________________
+
+S10E75
+
+testing tools
+
+unittest==>library
+
+cmd>>>pip install pylint
+
+---------------------------
+
+simple1.py
+
+a=1
+b=2
+print(a)
+print(B)
+
+=====
+pylint simple1.py===>will give a report
+
+
+E: it will give highlight of error
+
+global evaluation is also there...
+
+====================
+good pgmng practice
+
+==>multi line comment in starting
+===>doc string for function
+
+
+_________________________________________________________________
+
+S10E76
+
+unit test library
+
+======>
+test_python_script.py
+
+import unittest
+import python_file_to_test
+
+class TestClass(unittest.testCase):
+
+	def test_fn_name_for_this_class_only(self):
+		text = 'python'   #string to pass to testing class
+		result = python_file_to_test.fn_to_test(text)
+		self.assertEqual(result, 'Python')
+		.
+		.
+		.
+		.
+
+
+		..similarly more fn can be designed and more test can be designed
+
+if __name__ == '__main__'
+	unittest.main()
+
+
+'string'.capitalise()====>capital the first character
+
+'string'.title()===>capitals first character of every word
+
+_________________________________________________________________
+
+S11E77
+
+milestone project intro---
+
+_________________________________________________________________
+
+S11E78
+
+project continued
+
+_________________________________________________________________
+
+S11E79
+
+append works with list==>
+
+_________________________________________________________________
+
+S11E80
+
+game continued
+
+_________________________________________________________________
+
+S11E81
+
+game script run
+
+_________________________________________________________________
+
+S12E82
+
+decorators with python--->
+
+decorate a fn...
+
+function can be deleted===>
+
+>>>del fn_name
+--->fn are object and hence can be assigned to another reference/fn_name
+
+=============>passing function as an arguement
+
+ @new_func
+ def original_fn():
+	print("something original")
+
+======>what above state ment will do ===>will pass original_fn as parameter to new function and hence something can be done before original function and after original function and finally wraps this new version
+of function...and return it...
+
+note new_func is create by developer only
+
+_________________________________________________________________
+
+S12E83
+
+Decorators homework
+
+_________________________________________________________________
+
+===============================
+
+S13e84
+
+Generators==generator are the function which generates the result when you need them using yield keyword..,,,
+
+for s in [1,2,3]:
+      yield s**3
+// It automatically have return,,,, no need to create an empty list....
+
+[]------>empty list
+
+[].append(data)
+
+
+S='hello'
+S_iter = iter(s)
+
+Now we can call next function again n again as s is yielded
+
+next(s_iter).      //h //call again n again you will get all the character..,,
+
+
+=====================================
+
+S13e85
+
+Problem on generator.......
+
+=============================
+
+S13e86
+
+Solution and intro to generator comprehension...
+
+_____________________________________________________________________________
+
+S14E87
+
+final capstone project
+
+_____________________________________________________________________________
+
+S15E88
+
+collection module===>
+
+from collections import Counter
+
+Counter(my_list)  // it is dictionary sub class
+//Counter({2: 5, 1:4})
+
+===>counts each element occurence
+
+c= Counter(words)
+
+c.most_common(2) // will give two values whose frequency is most
+
+sum(c.values())==>sum of count
+.
+.
+.
+more functions are also there
+
+c.most_common()[:-n-1:-1]===>least count
+
+_____________________________________________________________________________
+
+S15E89
+
+default dict
+
+from collection import defaultdict
+
+d= {'k1':1}
+d['k1'] ==//1
+
+
+d = defaultdict(object)
+d['one'] //will return object
+
+for item in d:
+	print item //will give key one
+
+d= defaultdict(lambda:0)
+d['one']==>0 =======>will create dynamic key
+
+_____________________________________________________________________________
+
+S15E90
+
+orderedDict===>sub class of dictionary
+
+for k,v in d.items():
+	print k,v   //will not be in order
+
+
+d = OrderedDict()
+
+d['a']=1
+d['b']=2
+
+
+for k,v in d.items():
+	print k,v   //now it will be in order
+
+====================================================
+
+d1={}
+d1['a']=1
+d1['b']=2
+
+d2={}
+d2['b']=2
+d2['a']=1
+
+d1==d2 //true if not orderedDictionary
+
+
+______________________________________________________________________________________________________________
+
+_____________________________________________________________________________
+
+S15E91
+
+namedTuple===>also from collection module
+
+t = (1,2,3)
+
+t[0] //1
+
+from collections import namedtuple
+
+Dog = namedtuple('Dog','age  breed name')
+
+sam = Dog(age=2,breed='alsation',name='stuffy')
+
+sam.age //2
+sam[0]  //2
+
+python documentation collections==>google to know more
+
+_____________________________________________________________________________
+
+S15E92
+
+Datetime module
+
+//////////////
+
+import datetime
+
+t = datetime.time(5,25,1)//  (HH,mm,ss,ms)
+
+print t //05:25:01
+
+t.microsecond //0 since we did not specify
+
+datetime.time.min //00:00:00
+datetime.time.max //23:59:59:999999
+=============================================
+
+today = datetime.date.today()
+
+print today
+
+//2015-10-06
+
+today.timetuple()
+
+today.year//2020
+today.day//20
+
+d1 = datetime.date(2015,3,11)
+print d1 //2015-03-11
+
+d2 = d1.replace(year=1990)
+
+d1-d2 //will give timedelta
+
+_____________________________________________________________________________
+
+S15E93
+
+python debugger ==>pdb
+
+import pdb
+
+x=[1,2,3]
+y=4
+z=5
+
+print y+z
+pdb.set_trace()  //will give input type to expt and test unless you press q to quit
+
+res=x+y
+print x
+
+_____________________________________________________________________________
+
+S15E94
+
+timeit module===>
+
+import timeit
+
+'0-1-2-3-...-99'
+
+"-".join(str(n) for n in range(100))
+
+timeit.timeit('"-".join(str(n) for n in range(100))',number=10000)===>will calculate total time to compute
+
+in jupyter notebook can be done directly
+
+%timeit "-".join(str(n) for n in range(100))
+
+_____________________________________________________________________________
+
+S15E95
+
+Regular Expression====>text matching pattern
+
+import re
+
+patterns = ['term1','term2']
+
+text = 'this is string with term1, but not the other term'
+
+re.search('hello', 'hello world') // will give match object
+
+===>no match will give None
+
+.start() //matching index start
+.end()   // ending match index
+
+re.split('@',phrase_msg) ==>will give list
+
+re.findall('match','give me list of match match')// ['match','match']
+
+sd* ===>s followed by 0 or more d's
+sd+====>s followed by 1 or more d
+sd?====>s followed by either one or zero d
+sd{3}===>s followed by 3 d's
+sd{2,3}===>s followed by 2 or 3 d's
+[sd]===>either s or d
+[^!.? ]==>exclude punctuation ^ is negation
+[a-z]+ ==>a to z
+[a-zA-z]+
+[A-Z][a-z]+
+\d==>digit
+\D==>non digit
+\s==>whitespace
+\S==>non whitespace
+\w===>alphanumeric
+\W===>non alphanumeric
+
+inorder to not confuse RE with escape sequence
+
+r'\d+'  ==>this is how RE understands
+\\d+ ===>in java script
+
+python regular expression=======>tutorials point
+
+
+
+all these can work in re.findall(pattern, phrase)
+
+
+_____________________________________________________________________________
+
+S15E96
+
+string Io ===>module==>implements in-memory
+
+import StringIO
+
+message ="hello world"
+
+f = StringIO.StringIO(message) // now f can be used as file object
+
+f.read()
+f.write('second')
+f.seek(0)
+
+
+===>when use site string as file
+
+
+_____________________________________________________________________________
+
+S16E98
+
+Advanced Numbers
+
+hexadecimal
+
+hex(decimal) //	
+hex(12)==>//0xc
+hex(512)==>0x200
+bin(128)==>binary representation
+
+pow(2,4)===>power //16
+(x**y)%z===>pow(x,y,z)
+
+abs(2)===>
+round(3.1)==>3.0
+round(3.9)==>4.0
+
+round(3.1415,2) //3.14 //upto two places
+
+_____________________________________________________________________________
+
+S16E99
+
+Advanced Strings
+
+s = 'hello world'
+
+s.capitalize() //
+s.upper()
+s.lower()
+s.count('o')
+s.find('o')// first occurence
+s.center(20,'z') //zzzzhello worldzzz //total 20 char
+'hello\thi'.expandtabs() //will add space
+
+ s.isalnum() // only alpha then also returns true
+
+ s.islower()
+ s.isspace() // if all space
+ s.istitle() //like "Akhil Kumar"
+s.isupper()
+s.endswith('o') //true //= s[-1] == 'o'
+
+s.partition('i') //split at first instance and returns three element in list
+
+_____________________________________________________________________________
+
+S16E100
+
+Advanced Sets
+
+s = set()
+s.add(1)
+s.add(2)
+s.add(2) // it will not give error
+
+s.clear() //
+sc = s.copy()
+
+s.difference(sc) ==>
+s.difference_update(set2)// will minus set2 from s
+
+s.discard(2) // like remove
+
+s1.intersection(s3) // returns common
+s1.intersection_update(s2) // will update acc to intersection
+
+s1.isdisjoint(s2) // true if null is intersection
+
+s1.issubset(s2) //
+
+s1.issuperset(s2)//
+
+s1.symmetric_difference(s2) //opposite of intersection
+
+s1.union(s2) //
+
+s1.update(s2) // update as union
+
+_____________________________________________________________________________
+
+S16E101
 
 
 
@@ -739,6 +1864,10 @@ S6E41
 
 
 to check 
+
+difference between diifence and symmetric difference in set
+
+
 
 3==3.0 ===True
 
@@ -752,6 +1881,10 @@ sorted(list4)==>another sorting version, in this case no need to call
 
 _____________________________________________________________________________
 
+print()
+print() //both will be printed in seperate line without \n
+
+range(1,11)// [1,2,3...10]
  
 =================> 
 

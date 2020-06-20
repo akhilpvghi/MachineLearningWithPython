@@ -446,6 +446,44 @@ df8.to_excel('df8.xlsx',index=False,sheet_name='first sheet')====>at first sheet
 new_df = pd.read_excel('df8.xlsx',sheet_name='first sheet')====>if we keep index_col=0, then it will get 0th column only as we not created indicies
 
 
+____________________________________________________________________________________________
+
+User defined functions
+
+functions ===> to reuse
+
+def greetings(name):
+	""" doc strings """
+
+greetings.__doc__ ==>will give doc strings
+
+==>abs(num) will give positive of number
+
+make sure indentation is properly==>either 4 spaces or tab===>but both can't be used
+
+Scope of variables....
+
+global x===>to assign globally
+
+________________________________________________________________________________________
+
+lampbda functions==>have no name
+ 
+ double = lambda x: x * 2
+
+no need of return function
+
+//double(5)
+
+
+new_list = list(filter(lambda x: (x&2 == 0), my_list))
+
+lambda functions are designed to keep in mind to use once
+
+=====================
+
+data_frame.replace('?',data) ==>? mark will be eliminated with data,is also function
+
 
 
 

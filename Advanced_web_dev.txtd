@@ -2037,11 +2037,17 @@ inn main entry file---->
 app.get('/',(req, res)=>{
 res.sendFile("index.html");
 })
-app.use(express.static('/public')); =====>as it is in main file
-
+app.use(express.static('/public')); =====>as it is in main file //checked it is necessary to have css file in public folder
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 app.use(express.static(__dirname + '/views'))
 ----->make views dir---->index.html
 
+Or we can have
+
+app.set('view engine', 'hbs');
+
+now----->views====>home.hbs
++++++++++++++++++++++++++++++++++++++++++++
 <head>
 <link rel="stylesheet" href="app.css" type="text/css">
 </head>
@@ -2461,6 +2467,12 @@ S16E189
 
 guess game code understanding....
 
+to start the dom js...automatically--->
+
+document.addEventListener('DOMContentLoaded', ()=>{
+
+})
+
 _____________________________________________________________
 
 S16E190
@@ -2472,6 +2484,998 @@ callback==>to arrow function
 _____________________________________________________________
 
 S17E191
+
+more ES2015 --->intro
+
+_____________________________________________________________
+
+S17E192
+
+inheritance is also there, super keyword...
+
+class Keyword.....
+
+we mimic the behaviour of class
+
+class in js==>at top of file always--->
+
+
+class Student {
+	constructor(fn,ln){
+	this.fn = fn;
+	this.ln = ln;
+	}
+}
+
+
+var elie = new student('elie', 'belie')
+
+_____________________________________________________________
+
+S17E193
+
+earlier we used to do===>with fn only===>using proptype or hoisting things
+
+_____________________________________________________________
+
+S17E194
+
+static methods in class===>without using object can be used
+
+to check is it array===>Array.isArray([])==>true====>otherwise typeof []===> will always give object 
+
+
+_____________________________________________________________
+
+S17E195
+
+class Person {
+	constructor(fn,ln){
+	this.fn = fn;
+	this.ln = ln;
+	}
+}
+
+_____________________________________________________________
+
+S17E196
+
+inheritance using extends keyword
+
+________________________________
+
+S17E197
+
+super keyword
+
+________________________________
+
+S17E198
+
+extends and super keyword exercise
+
+________________________________
+
+S17e195
+
+class keyword.....,,
+
+class Abc {
+
+constructor( fn,ln){
+
+}
+-----0000--------------------------====
+S17e196
+
+Inheritance....
+
+extends.....
+
+-----------------------==========
+
+S17197
+
+Super keyword.....,
+
+super keyword .....put down the parent constructor implementation to child class though constructor is needed in child class..... And also constructor and super will have same parameter as parent constructor...,
+
+===================\\\\\=============
+
+S17e198 
+
+Considering above statment , we can also pass ...arguements in super only in child class.....
+
+Exercise on inheritance.....
+
+
+===================\\\\\=============
+
+S17e199
+These new features are just...... Abstraction of es5 functions n all.....
+
+
+===================\\\\\=============
+
+S17e200
+
+Maps.....data structure...... In other programming languages it is called as hash map
+
+map can have any type of key..... Unlike json to have only string....
+
+Creat with new keyword....
+
+Fn on map....
+Set
+Get
+Delete
+Size
+
+..................
+
+Iterable......forEach......for of
+
+WeakMap ...only.....all keys are object not primitive......
+
+
+===================\\\\\=============
+S17e201
+
+Sets....data structure..,,, unique value....
+order of values are also maintained....,,have property size....
+
+Weakset......all value must be object.....
+
+
+
+
+
+===================\\\\\=============
+
+S17e202
+
+Exercise on map and sets,.........
+
+Seeing method is returning this...
+
+
+===================\\\\\=============
+
+S17e203
+
+Promise ......
+
+Udemy used jQuery directly... On website.. Aap you can write on their console...,
+
+
+===================\\\\\=============
+
+S17e204
+
+Promise.all
+
+Fail fast behaviour.....
+
+Returns array of promises of all promises pass.....
+
+
+
+===================\\\\\=============
+
+S17e206
+
+Exercise on promise and promise alll......
+
+And see how sorting is done on promises..?
+
+
+===================\\\\\=============
+
+S17e207
+
+Generators..... Special fn.....
+
+g generator are the function* which can be paused multiple times and return an object with next() functions.... Which returns value of any data type and done as Boolean..... Basically returns.object .......can control by yield keyword.....
+
+
+===================\\\\\=============
+
+S17e208
+
+Making copy of object........ Object. Assign=====> but it does not deep clone=====also need to pass empty object... Otherwise again create reference only.....
+
+Array.from======> can convet anything to array if possible....
+
+
+
+===================\\\\\=============
+
+S17e209
+
+Some more methods...
+
+find======> works on array and returns first element found...or undefined...
+
+findIndex====]-1 or index... Works with array
+
+includes,,.,,,,,,........ With String
+
+
+Number.isFinite........as nan is also a typeof number
+
+And recap...
+
+
+
+===================\\\\\=============
+
+S17e210
+
+every =====method on array... Returns Boolean.....,
+
+filter====-may reduce size of array....as filter on condition...
+
+Exercise....
+
+
+===================\\\\\=============
+
+S18e211
+
+Intro.....
+
+
+
+===================\\\\\=============
+
+S18e212
+
+Es2016 features...,
+
+
+Asynch function.......
+
+Exponential ......2**3 = 8=====> no need of math. Pow
+
+[].includes====> now on array
+
+
+===================\\\\\=============
+
+S18e213
+
+Es2017
+
+padStart =====>string method (total length now, what string to pad in start)
+
+Padend===same resp..
+
+====================================
+
+S18e214
+
+Asynch......
+
+Asynch await
+
+And try catch
+
+
+Asynch and await ====> assumes that promise is always gonna resolved....hence try catch is necessary.....
+
+Await pause the function till promise get resolved......
+
+===================\\\\\=============
+
+S18e215
+
+Request paralley but.... Store them with await.... This is better now....
+
+Promise.all returns promise with array only....
+
+
+
+===================\\\\\=============
+
+S18e217
+
+Refactoring with asynch and await.....
+
+
+===================\\\\\=============
+
+S18e218
+
+Object rest
+
+Object spread...
+
+__________________________________________________________________________________________________________________
+
+S19e219
+
+D3 library ==>(data driven documents)==>intro
+
+
+
+__________________________________________________________________________________________________________________
+
+S19e220
+
+D3 sites
+
+D3==>easy to use and understand ===>newyork times uses D3--->
+
+thePudding --->site
+
+
+__________________________________________________________________________________________________________________
+
+S19e221
+
+objectives
+
+setAttribute
+getAttribute
+chaining
+
+
+=====================
+
+<Script> tag  will always be under body tag
+
+<script src="d3js.org....">
+
+if you see d3==>in browser console you are good to go...
+__________________________________________________________________________________________________________________
+
+S19e222
+
+selection and callbacks
+
+selection.style("color",()=>{
+return idx % 2 ==0 ? "lightgrey" : "white"; 
+})
+
+==>d3.select("selector like #page-title")
+===>d3.selectALl
+===>selection_.attr("class","new-class")
+===>.text("text")
+===>slection.classed([],should class be set)
+
+__________________________________________________________________________________________________________________
+
+S19e223
+
+eventListener in D3
+
+eventListener==>
+
+selection.on(eventType, ()=>{
+})
+
+can also remove eventlistener
+
+can append more in dom
+
+selection.append("p")
+		.classed("note",true)	
+		.text(input.property("value"));
+		.input.property("value","")
+
+d3.selectAll("p").remove();
+
+__________________________________________________________________________________________________________________
+
+S19e225
+
+.node()===>to pick entire tag
+
+
+__________________________________________________________________________________________________________________
+
+S19e226
+
+exercise
+
+__________________________________________________________________________________________________________________
+
+S19e227
+
+excerise completion with D3
+
+__________________________________________________________________________________________________________________
+
+S20E228
+
+
+d3 with data---->intro
+
+
+__________________________________________________________________________________________________________________
+
+S20E229
+
+data join intro and demo
+
+
+__________________________________________________________________________________________________________________
+
+S20E230
+
+entry and exit in D3
+
+
+__________________________________________________________________________________________________________________
+
+S20E231
+
+d3.select("selector of parent")
+   .selectAll("child selector")
+   .data(array)
+   .enter() ===>all those who have data
+   .append("chid selector | li")
+	.text(d=>)
+	.style("margin","20px")
+	.style("","")
+
+
+===>General udate pattern
+
+
+__________________________________________________________________________________________________________________
+
+S20E232
+
+intro to update
+
+
+__________________________________________________________________________________________________________________
+
+S20E233
+
+Actual workking of d3 to apply css dynamically according to data
+
+__________________________________________________________________________________________________________________
+
+S21E234
+
+SVG intro
+
+__________________________________________________________________________________________________________________
+
+S21E235
+
+basics of SVG===>
+
+raster and vector graphics
+
+Scalable vector graphics(SVG)===>
+
+rasters==>pixels==>zoom ==>:(
+vector====>
+
+<svg
+some meta data
+></svg>
+
+
+draw line with SVG===>
+
+<svg>
+<line x1="" y1="" x2="" y2=""
+stroke-width="8px"
+stroke="blue"/>
+</svg>
+
+--->x axis increases
+^
+|
+|
+|
+y value decreses
+
+__________________________________________________________________________________________________________________
+
+S21E236
+
+<rect 
+x=""
+y=""
+width="300"
+height=""
+fill="color code"
+stroke="color code of boundary"
+stroke-width="8px" />
+
+no z-index===> :( ===>mainatin their order only
+
+rx=="300">==>boundary radius
+ry=="300"
+
+
+=======>
+
+<polygon
+point="688,900,......"
+
+/>
+
+====================
+
+<circle cx="" cy="" fill="">
+
+__________________________________________________________________________________________________________________
+
+S21E237
+
+text element in svg
+
+<text font-size="" transform="rotate(deg,deg)" font-family=""x="" y="" dx="" dy="" text-anchor="start | middle| end"></text>
+allignment-baseline==>to vertically
+centre the text==>dx or dy
+
+__________________________________________________________________________________________________________________
+
+S21E238
+
+path element in svg
+
+<path d="" />
+
+d="M400 100
+L100 200
+L200 900"
+
+M==>move the cursor
+L==>to draw lines
+Q cx cy, x y
+circular arc==>A rx ry 
+_______________________________________________________________________________________________________
+
+S21E239
+
+flagpedia.net/index
+
+_______________________________________________________________________________________________________
+
+S21E240
+
+solution svg flag
+
+_______________________________________________________________________________________________________
+
+S21E241
+
+bar graph withsvg and d3
+
+_______________________________________________________________________________________________________
+
+S21E242
+
+exercise by svg now
+
+_______________________________________________________________________________________________________
+
+S21E243
+
+soln of last exercise
+
+_______________________________________________________________________________________________________
+
+S22E244
+
+d3 easy fn
+
+_______________________________________________________________________________________________________
+
+S22E245
+
+refactoring with svg
+
+_______________________________________________________________________________________________________
+
+S22E246
+
+scatter pots
+
+_______________________________________________________________________________________________________
+
+S22E247
+
+Axes
+
+d3.axisTop(scale)
+d3.axisLeft(scale)
+d3.axisRight(scale)
+d3.axisBottom(scale)
+
+gridlines===>axis.tickZise()
+
+stroke-dasharray: 10,5
+
+_______________________________________________________________________________________________________
+
+S22E248
+
+another scatter pots intro
+
+
+_______________________________________________________________________________________________________
+
+S22E249
+
+solution of above
+
+_______________________________________________________________________________________________________
+
+S22E250
+
+Histograms
+_______________________________________________________________________________________________________
+
+S22E251
+
+histogram cont.
+_______________________________________________________________________________________________________
+
+S22E252
+
+histogram short assignment
+
+_______________________________________________________________________________________________________
+
+S22E253
+
+histogram done
+
+_______________________________________________________________________________________________________
+
+S22E254
+
+Piechart
+
+d3.scaleOrdinal()
+.domain(data_array)
+.range(d3.schemeCategory10)===>will give 10 colors
+
+d3.("svg")
+.appeng("g")
+
+d3.pie()  ==>returns fn
+   .value(d =>d.births)
+
+=============================
+ d3.arcs()({
+ innerRadius: 0,
+ outerRadius:100,
+ startAngle: ),
+ endAngle: Math.PI
+ })
+
+==============>in google chrome console....
+
+d3.select('.chart')
+.selectAll('.arc')
+.data(arcs)
+.enter()
+.append('path')
+	
+___________________________
+
+_______________________________________________________________________________________________________
+
+S22E255
+
+pie chart code
+
+_______________________________________________________________________________________________________
+
+S22E256
+
+another pie chart intro
+
+_______________________________________________________________________________________________________
+
+S22E257
+
+scale ordinal in d3 is to map===> two different array as different object
+
+d3.scaleOrdinal()
+.domain(orderedMonths)
+.range(colors)
+
+//>>>colorScale("january")===>wil give different color
+
+_______________________________________________________________________________________________________
+
+S23E258
+
+enhance graphs
+
+_______________________________________________________________________________________________________
+
+S23E259
+
+objectives
+==>what tooltip is?
+
+Tooltips
+.tooltip {
+	opacity: 0;
+	position: absolute;      //will let us to show where our mouse is
+	pointer-events: none;   //to remove flickering effect
+	backround-color
+	border-radius: 8px;
+
+	}
+
+
+for mobile also handled touch
+
+_______________________________________________________________________________________________________
+
+S23E260
+
+transition in D3
+
+.transition()
+.duration()
+.ease()
+.delay()
+
+_______________________________________________________________________________________________________
+
+S23E261
+
+Asynch code managing with d3
+
+d3.json(url,callback(err,data))===>to read json
+
+====>works with http only==>hence start local http-server
+
+================
+
+d3.csv(url,callback(err,data))
+
+====>each row will be in json object
+
+if we want to use exact data type from csv as it always passes string===>in functioon llets have another
+
+callback 
+
+now d3.csv(err,formatter(row, i, headers),callback)==>
+
+return what you want in next callback
+
+=============>other files to call
+
+d3.text
+d3.csv
+d3.html
+d3.xml
+d3.request
+
+
++++++++++++++++++++++++++++++++++++=
+
+d3.queue ===>manage asynch code
+
+queue.await()
+quest.awaitAll()==>array of events
+
+_______________________________________________________________________________________________________
+
+S23E262
+
+exercise
+
+_______________________________________________________________________________________________________
+
+S23E263
+
+on("someoevents",doFn)
+
+_______________________________________________________________________________________________________
+
+S23E264
+
+GeoJson and TopoJSon
+
+GeoJson===>geoGraphic data
+
+d3.geoPath()==>geoJson and d3
+
+_______________________________________________________________________________________________________
+
+S23E265
+
+topoJson===>is like geoJson with no duplicates
+
+
+_______________________________________________________________________________________________________
+
+S23E266
+
+map visualisation
+
+_______________________________________________________________________________________________________
+
+S23E267-270
+
+node and dragging logically
+
+_______________________________________________________________________________________________________
+
+S24E271-273
+
+project dashboard
+
+_______________________________________________________________________________________________________
+
+S25E274
+
+ReactJs by facebook
+
+intro
+
+lifecycle===>
+
+==>various open source package
+
+_______________________________________________________________________________________________________
+
+S25E276
+
+FE framework
+
+==>JS library that handles DOM
+==>handles navigation
+==>state mgmt.
+
+
+React==>release by FB==>in 2015
+==>mostly concerned with view
+
+other library
+===>
+React Router
+React Redux
+
+_______________________________________________________________________________________________________
+
+S25E277
+
+react first component
+
+component===>core of react===>
+
+<script src="http:// ...react">
+<script src="http:// ...reactDom">
+<script src="http:// ...reactDomFactories">
+<body>
+
+<script>
+class c_name extends React.Component{
+
+}
+
+</script>
+</body>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+_______________________________________________________________________________________________________
+
+S25E278
+JSX
+
+babel==>transpiler
+
+JSX==>vanilla JS
+
+<scrpt type="text/babel">
+
+warning babel==>is very  slow
+
+_______________________________________________________________________________________________________
+
+S25E279
+
+jsx with javascript
+
+babel===>gets confused bw js class and css class==>hence className
+
+style ={fontSize: '1.5em'}
+
+_______________________________________________________________________________________________________
+
+S25E280
+
+pandom color exercise
+
+_______________________________________________________________________________________________________
+
+S25E281
+
+solution of above exercise
+
+_______________________________________________________________________________________________________
+
+S25E282
+
+map with jsx
+
+_______________________________________________________________________________________________________
+
+S26E283
+
+state intro
+
+_______________________________________________________________________________________________________
+
+S26E284
+
+fully working react app without configuration
+
+=====>webpack===>build tool==>plug-in system==>bundle css and other asset
+
+>>>npm -g creat-react-app
+>>>create-react-app helloworld
+>>cd helloworld
+
+
+_______________________________________________________________________________________________________
+
+S26E285
+
+intro of files
+
+_______________________________________________________________________________________________________
+
+S26E286
+
+import and export
+
+===>default import without curly braces {}
+
+import component as nickname from './../';
+
+if not jss wee need to add extension in imort statement
+
+
+_________________________________________________________________________________________________
+
+S26E287
+
+copy of same project
+
+_______________________________________________________________________________________________________
+
+S26E288
+
+solution
+
+_______________________________________________________________________________________________________
+
+S26E289
+
+itro to props
+
+propers are immutable properties
+
+this refers to context of class in return method
+
+props can not be changed===>do not change props
+
+_______________________________________________________________________________________________________
+
+S26E290
+
+
+
+
+
+
 
 
 
