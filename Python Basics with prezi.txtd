@@ -340,6 +340,13 @@ to add element at end===>new_list.append('six')
 
 new_list.pop() //latest elemnt like stack and return last elemnt
 
+>>> x = ['ala@ala.com', 'bala@bala.com']
+>>> x
+['ala@ala.com', 'bala@bala.com']
+>>> x.remove('ala@ala.com')
+
+
+
 can pass index in pop====>0 , -1 etc...
 
 ====>sorting of list
@@ -380,9 +387,31 @@ value can any object....can be list also
 
 same like json
 
+===============================================================
+
+https://www.geeksforgeeks.org/add-a-keyvalue-pair-to-dictionary-in-python/
+
 d.keys()==>to access all key
 d.values()====>to access all value
 d.items()===>to access all key value====>returns tuple
+
+dict = {'key1':'geeks', 'key2':'for'}  
+print("Current Dict is: ", dict)  
+  
+# adding dict1 (key3, key4 and key5) to dict  
+dict1 = {'key3':'geeks', 'key4':'is', 'key5':'fabulous'}  
+dict.update(dict1)  
+  
+# by assigning  
+dict.update(newkey1 ='portal')  
+print(dict) 
+
+
+///Output:
+Current Dict is: {‘key2’: ‘for’, ‘key1’: ‘geeks’}
+{‘newkey1’: ‘portal’, ‘key4’: ‘is’, ‘key2’: ‘for’, ‘key1’: ‘geeks’, ‘key5’: ‘fabulous’, ‘key3’: ‘geeks’}
+
+
 
 _______________________________________________________________________________
 
@@ -669,7 +698,7 @@ mylist = [1,2,3,4,5]
 
 shuffle(myList)
 
-now list will be shuffle elements
+now list will be shuffle elements===>mutates here only
 
 ===>from random import randint
 
@@ -744,6 +773,8 @@ ________________________________________________________________________________
 S6E42
 
 Functions==>repeated code-->
+
+fun should be defined first before call
 
 def name_of_function(name): ===>snake casing
 	'''
@@ -1183,6 +1214,12 @@ window user (install pypi)==>
 
 cmd===>pip install package_name requests    // to request from python
 
+OR 
+
+if path is not set
+
+python -m pip install [packagename]
+
 ===>pip install colorama //print out colorize text
 
 ====>python
@@ -1530,7 +1567,7 @@ collection module===>
 
 from collections import Counter
 
-Counter(my_list)  // it is dictionary sub class
+Counter(my_list)  // it is tionary sub class
 //Counter({2: 5, 1:4})
 
 ===>counts each element occurence
@@ -1830,6 +1867,7 @@ s.add(2) // it will not give error
 
 s.clear() //
 sc = s.copy()
+new_list = mylist.copy()
 
 s.difference(sc) ==>
 s.difference_update(set2)// will minus set2 from s
@@ -1855,6 +1893,245 @@ _____________________________________________________________________________
 
 S16E101
 
+Advanced Dictionaries
+
+{x:x**2 for x in range(10)}===>dictionary comprehension
+
+
+{x:x**2 for x in zip(['a','b'],range(2))}===>dictionary comprehension // if we want other key walue
+
+now // {'a':0 ,'b':1}
+
+for k in d.iteritems(): //will give result in tuple form
+
+d.viewitems() // and many more items
+
+_____________________________________________________________________________
+
+S16E102
+
+Advanced List
+
+l = [1,2,3]
+
+l.append(4)
+,.remove(4) //remove value 4 from list 
+l.count(2)  //1
+l.extend([4,5]) //this will add 4 , 5 as element in existing list
+l.index(2)  //will give 1 as 2 is at 1 index
+.index ==>will give error if not there
+l.insert(_index_no,object_to_insert) //
+ele =l.pop() // by default it pops last
+l.pop(0) // pops first element
+l.remove(_value) // first occurence value
+l.reverse()
+l.sort()
+
+_____________________________________________________________________________
+
+S16E103
+
+Advanced python Object test
+
+_____________________________________________________________________________
+
+S16E104
+
+solutuion of test
+
+_____________________________________________________________________________
+
+S17E107
+
+
+GUI===>
+
+from ipywidgets import interact,interactive,fixed
+import ipywidgets as widgets
+
+def func(x):
+	return x
+
+interact(func,x=10)  ===>x=True will give checkbox, instead of range type, and if x is type of string it will input as text
+ 
+
+======>can do with decorator also
+
+@interact(x=True,y=1.0)
+def g(x,y):
+	return (x,y)
+
+==>value can also be fixed, in that case gui will not be there for that parameter
+like...y=fixed(1.0)
+
+===>in slider range==>value of min=-x , max= 3*x
+===>we can also set them manually
+
+interact(func,x=widgets.IntSlider(min=-100,max=100,step=1,value=0))
+
+OR
+
+interact(func,x=(-100,100,1))===>(min,max,step_size)==>abbreviated form
+
+===>if want slider to be floating point set all three parameter as floating pt
+
+  =====>can also done with interact decorator
+
+if list is passed as one of the parameter====>interact will result dropdown list
+
+if dictionary is passed=====>dropdown of key will be there, and value be as dictionary value
+
+======================================================
+
+to display result with gui
+
+from IPython.display import display
+
+def f(a,b):
+	display(a+b)
+	return a+b
+
+w = interactive(f,a=10,b=20)
+
+type(w)   ===>ipyWidget.widget.interaction.interactive
+
+>>> w.children
+
+===>will give object it wolds
+
+display(w)
+
+===>there will two slider and tgheir sum as acc. to function
+
+=====>if information is also there===>put semicolon ,if not using display
+
+
+_____________________________________________________________________________
+
+S17E108
+
+
+import ipywidgets as widgets
+
+widgets.IntSlider()===========>widget have various method ==>just press tab to find them
+
+==>we will get slider
+
+to display it seperately==>
+
+w = widgets.IntSlider()
+
+fromIPython.display import display
+
+display(w)===>if more than one display with same param is called then all will be in synch
+
+
+w.close()====>to close
+============================================
+w = widget.IntSLider()
+
+w.value ===>will give its value
+
+w= value = 50 ===>reassign can be done
+
+w.keys ====>to get all properties
+
+================================================
+
+link two widgets together
+
+a = widget.FloatText()
+b = widget.FloatSlider()
+
+display(a,b)
+
+mylink = widget.jslink((a,'value'),(b,'value')) ===>both can also be linked to value and other max property
+
+mylink.unlink()===>to break the link 
+
+
+_____________________________________________________________________________
+
+S17E109
+
+list of possible widget
+
+intslider properties
+
+description
+orientation===>horizontal | vertical
+
+
+IntProgress
+
+description
+bar_style='warning | danger | success |info'
+
+==>floatText
+==>INtText
+==>valid
+==>Dropdown
+==>radioButton
+toggleButtons
+selectMultiple
+text
+textarea
+label
+HTMLMath
+
+
+_____________________________________________________________________________
+
+S17E110
+
+widget styling and layout
+
+import ipywidgets as widgets
+from IPython.display import display
+
+w=widget.IntSlider()
+display(w)
+
+w.layout.margin = 'auto'
+w.layout.height = '75px'
+
+x= widgets.IntSlider(value=15,description='New Slider')
+display(x)
+
+x.layout = w.layout
+widgets.Button(description='Ordinary Button',button_style='info')
+
+b1 = widgets.Button(description='Custom Color')
+b1.style.button_color = 'lightgreen'
+
+b1.style.keys==>to get keys
+
+s1 =widgets.IntSlider(description='My Handle')
+s1.style.keys.handle_color = 'blue'
+
+_____________________________________________________________________________
+
+S17E111
+
+GUI example
+
+numpy
+scipy
+
+what can python do??
+
+here's something
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1864,9 +2141,22 @@ S16E101
 
 
 to check 
+===>* and **
+===>Generators
 
-difference between diifence and symmetric difference in set
+ comprehension ??====>to assign list or dictionary by directly using for loop with condition or some other mapping
 
+difference between diifence and symmetric_difference in set====>symmetric_difference is minus intersection of two sets
+
+Input :
+A = {0, 2, 4, 6, 8}
+B = {1, 2, 3, 4, 5}
+
+Output :
+ Union : [0, 1, 2, 3, 4, 5, 6, 8]
+ Intersection : [2, 4]
+ Difference : [8, 0, 6]
+ Symmetric difference : [0, 1, 3, 5, 6, 8]
 
 
 3==3.0 ===True
