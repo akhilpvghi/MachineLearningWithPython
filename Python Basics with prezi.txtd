@@ -387,6 +387,10 @@ value can any object....can be list also
 
 same like json
 
+nested dictionary aceess
+===========================================================
+get_card_distribution_to_player['player 1']['total_cards']
+
 ===============================================================
 
 https://www.geeksforgeeks.org/add-a-keyvalue-pair-to-dictionary-in-python/
@@ -419,7 +423,27 @@ S3E25
 
 tuples---->immutable==>hetrogenous==>indexing and reverse indexing
 
+A tuple is a collection which is ordered and unchangeable. In Python tuples are written with round brackets.
+
 t = (1,2,3)
+
+
+#create a tuple
+tuplex = (4, 6, 2, 8, 3, 1) 
+print(tuplex)
+#tuples are immutable, so you can not add new elements
+#using merge of tuples with the + operator you can add an element and it will create a new tuple
+tuplex = tuplex + (9,)
+print(tuplex)
+#adding items in a specific index
+tuplex = tuplex[:5] + (15, 20, 25) + tuplex[:5]
+print(tuplex)
+#converting the tuple to list
+listx = list(tuplex) 
+#use different ways to add items in list
+listx.append(30)
+tuplex = tuple(listx)
+print(tuplex)
 
 myList = [1,2,3]
 
@@ -1028,7 +1052,12 @@ class class_name():
 	
 	def __init__(self,param1,param2):
 		self.param1 = param1
-		self.param2 = param2
+		self.param2 = param2  
+	def create_arr(self): # An instance method
+        self.arr = []
+    
+	 def insert_to_arr(self, value):  #An instance method
+        self.arr.append(value)
 
 
 
@@ -1918,6 +1947,9 @@ l.append(4)
 ,.remove(4) //remove value 4 from list 
 l.count(2)  //1
 l.extend([4,5]) //this will add 4 , 5 as element in existing list
+
+list_for_card_to_individual.extend(cards[:14]) // will add from cards[0] to cards[13]
+
 l.index(2)  //will give 1 as 2 is at 1 index
 .index ==>will give error if not there
 l.insert(_index_no,object_to_insert) //
@@ -1925,7 +1957,7 @@ ele =l.pop() // by default it pops last
 l.pop(0) // pops first element
 l.remove(_value) // first occurence value
 l.reverse()
-l.sort()
+l.sort()=====>changes l directly
 
 _____________________________________________________________________________
 
@@ -2122,9 +2154,61 @@ what can python do??
 
 here's something
 
+_____________________________________________________________________________
 
+S19E114
 
+comparison of python 2 and 3
+==>python 2==>will lose security in 2020
 
+python 3 alerts==>
+
+===>more using python 2
+
+3/2 = 1 ==>in python 2
+to solve from __future__
+
+3/2 = 1.5==>in python 3
+
+_____________________________________________________________________________
+
+S19E115 ===>
+
+python setup 
+
+go to ==>jupyter.org
+
+try in browser==>
+
+==>install the notebook
+
+	==>prerequisite python
+	==>installing anaconda
+		
+===>after installation
+cmd>>jupyter notebook
+
+_____________________________________________________________________________
+
+S19E116
+
+FAQ 
+
+download notebook
+
+_____________________________________________________________________________
+
+S19E117===>09:00
+
+Numbers
+
+int and float
+
+3/2 = 1 in python 2
+
+==>from __future__ import division
+
+	
 
 
 
@@ -2177,6 +2261,20 @@ print() //both will be printed in seperate line without \n
 range(1,11)// [1,2,3...10]
  
 =================> 
+
+
+points to remember=============>shuffle changes the object itself and returns none
+
+
+_____________________________________________________________________________________________________________
+
+You need to add the path of your pip installation to your PATH system variable. By default, pip is installed to C:\Python34\Scripts\pip (pip now comes bundled with new versions of python), so the path "C:\Python34\Scripts" needs to be added to your PATH variable.
+
+To check if it is already in your PATH variable, type echo %PATH% at the CMD prompt
+
+To add the path of your pip installation to your PATH variable, you can use the Control Panel or the setx command. For example:
+
+setx PATH "%PATH%;C:\Python34\Scripts"
 
 
 

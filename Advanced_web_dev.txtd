@@ -392,6 +392,41 @@ color: 'yellow';
 
 }
 
+#############################################################
+worked tested by akhil
+
+		 <style>
+
+		 svg {
+
+		 animation-name: rainbow;
+animation-duration: 2s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+		 }
+
+@keyframes rainbow {
+
+0%{
+transform: translate(0px, 0px);
+}
+
+50%{
+transform: translate(300px, 300px);
+}
+
+100%{
+transform: translate(500px, 400px);
+}
+
+
+}
+		 
+		 </style>
+
+		 #############################################################
+
 ___________________________________________________
 
 S3e26
@@ -3515,6 +3550,102 @@ _____________________________________________________________________________
 
 S27E296
 
+intro to state
+
+define state in react===>
+
+state ==>stateful data
+
+unlike props, states can be changed
+
+super(props)==>is like boilerplate
+
+this .setState({})===>to assign new change ===>and will invoke render
+
+_____________________________________________________________________________
+
+S27E297
+
+Pure functions ==>with no side effect ===>input is not altered
+
+Object.assign({},person_object,object_to_add) = {...person_object,object_to_add}
+
+_____________________________________________________________________________
+
+S27E298
+
+updating state==>
+
+_____________________________________________________________________________
+
+S27E299
+
+remove object after  3s===>which is state==>arrow function ==>this is preserved
+
+===>make copy of object ==>using Object.assign({}, object)
+
+map return new array==>unlike slice
+
+_____________________________________________________________________________
+
+S27E300
+
+component architecture==>
+
+pass state to child==>
+
+<Componet name={ this.state.instructor }
+
+never assign props to your state....
+
+propTypes can be seen....proptypes can be applied to stateless fn...at last of video...
+
+
+thinkin-in-react==>facebook..
+
+_____________________________________________________________________________
+
+S27E301
+
+this.setState((prevState, props) => {
+return {
+	counter: prevState.counter+1
+};
+});
+
+
+=================>
+
+console.log(this.state.name) // may get debug wrong
+
+callback will be right debugging in setState==>
+
+_____________________________________________________________________________
+
+S27E302
+
+ReactDevtools ===>chrome extension
+
+_____________________________________________________________________________
+
+S27E303
+
+colored boxes exercise
+
+_____________________________________________________________________________
+
+S27E304
+
+solution of colored boxes
+
+_____________________________________________________________________________
+
+S28E305
+
+
+
+
+
 
 
 
@@ -3585,4 +3716,48 @@ by akhil
 
 
 
+
+
+====================================================================================================================
+to handle any event so that it can be called only once
+===================================================================================================================
+The benefits of cleaning up after yourself
+So that's the syntax for using the new once option, but what does that get you? In short, it gives you an event listener that's tailored to "one and done" use cases.
+
+By default, event listeners persist after the first time they're called, which is what you want for some types of events—buttons that can be clicked multiple times, for example. For other uses, though, having an event listener stick around isn't necessary, and can lead to undesirable behavior if you have a callback that must only execute once. Hygienic developers have always had the option of using removeEventListener() to explicitly clean things up, following patterns like:
+
+element.addEventListener('click', function cb(event) {
+  // ...one-time handling of the click event...
+  event.currentTarget.removeEventListener(event.type, cb);
+});
+
+The equivalent code, making use of the new once parameter, is cleaner, and doesn't force you to keep track of the name of the event (event.type, in the previous example) or a reference to the callback function (cb):
+
+element.addEventListener('click', function(event) {
+  // ...one-time handling of the click event...
+}, {once: true});
+
+Cleaning up your event handlers can also offer memory efficiencies by destroying the scope that's associated with the callback function, allowing any variables captured in that scope to be garbage collected. Here's one such example where it would make a difference:
+
+function setUpListeners() {
+  var data = ['one', 'two', '...etc.'];
+
+  window.addEventListener('load', function() {
+    doSomethingWithSomeData(data);
+    // data is now part of the callback's scope.
+  });
+}
+
+By default, the load event listener callback will remain in scope when it finishes running, even though it's never used again. Because the data variable is used inside the callback, it will also remain in scope, and never get garbage collected. If the callback were removed via the once parameter, though, both the function itself and anything that's kept alive via its scope will potentially be candidates for garbage collection.
+
+
+
+web:=https://developers.google.com/web/updates/2016/10/addeventlistener-once
+++++++++++================================================================================================================================
+
+
+You can use the JavaScript window.location.href property to get the entire URL of the current
+
+window.location.hostName===>to get url without port no.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

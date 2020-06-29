@@ -26,6 +26,619 @@ ___________________________________________________________
 S2E4
 
 
+really nested url====> :(
+
+user===>and his friend ===>his friend information
+
+nested url ===>is quite challenging
+
+
+
+___________________________________________________________
+
+S3E5
+
+
+what is graphQL??
+
+graph for query
+
+
+query{
+
+user(id="23"){
+
+friends(){
+
+compane {
+
+name
+
+}
+
+}
+
+}
+
+}
+
+
+___________________________________________________________
+
+
+S3E06
+
+technology that we need ---?
+
+>>>terminal
+
+>>> mkdir users
+>>> cd users
+>>> npm init
+>>> npm install --save express express-graphql graphql lodash
+>>>code . | atom .
+
+users===>server.js==>
+
+const express = require('express');
+
+const app =express();
+
+app.listen(port, ()=>{
+console.log('listening')
+});
+
+___________________________________________________________
+
+S3E7
+
+
+registering with express and graphql
+
+==>request to express===>and then response
+
+but with graphql==>now request will be checked==>
+==>is it either for GraphQl==>if yes,will be passed to GQL
+
+====>otherwise express will send the response directly
+
+
+-----===============
+
+const expressGraphQL = require('express-graphql');  //expressGraphQL note alpha case ====>this is like glue of express and GQL
+
+app.use('/graphql', expressGraphQL({
+graphiql:true
+}));
+
+
+====>in same file server.js
+
+>>>node server.js
+
+localhost:port/graphql ===>in browser
+
+//error schema
+
+
+___________________________________________________________
+
+S3E8
+
+create schema folder===>in that schema.js
+
+
+___________________________________________________________
+
+S3E9
+
+create schema folder===>in that schema.js
+
+
+const graphql = require('graphql');
+const {
+	GraphQLObjectType,
+	GraphQLSTring,
+	GraphQLInt,
+	GraphQLSchema
+} = graphql;
+
+const UserType = new GraphQLObjectType({
+	name: 'User',
+	fields: {
+		id: { type: GraphQLString},
+		firstName: { type: GraphQLString},
+		age: { type: GraphQLInt }
+	}
+});
+
+//define data type of property
+
+___________________________________________________________
+
+S3E10
+
+root query is needed for GraphQL===>entry point
+
+cost _ = require('lodash');
+
+const userData = [
+{id : '23', firstName: 'Akhil', age: 23},
+{id : '47', firstName: 'Akhil kum', age: 23}
+]
+
+const RootQuery =new GraphQLObjectType({
+	name: 'RootQueryType',
+	fields: {
+		type: UserType,
+		args: { id: { type: GraphQLString }}  //give me id and i will give you type of UserType 
+		resolve(parentValue, args) {
+			return	_.find(userData,{id: args.id})
+		}
+	}
+})
+
+
+
+module.exports = new GraphQLSchema({
+	query: RootQuery
+});
+___________________________________________________________
+
+S3E11
+
+creating new schema===>in above file
+
+	
+import it in server.js
+
+const schema = require('./schema/schema')
+
+
+
+app.use('/graphql', expressGraphQL({
+schema,
+graphiql:true
+}));
+
+
+=====================
+node server.js
+
+and we will ge graph ql screen
+
+___________________________________________________________
+
+S3E12
+
+this is tool provided by graphQl==>
+
+{
+user(id: "23") {
+id,
+firstName,
+age
+}
+}
+==>press play and we will get result
+
+we are returning plain js object from above code // GQL is mapping it self
+
+___________________________________________________________
+
+S3E13
+
+so far we had been using hardcoded data
+
+dummy db api create===> type in google>>> github typicode json-server
+
+npm i --save json-server
+
+create >>>db.json 
+
+{
+"uesrs": [
+{"id": "23", "firstName": "Bill", "age":23},
+{"id": "47", "firstName": "Alex", "age":29}
+]
+}
+
+===========================
+in  package.json
+
+"scripts":{
+
+"json:server": "json-server --watch db.json"
+}
+
+=================================
+>>npm run json:server
+
+___________________________________________________________
+
+S3E14
+
+const axios = require('axios');
+
+resolve(parentValue, args){
+	return axios.get(`http://localhost:3000/user/${args.id}`)
+		.then(resp =>resp.data);
+}
+
+//we will return as asynch data
+//we can remove hard coded data
+===>npm i --save axios
+
+//as axios append data in data key
+
+___________________________________________________________
+
+S3E15
+
+nodemon===>observe file and restart the server
+
+npm i --save nodemon
+
+in package.json
+>>
+"scripts": {
+"dev": "nodemon server.js"
+}
+
+>>>npm run dev
+
+___________________________________________________________
+
+S3E16
+
+new schema added in db.json
+
+___________________________________________________________
+
+S4E17
+
+const CompanyType = new GraphQLObjectType({
+
+name: 'Company',
+field: {
+id: {type: GraphQlString},
+name: {type: GraphQlString},
+description: {type: GraphQlString}
+}
+
+
+}); //order of definition is mandatory companyType should be written above UserType
+
+// link association type
+
+in const UserType
+
+add one more field in Fields {}==>
+
+const UserType = new gqlObject..
+company: {
+type: CompanyType,
+
+
+}
+
+
+___________________________________________________________
+
+S4E18
+
+aassociation between two schemas..?
+
+
+to map company in userType with id only for GQL
+
+const UserType = new gqlObject..
+company: {
+type: CompanyType,
+resolve(parentValue, args){
+	console.log(parentValue, args);
+	return axios.get(`http://localhost:3000/companies/${parentValue.companyId}`)
+		.then(res=>res.data)
+}
+
+}
+
+___________________________________________________________
+
+S4E19
+
+process going on...explanation==>
+
+resolve let us to some other node in graph===>
+
+___________________________________________________________
+
+S4E20
+
+we can not get company detail directly==>
+
+to solve===>
+
+in RootQueryType
+
+alsong with fields
+
+,
+company: {
+
+type: CompanyType,
+args: {id: { type: GraphQlString}}
+resolve(parentValue, args)
+}
+
+//and hence now we can retrieve data from company directly
+
+___________________________________________________________
+
+S4E21
+
+now we will get multiple users from company===>
+
+i.e bidrectional relations
+
+___________________________________________________________
+
+S4E22
+
+in CompanyType ===>
+
+in fields:{
+
+
+users: {
+	type: new GraphQLList(UserType) //import GraphQLList
+	// no need to pass anything
+	resolve(parentValue, args) {
+	return axios.get(`http://localhost:3000/cpmpanies/${parentvalue.id}/users`)
+		.then(res =>res.data)
+	}
+}
+
+}
+
+we are getting error UserType is not defined
++++++++++++++++++++++++++++++++++++++++++++++++
+___________________________________________________________
+
+S4E23
+
+resolving circular dependencies
+
+we can not change the order===>
+
+=====
+
+what we can do is==>
+
+create fields () arrow function to handle the closure property
+
+fields : ()=>{
+all the properties inside it
+}
+
+___________________________________________________________
+
+S4E24
+
+Query Fragments
+
+query findCompany {
+
+company(id: "1"){
+id
+name
+description
+
+}
+} ===========>naming query in graphiql
+
+
+we can not retrieve same query again===>in tha case we need to assign to another arbitrary key==>as json response can not have same key response
+
+{
+apple: company(id: "1"){}
+google: company(id: "2"){}
+
+}
+
+
+
+===============>to use same structure inside query
+assign it to fragment like in graphIql
+
+fragment companyDetails on Company {
+id
+name
+description
+}
+
+==============>we will get error if key doesnt match in key type
+
+// now
+{
+apple: company(id: "1"){
+...companyDetails
+}
+google: company(id: "2"){
+...companyDetails
+}
+
+}
+
+___________________________________________________________
+
+S4E25
+
+mutation in GraphQL===>update,delete,add records...
+
+    		gQL
+		/ \
+	       /   \
+	      /     \
+	Root Query   Mutation
+
+===============================
+
+const mutation = new GraphQLObjectType({
+	name: 'Muatation',
+	fields: {
+		addUser: {
+		type: UserType,
+		args: {
+			firstName: { type: GraphQLString },
+			age: { type: GraphQLInt },
+			companyId: { type: GraphQLString },
+			},
+		resolve() {
+		
+			} 
+		}
+	}
+
+});
+
+// just abovemodule.export
+
+___________________________________________________________
+
+S4E26
+
+every mutation must have same name===>we created ==>addUSer 
+
+firstName: {type: new GraphQLNonNull(GraphQLString) }==>now mandatory now
+
+		resolve(parentValue,{ firstName, age }) {
+			return axios.post('http://localhost:300', {
+				firstName,
+				age
+				}).then((res)=>res.data)
+			} 
+
+
+
+// !mark on graphIql schema is indicicating that it is mandatory field
+
+// in graphIQL
+
+muation {
+	addUser(firstName: "akhil", age:26)
+	id
+	firstName
+	age
+
+}
+
+___________________________________________________________
+
+S4E27
+
+delete mutation
+
+all mutaion will be inside fields
+
+deleteUser: {
+	type: UserType,   // what we want in return
+	args: {
+	id: { type: new GrpahQLNonNull(GraphQLString)}
+	}	
+resolve(parentValue, {id}){
+	
+	return axios.delete(`url/${id}`)
+	.then(res => res.data);
+	}
+
+}
+
+
+// but json server does not tell what is deleted==>in this case only
+
+
+___________________________________________________________
+
+S4E28
+
+put and patch request===>if there is something--
+>overwrite all
+
+patch request==>completly replace==>only add extra fields 
+
+
+fields :{
+	{
+	.
+	.
+	.
+	},
+		editUser: {
+		type: UserType,
+		args: { id : { type: new GrphQLNonNull(GraphQlString) }
+			firstName : { type: GraphQLString }, // not mandatory to update	
+			age : { type: GraphQLInt},
+			companyId : { type: GraphQLString },		
+			
+resolve(parentValue, args){   // will not update id as it is already there
+	return axios.patch(`url`, args)
+	.then((res)=>res.data)   
+	}
+		}
+
+
+}
+
+
+/// in graphIql
+
+mutation {
+	editUser(id:"40", age: 10){
+	id
+firstName
+age
+company
+}
+}
+
+___________________________________________________________
+
+S5E29
+
+client with Js==>Lokka==>abililty to make request GQL backend==>caching
+
+apollo client===>full stack uses of GQL==>by same guy who created meteorJS
+
+Relay ===>use by fb, complex==>amazing performance on mobile
+
+___________________________________________________________
+
+S5E30
+
+graphQL Express v/s Apollo server
+
+in apollo server==>difeerent schema and then relate them seperately
+
+___________________________________________________________
+
+S6E31
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

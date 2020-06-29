@@ -18,10 +18,92 @@ I(Xi) = k(1/P(Xi))
 
 ______________________________________________________________
 
-L2
+L1-part2
+
+introduction to information==>
+
+shanon==>mathematical theory of communication
+
+p= probability
+
+I(xi) inv. proportional to p(xi)
+
+I(xi) = k(1/pxi) = log(1/p(xi))
+
+==>properties of information
+
+i) p=1; I(xi) = log(1) = 0
+
+ii) p(xi) * p(yi) = log(1/(p(xi)p(yi)))  //independent ivents
+
+		= -log{p(xi)p(yi)}
+
+		= -log{p(xi)} - log{p(yi)}
+
+		= I(xi) + I(yi)
+ 
+
+UNITS OF INFORMATION
+
+I(xi) = -log2{p(xi)} ---> bits
+
+I(xi)  = -loge{p(xi)} ---->nats
+
+I(xi) = -log10{p(xi)} ---> decit  
 ______________________________________________________________
 
 
+Mutual Information
+
+I{xi/yi} = -log{p(xi/yi)/p(xi)
+
+}
+
+______________________________________________________________
+
+L2
+
+entropy = randomness
+
+entropy of message==>
+
+Average self Information
+
+	H(xi) = summision[i=1 to n]P(xi)I(xi)
+
+Average Mutual Information:
+
+	H(x:y)
+
+Average Conditional self Information: 
+	
+
+Joint Entropy
+
+
+
+______________________________________________________________
+
+L3
+
+shanon-fanno coding===>to convert info into data so that data can be send
+
+===>used to reduce redundancy
+===> to use B/w spectrum efficiency
+
+Lavg =
+
+Lmin = summision[i=1 to n]P(i)I(i)
+
+efficiency(n) = Lmin/Lavg = H(xi)/Lavg
+
+n% = Lmin/Lavg*100
+
+
+
+______________________________________________________________
+
+L4
 
 
 

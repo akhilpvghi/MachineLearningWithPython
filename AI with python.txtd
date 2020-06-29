@@ -1,0 +1,122 @@
+
+S1E1
+
+AI course===>by colonel rieko
+
+why AI?
+
+Moore's law==>power of computer increasing==>
+
+deepmind-ai-reduces-google-data-center-cooling-bill
+
+________________________________________________________________________________
+
+S1E2
+
+intro===>
+
+________________________________________________________________________________
+
+S3E6
+
+plan of attack-===>
+
+reinforcement lerning ? ===>how can it be seen in real life
+
+bellman equation ==> ?
+
+the plan ===> ?
+
+Markov decision process (MDP)
+
+policy V/s Plan
+
+Adding a "Living Penalty"
+
+Q-learning Intuition
+
+Temporal Difference
+
+Q-learning Visualisation
+
+
+________________________________________________________________________________
+
+S3E7
+
+what is Reinforcement Learning??
+
+ #visualize maze==>agent(AI)==>performs action==>(state,reward)==>again n again==>and learning
+
+=====>
+
+
+====>like not to speed car at pathway ===>learning by traffic police
+
+=====>or like we give biscuit to dog when he does good
+
+===>in AI rewards are digital
+
+===========>simple Reinforcement Learning with tenserflow==>10 parts
+
+Reinforcement learning I: by richard sutton (1998)
+
+
+________________________________________________________________________________
+
+S3E8
+
+the bellman equation (Richard ernest Bellman)
+
+==>s- state
+==>a- action
+==>R- Reward
+==>Y(gamma)- Discount
+
+maze in which there is fire having reward = -1
+
+and goal==>reward = +1
+
+V(S) = max(R(s,a) + YV(s')) ===>to not confused at corner of maze if v=1 of all box from start to goal
+
+S = curret_state
+
+Theory of dynamic programming by Richard bellman (paper)--->30 july 1954
+
+
+
+________________________________________________________________________________
+
+S3E9
+
+the plan====>replace value with direction ?
+
+________________________________________________________________________________
+
+S3E10
+
+Markov Decission Process(MDP)
+
+deterministic search  V/s non-determinitic search
+
+environment===>apply frame ==>use MDP
+
+
+
+V(S) = max(R(s,a) + YV(s1' | s2' |s3')probability) ===>to not confused at corner of maze if v=1 of all box from start to goal
+
+
+A survey of application of Markov Decision Process (paper)
+
+by D.J White(1993)
+
+________________________________________________________________________________
+
+S3E11
+
+
+
+
+
+
+

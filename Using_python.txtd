@@ -97,6 +97,8 @@ LIST[2]=23;
 tuples are immutable means can't be manipulated
 myTuple(1,2,"akhil")
 
+card_on_mat_tuple=tuple(a_thrown_card_list)
+
 _________________________________________
 
 Dictionary
@@ -258,7 +260,7 @@ array.dtype===>find data type
 arr.T====>transpose of matrix
 
 __________________________________________________
-
+22-06-2020
 samp_array=np.arange(10,21)
 
 ap.array[2:5]===>[2,3,4]
@@ -483,6 +485,26 @@ lambda functions are designed to keep in mind to use once
 =====================
 
 data_frame.replace('?',data) ==>? mark will be eliminated with data,is also function
+
+_____________________________________________________________________________________
+
+CLasses and object===>its blueprint
+
+===>program becomes more modular
+
+function and method??==>function in class is called method
+
+====>
+
+c1 = CLass1()  ===>object creation
+
+====>
+
+@staticmethod ===>a decorator
+
+
+
+
 
 
 

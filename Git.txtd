@@ -149,7 +149,12 @@ $ git remote -v
 
 https://help.github.com/en/github/using-git/changing-a-remotes-url
 
+=================================================================
 
+git push --set-upstream origin dev
+
+// if you dont want to use origin agaain an again,
+ you can associate upstream on specific branch
 
 
 
