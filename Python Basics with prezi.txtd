@@ -2267,6 +2267,109 @@ points to remember=============>shuffle changes the object itself and returns no
 
 
 _____________________________________________________________________________________________________________
+python devOps and server side scripting
+
+
+===============================================================================================
+
+https://www.youtube.com/watch?v=WCpNvteLCDI
+
+==>for simple session
+
+===============================================================================================
+werkzeug.security.generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+
+or simply
+
+data['password']=generate_password_hash(request.json['newPassword'], method='sha256')
+
+
+pip install_pkg_name --upgrade
+
+++++=============================================================================
+
+https://werkzeug.palletsprojects.com/en/1.0.x/utils/
+
+
+werkzeug.security.check_password_hash(pwhash, password)  ==========>returns true or False
+
+https://werkzeug.palletsprojects.com/en/1.0.x/utils/#werkzeug.security.check_password_hash
+
+
+https://github.com/PrettyPrinted/flask_auth_scotch/blob/master/project/auth.py
+
+========================================================================================================
+
+sha256$EEB2BLTH$cd0985d42894074aa4ce32db526237688b57bfbce9243301ec5822db9059007b
+
+method$secret_key$hash
+
+https://www.freeformatter.com/hmac-generator.html#ad-output   ====>for encoding
+
+https://codebeautify.org/hmac-generator ========>for encoding
+
+https://asecuritysite.com/encryption/js10  ====>can also generate ===> hmac sha 256
+
+
+=========================================================================================================
+
+
+
+
+Make build with python
+
+
+https://www.geeksforgeeks.org/convert-python-script-to-exe-file/
+
+
+
+On windows can write
+pyinstaller main.py --add-data mappings.json;.
+And on unix systems you can write (: instead of ;)
+pyinstaller main.py --add-data mappings.json:.
+
+
+pyinstaller --onefile  --add-data 'stockManagement.csv;.'  .\API.py
+
+OR
+
+pyinstaller --onefile  --add-data 'stockManagement.csv;.' --add-data 'otherfile.csv;.' .\API.py
+
+OR
+
+ pyinstaller --onefile  --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
+
+in other OS other than windows its :. instead ;. ===> though needs to be checked
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#####################if we ant to more than one access-control-allow-origin and dont want to use * as it creates problem 
+with cookies or withCredential true in axios.... below is the solution
+
+
+
+Simple example,try it!
+I hope it will help you. You need to edit white_origin for 'Access-Control-Allow-Origin'.
+
+app_name.py (Python file of Flask )
+
+from flask import request
+
+@app.after_request
+def after_request(response):
+    white_origin= ['http://www.dom.com:8000','http://localhost']
+    if request.headers['Origin'] in white_origin:
+        response.headers['Access-Control-Allow-Origin'] = request.headers['Origin'] 
+        response.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+    return response
+
+
+https://stackoverflow.com/questions/42681311/flask-access-control-allow-origin-for-multiple-urls
+
+
+____________________________________________________________________________________________
 
 You need to add the path of your pip installation to your PATH system variable. By default, pip is installed to C:\Python34\Scripts\pip (pip now comes bundled with new versions of python), so the path "C:\Python34\Scripts" needs to be added to your PATH variable.
 

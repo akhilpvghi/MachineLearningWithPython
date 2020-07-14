@@ -1,0 +1,243 @@
+
+
+Upgrade
+Akhilpvghi
+Building a production electron/create-react-app application with shared code using electron-builder
+John Dyer
+John Dyer
+Follow
+Mar 21, 2019 · 10 min read
+
+
+
+
+
+Image for post
+Electron makes it simple for anyone with a web development background to program a desktop app capable of running across operating systems. In theory. In practice, writing code is only half the challenge. Figuring out the proper way to structure, build, and package your application for production, especially when using create-react-app, can be quite difficult.
+While there are good articles written on the topic, none of them explain how to structure your application if you want to share pieces of your code, such as a set of constants, between your Electron and React codebases. Usually, Electron and React code is kept separate since they run in separate main and renderer processes. Sharing code may sound trivial, but because of how code is built with create-react-app, a structure that works in development can easily cause issues in production. In this tutorial, I will cover how to create an electron/create-react-app application with a shared codebase, build it, and package it for production using electron-builder.
+
+____________________________________________________________________________________________________________________________________________________________
+Setting up the app in development
+To start, let’s use create-react-app to initialize our app:
+npx create-react-app electron-cra-example
+Then we can install electron. Change into the newly created “electron-cra-example” directory and run:
+npm install --save-dev electron
+Let’s take a look at the generated “package.json” and modify it to suit our needs. Add the “productName” and “main” properties:
+"productName": "Electron Create React App Example",
+"main": "electron/main.js",
+“productName” is the human-readable name of our app. “main” determines the file that starts the main Electron process, which we will create now.
+Create a new directory “electron” with the file “main.js” inside it. Add the following code:
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const url = require('url');
+let mainWindow;
+function createWindow () {
+  const startUrl = process.env.ELECTRON_START_URL || url.format({
+    pathname: path.join(__dirname, '../index.html'),
+    protocol: 'file:',
+    slashes: true,
+  });
+  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow.loadURL(startUrl);
+  mainWindow.on('closed', function () {
+    mainWindow = null;
+  });
+}
+app.on('ready', createWindow);
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+app.on('activate', function () {
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
+This code was taken and slightly modified from electron-quick-start, which provides the minimal required code to create an Electron app. Let’s take a closer look.
+const startUrl = process.env.ELECTRON_START_URL || url.format({
+  pathname: path.join(__dirname, '../index.html'),
+  protocol: 'file:',
+  slashes: true,
+});
+mainWindow = new BrowserWindow({ width: 800, height: 600 });
+mainWindow.loadURL(startUrl);
+When we run our app in development, the environment variable “ELECTRON_START_URL” will be defined, and we’ll use that to determine what code to run in our React renderer process. In production, we’ll use the compiled React code loaded as scripts in “index.html”.
+Now our app is ready to run in development. We just need to modify the “scripts” listed in package.json to actually start the app. First change the “start” script to:
+"start": "export BROWSER=none && react-scripts start",
+This first sets the “BROWSER” environment variable to “none”, preventing the app from opening in the browser on launch, which is the default behavior. The script then launches the React development server to compile and serve the React code in realtime.
+Note that I’m on Mac and using Bash as my CLI. On Windows using Command Prompt the script would be set BROWSER=none && react-scripts start.
+Now we need to add a new script to start the Electron app:
+"start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron ."
+This command sets the “ELECTRON_START_URL” environment variable, which as we just saw “electron/main.js” will use if it’s set to determine what code to use for the renderer process. “http://localhost:3000” is the default port the React development server uses to serve compiled code. “electron .” starts the main Electron process.
+Again, if you’re on Windows, use set instead of export.
+Finally, let’s run these two scripts. First, run npm start. Once the development server starts, in another terminal instance, run npm run start-electron, and you should see the following:
+Image for post
+Now we’re ready for the fun part
+
+_______________________________________________________________________________________________________________________________________________________________________
+Sharing code between Electron and React
+Now we can set up our application structure to share code between Electron and React. Inside the “src” directory create two directories: “react”, and “shared”. You might be wondering why react and shared are inside of src, while “electron” is in the top level directory. The reason is that react-scripts, which create-react-app uses to build the production React code, assumes all the source code is inside of “src”, so we have to include “shared” inside of src, or else its contents will be missing from the compiled React code. We don’t want our Electron code to be included when react-scripts’ build script runs, and we have more control over how to build our Electron code, so we can leave it outside “src”, and still access the code in “shared”.
+Let’s create our shared codebase. Inside of “shared” create a file “constants.js”, and add the following code:
+module.exports = {
+  channels: {
+    APP_INFO: 'app_info',
+  },
+};
+Channels are used to communicate between the main Electron and React renderer processes, so it makes sense to define them in a single place. We use module.exports = { … } instead of export default { … }, because Electron doesn’t support that syntax out of the box. We could use something like Babel to transpile our Electron code, but that requires more setup than it’s worth for this example.
+Let’s now use the channel we defined inside of React. Since all the React code we’re going to write will be contained in “App.js”, I’m going to move it into “src/react”, along with “App.test.js”, “App.css” and “logo.svg”, and change the import statement in “src/index.js” from import App from './App'; to import App from './react/App';.
+Inside of “App.js”, let’s import “channels” and “ipcRenderer”, which is used to send messages to the main Electron process:
+import { channels } from '../shared/constants';
+const { ipcRenderer } = window.require('electron');
+You’re probably wondering why the import statement for ipcRenderer looks so weird. Essentially, Webpack, which create-react-app uses to bundle code, isn’t configured properly for electron, so import { ipcRenderer } from 'electron' results in an error. There are ways around it, but for the sake of simplicity I won’t go into them here.
+Update: unfortunately with recent versions of Electron, this workaround raises another error: window.require is not a function. So now I will go into a more in depth solution.
+In the electron directory create a new file “preload.js”, with the following code:
+const { ipcRenderer } = require('electron');
+window.ipcRenderer = ipcRenderer;
+In main.js, update the code to create the main window:
+mainWindow = new BrowserWindow({
+  width: 800,
+  height: 600,
+  webPreferences: {
+    preload: path.join(__dirname, 'preload.js'),
+  },
+});
+By specifying that additional preload property, “preload.js” will execute before creating the app window, so we’ll be able to access ipcRenderer through the global window variable in App.js, like so:
+const { ipcRenderer } = window; 
+Let’s now use it. We’ll make App.js a class component and add a constructor:
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      appName: '',
+      appVersion: '',
+    };
+    ipcRenderer.send(channels.APP_INFO);
+    ipcRenderer.on(channels.APP_INFO, (event, arg) => {
+      ipcRenderer.removeAllListeners(channels.APP_INFO);
+      const { appName, appVersion } = arg;
+      this.setState({ appName, appVersion });
+    });
+  }
+}
+And add a render function to display our new state:
+render() {
+  const { appName, appVersion } = this.state;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>{appName} version {appVersion}</p>
+      </header>
+    </div>
+  );
+}
+When the component is created, we’ll send a message to the electron process, requesting the app name and version, which we’ll then display. Let’s modify “electron/main.js” to handle to this message. First, add “ipcMain” to the list of imports from electron, and import the shared “channels”:
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { channels } = require('../src/shared/constants');
+Then at the end of the file, add the following:
+ipcMain.on(channels.APP_INFO, (event) => {
+  event.sender.send(channels.APP_INFO, {
+    appName: app.getName(),
+    appVersion: app.getVersion(),
+  });
+});
+This code is able to read the “packageName” and “version” values from our package.json, something we can’t do directly from the React process, because it’s outside the “src” directory.
+Let’s test it out. Run the “start” and “start-electron” scripts again:
+Image for post
+It works! Well, at least in development
+__________________________________________________________________________________________________________________________________________________________-
+Building and packaging the app for production
+Building and packaging our app can be summarized in three steps. First, we use react-scripts to compile our React code into a production-ready version. Second, we copy our Electron code into the correct build directories to use the compiled React code. Lastly, we use electron-packager to package the built code into executables that can be installed and run on Mac and Windows.
+Create-react-app makes the first step easy. Our package.json already contains a “build” script. We just need to add one property to package.json first:
+"homepage": "./"
+By default, create-react-app builds an “index.html” that includes tags with absolute src paths, which when loaded in Electron, results in JavaScript and CSS files not being found. This property configures it to use relative paths instead. Now let’s run the build script:
+npm run build
+After a few seconds, we now have a “build” folder with the following contents:
+Image for post
+All the react code and css has been compiled into minified files within “build/static/” which are loaded in “build/index.html”. As you can see, none of the file or folder structure of “src” is preserved, which is why we had to include any shared code within src itself.
+Now we can “build” our Electron code. I say “build”, because we don’t actually have to compile anything like we do with React. The main Electron process uses Node.js 10, which already supports most features of ES6 and ES7. All we have to do is copy files from “electron” and “src/shared” into the “build” directory. If you want to use syntax that isn’t supported by electron, such as import x from 'x' instead of const x = require('x'), you could use Babel CLI to transpile the code first, and then place the results into the same build folders as I’m doing.
+Let’s add another script within the “scripts” section of package.json to copy our Electron and shared code:
+"build-electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared"
+On windows this would be:
+"build-electron": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S"
+Let’s run it:
+npm run build-electron
+Image for post
+Our build folder now contains an “electron” and “src/shared” directory, mirroring the same folder structure as in our development code.
+The last step is to package the code in the build folder into executables. To do this we’ll use electron-builder, so let’s go ahead and install it:
+npm install --save-dev electron-builder
+And now add one last script in package.json:
+"package": "electron-builder build --mac --win 
+-c.extraMetadata.main=build/electron/main.js --publish never"
+The --mac and --win flags specify that we want to package the app for both Mac and Windows. -c.extraMetadata.main=build/electron/main.js overrides the “main” field in package.json, telling it to use the “main.js” inside of the “build” directory rather than “electron”. --publish never means that after packaging we don’t want to automatically deploy the new version anywhere.
+To configure electron-builder further we need to add a “build” section to package.json:
+"build": {
+  "files": [
+    "build/**/*",
+    "node_modules/**/*"
+  ],
+  "publish": {
+    "provider": "github",
+    "repo": "electron-cra-example",
+    "owner": "johndyer24"
+  }
+}
+“files” specifies what code to include in the packaged version. “build/**/*” and “node_modules/**/*” means include all files, directories, and subdirectories inside the “build” and “node_modules” folders.
+The “publish” section indicates where to deploy the app after packaging. While we’re not doing that, electron-builder will throw an error if it isn’t included. More details on the available options to configure electron-builder are available here.
+Now we’re ready to run the “package” script:
+npm run package
+While this script should work, with recent versions of electron and electron-builder I’ve encountered a couple errors when running it, which I’ll explain how to fix. If the package script worked right off the bat for you, you can skip the next two steps.
+The first error I encountered was Unresolved node modules: typescript . We’re not using typescript in our project, so I fixed it by creating a file “electron-builder.env” and adding the line ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES=true , as suggested here.
+The second was Error: /usr/local/opt/nvm/versions/node/v10.14.2/bin/node exited with code 1 , and the output said something about the “fsevents” module, similar to these issues. I fixed it by deleting the “node_modules” directory and “package-lock.json”, and then running npm install .
+Once the package script completes successfully, you should see a “dist” folder:
+Image for postImage for post
+This folder contains a dmg installer for mac, and an exe installer for windows. Go ahead and install the app, run it, and you should see the following:
+Image for postImage for post
+It still works, we haven’t broken anything!
+
+_______________________________________________________________________________________________________________________________
+Wrapping up
+Now you should have an idea how to share pieces of your code between Electron and React in your own projects. For reference, all the code used here is on GitHub. If you want to explore further, there are plenty of ways you could extend this example. Adding Babel to transpile your Electron code, or publishing your production app with electron-builder are two that come to mind, which I’ll likely cover another time. Until then, best of luck with your Electron and React development!
+If you’re interested in learning how to build and deploy an auto-updating app with electron-builder, check out my next article.
+256
+
+JavaScript
+Electron
+React
+Programming
+Software Development
+256 claps
+
+
+
+
+
+John Dyer
+WRITTEN BY
+
+John Dyer
+Follow
+I’m a software engineer in the Boston area, specializing in web development. I also build mobile and desktop apps using React Native and Electron.
+See responses (10)
+Discover Medium
+Welcome to a place where words matter. On Medium, smart voices and original ideas take center stage - with no ads in sight. Watch
+Make Medium yours
+Follow all the topics you care about, and we’ll deliver the best stories for you to your homepage and inbox. Explore
+Become a member
+Get unlimited access to the best stories on Medium — and support writers while you’re at it. Just $5/month. Upgrade
+About
+Help
+Legal
+
+_________________________________________________________________________________________________________________________________________________
+
+https://medium.com/@johndyer24/building-a-production-electron-create-react-app-application-with-shared-code-using-electron-builder-c1f70f0e2649
+
+
+BABEL-cli link in above description  https://babeljs.io/docs/en/babel-cli
+
+configure electron-builder are available here===>https://www.electron.build/configuration/configuration
+
+
+

@@ -139,13 +139,22 @@ ____________________________________________________________
 
 git config --get remote.origin.url
 
+The above will only work if you've either cloned the repository or manually added a remote called origin.
+
+If "git remote -v" doesn't show you any remotes you can simply add a remote using:
+
+git remote add origin https://username@stash/scm/PROJECT/repo.git
+
+https://community.atlassian.com/t5/Git-questions/fatal-No-such-remote-origin-after-git-remote-set-url-origin/qaq-p/401456
+
 
 https://intellipaat.com/community/3102/git-show-remote-url-how-can-i-determine-the-url-that-a-local-git-repository-was-originally-cloned-from
 
 $ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 
+===> :(  No such remote 'origin' ===>read article from starting ===> :)
 
-$ git remote -v
+
 
 https://help.github.com/en/github/using-git/changing-a-remotes-url
 
@@ -156,7 +165,17 @@ git push --set-upstream origin dev
 // if you dont want to use origin agaain an again,
  you can associate upstream on specific branch
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+to revert to specific commit
+
+
+git reset --hard 61cf982
+
+
+git push -f origin branch_name
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==
 
 
 

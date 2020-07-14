@@ -3642,6 +3642,74 @@ _____________________________________________________________________________
 
 S28E305
 
+life cycle and ajax request--intro
+
+_____________________________________________________________________________
+
+S28E306
+
+how change will take process
+is called Reconciliation
+
+===>in react whenever state changes
+
+New in REact 16
+
+Fiber===>new reconcilation engine
+
+youtube.com/watch?v=ZCuYPiUIONs
+
+===>also we can return array in render method
+
+================
+
+Error Boundary===>
+
+_____________________________________________________________________________
+
+S28E307
+
+inline functions and events
+
+common mistakes==>
+
+onClick={this.handleClick()}==>fn will call immediately not on fn call
+
+
+_____________________________________________________________________________
+
+S28E308
+
+describe controlled and unctroleed component==>
+
+uncontrolled component for react==><input tag>
+
+====>if e.preventDefault is not written ===>will lose
+
+all state when refresh or button submission==>
+
+useOnsubmit===>
+
+_____________________________________________________________________________
+
+S28E309
+
+todo exercise example
+
+_____________________________________________________________________________
+
+S28E310
+
+todo solution
+
+_____________________________________________________________________________
+
+S28E311
+
+
+
+
+
 
 
 
