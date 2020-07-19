@@ -1,0 +1,116 @@
+S2E8
+
+browser window====>
+
+https://medium.com/how-to-electron/a-complete-guide-to-packaging-your-electron-app-1bdc717d739f
+
+
+https://www.thepolyglotdeveloper.com/2018/08/convert-data-between-csv-json-simple-javascript/
+
+
+papa parse
+
+https://stackoverflow.com/questions/53416529/react-import-csv-file-and-parse
+
+
+download csv report
+
+https://docs.reactioncommerce.com/docs/csvdownload
+
+
+________________________________________________________
+
+
+import React from 'react'
+import Button from 'react-bootstrap/Button';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+
+export const ExportCSV = ({csvData, fileName}) => {
+
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const fileExtension = '.xlsx';
+
+    const exportToCSV = (csvData, fileName) => {
+        const ws = XLSX.utils.json_to_sheet(csvData);
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const data = new Blob([excelBuffer], {type: fileType});
+        FileSaver.saveAs(data, fileName + fileExtension);
+    }
+
+    return (
+        <Button variant="warning" onClick={(e) => exportToCSV(csvData,fileName)}>Export</Button>
+    )
+}
+
+
+https://blog.bitsrc.io/exporting-data-to-excel-with-react-6943d7775a92
+
+
+https://stackoverflow.com/questions/48760815/export-to-csv-button-in-react-table
+
+
+https://www.jqwidgets.com/jquery-widgets-demo/demos/jqxgrid/dataexport.htm?web
+
+===>python update csv ===>below
+https://medium.com/free-code-camp/how-to-create-read-update-and-search-through-excel-files-using-python-c70680d811d4
+
+
+=====>python API===>below
+https://gist.github.com/miguelgrinberg/5614326
+
+
+https://www.geeksforgeeks.org/convert-python-script-to-exe-file/
+
+
+
+On windows can write
+pyinstaller main.py --add-data mappings.json;.
+And on unix systems you can write (: instead of ;)
+pyinstaller main.py --add-data mappings.json:.
+
+
+/postStockintoManagement
+
+{
+        "itemName": "Pulses",
+        "qtyMeasure": "Kg",
+        "price": 40
+    }
+
+/updateCurrentStockTable
+
+{
+"id":1,
+"itemName": "Rice",
+"qtyMeasure": "Kg",
+"currentQtyInStock":"",
+"lastUpdatedOn":"current date",
+"AmountTosupply": "same qty measure"
+}
+
+
+amount to supply will only be shown if currentQtyInStock is >0
+ 
+______________________________________
+
+{
+itemName:"",
+
+}
+
+
+________________________________________
+
+from datetime import date
+
+today = date.today()
+print("Today's date:", today)
+
+
+
+
+
+
+

@@ -624,16 +624,273 @@ ___________________________________________________________
 
 S6E31
 
+front-end==>
+
+github.com/stephengrider/lyrical-graphql 
+
+get backend===>that we have already been through...
+
+git clone above_url ===>
+
+cd====>
+
+___________________________________________________________
+
+S6E32
+
+architecture intro....
+
+if(!url)
+thrown new Error("message")
+
+___________________________________________________________
+
+S6E33
+
+mongoLab setup...to avoid local setup
+
+mlab.com===>signup==>valid email==>address
+
+login===>create new database
+
+Amazon US-east==>is free==>
+
+single-node===>sandbox is free==>
+
+database name===>put in here
+
+then click on create new database
+
+====>
+
+and get MongoDb URI
+
+====>go to user==>add Database user===>
+
+enter username and password===>
+
+====>then go back to code===>server.js===>
+
+paste===> mongoDb URI==>change userName and password===>
+
+====================>
+
+cmd==>npm run dev
+
+___________________________________________________________
+
+S6E34
+
+we can use automated document feature of graphiQL
+
+it contains mutation===>which includes data specific...
+
+===>
+
+mutation  {
+	addSong(title: "Cold Night"){
+	id
+	}
+}
+
+====>we will get generated id....>
+
+mutation {
+	addLyricToSong(songId: "xxxxxx", content: "lyrics..."){
+	id
+	}
+}
+=====>we will again get Id
+
+=========================================================
+
+{
+song {
+id
+title
+lyrics {
+content
+}
+}
+}
+====>we will get above details
+
+___________________________________________________________
+
+S6E35
+
+Apoolo store====>talks with graphiQL===>reside at client side
 
 
+react app will be in APollo provider===>
+
+in index.js of react===>
+
+impory ApolloClient from 'react-apollo';
+import { APolloProvider } from 'react-apollo';
 
 
+const client = new ApolloClient({}); ===>assumes /graphiql is present
 
 
+return (
+
+	<ApooloProvider client={client}>    ===>glue layer for react and graphiQL
+	<div>Lyrical</div>
+	</ApooloProvider>
+)
+
+=====> // we are not using relay as it need more configuration as compare to apollo
+
+___________________________________________________________
+
+S6E36
+
+in new component folder(create) in client folder===>
+
+import React, { Component } from  'react';
+
+class SongList  extends Component {
+
+	render(){
+	return(
+	<div>akhil</div>
+	);
+	}
+
+}
+===================
+
+import above component in index.js
+
+___________________________________________________________
+
+S6E37
+
+GQL query in react component
+
+strategy to work with both==>
+
+1. Identify data required by component
+2. Write Quert in GraphiQl (for practice) and in compnent file
+3.Bond query + component
+4. Access Data!
 
 
+========================> 
+
+{
+songs {
+title
+}
+}
+===>we will get required data
+
+================================>
+
+queries are not javascript code....imp
+
+so 
+
+import gql from 'graphql-tag'; // in component
+
+const query = gql` 
+{
+songs {
+	title
+}
+}
+`;
 
 
+___________________________________________________________
+
+S6E38
+
+bond query + component
+
+import { graphql } from 'react-apollo'; // in component
+
+
+export default graphql(query)(SongList); // export will be changed now like this===>steps now====>component rendered ===>query issued==>query complete===> Rerender component now==>
+
+// data will be now in props==>
+
+
+console.log(this.props) // and you'll get data
+
+___________________________________________________________
+
+S7E39
+
+data will be recieved in props==>
+
+this.props.data.songs===>
+
+before fetching ====>chechk loading flag!!
+
+___________________________________________________________
+
+S7E40
+
+fixing key warning===>
+
+<li key={song.id}> {song.title} </li>
+
+___________________________________________________________
+
+S7E41
+
+Architecture===>of application==>
+
+___________________________________________________________
+
+S7E42
+
+import { Router, Route, hashHistory, IndexRoute} from 'react-router';
+
+<ApooloProvider client={client}>
+	<Router history={hashHistory} >
+		<Route path="/" component={App}>
+			<IndexRoute component={SongList} /> //===>songlist component will be props as props .children to App
+		</Route>
+	</Router>
+</ApolloProvider>
+
+___________________________________________________________
+
+S7E43
+
+whenever we need to update data we call it as mutation in GraphiQl
+
+songCreate.js ===>in component folder
+
+===================
+
+import React, {Component} from  'react';
+
+<div>
+	<form>
+	<label>SOng Title:</label>
+	<input 
+	onChane={event => this.setState({title: event.target.value})}
+	value={this.state.value}
+
+	/>
+	</form>
+</div>
+===============================
+
+<Router history={hashHistory} >
+		<Route path="/" component={App}>
+			<IndexRoute component={SongList} /> //===>songlist component will be props as props .children to App
+			<Route path="song/new" component={SongCreate} />
+		</Route>
+	</Router>
+
+___________________________________________________________
+
+S8E44
 
 
 

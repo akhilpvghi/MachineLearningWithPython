@@ -1,0 +1,185 @@
+				
+				 <style>
+				 
+				 img#svgele {
+    width: 24em;
+    height: 19em;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-evenly;
+	height: 2em;
+}
+
+.flex_border{
+    display: flex;
+    flex-direction: column;
+			}
+				 </style>
+
+				 
+				 <html>
+					<meta>
+
+					<script
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			  crossorigin="anonymous"></script>
+
+					</meta>
+				 <body id="body" class="bg">
+				<select id="dropdownID" placeholder="choose country" onchange="getComboA(this)">
+				</select>
+				<img id="svgele"></img>
+				<div class="flex">
+				<h2 id="country">Country :</h2>
+				<h2 id="countryVal"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Native Name :</h2>
+				<h2 id="countryNatVal"></h2>
+				 </div>
+
+				  <div class="flex">
+				<h2 id="country">Capital :</h2>
+				<h2 id="countryCapital"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="languages">Language :</h2>
+				<h2 id="countrylanguages"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Currency :</h2>
+				<h2 id="countryCurrency"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Population :</h2>
+				<h2 id="countryPopulation"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Region :</h2>
+				<h2 id="countryRegion"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Subregion :</h2>
+				<h2 id="countrySubregion"></h2>
+				 </div>
+
+				 <div class="flex_border">
+				<h2 id="country">Borders :</h2>
+				<h2 id="countryBorders"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Calling Code :</h2>
+				<h2 id="countryCallingCodes"></h2>
+				 </div>
+
+				 <div class="flex">
+				<h2 id="country">Alpha 3 code :</h2>
+				<h2 id="countryAlpha3Code"></h2>
+				 </div>
+
+
+				 
+
+				 
+
+				 
+				 </body>
+				 <script type="text/javascript">
+
+				 //$(document).ready(()=>{
+					 var options = $("#dropdownID");
+					 var data2=[];
+					 let fn1=(callback)=>{
+						 
+					 $.getJSON( "https://restcountries.eu/rest/v2", function( data ) {
+  
+  data2=data;
+  console.log("details",options);
+  data.map((data)=>{
+  options.append(new Option(data.name, data.name));
+  })
+
+				})
+				 // callback();
+					 }
+					 
+
+let fn2=()=>{
+	console.log(options[0]);
+  Object.values(options[0]).map((val)=>{
+  //if(val.option.selected===true)
+  console.log(options);
+  })
+}
+
+fn1(fn2);
+
+function getComboA(selectObject) {
+  var value = selectObject.value;  
+var filteredData = data2.filter((ele)=>ele.name==value)
+  console.log(value,filteredData);
+ var borders="";
+ filteredData[0]["borders"].map((borderNameAplha3Code)=>{
+ data2.map((country)=>
+	 {
+		 if(country["alpha3Code"]===borderNameAplha3Code)
+		 borders+=`${country["name"]} ,`
+	 })
+ })
+
+svgELe=$("#svgele");
+countryVal = $("#countryValue");
+console.log(svgELe)
+svgELe.attr("src",filteredData[0]["flag"])
+$("#countryVal").text(filteredData[0]["name"])
+$("#countryNatVal").text(filteredData[0]["nativeName"])
+$("#countrylanguages").text(filteredData[0]["languages"][0]["name"])
+$("#countryPopulation").text(filteredData[0]["population"])
+$("#countryRegion").text(filteredData[0]["region"])
+$("#countrytimezones").text(filteredData[0]["timezones"][0])
+$("#countryCurrency").text(`${filteredData[0]["currencies"][0]["symbol"]}   ${filteredData[0]["currencies"][0]["name"]}`)
+$("#countryCallingCodes").text(filteredData[0]["callingCodes"][0])
+$("#countryCapital").text(`${filteredData[0]["capital"]}`)
+$("#countrySubregion").text(filteredData[0]["subregion"])
+$("#countryBorders").text(borders)
+$("#countryAlpha3Code").text(filteredData[0]["alpha3Code"])
+
+
+
+}
+
+
+
+
+
+
+
+  //$.each( data, function(name, val) {
+    //options.append(new Option(name, val));
+  //});
+
+				 //})
+		
+
+		
+
+				 </script>
+
+			<style>
+			.bg{
+			background: pink;}
+			</style>
+
+
+				 
+				 </html>

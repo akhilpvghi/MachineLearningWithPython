@@ -1846,6 +1846,7 @@ hexadecimal
 hex(decimal) //	
 hex(12)==>//0xc
 hex(512)==>0x200
+hex(0b1111) ===>//0xf
 bin(128)==>binary representation
 
 pow(2,4)===>power //16
@@ -2367,6 +2368,22 @@ def after_request(response):
 
 
 https://stackoverflow.com/questions/42681311/flask-access-control-allow-origin-for-multiple-urls
+
+
+the above solution will wotk but what if we use another resource where HTTP_ORIGIN needs to be cchecked
+
+from flask import request
+...
+allow_origin_list = ['https://example.com', 'http://example.com']
+
+if 'HTTP_ORIGIN' in request.environ and request.environ['HTTP_ORIGIN']  in white_origin:
+    response.headers.add('Access-Control-Allow-Origin', request.environ['HTTP_ORIGIN'] )
+    response.headers.add('Access-Control-Allow-Headers', 'access-control-allow-origin,content-type')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST')
+
+
+https://stackoverflow.com/questions/28448991/flask-how-to-get-the-http-origin-of-a-request/28448992
+
 
 
 ____________________________________________________________________________________________

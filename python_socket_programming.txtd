@@ -640,7 +640,114 @@ websockets.serve(handler, port=6969)
 https://stackoverflow.com/questions/45944199/python-websockets-cant-connect-over-internet
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Redhat webservices
 
+https://console-openshift-console.apps.us-west-1.starter.openshift-online.com/k8s/cluster/projects
+
+++++++++++++++++++++++++++++++++++==============___________________________________________________________________
+
+new session on python socket
+
+from socket import *
+
+host="192.168.xxx.xxx"
+port= 9999
+
+s= socket(AF_INET,SOCK_STREAM)
+
+s.connect((host,port))
+
+msg = "this is from client"
+s.send(msg.encode('ascii'))
+R_msg = s.recv(1024)
+
+print(R_msg.decode('ascii'))
+
+s.close()
+
+=================================================
+//server side
+
+from socket import *
+
+host = "192.168.8.100"
+port = 9999
+
+s = socket(AF_INET,SOCK_STREAM)
+
+s.bind((hots,port))
+
+s.listen(5)
+
+while True:
+
+	c,addr = s.accept()
+	print("connection from ",addr)
+	R_msg = c.recv(1024)
+	print(R_msg.decode('ascii'))
+	msg = "this is from server"
+	c.send(msg.encode('ascii'))
+	c.close()
+
+
+
+
+//"ipconfig" in cmd 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+S3E2 UDP client server
+
+//client
+
+from socket import *
+
+server_address = ('192,168.xxx,xxx',9999)
+
+s = socket(AF_INET, SOCK_DGRAM)
+
+msg = "this is from client"
+s.sendto(msg.encode('asciii'),server_address)
+
+data,server = s.recvfrom(1024)
+print(data.decode('ascii'))
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from socket import *
+
+s = socket(AF_INET,SOCK_DGRAM)
+
+s.bind(("192.168.8.100",9999))
+data,addr = s.recvfrom(1024)
+
+print(data.decode('asciii'))
+
+msg =  "this is from the server"
+
+s.sendto(msg.encode('asciii'),addr)
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+S3E3
+header format tcp/ip
+
+________________________________________________________________________________________________________
+
+s3E4
+
+DDOS Attack
+
+________________________________________________________________________________________________________
+
+s4E1
+
+pipe scripts
+
+________________________________________________________________________________________________________
+
+s4E2
 
 
 

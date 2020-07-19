@@ -3706,6 +3706,235 @@ _____________________________________________________________________________
 
 S28E311
 
+define ref--->
+
+direct refernce to dom==>
+
+
+_____________________________________________________________________________
+
+S28E312
+
+
+continue with recipe
+
+_____________________________________________________________________________
+
+S28E313
+
+forms in reactJS
+
+import React, {COmponent} from 'react';
+
+class RecipeInput extends Component {
+
+render(){
+<div>
+<form onSubmit={() => {}}>
+<button >close</button>
+<label>....
+<input ...
+
+</form>
+
+</div>
+}
+}
+
+export default RecipeInput;
+
+_____________________________________________________________________________
+
+S28E314
+
+continuing project
+
+
+_____________________________________________________________________________
+
+S28E315
+
+only way to share data between sibling is through parent
+
+_____________________________________________________________________________
+
+S28E316
+
+continue.....
+
+_____________________________________________________________________________
+
+S28E317
+
+memory game
+
+_____________________________________________________________________________
+
+S28E318
+
+
+cont....
+
+_____________________________________________________________________________
+
+S28E319
+
+cont.....
+
+_____________________________________________________________________________
+
+S29E320
+
+component lifecycle===>
+
+Mounting==>
+
+constructor()
+
+componentWillMount()==>once only called
+
+render()
+
+componentDidMount()===>once
+
+
+//=======>Unmounting()
+
+componentWillUnMount()
+
+//====>updating
+
+componentWillRecieveProps(nextProps)==>whenever setStateCalled==>
+
+shouldComponentUpdate(nextProps, nextState)==>can implement by ourselves==>if returns false==>component will not rerender
+
+componentWillUpdate(nectProps,nextState)===>just before rerender
+
+render
+
+//===========>
+
+
+forceUpdate()==>should component update  change behaviour
+
+
+facebook.github.io/react/docs/react-component.html
+
+___________________________________________________________
+
+S29E321
+
+usecases of lifecycle methods
+
+Promise.all(promises)===>if we get by maps(multiple) of promises
+
+___________________________________________________________
+
+S29E322
+
+flag app===>
+
+restcountries.eu/rest/v2/all
+
+___________________________________________________________
+
+S29E323
+
+flag done
+
+___________________________________________________________
+
+S30E324
+
+React Authentication intro--->
+
+warbler app intro
+___________________________________________________________
+
+S30E325
+
+intro to Authentication===>
+
+one way hashing====>library===>bcrypt===>
+
+JWT(Json web Token)===>like cache===>to kept logged in==>
+consist 3 parts
+
+====>header
+====>payload
+====>signature
+
+https://jwt.io
+
+client needs to give jwt with every payload==>
+
+================>
+
+user will send authorisation in 
+in HTTP Header
+
+Authorization: Bearer <JWT>
+
+___________________________________________________________
+
+S30E326
+
+using nodeJs
+
+var bcrypt = require('bcrypt');
+
+var jwt = require('jsonwebtoken');
+
+___________________________________________________________
+
+S30E327
+
+"dotenv": ====>dependencies
+
+hidden .env file will be there==>
+
+process.env.SECRET_KEY="key"===>in .env file
+
+___________________________________________________________
+
+S30E328
+
+cont....
+
+
+___________________________________________________________
+
+S30E329
+
+Authenticaation V/s Authorization
+
+
+___________________________________________________________
+
+S30E330
+
+Authorization
+
+
+___________________________________________________________
+
+S30E331
+
+cont...
+
+
+___________________________________________________________
+
+S30E332
+
+react and proxy setup
+
+
+___________________________________________________________
+
+S31E333
+
+
 
 
 

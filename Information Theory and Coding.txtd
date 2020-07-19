@@ -113,6 +113,40 @@ ______________________________________________________________
 
 L5
 
+channel==>noise and attenuation in channel==>
+
+Discrete memoryless channel==>
+
+xk(i/p) ===>| channel |===>Yk(o/p)
+
+memoryless===>memory element are missing==>o/p only depends only on present i/p
+
+channel matrix===>
+
+1)Loseless channel
+
+====>every column must have one non-zero value
+===>summision of row= 1
+
+2) Deterministic channel
+
+3) Noiseless Channel===>diagonal elements are 1==>no noise interference
+
+4) Binary Symmetric channel
+
+______________________________________________________________
+
+L6
+
+
+
+
+
+
+
+
+
+
 
 
 
