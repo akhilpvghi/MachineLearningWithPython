@@ -1,0 +1,385 @@
+19-07-2020
+_______________________________________________________________
+S1E1
+
+intro to course====>
+
+used in survilence and others===>
+
+face_recognition library==>OpenCv, Dlib are the library===>
+
+will also cover basic python little bit====>
+
+===>will test all installation===>
+
+====>will detect emotions
+
+====>deep learning to predict age and gender
+
+
+_______________________________________________________________
+
+S2E1
+
+intro to face recognition technology using deep learning===>python
+
+
+Baisc steps===>face detection==>find landmark like nose,lips etc
+
+	=======>face allignment
+
+	=======>feature Extraction
+
+	======>face recognition (score more than threshhold)
+
+
+
+_______________________________________________________________
+S3E1
+
+environment setup===>
+
+python, numpy, Scikit learn, OpenCV(open source image processing),Dlib(deep learning), face-recognition,Cmake..>===>libraries
+
+open source distribution====>Anaconda==>
+
+===>google===>download Anaconda==>python 3.7 version===>466Mb for windows===>next==>next==>Add environment path variable (by checking at time of installing anaconda)===>IDE is spyder===>
+
+>>>print("hello")===>press run on spyder==>
+
+_______________________________________________________________
+S4E1
+
+python basics==>
+
+===>String Assignment
+===>Number Assignment
+===>multiple assignment ==>a,b,c=10,11,12
+====>None Assignment
+
+_______________________________________________________________
+S4E2
+
+python data structure==>tuples==>Lists (append)===>Dictionary {"key":value} //(mydict.keys() // will return list)===>
+print("%d" % num_var) // will also give result
+
+_______________________________________________________________
+S4E3
+
+python flow control===>if===>elif condition: ===>for loop( // for i in range(10):)===>while condition: 
+
+_______________________________________________________________
+S4E4
+
+python function===>
+
+def fn_name():
+	body_statements
+	return resullt
+
+_______________________________________________________________
+S5E1
+
+custom dependicies===>cMake===>Cross platform Make===>
+
+===>launch anaconda prompt===>pip install cmake===>(took 5 mins)===>
+
+openCv===>for real -time computer vision===>pip install opencv-python====>
+
+===>next package===>Dlib is C++ toolkit===>
+
+===>another library Face recognition===>by Adam Geitgey===>
+
+====>we will be using wheel to install last above two packages
+_______________________________________________________________
+S5E2
+
+setting up environment===>
+
+goto pypi.org===>face-recognition===>download wheel file of this package===>
+
+goto===>anaconda prompt===>change directory where library wheel file is present===>
+
+cd path_of_wheel_file
+
+===>pip install ##wheel_file.whl
+
+import cv2
+import dlib
+import face_recognition
+
+print(cv2.__version__) //# and similarly we can chack cersion of every package version==>
+print(dlib.__version__)
+print(face_recognition.__version__)
+===>
+
+_______________________________________________________________
+S6E1
+
+face detection===>detect and locate faces in the image===>
+
+face detector===> HoG face detector and CNN based Detector included in DLib(convolution neural network)(more accurate)
+
+HOG(histogram of oriented Gradient)===>detects pixel===>minimum size 80 * 80===>front side only==>
+
+CNN face Detector===>slow on CPU==>fast on GPU==>detect multiple face orientation===>
+
+_______________________________________________________________
+S7E1
+
+face detection implementation 1===>
+
+cmake ===>to capture images and all===>
+
+folder structure===>
+face recognition===>images
+		===>library
+		====>code
+			===>image_face_detection.py
+			//==>import cv2
+			//===> import face_recognition
+image_to_detect = cv2.imread('images/filename.jpg')
+cv2.imshow("test", image_to_detect) // to show and check image
+
+all_face_location = face_recognition.face_locations(image_to_detect,model="hog | cnn") //can also pass upsamle===>accuracy, return tuples
+print("there are {} no of faces in this image".format(len(all_face_location)))
+
+//### get face location===>
+
+_______________________________________________________________
+S7E2
+
+//loop through faces
+
+for index, current_face_location in enumerate(all_face_location):
+	top_pos,right_pos,bottom_pos,left_pos = current_face_location //# goes in clockwise direction
+	print('found face {} at top: {},right {},bottom {},left {}'.format(index+1,top_pos,right_pos,bottom_pos,left_pos))
+	// can slice the image
+	current_face_image = image_to_detect[top_pos:bottom_pos,left_pos:right_pos] 
+	cvw.imshow("Face no "+str(index+1),current_face_image)
+
+
+_______________________________________________________________
+S8E1
+
+// create a  new file
+====>realtime_face_detection.py
+
+webcacam_video_stream = cv2.videoCapture(0)  // by default 0 indicates original webcam attached(pre) to computer
+
+// empty arrray of face location
+
+all_face_location = [] // to hold all face location
+
+while True: //keep on going unless we give some interrupt
+	ret, current_frame = webcam_video_stream.read()
+	current_frame_small = cv2.resize(current_frame,(0,0),(fx=0.25,fx=0.25)) //optional as we are scaling down the current fram by 1/4 (0,0)==>indicates we are not touching image size 
+	// find total no of faces
+	all_face_locations = face_recognition.face_locations(current_frame_small)
+	for index,current_face_location in enumerate(all_face_locations):
+		top_pos,right_pos,... = current_face_location // from previous code
+		top_pos =top_pos*4 // to get actual frame
+		right_pos=right_pos*4
+		bottom_pos = bottom_pos*4 
+		left_pos= left_pos*4
+		cv2.rectnale(current_frame, (left_pos,top_pos),(right_pos, bottom_pos), (0,0,255),2) // last one is for thickness of rrectangle
+_______________________________________________________________
+S8E2
+
+//cont..
+in for loop onle which is in while loop itself
+		cv2.rectnale(current_frame, (left_pos,top_pos),(right_pos, bottom_pos), (0,0,255),2) // last one is for thickness of rrectangle
+	cv2.imshow("FAce no",current_frame) // if one title then one window //outside of for loop inside of while loop
+if cv2.waitKey(1) & 0xFF = ord('q'): //in while loop not in for loop to exit			break
+	break
+
+//outside of while loop
+webcam_video_stream.realease()
+cv2.destroyAllWindows()
+
+//note if img is far from camera then it may not detect face , hence we can upgrade "number_of_times_to_upscale=2"
+
+//like // face_recognition.face_locations(current_frame_small,number_of_times_to_upscale=2,model="hog") //now check
+
+_______________________________________________________________
+S9E1
+
+real time face detection and blurring===>
+
+//current_face_image  = cv2.GaussianBlur(current_face_image,(99,99), 30) //(99,99)==>kernel size(blur size), standard deviation is 30
+
+// paste image back to current_frame
+current_frame[top_pos:bottom_pos,left_pos:right_pos] = current_face_image
+
+_______________________________________________________________
+S10E1
+
+expression detecion===>install two neural network library===>TensorFLow and Keras (tensarflow.org and keras.io)
+
+===>open anaconda prompt===>conda install tensorflow
+===>conda install keras
+
+===>on kaggle===>36,000 image comparison===>48*48 pixel===>kaggle.com===>have dataset===>download dataset===>
+
+=====>inn code folder===>create dataset===>which will have json and ...model_weight.H5 file==>
+
+_______________________________________________________________
+S11E1
+
+realtime_face_emotion_detection.py
+
+import numpy as np
+import cv2
+from keras.preprocessing import image
+from keras.models import  model_from_json
+
+//switch on webcam
+webcam_video_stream = cv2.VideoCapture(0)
+
+
+face_exp_model = model_from_json(open("dataset/facial_expression_model.json","r").read())
+face_exp_model.load_weights('dataset/facial_expression_model_weight.h5') // will give nos for emotions so lets map
+
+emotions_label = ("angry","disgust","fear","happy","sad","surprise","neutral")
+
+// slicing //current_face_image = current_frame[top_pos:bottom_pos,left_pos:right_pos]
+
+//convert into grayscale==> current_face_image = cv2.cvtColor(current_face_image,cv2.COLOR_BGR2GRAY)
+
+//resize to 48*48 px
+
+current_face_image = cv2.resize(current_face_image, (48, 48))
+
+// todo all calculation==>convert image into pixel (matrix)===>
+
+img_pixels = image.img_to_array(current_face_image)
+
+// convert it into 1-d array
+
+img_pixels = np.expand_dims(img_pixels, axis=0)
+
+=======>
+//all this pixels are ranges from 0 to 255
+
+so divide image pixels by 
+
+=====> img_pixels=/ 255
+
+_______________________________________________________________
+S11E2
+
+...cont
+//do prediction using model, get prediction value ranges from 0 to 6 , it will have all the values we need to choose maximum occurence value
+exp_predictions = face_exp_model.predict(img_pixels)
+
+//find max occurence==>to test
+max_index = np.argmax(exp_prediction[0])
+
+// find label
+emotion_label = emotions_label[max_index]
+
+//display on image
+
+font = cv2.FONT_HERSHEY_DUPLEX
+cv2.putText(current_frame,emotion_label, (left_pos,bottom_pos),font,0.5,(255,255,255),1) //0.5 is scale, 1 is width of text
+
+_______________________________________________________________
+S12E1
+
+facial expression detection of image===>
+
+// get models
+
+
+
+//shift+tab to reverse the effect of tab
+
+_______________________________________________________________
+S13E1
+
+Realtime time age and gender detection==>
+
+by Gil Levi and Tal Hassner using the Adience dataset
+
+//Adience-data.html===>in talhassner.github.io
+
+// caffe is a deep learning framework
+
+files to download
+
+===>Age Classification caffe Model
+===>Age protext file
+===>Gender classificatication caffe model
+====>Gender classification protext file
+====>The Mean Image
+
+_______________________________________________________________
+S14E1
+
+real-time Age and gender Detection implementation
+
+realtime_age_gender_detection.py===>remove blur code
+
+while loop is for frame===>
+for loop is for no of faces in frame faces===>
+
+
+AGE_GENDER_MODEL_MEAN_VALUES =(78.4263377603, 87.7689143744, 114.895847746)
+
+//create blob of image
+
+current_face_image_blob = cv2.dnn.blobFromImage(current_face_image, 1, (227, 227), AGE_GENDER_MODEL_MEAN_VALUES, swapRB=False) //1 is scale factor, (227,277)==>size of blob, swapRedBlue=False
+
+// gender_label_list = ['Male', 'Female']
+//gender_protext = "dataset/gender_deploy.protext"
+//gender_caffemodel = "dataset/gender_net.caffemodel"
+
+gender_cov_net = cv2.dnn.readNet(gender_caffemodel, gender_protext)
+gender_cov_net.setInput(current_face_image_blob)
+
+//forward to examine using Artificial Neural Networks
+
+gender_predictions = gender_cov_net.forward()
+gender = gender_label_list[gender_predictions[0].argmax()]
+
+/// now age prediction
+
+age_label_list= ['(0-2)','(4-6)','(8-12)','(15-20)','(25-32)','(38-43)','(48-53)','(60-100)']
+
+ // import all files related to age
+
+age_protext = "dtaaset/age_deploy.protxt"
+age_caffemodel = 'dataset/age_net.caffemodel'
+
+age_cov_net = cv2.dnn.readNet(age_caffemodel, age_protext)
+
+age_cov_net.setInput(current_face_imaeg_blob)
+
+age_predictions = age_cov_net.forward()
+
+age = age_label_list[age_predictions[0].argmax()]
+
+cv2.rectangle(current_frame,(left_pos,top_pos),(right_pos,bottom_pos),(0,0,255),2)
+
+font = cv2.FONT_HERSHEY_DUPLEX
+cv2.putTest(current_frame,gender+" "+age+"yrs", (left_pos,bottom_pos), font, 0.5, (0,0,255),1)
+
+
+_______________________________________________________________
+S15E1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

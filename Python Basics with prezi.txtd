@@ -2340,6 +2340,11 @@ OR
 
  pyinstaller --onefile  --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
 
+pyinstaller -F --onefile  --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
+
+===>above script if permission denied=====>and disable antivirus
+
+
 in other OS other than windows its :. instead ;. ===> though needs to be checked
 
 
