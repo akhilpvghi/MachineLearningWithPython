@@ -177,6 +177,8 @@ git push -f origin branch_name
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==
 
+git branch -a  // to check all branch name
+
 
 
 

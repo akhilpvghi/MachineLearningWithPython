@@ -239,5 +239,26 @@ BABEL-cli link in above description  https://babeljs.io/docs/en/babel-cli
 
 configure electron-builder are available here===>https://www.electron.build/configuration/configuration
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+to maximise electron Window
+
+44
+
+Call mainWindow.maximize() to maximize the window after you create it.
+
+
+64
+
+use this!
+
+win = new BrowserWindow({show: false});
+win.maximize();
+win.show();
+
+
+https://stackoverflow.com/questions/40445068/electron-take-up-100-of-screen-not-full-screen
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

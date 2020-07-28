@@ -2209,7 +2209,33 @@ int and float
 
 ==>from __future__ import division
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+date and time in python
+
+>>> from datetime import datetime
+>>> date_input = input('Enter a date(mm/dd/yyyy): ')
+Enter a date(mm/dd/yyyy): 11/01/2013
+>>> date_object = datetime.strptime(date_input, '%m/%d/%Y')
+>>> print(date_object.strftime('%B %d, %Y'))
+November 01, 2013
 	
+	https://stackoverflow.com/questions/22739015/convert-date-from-mm-dd-yyyy-to-another-format-in-python
 
 
 
