@@ -714,6 +714,19 @@ a in 'a world'==>true
 
 ===>min(mylist) // or max(myList)
 
+
+get-max-value-index-for-a-list-of-dicts
+
+>>> max(ld, key=lambda d: int(d['size'])) // d['size'] is string
+{'size': 200, 'prop': 'boo'}
+
+
+
+
+
+
+
+
 importing function from library===>
 
 from random import shuffle==>
@@ -915,6 +928,21 @@ for item in map(fn_name,myList):
  OR
 
 list(map(fn_name,myList))
+
+=====================================================
+
+passing one more param in filter
+
+def filtCheck(filt):
+    return lambda item: filt in item
+
+def funct():
+    filt = 'Hi'
+    set1 = ['Hello, world', 'Hi there', 'Hi friend']
+    set2 = filter(filtCheck(filt), set1)
+    print set2
+
+https://stackoverflow.com/questions/19550326/passing-a-parameter-through-a-python-filter-function
 
 -------------------------------------
 
@@ -2366,8 +2394,9 @@ OR
 
  pyinstaller --onefile  --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
 
-pyinstaller -F --onefile  --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
+pyinstaller -F --onefile --name "stock_info" --add-data 'stockManagement.csv;.' --add-data 'currentstocktable.csv;.' --add-data 'auth.csv;.' .\API.py
 
+// --name is optional
 ===>above script if permission denied=====>and disable antivirus
 
 

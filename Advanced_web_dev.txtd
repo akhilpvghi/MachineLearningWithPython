@@ -3934,22 +3934,116 @@ ___________________________________________________________
 
 S31E333
 
+React router intro--->
+
+allows to show conditionally component==>
+
+
+___________________________________________________________
+
+S31E334
+
+objective ===>
+
+modify the address bar==>
+
+history api in HTML5==>
+
+===>// history.pusgStae({}, "test", "/react")  // does not make get request
+//window.location
+
+now client side renderig==>
 
 
 
 
+___________________________________________________________
+
+S31E335
+
+intro to react router
+
+==>conditionally render react component
+
+==>react router v4==>library in react
+
+==>hash router doesnt'usage history url 
+==>where as browserRouter uses history router
+
+==>always use browser-router
+
+>>>> npm install --save react-router-dom
+
+import { BrowserRouter as Router} from 'react-router-dom';
+
+.
+.
+.
+<Switch>
+
+<Route exact path="/about" component={About} />
+<Route exact path="/home" component={Home} />
+
+</Switch>
+
+<Link></Link>===> like anchor tag
+
+<NavLink exact activeStyle={style} to="/about">About</NavLink> ===>with extra props active style  
 
 
+___________________________________________________________
+
+S31E336
+
+<Rote path="/:name" >
+
+route props===>
+
+match==>parameter matching
+
+location==>current location
+
+history==>will work withRouter
+
+===>export default withRouter(SwitchDemo);
+
+==>then only (above) you can have history props
+
+//
+
+render v/s component in route==>you cannot pass props in routing component so use render
+
+___________________________________________________________
+
+S32E337
+
+Intro to Redux===>
+
+redux allows us to store all state in store==>
 
 
+___________________________________________________________
+
+S32E338
+
+Action and reducers=== ?
+
+state mgmt tool in react==>
+
+by Dan Abramov and Andrew Clark
+
+===>>>npm install --save redux
+
+Action==>
+
+is like java object==>must have type as key==>
+
+store==>Redux.createStore(reducer) ===>will have all states
 
 
+___________________________________________________________
 
-
-
-
-
-
+S32E339
 
 
 
