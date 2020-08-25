@@ -139,6 +139,52 @@ ______________________________________________________________
 L6
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+22-08-2020
+
+measurement of information ??
+information is the uncertainty of the events...
+more uncertainty, more information
+
+
+probability 0 then more information===>
+
+information inversaly proptional to probability
+	
+source=====>Modulator===>channel==>demodulator==>Destination
+
+
+source coding==>is compression of redundant code
+
+before modulator
+source encoding ==>channel encoding
+
+after demodulator
+source decoder==>channel decoding
+
+____________________________________________________________
+
+24-08-2020
+
+BOTH are mapping technique
+
+source coding ===>is related to probability==>transmiting less and conveying maximum
+
+Channel Coding :===>we are adding redundant bits in channel coding===>
+
+
+Marginal probability ===>single event
+
+Join probability ===>P(X,y
+
+Bayes theorem / conditional Theorem p(Y|X) = P(X,Y)/P(X)
+
+
+
+
 
 
 

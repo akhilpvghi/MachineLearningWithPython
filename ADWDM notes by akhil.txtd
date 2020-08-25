@@ -1,0 +1,58 @@
+		ADW notes
+
+Dt 21-08-2020
+
+
+Waeka tool and penta house software===>
+
+Date warehouse ===>process of creating and using data 
+		warehouse collecting it from heterogenous 
+		source(external sources)
+
+		===>very large collection of data base (can be in tera bytes(TB))
+
+		===>data that we get must be normalised
+
+		===>can not be imagine/Analysed in tabular form (can be any type of data)
+
+		===>manage by Integration tool (Organised way)
+
+		
+Data Base==>set of information which can manage inforamtion
+
+ETL===Extraction Transform Loading
+
+ETL is short for extract, transform, load,
+three database functions that are combined 
+into one tool to pull data out of one database 
+and place it into another database. Extract is the 
+process of reading data from a database
+
+
+OLTP ====>online transactional process ===>Online
+
+_____________________________________________________________________________________________
+24-08-2020
+
+precision in data base==>current data==>
+
+1st Normal form===>talks about atomicity
+2nd Normal form===>full functional dependency
+3rd normal form===>talks about transitivity
+
+Problems==>
+fully normalised data==>inefficiently
+
+Integration system technique ===>must have converion process
+
+
+
+
+
+
+
+
+
+
+
+

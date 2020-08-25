@@ -4045,19 +4045,181 @@ ___________________________________________________________
 
 S32E339
 
+react-redux===>library==>a connector
+
+>>>npm install --save react-redux
+
+// create store
+
+import  { Provider } from 'react-redux';
+import  { createStore } from 'redux';
+
+<Provider store={store}>
+</Provider>
+
+const store = createStore(rootReducer);
+
+---------------------------------
+
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => (
+{ name: state.name}
+)
+
+export default
+	connect(mapStateToProps, null) (CompoemnntName);
+
+----------------------------------------------
+
+//component wants to dispatch an action
+
+mapDisPatchToProps  = (dispatch, ownProps)=>{
+
+onClickFn: () => {
+dispatch({
+type: "DEL_NAME"
+})
+}
+
+}
+
+connect(null, mapDispatchToProps)(DelName);
+
+___________________________________________________________
+
+S32E340
+
+inside index.js
+
+import {createSTore} from 'redux';
+import {Provider} from 'react-redux';
+import APp from './App';
+import rootReducer from 'reducer'; // just a normal fn lets see
+
+const store = createStore(rootReducer, defaultState);  //defaultState is initiation state {}  // should be an object
+
+_____________________________------------------------
+
+reducer.js // is like a dukaan of state
+
+export default (state={}, action) => {
+
+switch(action.type) {
+
+case "SAVE_RECIPE":
+return {...state,nextRecipeId:state.nextRecipeId +1}
+.
+.
+.
+default:
+return state;
+}
+
+}
 
 
+___________________________________________________________
+
+S32E341
+
+in component you can recive state from store like this
+
+//all the onClick or anyother fn should be recieved as props
+
+const {
+
+onClickFN1,
+onClickFN2
+.
+.
+.
+go on
+} =  this.props;
+
+const mapStateToProps = state => ({
+data1 : state.data1,
+data2 : state.data2
+.
+.
+.
+can go on
+})
+
+// also can dispatch action
+
+const mapDispatchToProps = dispatch =>({
+	oncLickfnMayBe(recipe){
+	dispatch({
+	type: "SAVE_RECIPE"
+	recipe
+	})
+	},
+
+	anotherFN(dataFromCompItself){
+	dispatch({
+	type: "action _type"
+	dataFromCompItself
+	})
+	}
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(CurrentComponentName);
 
 
+___________________________________________________________
+
+S32E342
+
+diff b/w presentational and container component
+
+===// combineReducers
+
+const rootReducer = combineReducers({
+reducer1,
+reducer2
+})
 
 
+___________________________________________________________
+
+S32E343
+
+src
+
+	--->action
+	--->component
+	--->container
+	--->reducers
+		--->index.js
+		--->reducer1.js
+		--->reducer2.js
 
 
+___________________________________________________________
+
+S32E344
+
+redux thunk====>
+
+to handle asynch==>
+
+after action dispatch ===>middleware====>but before reaching to reducer
+
+>>>npm install --save redux-thunk
+
+import thunk from 'redux-thunk';
 
 
+___________________________________________________________
 
+S32E345
 
+Redux + react Router
 
+====================================************++++++++++==========================
+
+DONE
 
 
 

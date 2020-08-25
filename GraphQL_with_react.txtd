@@ -892,6 +892,1012 @@ ___________________________________________________________
 
 S8E44
 
+import gql from 'graphql-tag';
+
+onSubmit(event) {
+	event.preventDefault(); // to prevent default of form submission
+	
+}
+
+<form onSubmit={this.onSubmit.bind(this)}>
+
+const mutation = gql`
+mutation {
+	addSong(title: )  // react component data to graphql mutation query which is outside of class componet??
+}
+`;
+
+
+///in graphiql==>
+
+mutation {
+	addSong(title: "DOg Call"){
+		id
+		title
+	}
+}
+
+___________________________________________________________
+
+S8E45
+
+Query params with variables
+
+mutation AddSong($title: String){
+	addSong(title: $title){
+		id
+		title
+	}
+}
+======>
+in query variable we do not use "$" sign
+
+
+___________________________________________________________
+
+S8E46
+
+//now name mutation 
+
+import { graphql } from 'react-apollo';
+
+onSubmit(event){
+
+this.props.mutate({
+variables: {
+	title: this.state.title
+}
+})
+}
+
+const mutation = gql`
+	mutation AddSong($title: String){
+		addSong(title: $title)
+		title
+	}
+
+`;
+
+
+export default graphql(mutation)(SongCreate);
+
+___________________________________________________________
+
+S8E47
+
+import { Link } from 'react-router';
+
+
+<Link
+to="/song/new"
+className="btn=-floating btn-large red right"
+>
+<i className="material-icons">add</i>
+
+</Link>
+
+
+=======
+import {hashHistory } from 'react-router';
+
+// mutate returns  promise
+
+this.props.mutate({})
+.then(()=> hashHistory.push('/'))
+.catch(()=>)
+
+______________________________________________________________________________________
+
+S8E48
+
+appolo doesn'y fetch again if data is already there
+
+______________________________________________________________________________________
+
+S8E49
+
+refetch list after mutating
+
+this.props.mutate({
+variables: {.....}
+refetchQueries: [{}]  //same query gql one
+}).then(()=>{})
+
+//lets create another folder queries==>along with component
+
+==>queries.fetchSong.js
+
+import gql from 'graphql-tag';
+
+export default gql`
+{
+songs{
+	id
+	title
+	}
+}
+`
+======================
+
+//now replace this query in compoent/SOngList.js
+
+import query from '../queries/fetchSong';
+
+//replace 
+
+const query= .....;
+
+//no need to modify as we imported as query only
+
+///now add refetchQueries: [{ query: query, variables: }] // variables are same that we paas
+//in graphIql gui
+
+
+refetchQueries: [{ query: query}] // variable is optional, as in this case we do not have any thing to pass
+			// key value are same==>you know what to do
+
+
+______________________________________________________________________________________
+
+S8E50
+
+// delete song
+
+//use name mutation if you want to pass variable
+
+_____________________________________________________________________________________
+
+S8E51
+
+in SongList.js
+
+const mutation = gql`
+mutation DEleteSOng($id: ID){
+	deleteSong(id: $id){
+		id
+	}
+}
+
+export default graphql(query)(SOngList):
+
+//but only one query/mutation at a time :(
+
+// so now
+
+export default graphql(mutation)(
+	graphql(query)(SongList)
+);
+`
+_____________________________________________________________________________________
+
+S8E52
+
+// call mutation
+
+onSongDelete(id) {
+	this.props.mutate({variable: {id}});
+}
+
+
+_____________________________________________________________________________________
+
+S9E53
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+New Section
+________________________________________________________________________________________________________________________________
+
+GraphQL with python and react
+
+S1E1
+
+install python
+
+python.org/downloads
+
+install nodejs.org==>long term support(LTS)
+
+yarnpkg.com/en/
+
+cloudinary.com ===>to upload free
+
+__________________________________________________________________
+
+E2
+
+graphql ===>is query language
+
+graphql.org/swapi-graphql/?
+
+===>we get only that data , that we asked for
+
+__________________________________________________________________
+
+E3
+
+{
+	allFilms {
+	films {
+		title
+		}
+	}
+}
+
+===>format e.g of graphQL query
+
+====>query structure can be seen in root query
+
+__________________________________________________________________
+
+E4
+
+to change data==> we use concept called mutation ===>like manipulate
+
+bnames.herokuapp.com/graphql===>
+
+====>
+
+muatation {
+	createBaby(babyInfo: {
+		name: "Fred",
+		votes: 1
+	}) {
+		name
+		votes
+	} //it is return type if it resolves successfully
+
+}
+
+__________________________________________________________________
+
+E5
+
+mutation with variables===>
+
+//String! ===>! indicates required 
+
+mutation ($name: String! , $votes: Int!) {
+	createBaby(babyInfo: {
+	name: $name,
+	votes: $votes
+	})
+}
+
+
+====>graphQL Ide
+has query variable field
+
+{
+"name": "James",
+"votes":0
+}
+ 
+__________________________________________________________________
+
+E6
+
+graphene is conjunction b/w graphql and python
+
+>>>pipenv shell // is like npm install for python only difference is that we can enter/exit in this mode
+
+>>>exit // can exit
+
+>>>pipenv install graphene
+
+===============
+in schema.py
+
+import graphene
+import json
+
+class Query(graphene.ObjType):
+	hello = graphene.String()
+	
+	def resolve_hello(self, info):
+		return "world"
+
+schema = graphene.Schema(query= Query)
+
+result = schema.execute(
+	'''
+	{
+	hello
+	}
+	'''
+
+)
+
+print(result.data.items())
+#or
+print(result.data['hello'])
+#or
+dictresult = dict(result.data.items())
+print(json.dumps(dictResult, indent=2) # indent is optional
+
+
+__________________________________________________________________
+
+E7
+
+another query
+
+#in class only from above
+
+is_admin = graphene.Boolean()
+
+#name of resolver must be prepended with resolve
+
+def resolve_is_admin(self, info):
+	return True
+
+result = schema.execute(
+	'''
+	{
+	is_admin   # will give an error as it should be changed as isAdmin and no longer snakeCase iif you want to change this behavious you could add auto_camelcase = False , in graphene.schema as one of the parameter
+
+	}
+	'''
+
+)
+
+
+__________________________________________________________________
+
+E8
+
+from datetime import datetime
+
+uptill now single value and single result
+
+lets create another class subclassed from graphene.ObjectType
+
+class User(graphene.ObjectType):
+	id = graphene.ID()
+	username = graphene.String()
+	created_at = graphene.DateTime()
+
+class Query(graphene.ObjectType): # root query type
+	users =  graphene.List(User, limit= graphene.Int()) # limit is optional parameter to limit the result 
+	hello = graphene.String()
+	is_admin = graphene.Boolean()
+
+# make resolver for it
+
+def reslove_users(self, info,limit=None): #limit=None make it optional
+return [
+user(id="1",username="akhil",created_at= datetime.now())
+][:limit]
+
+#execute 
+
+'''
+{
+users   
+}
+'''
+
+# and you will get an error give internal filds too.
+	# like { users(limit: 1) { id # if limit is used
+	# username
+	#createdAt
+	#}
+	#}
+
+	only then you will get result
+
+__________________________________________________________________
+
+E9
+
+add new user
+
+#to get unique string
+
+import uuid
+
+#in Usr class can set as default value
+
+like
+
+id = graphene.ID(default_value = str(uuis.uuid4()))
+
+# now we can remove hardcoded data of id in mutate fn
+ 
+class CreateUser(graphene.Mutation):
+	user = graphene.Field(User)
+
+	class Arguements:
+	 	username = graphene.String()
+
+	def mutate(self,info, username):
+		user = User(id="3", username=usrname,
+		created_at=datetime.now())
+		return CreateUser(user=user)
+
+class Mutation(graphene.ObjectType):
+	create_user = CreateUser.Field()
+
+# execute
+
+'''
+mutation {
+createUser(username:"akhil"){
+
+user{
+id
+username
+createdAt 
+}
+}
+}
+'''
+
+
+__________________________________________________________________
+
+E10
+
+passing dynamic values in mutation
+
+'''
+mutation ($username: String){
+createUser(username: $username)
+	user{
+	id
+	username
+	createdAt
+	}
+}
+''',
+variable_values={'username': 'Dave'}
+
+=============================
+
+'''
+query getUsersQuery ($limit: Int!){
+	users(limit:){
+	id
+	username
+	createdAT
+	}
+}
+''',
+
+variable_values={'limit':1}
+
+
+__________________________________________________________________
+
+E11
+
+self and info
+
+// suppose user want to write blogs
+
+class Post(graphene.ObjectType):
+	
+
+class CraetePost(graphene.Mutation):
+	post = graphene.Field(Post)
+	
+	class Arguements:
+		title +graphene.String()
+		content = graphene.STring()
+	def mutate(self, info, title, content)
+		print(info.context.get('is_anonymous'))
+		if info.context.get('is_anonymous')
+			raise Exception('Not Authenticated')
+		post = Post(title=title,content=content)
+		return CreatePost(post=post)
+
+class Mutation(graphene.ObjectType):
+	create_post = CreatePost.Field()
+
+///////
+'''
+mutation {
+	craetePost(title="hello", content="world"){
+	post {
+		title
+		content
+		}
+	}
+}
+'''
+///not secure till now anyone can post
+
+so add context
+'''
+.
+.
+.
+and so on
+''',
+context={'is_anonymous': True}
+
+====================================
+
+self===>can be used to create new field depending on existing fields
+
+avatar_url = graphene.String()
+
+def resolver_avatar_url(self, info):
+	return 'https://abc.com/{}/{}'.format(self.username, self.id)
+
+
+// now we can ask for avatar_url in query
+
+__________________________________________________________________
+
+E12
+
+creating base Django
+
+->react-tracks
+>>>pipenv shell
+
+>>>pipenv install django graphene-django django-graphql-jwt django-cors-headers
+
+//formatter tool
+
+>>>pipenv install --dev autopep8
+
+// in env mode
+>>>django-admin startproject app
+
+>>>python manage.py migrate
+/// and you'll get devlopment type db
+
+>>>python manage.py runserver 
+/// to run python server
+
+__________________________________________________________________
+
+E13
+
+-->app
+
+python manage.py startapp tracks
+
+/// determine track data
+
+in models.py under migrtation under ttracks
+
+from django.db import models
+
+class Track(models.Model):
+	#id field will be added automatically
+	title = models.CharField(max_length=50)
+	description = models.textField(blank=True) # blank=True to make it optional
+	url = models.URLField()
+	created_at = models.DateTimeField(auto_now_add=True)
+
+# now activate this model
+by adding 
+'tracks' in INSTALLED_APP array which is in settings.py which is in app folder
+
+//
+python manage.py makemigrations # this will help us to make sql queries
+
+>>> python manage.py migrate 
+
+
+__________________________________________________________________
+
+S4E14
+
+in app folder
+>>>python manage.py shell
+
+>>>from tracks.models import Track
+>>>Track.object.create(title="Track1", description="Track 1 Description", url="https:track1")
+// above will create data in our database
+>>>exit()
+
+===>app==>setting.py
+
+// ADD GRAPHENE
+INSTALLED_APPS = [
+.
+.
+.
+'graphene_django',
+.
+]
+
+GRAPHENE = {
+'SCHEMA': 'app.schema.schema'
+}
+
+=====================
+
+in track folder create schema.py
+//in schema.py
+
+import graphene
+from graphene_django import DjangoObjectType
+from .models import Track
+
+class TrackType(DjangoObjectType)
+	class Meta:
+		model = Track
+
+class Query(graphene.ObjectType):
+	tracks = graphene.List(TrackType)
+
+	def resolve_tracks(self, info):
+		return Track.Object.all()
+
+====================================
+in app folder create schema.py
+
+import graphene
+import tracks.schema
+
+class Query(tracks.schema.Query,graphene.ObjectType):
+	pass
+
+schema = graphene.schema(query=Query)
+
+__________________________________________________________________
+
+S4E15
+
+...cont
+
+setup graphiql as we donot want to execute here
+
+in app go to urls.py
+
+//add following code
+
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
+
+urlpatterns = [
+//add another path
+
+path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))) //csrf_exempt will remove errors like cors origin
+
+]
+
+///
+
+>>>python manage.py runserver
+localhost:8000/graphql==>we should get graphiql interface
+
+__________________________________________________________________
+
+S4E16
+
+in tracks/schema.py
+
+create one more class
+
+class CreateTrack(graphene.Mutation):
+	track = graphene.Field(TrackType)
+
+	class Arguements:
+		title = graphen.String()
+		description = graphen.String()
+		url = graphen.String()
+
+	def mutate(self, info, title,description,url): //or **kwargs in place of three param
+		Track(titletitle,description=description,url=url)
+		track.save()
+		return CreateTrack(track=track)
+
+class Mutation(graphene.ObjectType):
+	create_track = CreateTrack.Field()
+
+/// app/scema.py
+
+class Mutation(tracks.schema.Mutation, graphene.ObjectType ):
+	pass
+
+schema = graphene.Schema(query=Query,mutation=Mutation) // add mutation in schema
+
+//we will find our mutation in graphiql
+
+
+__________________________________________________________________
+
+S4E17
+
+//creating a user
+
+create user folder along with track folder===>in that create add schema.py
+
+from django.contrib.auth import get_user_model
+import graphene
+from graphene_django import DjangoObjectType
+
+class UserType(DjangoObjectType):
+	class Meta:
+		model = get_user_model()
+
+class CreateUser(graphene.Mutation):
+	user = graphene.Field(UserType)
+
+	class Arguements:
+		username = graphene.String(required=True)
+		password = graphene.String(required=True)
+		email = graphene.String(required=True)
+
+	def mutate(self, info, username, password, email):
+		user = get_user_model()(
+		username =username,
+		email =email
+		)	
+		user.set_password(password)
+		user.save()
+		return CraeteUser(user=user) //if return stamt is not there you will get null
+
+class Mutation(graphene.ObjectType):
+	create_user = CreateUser.Field()
+
+====>in app/schema.py
+
+//update Mutation class
+
+import user.scema
+
+class Muatation(users.schema.Mutation) // along with track schema mutation
+
+//note this django default user model so there may multiple extra fields
+// and hence we can exclude them by
+changing to user/schema.py
+
+class Meta:
+
+only_fields = ('id','email', 'password', 'username')
+
+
+
+__________________________________________________________________
+
+S4E18
+
+//querying user by id
+
+in user/schema.py
+
+class Query(graphene.ObjectType):
+	user = graphene.Field(UserType, id=graphene.Int)
+	(required=True)
+
+	def resolve_user(self info, id):
+		return get_user_model().objects.get
+		(id=id)
+
+//now enable this query in app/schema.py
+
+class Query(users.schema.query, graphene.ObjectType):
+	pass
+__________________________________________________________________
+
+S4E19
+
+//authentication with the help of JWT (json web token)
+
+ //app/settings.py
+
+ MIDDLEWAR = [
+ ...
+//GIVEN IN GIT 
+ ... 
+ ]
+
+AND EDIT SOME MORE LIST
+
+
+__________________________________________________________________
+
+S4E20
+
+//how to use header?? in graphql
+
+//insomnia.rest
+
+// download //it is like postman
+
+select graphql query===>it will always be post call in graphQL
+
+===?http://localhost:8000/graphql/ ===>//always ends with slask
+
+we can pass auth in graphQL now and can check from insomnia
+
+__________________________________________________________________
+
+S4E21
+
+now connect track by user
+
+in track/model.py
+
+add one more field in 
+
+class Track():
+	.
+	.
+	.
+	posted_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE) //null is needed in django2 that we are using
+
+
+///
+
+>>>python manage.py makemigrations
+>>>python manage.py migrate
+
+///update create Track mutation
+
+////===>track/schema.py
+def mutate(.....>):
+	user = info.context.user
+
+	if user.is_anonymous:
+		raise Exception('Log in to add a track')
+	track = Track(...,posted_by=user)
+
+>>>python manage.py runserver
+
+__________________________________________________________________
+
+S4E22
+
+//update tracks to delete and update
+
+track/schema.py
+
+class UpdateTrack(graphene.Mutation):
+	track = graphene.Field(TrackType)
+
+	class Arguements:
+		track_id = graphene.Int(required=True)
+		title = graphene.String()
+		description = graphene.String()
+		url = graphene.String()
+
+	def mutate(self, info, track_id, title, url, description):
+		user = info.context.user
+		track = Track.objects.get(id=track_id)
+
+		if track.posted_by != user:
+			raise Exception('Not permitted to update this track')
+
+		track.title = title
+		track.description = description
+		track.url = url
+
+
+		track.save()
+		return UpdateTrack(track=track)
+
+//register this new mutation
+
+class Mutation(graphene.ObjectType):
+	....
+	update_track = UpdateTrack.Field()
+
+__________________________________________________________________
+
+S4E23
+
+// delete tracks
+
+tracks/schema.py
+
+class DeleteTrack(graphene.Mutation):
+	track_id= graphene.Int()
+
+	class Arguements:
+		track_id = graphene.Int(required=True)
+
+	def mutate(self, info, track_id):
+		user = info.context.user
+		track = Track.objects.get(id=track_id)
+
+		if track.posted_by != user:
+			raise Exception('Not permeted')
+
+		track.delete()
+
+		return DeleteTrack( track_id = track_id)
+
+
+//update mutation fiels
+
+class Mutation(graphene.ObjectType):
+	...
+	...
+	delete_track = DeleteTrack.Field()
+
+// check in graphiql
+
+__________________________________________________________________
+
+S4E24
+
+//like tracks (record likes)
+in migrations/models.py
+
+class Like(models.Model):
+	user = models.ForeignKey(get_user_model(), null=True,
+	on_delete = models.CASCADE)
+	track = models.ForeignKey('tracks.Track', related_name = 'likes', on_delete=modles.CASCADE)
+
+>>>python manage.py makemigrations
+>>>python manage.py migrate
+
+>>>python manage.py runserver
+
+//migrations/schema.py
+
+from models import Track, Like
+from users.schema import UserType
+
+
+class CreateLike(graphene.Mutation):
+	user = graphene.Field(UserType)
+	track = graphone.Field(TrackType)
+
+	class Arguements:
+		track_id = graphene.Int(required =true)
+	
+	def mutate(self ,info, track_id)
+		user =info.contexxt.user
+		if user.is_anonymous:
+			raise Excepption('login to like tracks')
+
+		tracks = Track.objects.get(id=track_id)
+		if not track:
+			raise Exception('cannot find tracks with given id')
+
+		Like.objects.create(
+			user=user,
+			track=track
+		)
+		
+		return CreateLike(user=user, track=tarck)
+
+// add in oour base mutation class
+
+class Mutation(graphene.ObjectType):
+	,,,,
+	...
+	...
+	create_like = CreateLike.Field()  
+
+
+__________________________________________________________________
+
+S4E25
+
+
+
 
 
 
