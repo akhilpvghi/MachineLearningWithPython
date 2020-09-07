@@ -1,0 +1,581 @@
+LaTeX for Professional Publications ===>02-09-2020
+
+__________________________________________________________________________
+S1E1
+
+==>Latex is my favourite
+
+===> It is typesetting for professional documents
+
+===> Mark up language
+
+==>High Quality and free
+
+===>handover tedious task like formatting to technology
+
+__________________________________________________________________________
+S1E2
+
+Setting up LateX
+
+===>  tug.org/mactex
+
+==>apt-get install texlive
+
+
+__________________________________________________________________________
+S1E3
+
+==>miktex.org/download
+
+==>texWork ==>editor in windows
+
+__________________________________________________________________________
+S1E4
+
+folder and files management
+
+__________________________________________________________________________
+S1E5
+
+sometime warning to run it twice==>
+
+\documnentclass{} //article|proc
+
+
+__________________________________________________________________________
+
+S2E1
+
+Starting from scratch
+
+\documentclass{}  //article| proc //every doc needs this
+
+\usepackage[margin=1in]{geometry} // changing default margin to 1 inch 
+
+\title{A compelling title}
+\author {your name}
+\date{} //this is to remove date  //===>article has automatic date 
+
+% this is comment. 
+
+\begin{document}
+
+\maketitle //this will only bring title
+
+\section{intorduction} \\latex will give numbering automatically
+
+write somethingg anythin
+
+\subsection {this is subsection} // will have automatic number
+
+\subsubsection{this is sub subsection}
+
+//can blay with sub sub sub section
+
+\section{conclusion}
+
+i'm having fun learing \LaTeX
+
+\end{document}
+
+
+// default numbering scheme is 1 and 1.1 and 1.1.1
+
+// very large margi space :( by default
+/usepackage[margin=1in]{geometry}
+
+//find some cheatsheet of latex
+
+
+__________________________________________________________________________
+
+S2E2
+
+may have some default template==>
+
+__________________________________________________________________________
+
+S2E3
+
+//basic formatting tag
+
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+
+\title{Basic \LaTex formmaton}
+
+\author{Toni Farley}
+
+\date{document}
+
+\begin
+\maketitle
+\section{introduction}
+
+Basic info tags in \LaTeX
+
+\subsection{Text Formatiing}
+
+All the Thigs you want to do, and sometimes should ..empphasis on SOMETIMES
+
+\textbf{Bold Formatting} is only between curly braces
+
+\emph{italics Formating}
+
+\underline{Underline Formatting}
+
+\subsection{paragraph Formatting}
+
+New Paparagraph indent automatically
+
+\noindent now no indentation
+
+\section{Oddities}
+
+Starnge thing I notices.
+
+\subsection{misQuoting}
+
+this is how 'odd1' and "odd2"
+
+//to remove quote problem `single' and ``doble quotes" ?? thats better
+
+\noindent 
+
+\end{document}
+
+
+
+__________________________________________________________________________
+
+S3E1
+
+\section{Introduction}
+
+\subsection{Buletted List}
+
+\begin{itemize}  //bullet list
+\item Apple
+\item Mango
+\item Orange
+\end{itemize}
+
+\subsection{Numbered List}
+\begin{enumerate}
+	\item Red
+	\item Green
+	\item Blue
+\end{enumerate}
+
+\subsection{Description}
+\begin{description}   //something like glossary
+\item[Name] Your Name Here
+\item[Grade] A+	
+\end{description}
+
+\section {Nested List}
+\begin{enumerate}
+\item text formatting
+\begin{itemize}
+  
+\end{itemize}
+
+\end{enumerate}
+
+__________________________________________________________________________
+
+S3E2
+
+//tables
+
+\section{Intro}
+
+\subsection{the Tabular Environment}
+
+\vspace{.5cm} ==>for vertical space
+\smallskip ==>for vertical space //not in between of lines
+\bigskip ==>for vertical space
+\\* ===>line break
+\\ start a new paragraph.
+\\* start a new line but not a new paragraph.
+\- OK to hyphenate a word here.
+\cleardoublepage flush all material and start a new page, start new odd numbered page.
+\clearpage plush all material and start a new page.
+\hyphenation enter a sequence pf exceptional hyphenations.
+\linebreak allow to break the line here.
+\newline request a new line.
+\newpage request a new page.
+\nolinebreak no line break should happen here.
+\nopagebreak no page break should happen here.
+\pagebreak encourage page break.
+
+
+\begin{table}[htbp]   //==>h, t =top, b==>bottom
+\caption{my gradebook}
+\begin{center}
+
+\begin{tabular}{ll |, cc |, |c|c|} ===>two columns both are left alligned
+Name & yor anme \\ ===? \\ indicates one row done
+\hline ==>for horizontal line, double bar can also b used
+in col1 & in col2 \\
+\end{tabular}
+
+
+
+\label{tab:grades}
+\end{center}
+\end{table}
+
+\subsection{References}
+
+you can see my grades in Table~\ref{tab:grades}. //~ ==>to keep in same line
+
+
+__________________________________________________________________________
+
+S3E3
+
+// graphics
+
+\usepackage{graphicx}
+
+\section{Introduction}
+
+picture looks awesome
+
+\subsection{including graphics}
+
+this is banana
+\includegraphics[width=2in]{banana.jpg} ===>// []resizing is optional 
+
+// now put this into floating environment
+
+\subsection{float fig environment}
+
+in my article, i want to include jpg Figure~\ref{fig:banana},
+
+\begin{figure}[htbp] //no guarantee where it would be
+\begin{center}
+\includegraphics{banana.jpg}
+\caption{this is banana}
+\label{fig:banana}
+\end{center}
+\end{figure}
+
+__________________________________________________________________________
+
+S4E1
+
+//bibliography
+
+//save as bib file==>
+
+@article{label1
+author = "Bill hall and James and Mark Todd",
+title = "A Good Article",
+Journal = "Computer",
+volume = "280",
+number = "10",
+pages = "100-100",
+year = "2013"
+}
+
+@book{hall2013,
+author ="Tom Smith",
+pages = "500",
+publisher ="PubCo",
+location = "city, state ",
+title = "A super Book",
+year ="2012"
+}
+
+
+@misc{label2,
+title ="LaTeX - A document preparation system",
+howpublished = "http://www.latex-project/"
+}
+
+//label it {labelname,
+
+....
+
+
+========================
+//now in doc
+
+===>run as bibtek
+\usepackage[margin=1in]{geometry}
+
+
+\title{An article with citation}
+\author{Toni Farley}
+\date{}
+
+\begin{document}
+
+the article is about citation ~\cite{smith2012}.
+
+\section{Refernces}
+
+\bibliographystyle{plain}
+\bibliography{lecture12}  //file name without extension
+
+\end{document}
+
+//must be in same folder
+
+__________________________________________________________________________
+
+S4E2
+
+Mendeley Desktop application
+
+\bibliography{../mendeley}  // saved as mendeley.bib ==>//relative addressing
+
+__________________________________________________________________________
+
+S5E1
+
+\title{Mathematical Symbols}
+
+\begin{document}
+
+Mathemetical wqn $5*4=20$
+$7 \leq 10$ //$ start start and ending of math environment
+
+\[5^2 = 25\]  // ==> to get into sepearate line
+
+\subsection{Float: Equations}
+
+my first result is ~\ref{eq:minutes}
+ 
+\begin{equation}
+24*60=1,440
+\label{eq:minutes}
+\end{equation}
+
+there are symbols ~\ref{eq:symbols}
+
+\begin{equation}
+1 \geq 4 \cup 5 \alpha 12 \exists \rightarrow ==>//cup is union
+\label{eq:symbols}
+\end{equation}
+
+
+\end{document}
+
+
+__________________________________________________________________________
+
+S5E2
+
+//algorithm and psedocode environment
+
+\usepackage{algpseudocode}
+
+\subsection{My Algorithm}
+
+Did You Learn \LaTeX?
+
+\begin{algorithmic}
+\If {$learned \geq sortof$}  //===>capital I ==>note
+	\State $Okay \gets true$
+\Else
+	\While {$!okay$}
+		\State repeat course
+		\State {$okay = learned \geq sortof$}
+	\EndWhile
+\EndIf
+\end{algorithmic}
+
+
+__________________________________________________________________________
+
+S6E1
+
+all pkgs are avlabl at ctan.org/pkg/
+
+\usepackage{hyperref}
+
+Geometry: \url{http:\\ ....}
+
+
+__________________________________________________________________________
+
+S6E2
+
+\documentclass{article |proc |book | IEEEtran}
+
+
+
+__________________________________________________________________________
+
+S7E1
+//multirow
+//table within table
+//proc is proceeding
+
+//more on graphics
+
+
+
+
+\usepackage{multirow}
+
+\begin{document}
+
+Table~\ref{tab:wrapping}
+
+\begin{table}[htdp]
+\caption{Text Wrapping}
+\begin{tabular}{| l | l |} // table can be generated from ide
+			// l can be replaced by p{3cm} | which allows to give specified width 
+\hline
+a & b & c \\
+d & e & f \\
+\hline
+\end{tabular}
+\label{default}
+\end{table}
+
+\end{document}
+
+=========================================================
+
+\usepackage{graphicx}
+\graphicspath{{subdirectory/}}
+\usepackage{caption, subcaption} //for sub pictures
+
+
+\subsection{more on graphics}
+
+both of my graphics Figure~\ref{fig:figure1}
+and ~\ref{fig:figure2}
+
+\begin{figure}[htbd]
+\begin{center} // or \centering tag only no begic no end with center
+
+\begin{subfigure}[b]{0.2\textwidth}    //0.2 according to text, [b] at bottom of line
+	\centering
+	\includegraphics[scale=.5]{paper.png}
+	\caption{sub figure caption}
+	\label{fig:label1}
+\end{subfigure}% ===>//% to keep next sub figure with it
+
+
+
+\caption{enter caption}
+\label{fig:subs}
+\end{center}
+\end{figure}
+
+
+
+
+=================================
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//font size 
+//The two arguments to \fontsize are the actual font size and the size of the baseline-skip. The baseline-skip should be set to roughly 1.2x the font size.
+
+\fontsize{size}{baselineskip}
+
+
+\documentclass[11pt]{report}
+\usepackage{mathptmx}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+...
+{\fontsize{50}{60}\selectfont Foo}{\fontsize{5}{6}\selectfont bar!}
+{\Huge Foo}{\tiny bar!}
+
+
+====================================================================
+
+jump section
+
+S7E2
+
+//compiling from seperate files
+
+\begin{document}
+\input{lecture19}   //shoul be .tex file
+\end{document}
+
+
+===>lecture19.tex
+
+\section{Introdeuction}
+
+This is my Introduction  ===>// you will get error if you compile this
+
+// section numbering will be handled by latex only
+
+________________________________________________________________________________________
+
+S7E3
+
+// redefining of commands
+
+\usepackage{enumitem}   ==>to continue numbering
+
+\begin{enumerate}[resume]
+
+\item third
+\item fourth
+\end{enumerate}
+
+
+//OR
+
+\setcounter{enumi}{4}  ===> ast inserted is 4th
+
+\item Fifth
+
+// OR if want it to be a, b, c
+
+\renewcommand{\theenumi}{\Alph{enumi}}
+\begin{enumerate}
+\end{enumerate}
+
+==================
+//bullets by default
+
+\renewcommand{\labelitemi}{$\rightarrow$}
+\begin{itemize}
+
+\end{itemize}
+
++=========================================================
+
+\pagestyle{empty}  ====> // remove page no.
+
++=============================================================
+\setcounter{section}{98} ===> will start from 99 now
+
+\section {this is going to be  99th}
+
+=========================================================================
+
+
+
+
+
+
+
+
+
+

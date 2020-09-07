@@ -1083,6 +1083,150 @@ ________________________________________________________________________________
 
 S9E53
 
+refetch on same page==>
+
+another method other than prevevios 
+
+this.props.mutate({ variables: { id }})
+	.then(()=> this.props.data.refetch());
+
+	// this above approach is better whwnever we want to update in same component use this approach only
+
+
+_____________________________________________________________________________________
+
+S9E54
+
+css..
+
+_____________________________________________________________________________________
+
+S9E55
+
+create song detail component
+
+components/SongDetail.js
+
+import React, { Component } from 'react';
+
+class SongDetail extends Component {
+	render() {
+		return (
+		<div>
+		<h3>SOng Detail</h3>
+		</div>
+		)
+	
+	}
+} 
+
+_____________________________________________________________________________________
+
+S9E56
+
+songDetail
+
+query SongQuery($id: ID!){
+song(id: $id){
+	id 
+	title
+	}
+}
+
+========================
+
+import gql from 'graphql-tag';
+
+export default gql `
+query SongQuery($id: ID!){
+song(id: $id){
+id 
+title
+}
+}
+`;
+_____________________________________________________________________________________
+
+S10E57
+
+import { graphql } from 'react-apollo'; // sandwith b/w graphql and react
+import fetchSong from '../queries/fetchSong'; 
+
+
+export default graphql(fetchSong, {
+options: (props) => { return {variables: { id: props.params.id } } }
+})(songDetail); //but where to send id??? so add new object along with fetchsong
+
+_____________________________________________________________________________________
+
+S10E58
+
+render () {
+	const { song } = this.props.data;
+
+	if(!song) { // can also use loading flag given by gql
+		return <div>Loading</div>
+
+	}
+
+	return (
+	<div>
+		<h3>{song.title}</h3>
+	</div>
+	)
+
+}
+
+
+_____________________________________________________________________________________
+
+S10E59
+
+SongDetail.js
+
+import { Link } from 'react-router';
+
+
+<Link to="/">Back<Link>
+
+//SongList.js
+
+<Link to={`/songs/${id}`}>{title}</Link>
+
+
+
+_____________________________________________________________________________________
+
+S10E60
+
+//Lyric creation form
+
+LyricCreate.js
+
+//form creation
+
+
+_____________________________________________________________________________________
+
+S10E61
+
+//create lyric mutation and class component
+
+
+const addLyric = gql`
+	mutation AddLyricToSong($content: String, $songId: ID){ // mutation name can be anything
+	addLyricToSong(content: $content, songId: $songId)
+	
+}
+
+`
+
+
+_____________________________________________________________________________________
+
+S10E62
+
+
 
 
 
@@ -1896,15 +2040,252 @@ __________________________________________________________________
 
 S4E25
 
+// we will be querying for likes
+
+class LikeType(DjangoObjectType):
+	class MetaL
+	model =Like
+
+class Query(...)
+	...
+	likes = graphene.List(LikeType)
+
+	def resolve_likes(self, info):
+		return Like.object.all()
+	
+
+__________________________________________________________________
+
+S4E26
+
+graphiql error handling==>
+
+from graphql import GraphQLError
+
+raise GraphQlError('message') ===>in place of exception
+
+// check in graphiQL == and it will be same
+
+
+__________________________________________________________________
+
+S4E27
+
+// provide search facility
+
+tracks/schema.py
+class Query(...):
+
+	tracks = graphene.List(...,search=graphene.string())
+	.
+	.
+	.
+
+	def resolve_tracks(...,search=None):
+		if search:
+			return Tracks.objects.filter(title__startswith=search)
+
+now check in graphiql==>
+
+{
+tracks(search: "Tr"){
+	title
+}
+}
+
+===>will give all result as every track start with TR only
+
+//title__exact ==>
+//title__iexact ==>not case sensitive
+//title__contains ==>case sensitive
+//title__icontains ==>case insesitive
+
+from django.db.models import Q //q allows more complex query
+
+// q can turn filter to object and then we 
+
+
+//now we can use logical operators
+
+if search:
+	filter =(
+		Q(title__icontains=search) | 
+		Q(descriptional__icontains = search) |
+		Q(url__icontains = search) |
+		Q(posted_by__username__icontains =  search)
+	)
+	return Track.objects.filter(filter)
+ 
+ // | is or operator
+
+__________________________________________________________________
+
+S5E28
+
+//react-project
+
+ apoolo client library is  go to tool for react and graphql
+
+
+//clone github.com/readbarger/react-tracks-client
+
+///npm start ==>in required directory
+
+
+__________________________________________________________________
+
+S5E29
+
+material in built
+
+
+__________________________________________________________________
+
+S5E30
+
+import { ApolloProvider } from 'react-apollo'
+import ApolloCLient from 'apollo-boost';
+
+const client = new ApolloCloient({
+	uri: "http://localhost:8000/graphql/"
+});
+
+ReactDOm.render(
+	<ApolooProvider client={client}>
+		<Root />
+	</ApolloProvider>
+	document.getElementById("root")
+
+)
+
+// root.js
+
+import { query }from 'react-apollo';
+
+
+<Query query={GET_TRACKS-QUERY}>
+ {({ date, loading, error }) => {
+	if(loading) return <div>Loading</div>
+	if(error) return <div>Error</div>
+ 
+	return <div>{JSON.stringinfy(data)}</div>
+ }}
+</Query>
+
+const GET_TRACKS-QUERY = gql`
+{
+	tracks {
+	id
+	title
+	description
+	url
+	}
+}
+`
+__________________________________________________________________
+
+S5E31
+
+>>>pipeenv shell 
+>>>python manage.py runserver // must be in virtual env now run it in app folder
+
+//enable cors==> in django header // searrch for it and add require in INSTALLED_APPS
+	//also in middle ware sequence does matter
+
+//add
+
+CORS_ORIGIN_WHITELIST = (
+	'localhost:3000'
+)
+
+__________________________________________________________________
+
+S5E32
+
+//create our register form
+
+main index.js
+import Auth from "./Root";
+
+<Auth /> ==>in place of Root
+
+
+/auth/index.js
+
+import Login ...
+import Register ...
+import { Mutation } from 'react-apoloo';
+import { gql } from 'apollo-boost';
+//Register.js
+
+return (
+<div className={classes.root}>
+<Paper..
+<avatar>
+</avatar>
+<Mutation>
+{()=>{
+
+return(
+<form >
+</form >
+)
+
+}}
+</Mutation>
+<paper>
+
+</div>
+)
+
+
+// above is using material classes
+
+
+__________________________________________________________________
+
+S5E33
+
+apollo developer tool
+
+mutation($username: String!){
+createUser(username: $username){
+	user {
+		username
+		email
+	}
+}
+}
+_______________
+
+in qury variables 
+=========
+{
+"username": "Fred",
+...// if any other
+}
 
 
 
+__________________________________________________________________
 
+S5E34
 
+<Mutation muatation={REGISTER_MUTATION}>
 
+{ () => {
+	return ()
 
+}}
+	
 
+const REGISTER_MUTATION = gql`
 
+`;
+
+__________________________________________________________________
+
+S5E35
 
 
 

@@ -45,13 +45,82 @@ fully normalised data==>inefficiently
 
 Integration system technique ===>must have converion process
 
+_____________________________________________________________________________________________
+25-08-2020
+
+problems with data warehouse 
+
+===>Data Quality Issues
+
+1)Different levels of Granularity ===>summarise
+2)drill-down capability
+
+
+Data Warehouse??
+
+single,complete,consitent obtained from a variety of sources
+made avlbl to user in such a way that it can be used in business
+
+==>subject-oriented (S)===>insurance e.g. ,car purchasing e.g. etc
+-->integrated (I)====>must have a single
+-->time varying (T) 
+--->non-volatile (N)===> can't be manipulated
+
+(shortform ===>NSIT)
+
+_____________________________________________________________________________________________
+26-08-2020
+
+DW===>
+
+3-Tier Architecture
+
+1)
+Information Sources===>data cleaning,extract
+
+2) Data warehouse Server===>put data into DWS ===>can have more than one data marks in DWS
+(Tier-1)
+
+3)OLAP (Online analytical processing) Servers ===> consist MOLAP(multidimensional OLAP)
+			and ROLAP(Relation OLAP)
+			
+4)CLients ===>analysis at this end
+
+
+_____________________________________________________________________________________________
+28-08-2020
+
+
+Strategic information (for e.g. college info before admission) ==> information system used in bussiness initiative, decision creation
+
+====>deep knowledge
+
+_____________________________________________________________________________________________
+31-08-2020
+
+flight system==>strategic information
+
+4 component of DSS(Decision Support System)
+
+==>DAta Store
+==> Data Extraction and filtering
+==> End user query tool
 
 
 
 
+_____________________________________________________________________________________________
+07-09-2020
+
+Architectural 5 types
 
 
+central data warehouse===>
+OLTP===>online transactional process
 
+DImensional Analysis==>usage of information is unpredictible
+
+		==>user can tellyou how they think about the business
 
 
 

@@ -139,6 +139,14 @@ ______________________________________________________________
 L6
 
 
+shanon heartly channel cpacity theorem
+
+channel capacity = Maximum Information Rate(C)
+
+Information Rate (R)
+
+
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -182,16 +190,47 @@ Join probability ===>P(X,y
 
 Bayes theorem / conditional Theorem p(Y|X) = P(X,Y)/P(X)
 
+____________________________________________________________
 
+25-08-2020
 
+Amount of info. inv. proprtional to probability
 
+random variable...?===> which can hold head or tail
 
+==>A high probability event conveys less info. than a low probability information.
 
+I(xi) ===>self information of an event xi
 
+units of I(Xi) determines the base of logarithm
 
+if log2 => bits
 
+it i susually 2 means the unit is bits
 
+since 0<= Pxi <= 1, so I(xi) >= 0
 
+Entropy H(x)==>Average self information of a random variable X
+
+____________________________________________________________
+
+26-08-2020
+
+Assignment ==> weekly==>
+
+lab exercise ==>weekly
+
+c progm ==>
+
+i/p
+____
+1) no. of symbol
+2) and their probability
+
+o/p
+____
+1) self information of each symbol
+2) entropy of sequence
 
 
 
