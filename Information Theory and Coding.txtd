@@ -233,7 +233,21 @@ ____
 2) entropy of sequence
 
 
+____________________________________________________________
 
+30-09-2020
+
+==>Noiseless binary channel
+
+ t=        0 1
+	0| 1 0
+	1| 0 1
+
+===>Binary Symmetric channel
+
+channel capacity= max of (Reduction = mutual information) by changing input probabiliteis
+
+mutuak informaion = H(x) -H(x|y)
 
 
 

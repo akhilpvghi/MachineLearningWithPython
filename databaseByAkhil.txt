@@ -1,0 +1,511 @@
+Code useful lines
+
+System.out.println("");
+console.log("");
+
+Server
+eval "$(ssh-agent -s)" 
+ssh-add ~/alexa_projecth/keys/bitbucket
+
+
+https://alexa.amazon.co.uk/spa/index.html#cards
+https://developer.amazon.com/alexa
+bengamble7@gmail.com
+..1q2w3e
+ 
+ 
+http://console.aws.amazon.com
+bengamble7@gmail.com
+..1q2w3e
+region: N virginia
+Lamda
+ 
+skill Steps branch(alexa-sdk-for-java-login):
+1) Create skill
+2) copy skill id and paste in alexa-skills-kit-sdk-for-java-2.0.x/samples/helloworld/src/Nova/NovaSpeechletRequestStreamHandler.java
+3) Create jar to upload on aws labda
+3.1) mvn clean
+3.2) mvn install
+3.3) mvn assembly:assembly -DdescriptorId=jar-with-dependencies package
+3.4) upload Target/java-with-dependencies.jar to aws
+4) copy that lamda function id to alexa skill.
+ 
+for Server to deploy code (branch - master)
+1) ssh -i ~/Desktop/Key/NovoBox.pem ec2-user@34.254.155.50
+2) sudo mvn clean install
+3) sudo pkill -9 java
+4) sudo nohup java -jar target/alexa-springboot-server.war &sudo tail -n 200 -f nohup.out
+ssh -i ~/Desktop/Keys/NovoBox.pem ec2-user@34.254.155.50
+
+https://kshitiz.club/jsonCommand
+body--->{"chairID":"9XL4ZK"}
+
+
+ssh -i ./server1.pem bgamble@104.130.115.40---------->HaveAGreatDay---->86fxTvm!$eV
+
+
+DNS: Alexa.humantouch.com
+IP: 104.130.115.40
+
+
+To remove an empty directory use the -d option.
+
+rm -d dirname
+Copy
+To remove non-empty directories and all the files within them, use the r (recursive) option.
+
+rm -r dirname
+
+----->handlingException (latest on server)
+@RequestMapping(value = "/getStyleType", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public DeferredResult<ResponseEntity<alexa.model.Response>> getStyleType(HttpServletRequest httpRequest) throws JsonParseException, JsonMappingException, IOException 
+	{
+	DeferredResult<ResponseEntity<Response>> result = new DeferredResult<>();	
+	StyleTypes getStyleTypeRequest = new StyleTypes();
+	getStyleTypeRequest.setDeferredResult(result);
+	MessageQueue.offer(getStyleTypeRequest);
+	return result;
+	}
+
+    --->ALexaCodeNewMsgAdded------>branch for alexa skill
+
+    
+    SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tbl_user_master' AND COLUMN_NAME = 'command_type';
+	test on alexa
+	ask novo start virtual therapist
+	Hello. This is the NOVO Virtual Therapist. Please tell me what your name is
+	ask novo my name is akhil
+	Hello Akhil As you are a new client, I’m going to ask you some questions that will help me prescribe your massage treatment. First, please tell me: How tall you are in inches?
+	ask novo i am eighty inches tall
+	“OK, got it, 80 inches tall. How long a massage do you typically like? the options are 10, 20, and 30 minutes
+	ask novo i would like twenty minutes
+	Ok, we'll perform a 20 minute massage. Now here's the best part! What would you say is your goal for today’s massage? You can ask for more energy, to Relax, or Relieve Back Pain, to recover, or for better performance
+	ask novo relieve pain
+	Would you say the pain is in your upper or lower back?
+	ask novo upper back
+	OK good... And what style of massage do you feel like today? The options are, Swedish, Shiatsu, Thai Style, and Sports. Or, soft, medium, or hard. and if you're not sure just say: You choose
+	ask novo thai
+	OK, We'll apply your massage in a Thai style... It looks like we're all set. Please relax and we'll get started. If you need any help during your treatment, just say: Alexa, ask my NOVO for help
+
+
+
+name = ?
+
+currentUser
+
+
+String updateCommandType = "update `user_model` set command_type = ?, currentTime= CURRENT_TIMESTAMP where name = ? and admin_id = "+accessToken;
+		int a =this.jdbcTemplate.update(updateCommandType, commandId, currentUser);
+
+
+		mysql -u root -p alexa_spring < ./alexa_spring.sql.sql;
+
+		Drop DATABASE alexa_spring;
+
+
+		Open the MySQL command line
+Type the path of your mysql bin directory and press Enter
+Paste your SQL file inside the bin folder of mysql server.
+Create a database in MySQL.
+Use that particular database where you want to import the SQL file.
+Type source databasefilename.sql and Enter
+Your SQL file upload successfully.
+
+
+scp -i ~/Desktop/Keys/NovoBox.pem ec2-user@34.254.155.50:alexa_projecth/alexaspring/server/sql/alexa_spring.sql /home/quincus/Desktop/akhil/
+
+
+scp -i ~/Desktop/akhil/alexa.humantouch.com_SSL/server1.pem /home/quincus/Desktop/akhil/bitbucket bgamble@104.130.115.40:~/key
+
+
+eval "$(ssh-agent -s)"
+
+mysqldump -u root -p alexa_spring > alexa_sspring_backup.sql
+
+sudo service mysql start
+use mysql;
+uninstall plugin validate_password;
+update user set authentication_string=password('root') where user='root';
+SET PASSWORD FOR root@'localhost' = PASSWORD('your_password');
+FLUSH PRIVILEGES;
+
+
+https://kshitiz.club/jsonCommand	
+
+
+		
+
+		Thimgs tried
+		List< Ship > shipObject = Arrays.asList( new ObjectMapper().readValue(dataToJson(arrNode), Ship.class));
+
+
+
+
+		 Ship ship =  new ObjectMapper().readValue(dataToJson(arrNode), Ship.class);
+                ArrayList<Ship> shipObject = null;
+//                shipObject.add(ship);
+
+
+com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize
+ instance of com.quincus.model.Ship
+ out of START_ARRAY token
+
+
+
+
+
+
+
+				
+	ssh -i ~/Desktop/akhil/Alexa_humanTouch/alexa.humantouch.com_SSL ec2-user@104.130.115.40
+The authenticity of host '104.130.115.40 (104.130.115.40)' can't be established.
+ECDSA key fingerprint is SHA256:nBKUjjlGNRRMB6ETj4DFH97LEwGKi+zxWHhRodbfHdc.
+Are you sure you want to continue connecting (yes/no)? 	
+
+
+
+https://stackoverflow.com/questions/991758/how-to-get-pem-file-from-key-and-crt-files	
+
+
+https://tecadmin.net/convert-ppk-to-pem-using-command/
+
+https://linuxize.com/post/install-java-on-ubuntu-18-04/
+
+
+sudo -H /bin/bash
+cd /etc/apt
+do your editing of files
+exit
+
+
+
+keytool -import -alias ssl -keystore keystore.jks -file javaappperfomance.crt
+
+
+~/Desktop/checkout/Google_OR_tool/binary_or_tool/or-tools_ubuntu-18.04_v7.1.6720/
+or-tools_Ubuntu-18.04-64bit_v7.1.6720$
+ make run SOURCE=~/Desktop/checkout/Google_OR_tool/src/my_program.java
+
+
+cd ~/Desktop/checkout/Google_OR_tool/binary_or_tool/or-tools_ubuntu-18.04_v7.1.6720/or-tools_Ubuntu-18.04-64bit_v7.1.6720
+ make run SOURCE=~/Desktop/checkout/Google_OR_tool/src/my_program.java
+
+
+
+ make clean
+git pull
+./autogen.sh
+./configure --enable-debug
+make
+sudo make install
+
+cost is the same as distance, but in other problems the total cost might involve additional factors.
+
+Vehicle Routing Problem
+
+https://alexa.humantouch.com
+
+https://www.javacodegeeks.com/2012/09/simple-rest-client-in-java.html
+
+
+INTELLIJ IDEA COMMUNITY:
+$ sudo snap install intellij-idea-community --classic --edge
+INTELLIJ IDEA ULTIMATE:
+$ sudo snap install intellij-idea-ultimate --classic --edge
+
+
+----->to remove license file in intellij--rm -rf ~/.IdeaIC* ~/.IntelliJIdea* ~/.ideaLibSources
+
+
+
+
+Install java in ubuntu-->https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+
+   sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
+sudo apt-get install oracle-java8-installer
+
+_________________________________________________________________________________________________________________
+
+MySql and Databases
+
+ 
+Try this, it worked for me!
+sudo mysql -u root -p
+Inside the terminal enter:
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+ GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+Then in the MySQL Workbench edit the connection and change the root name to admin.
+ 
+ 
+ 
+12
+If you use DROP USER command to remove the user, then the user gets removed completely. If you have to add user with same username later, you can use FLUSH PRIVILEGES command to completely remove privileges from the mysql memory.
+DROP USER username@hostname;
+You have to restart mysql or run FLUSH PRIVILEGES before creating the same user because there are issues with privileges. To restart mysql in linux based systems
+sudo service mysql restart
+to restart in windows systems
+net stop mysql net start mysql
+To flush privilege in mysql prompt
+FLUSH PRIVILEGES;
+You can alternatively use REVOKE command if you know which privileges that the user has
+REVOKE privillege1, privillege2, ... FROM deleted_user@host
+shareimprove this answer
+answered Oct 2 '13 at 9:29
+
+Prabhu
+2,92532537
+add a comment
+1
+This user must be referenced in other tables from the mysql system schema. I would recreate the user the same way you deleted it:
+INSERT INTO mysql.user (user, host, password) VALUES ('root', 'localhost', PASSWORD('pasw'));
+Then
+FLUSH PRIVILEGES; GRANT ALL ON *.* TO 'root'@'localhost';
+Yet another reason to never mess with this schema (sorry, I couldn't help).
+	
+0
+As for the above, password field does not exist in my case and mysql throws an error.
+This command helped:
+INSERT INTO mysql.user (user, host, ssl_cipher, x509_issuer, x509_subject, plugin, authentication_string) VALUES ('user', 'localhost', '', '', '', 'mysql_native_password', PASSWORD('pass'));
+Share
+ 
+ 
+This will remove mysql 5.6 from ubuntu 15.04
+sudo apt-get remove --purge mysql-server mysql-client mysql-common 
+sudo apt-get autoremove 
+sudo apt-get autoclean 
+sudo rm -rf /var/lib/mysql 
+sudo rm -rf /etc/mysql
+ 
+ 
+sudo mysql -u root # I had to use "sudo" since is new installation mysql> USE mysql; mysql> SELECT User, Host, plugin FROM mysql.user;
+ 
+T
+ 
+ 
+sudo service mysql start
+ 
+ 
+If you have that same problem in MySql 5.7.+ :
+Access denied for user 'root'@'localhost'
+it's because MySql 5.7 by default allow to connect with socket, which means you just connect with sudo mysql. If you run sql :
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+then you will see it :
++------------------+-------------------------------------------+-----------------------+-----------+ | user | authentication_string | plugin | host | +------------------+-------------------------------------------+-----------------------+-----------+ | root | | auth_socket | localhost | | mysql.session | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost | | mysql.sys | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost | | debian-sys-maint | *497C3D7B50479A812B89CD12EC3EDA6C0CB686F0 | mysql_native_password | localhost | +------------------+-------------------------------------------+-----------------------+-----------+ 4 rows in set (0.00 sec)
+To allow connection with root and password, then update the values in the table with command :
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Current-Root-Password'; FLUSH PRIVILEGES;
+Then run the select command again and you'll see it has changed :
++------------------+-------------------------------------------+-----------------------+-----------+ | user | authentication_string | plugin | host | +------------------+-------------------------------------------+-----------------------+-----------+ | root | *2F2377C1BC54BE827DC8A4EE051CBD57490FB8C6 | mysql_native_password | localhost | | mysql.session | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost | | mysql.sys | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password | localhost | | debian-sys-maint | *497C3D7B50479A812B89CD12EC3EDA6C0CB686F0 | mysql_native_password | localhost | +------------------+-------------------------------------------+-----------------------+-----------+ 4 rows in set (0.00 sec)
+And that's it. You can run this process after running and completing the sudo mysql_secure_installation 
+ 
+ 
+mysql -u user_name -p database_name < dump.sql
+
+_________________________________________________________________________________________________________________
+
+update portfolio_data set name="gardan" where visitor_id=1;   -----------(SU(supper user or always use  "set" with "update"))
+ 
+ 
+ 
+ 
+     font-family: 'Arima Madurai', cursive;
+
+_________________________________________________________________________________________________________________
+
+use data_from_portfolio;
+select * from portfolio_data;	
+delete  from portfolio_data where visitor_id >21;
+update portfolio_data set name="gardan" where visitor_id=1;
+
+create database cdac_assign;
+use cdac_assign;
+CREATE TABLE CLIENT_MASTER(CLIENTNO varchar(20) primary key, NAME varchar(20),CITY varchar(15), PINCODE INT(8), STATE varchar(15), BALDUE NUMERIC(10,2));
+
+
+CREATE TABLE PRODUCT_MASTER(PRODUCTNO VARCHAR(6), DESCRIPTION VARCHAR(15), PROFITPERCENT NUMERIC(4,2), UNITMEASURE VARCHAR(10),QTYONHAND INT(8),REORDERLVL INT(8), SELLPRICE NUMERIC(8,2),COSTPRICE NUMERIC(8,2));
+drop table SALESMAN_MASTER;
+CREATE TABLE SALESMAN_MASTER (SALESMANNO VARCHAR(6) primary key, SALESMANNAME VARCHAR(20), ADDRESS VARCHAR(30), ADDRESS2 VARCHAR(30), CITY VARCHAR(20),PINCODE INT(8),STATE VARCHAR(20),SALAMT NUMERIC(8,2),TGTTOGET NUMERIC(6,2),YTDSALES NUMERIC(6,2),REMARKS VARCHAR(60)); 
+
+
+insert into CLIENT_MASTER(CLIENTNO, NAME,CITY,PINCODE, STATE, BALDUE) VALUES ("C00001", "IVAN BAYROSS", "MUMBAI", 400054, "MAHARASHTRA", 15000), ("C00003", "CHHAYA BANKAR", "MUMBAI", 400057, "MAHARASHTRA", 5000), ("C00004", "ASHWINI JOSHI", "BANGLORE", 560001, "KARNATAKA",0),("C00005", "HANSEL COLACO", "MUMBAI", 400060, "MAHARASHTRA", 2000), ("C00006","DEEPAK SHARMA", "MANGLORE",560050, "KARNATAKA",0);
+insert into CLIENT_MASTER(CLIENTNO, NAME,CITY,PINCODE, STATE, BALDUE) VALUES ("C00002", "MAMTA MAZUMDAR", "MADRAS", 400057, "TAMIL NADU", 0);
+select * from CLIENT_MASTER;
+INSERT INTO PRODUCT_MASTER(PRODUCTNO, DESCRIPTION,PROFITPERCENT,UNITMEASURE,QTYONHAND,REORDERLVL,SELLPRICE,COSTPRICE) VALUES ("P00001", "T-SHIRTS",5, "PIECE", 200,50,350,250), ("P03453", "SHIRTS",6, "PIECE", 150,50,500,350), ("P06734","COTTON JEANS",5,"PIECE",100,20,600,450), ("P07865", "JEANS",5, "PIECE", 100,20,750,500), ("P07868", "TROUSER",2,"PIECE", 150,50,850,550), ("P07885", "PULL OVERS", 2.5,"PIECE", 80,30,700,450), ("P07965", "DENIM SHIRTS",4,"PIECE", 100,40,350,250), ("P07975", "LYCRA TOPS",5, "PIECE", 70,30,300,175), ("P08865", "SKIRTS",5, "PIECE", 75,30,450,300) ;
+select * from PRODUCT_MASTER;
+INSERT INTO SALESMAN_MASTER(SALESMANNO , SALESMANNAME , ADDRESS , ADDRESS2 , CITY ,PINCODE ,STATE ,SALAMT ,TGTTOGET ,YTDSALES ,REMARKS ) VALUES("S00001", "AMAN", "A/14","WORLI", "MUMBAI", 400002, "MAHARASHTRA" ,3000,100,50, "GOOD"),("S00002", "OMKAR", "65","NARIMAN", "MUMBAI",400001, "MAHARASHTRA", 3000, 200,100, "GOOD"),("S00003", "RAJ","P-7","BANDRA", "MUMBAI", 400032, "MAHARASHTRA", 3000,200,100, "GOOD"),("S00004", "ASHISH", "A/5", "JUHU", "BOMBAY", 400044, "MAHARASHTRA", 3500,200,150, "GOOD");
+select * from SALESMAN_MASTER;
+
+select NAME from CLIENT_MASTER WHERE NAME LIKE '_A%';
+select NAME,CITY from CLIENT_MASTER WHERE CITY LIKE 'M%';
+select NAME,CITY from CLIENT_MASTER WHERE CITY='BANGLORE' OR CITY = 'MANGLORE';
+select NAME,BALDUE from CLIENT_MASTER WHERE BALDUE>10000;
+select  from CLIENT_MASTER WHERE BALDUE>10000;
+select  * from PRODUCT_MASTER WHERE SELLPRICE >500 AND SELLPRICE<=750;
+alter table PRODUCT_MASTER ADD  NEW_SP  AS (SELLPRICE+SELLPRICE*0.15);
+
+select  NAME,CITY,STATE from CLIENT_MASTER WHERE STATE!='MAHARASHTRA';
+select count(*) from CLIENT_MASTER;
+
+SELECT AVG(SELLPRICE) FROM PRODUCT_MASTER;
+
+SELECT MAX(SELLPRICE) AS Max_Price,Min(SELLPRICE) AS Min_Price FROM PRODUCT_MASTER;
+
+select count(SELLPRICE) FROM PRODUCT_MASTER WHERE SELLPRICE<=500;
+
+SELECT * FROM PRODUCT_MASTER WHERE QTYONHAND<REORDERLVL;
+
+CREATE TABLE SALES_ORDER (ORDERNO VARCHAR(6) PRIMARY KEY CHECK (ORDERNO LIKE 'O%') , CLIENTNO VARCHAR(20), ORDERDATE DATE NOT NULL, DELYADDR VARCHAR(25), SALESMANNO VARCHAR(6), DELTYPE CHAR(1), BILLYN CHAR(1), DELYDATE DATE, ORDERSTATUS VARCHAR(10), FOREIGN KEY(CLIENTNO) REFERENCES CLIENT_MASTER(CLIENTNO), FOREIGN KEY (SALESMANNO) REFERENCES SALESMAN_MASTER(SALESMANNO) );
+ 
+	INSERT INTO SALES_ORDER VALUES ('O19002','C00002','2002-06-25','DELHI','S00002','P','N','2002-07-02','CANCELLED');
+    SELECT * FROM  SALES_ORDER;
+  SELECT * FROM  SALES_ORDER WHERE ORDERDATE>='2002-06-01' AND ORDERDATE<='2002-06-30';
+    
+    SELECT * FROM  SALES_ORDER WHERE CLIENTNO='C00001' OR CLIENTNO='C00003';
+    
+    SELECT ORDERNO,EXTRACT(DAY FROM ORDERDATE) FROM SALES_ORDER;
+    
+    SELECT ORDERNO, MONTHNAME(ORDERDATE),EXTRACT(DAY FROM ORDERDATE) FROM SALES_ORDER;
+   SELECT  DATENAME(dd-mmmyyyy,ORDERDATE) 'Month Name' FROM SALES_ORDER;
+   SELECT ORDERDATE (getdate(), ‘Mon DD, YYYY’) FROM SALES_ORDER;
+   select format(ORDERDATE,'dd- MM-yyyy') from SALES_ORDER;
+   
+SELECT DATE_FORMAT(ORDERDATE, "%d-%M-%Y") as orderdate FROM SALES_ORDER;   
+_________________________________________________________________________________________________________________
+SELECT DATE_FORMAT("2017-06-15", "%Y");
+
+
+Parameter	Description
+date	Required. The date to be formatted
+format	Required. The format to use. Can be one or a combination of the following values:
+Format	Description
+%a	Abbreviated weekday name (Sun to Sat)
+%b	Abbreviated month name (Jan to Dec)
+%c	Numeric month name (0 to 12)
+%D	Day of the month as a numeric value, followed by suffix (1st, 2nd, 3rd, ...)
+%d	Day of the month as a numeric value (01 to 31)
+%e	Day of the month as a numeric value (0 to 31)
+%f	Microseconds (000000 to 999999)
+%H	Hour (00 to 23)
+%h	Hour (00 to 12)
+%I	Hour (00 to 12)
+%i	Minutes (00 to 59)
+%j	Day of the year (001 to 366)
+%k	Hour (0 to 23)
+%l	Hour (1 to 12)
+%M	Month name in full (January to December)
+%m	Month name as a numeric value (00 to 12)
+%p	AM or PM
+%r	Time in 12 hour AM or PM format (hh:mm:ss AM/PM)
+%S	Seconds (00 to 59)
+%s	Seconds (00 to 59)
+%T	Time in 24 hour format (hh:mm:ss)
+%U	Week where Sunday is the first day of the week (00 to 53)
+%u	Week where Monday is the first day of the week (00 to 53)
+%V	Week where Sunday is the first day of the week (01 to 53). Used with %X
+%v	Week where Monday is the first day of the week (01 to 53). Used with %X
+%W	Weekday name in full (Sunday to Saturday)
+%w	Day of the week where Sunday=0 and Saturday=6
+%X	Year for the week where Sunday is the first day of the week. Used with %V
+%x	Year for the week where Monday is the first day of the week. Used with %V
+%Y	Year as a numeric, 4-digit value
+%y	Year as a numeric, 2-digit value
+
+________________________________________________________________________________________________________________________________________
+SMILY
+
+create database product;
+use product;
+
+CREATE TABLE CLIENT_MASTER(CLIENTNO VARCHAR(6) PRIMARY KEY CHECK (CLIENTNO LIKE 'C%'), NAME VARCHAR(20) NOT NULL, CITY VARCHAR(15), PINCODE INT(8), STATE VARCHAR(15), BALDUE FLOAT(10,2));
+
+CREATE TABLE PRODUCT_MASTER(PRODUCTNO VARCHAR(6) PRIMARY KEY CHECK (PRODUCTNO LIKE 'P%'), DESCRIPTION VARCHAR(15) NOT NULL, PROFITPERCENT FLOAT(4,2) NOT NULL, UNITMEASURE VARCHAR(10) NOT NULL, QTYONHAND INT(8) NOT NULL, REORDERLVL INT(8) NOT NULL, SELLPRICE FLOAT(8,2) NOT NULL CHECK (SELLPRICE>0), COSTPRICE fLOAT(8,2) NOT NULL CHECK(COSTPRICE>0));
+
+CREATE TABLE SALESMAN_MASTER(SALESMANNO VARCHAR(6) PRIMARY KEY CHECK (SALESMANNO LIKE 'P%'), SALESMANNAME VARCHAR(20) NOT NULL, ADDRESS1 VARCHAR(30) NOT NULL,ADDRESS2 VARCHAR(30), CITY VARCHAR(20), PINCODE INT(8), STATE VARCHAR(20),SALAMT FLOAT(8,2) NOT NULL CHECK (SALAMT>0), TGTTOGET FLOAT(6,2) NOT NULL CHECK (TGTTOGET>0), YTDSALES FLOAT(6,2) NOT NULL, REMARKS VARCHAR(60));
+
+CREATE TABLE SALES_ORDER (ORDERNO VARCHAR(6) PRIMARY KEY CHECK (ORDERNO LIKE 'O%') , CLIENTNO VARCHAR(6), ORDERDATE DATE NOT NULL, DELYADDR VARCHAR(25), SALESMANNO VARCHAR(6), DELTYPE CHAR(1), BILLYN CHAR(1), DELYDATE DATE, ORDERSTATUS VARCHAR(10), FOREIGN KEY(CLIENTNO) REFERENCES CLIENT_MASTER(CLIENTNO), FOREIGN KEY (SALESMANNO) REFERENCES SALESMAN_MASTER(SALESMANNO) ); 
+
+CREATE TABLE SALES_ORDER_DETAILS(ORDERNO VARCHAR(6) , PRODUCTNO VARCHAR(6), QTYORDERED INT (8), QTYDISP INT(8), PRODUCTRATE FLOAT(10,2),FOREIGN KEY (ORDERNO) REFERENCES SALES_ORDER(ORDERNO), FOREIGN KEY (PRODUCTNO) REFERENCES PRODUCT_MASTER(PRODUCTNO));
+
+
+
+INSERT INTO SALES_ORDER_DETAILS VALUES('O19001','P00001' , 4,4,525),('O19001','P07965' , 2,1,8400),('O19001','P07885' , 2,1,5250),('O19002','P00001' , 10,0,525),('O46866','P07868' ,3,3,3150),('O46866','P07885' , 3,1,5250),('O46866','P00001' , 10,10,525),('O46866','P03453' , 4,4,1050),('O19003','P03453' , 2,2,1050),('O19003','P06734' , 1,1,12000),('O46866','P07965' , 1,0,8400),('O46866','P07975' , 1,0,1050),('O19008','P00001' , 10,5,525),('O19008','P07975' , 5,3,1050);
+
+
+date comparison
+SELECT * FROM `la_schedule` WHERE `start_date` > '2012-11-18';
+
+date and time comparison
+select * from portfolio_data where signed_in_date > '2020-06-05 14:01:00';
+
+
+_________________________________________________________________________________________________________________
+
+So, to give an example of a cartesian join, lets run the following query:
+
+select
+    a.ID,
+    b.model
+from
+    cars a
+        join models b;
+
+
+_________________________________________________________________________________________________________________
+
+ In some databases LEFT JOIN is called LEFT OUTER JOIN.
+
+ select p.FirstName, p.LastName, a.City, a.State from Person p left outer join Address a on p.PersonId=a.PersonId;
+
+ OR
+
+  select p.FirstName, p.LastName, a.City, a.State from Person p left join Address a on p.PersonId=a.PersonId;
+
+ // on condition is mandatory with left outer join
+
+
+===================================================================================
+
+2nd Hishest Salary
+
+Select MAX(Salary) AS SecondHighestSalary from Employee where Salary not in (select max(Salary) from Employee);
+
+===>// () bracket will always be around select clause
+
+
+
+
+nth highest salary in mysql server only
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        select max(Salary) from Employee where Salary not in (select distinct top (@N-1) Salary from Employee order by Salary desc)
+        
+    );
+END
+
+
+
+//https://ask.sqlservercentral.com/questions/92936/incorrect-syntax-near-n.html
+//Add parentheses around the variable in the TOP clause 
+`(select distinct top (@n) salary from emp_details order by salary desc` Here is the Books Online topic - http://msdn.microsoft.com/en-us/library/ms189463.aspx
+
+
+_________________________________________________________________________________________________________________
+
+
+
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that starts with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that ends with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%_%'	Finds any values that starts with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
+
+
+
+
+
+

@@ -1226,6 +1226,30 @@ ________________________________________________________________________________
 
 S10E62
 
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
+onSubmit(event) {
+	event.preventDefault();
+
+	this.props.mutate({
+		variables: {
+			content: this.state.content,
+			songId: this.props.songId
+		}
+	}).then(()=>this.setState({content: ''}));
+
+}
+
+//note : react router only passes data to first comonent that it renders ==>in this case it is songDetail
+
+export default graphql(mutation)(LyricCreate);
+
+
+
+_____________________________________________________________________________________
+
+S10E63
 
 
 
@@ -2286,6 +2310,7 @@ const REGISTER_MUTATION = gql`
 __________________________________________________________________
 
 S5E35
+
 
 
 

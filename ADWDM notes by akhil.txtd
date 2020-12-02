@@ -1,5 +1,7 @@
 		ADW notes
 
+https://www.analytics8.com/insights/data-warehouse-creation-basics/
+
 Dt 21-08-2020
 
 
@@ -98,6 +100,8 @@ Strategic information (for e.g. college info before admission) ==> information s
 _____________________________________________________________________________________________
 31-08-2020
 
+
+
 flight system==>strategic information
 
 4 component of DSS(Decision Support System)
@@ -121,6 +125,38 @@ OLTP===>online transactional process
 DImensional Analysis==>usage of information is unpredictible
 
 		==>user can tellyou how they think about the business
+
+
+
+_____________________________________________________________________________________________
+14-09-2020
+
+Loading Dimension	===> whenver we talk about dimensional it came from OLTP===>we talk about modification
+			
+			===>we consider it constant so we dont change prodeuct key, or primary key , we can change description
+
+			===>type 1===>we change attribute data===>easiest one
+
+
+
+
+type===>0,1,2,3,4,5
+
+
+_____________________________________________________________________________________________
+22-09-2020
+
+ETL==>
+
+_____________________________________________________________________________________________
+29-09-2020
+
+Join Vs merging
+
+
+
+
+
 
 
 

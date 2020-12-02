@@ -1,0 +1,255 @@
+https://www.youtube.com/watch?v=tZreaH_FyMs&list=PLV8vIYTIdSnat3WCO9jfehtZyjnxb74wm
+unit -3 ===> software maintenance===>Reverse Engineering
+
+===================
+L-58
+
+RE ==>process followed so as to find unknown and difficult information about a software
+
+Uses of reverse engineering===>
+
+when s/w lapse certain document requirement, proper documentation,
+==> recovering of design details
+==>identify reusable component
+==>business rules implied on SW
+==> understanding high level system description
+==>identify component that require restructuring
+
+
+purpose===>
+	===>recovering information from code to requiremnt
+	===>programming understanding at any level is included in RE
+
+Not in scope of of Reverse engineering
+===> Re-design
+==>Re-structuring
+===>Enhancement of system functionality
+
+Major Task
+
+===>mapping the program to application design (use of application in real timeworld)
+===>Mapping between concrete and abstract level
+===>find missing links between program sytax and semantics
+====>extract re-usable component
+
+Diagram/level of reverse engineering
+
+----------------------------------------------------------------------------------------------------
+
+L-53
+
+S/W Maintenance
+
+incluses===>
+===>error correction
+===>enhancement of capability
+===>deleteion of obselete operation
+===>optimization
+
+
+to change the S/w after it is in operation is considerde to be maintenance work
+
+purpose===>
+
+it preserves the value of S/W over time
+
+
+4 categoiries
+
+1) Corrective ===> when defects are found in error
+		==>any kind of coding, design, logic error
+	====>appropriate actions are taken to restore the correct functionality
+
+	patches===>emergency fixes (pressure from management)
+		====>gives rise to unforseen future-errors 
+		==>lack of proper impact analysis
+
+2) Adaptive Maintenance
+	-->modifying the software  to match changes in ever-changing environemnt
+	
+	--->any outside factor: platform changes, govt policies, business rules
+
+3) Perfective Maintenance
+
+		===>improving the processing efficiency OR performance OR restructuring the S/W to improve
+			changeability
+
+		===>better, faster, cleaner
+
+4) Preventive Maintenance
+===>making the program easier to understand
+===>helps us in future maintenance work
+
+e.g optimization, documentation updation
+
+------------------------------------------
+
+# corrective Maintenance
+#Adaptive Maintenance
+#perfective Maintenance
+#preventive Maintenance
+
+_____________________________________________________________________________________
+
+L-54
+
+Software reliability
+
+==>it is the probability of failure free operation for a given time duration
+
+===>dynamic system charateristics===>depends on failure that are encountered
+
+===>It is an excution event where the software behaves unexpectedly
+
+Not all SW  faults have equal probability of manifestation/execution
+
+==>Removing SW faults from those SWparts which are rarely used makes little improvement in Reliabaility
+
+Operation Profile of S/W===>the way in which the S/W is used by the user
+			===>the kind of input that are supplied to the SW.
+
+
+Failure of a S/W depends on  2 factors
+===>no. of faults being evaluated in S/w
+===>Operational profile of execution of S/w
+
+Types of Time
+
+1) Execution Time
+2) Calendar Time
+3) CLock Time
+
+
+_____________________________________________________________________________________
+
+L-55
+
+Reliability Metrics
+
+Types
+
+1) Probability of failure on Demand ===>system will behave unexpected way when some demand of user is made on it
+
+2) Rate of occurence of Failure (ROCOF) ===> e.g 9/100 ==>softeare will fail 9 times out of 100 operational unit times
+
+3) Mean time to failure ====> time interval between two failure
+
+4)  Availability ===> measure of how likely system is availablto Repair for use..
+
+MTBF = MTTF  + MTTR
+
+mean time between failure = Mean time to failure + Mean time 
+
+Availabilty = (mean time to failure /(mean time to failure + mean time to repair))*100
+
+
+
+
+_____________________________________________________________________________________
+
+L-24
+
+Module Coupling ==>( design issue ) (pg -ppt -13)
+
+===>measure of degree of interdependence between modules
+
+high coupling ==> more dependent
+
+less coupling ===> less dependent or independent modules
+
+ensures low coupling ===>low coupling is desired
+
+===>high coupling leads to more error, and debug/isolation of error is more difficult, 
+
+how modules get coupled===>
+
+1) when share data ==>like global data
+2) or make call to each other
+
+Control by ==>	
+		===> control amount of information
+		===>pass data not control information
+
+Types of coupling
+1) Data Coupling ===>most desirable===>only by passing the necessary data===>no control information is passed
+
+			==>data is passed as parameter
+
+2) Stamp Coupling ===> data structure is passed from one module to another, drawback==>the entire data structure may not 
+			be required
+
+3)Control Coupling ==> module controls the flow of another module ===>control information is passed===>like flag is passed
+
+
+4) External Coupling ===> module of one system dependent on another external hard drve module
+
+5) Common Coupling ===> Common shared data/global data ==>makes debugging difficult
+
+6) Content Coupling ===>Least desirable ===> content is passed from one module to middle of another===>one modules changes
+						other module
+
+
+Did She Conduct Exam for Communication and calculus ===>to remember
+
+
+_____________________________________________________________________________________
+
+L-25
+
+
+Cohesion ===>design issue
+
+coupling is between two modules 
+but
+cohesion is within a module====>element of same module functionally related to each other
+
+COHESION ===>high cohesion is desired
+	===>higher cohesion => lower couple
+
+Strongly cohesive module implements functionally focusing on a single feature of the solution or S/W.
+
+Types of COHESION
+
+1) functional COHESION ===>highly desirable
+
+			===>two operation present within a module perform the same functional task
+
+2) Sequential COHESION ===>in a module x's Output = Y's Input
+
+3) COmmumnication COHESION ===> element inside a module contribute to same data ===>each element affects each other
+
+4) Procedural COHESION ===> whose instructions do different task but to ensure  a particular order in which task are performed
+				===>poor maintenance
+
+5)Temporal COHESION ===>instruction must be executed during same time span are put together
+
+6) Logical COHESION ===> when modules have logical similar instruction/elements
+
+7) coincidental COHESION ===>instruction are not realted to each other
+
+to remember ===> First Semester of College Provided Tough & Long Curriculum
+
+
+# diagram is good
+
+
+
+_____________________________________________________________________________________
+
+L-26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
