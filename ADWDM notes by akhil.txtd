@@ -730,7 +730,166 @@ OLTP
 
 _________________________________________________________________________________________________________________________________
 
+L-40
 
+Difference between fact table and dimesion table
+
+
+Fact table 
+		==>contains numerica values
+		==>primary key of fact table is formed from primary key of dimension table
+		==>provides measurement of an enterprise
+		==>large size
+		==>pure fact table is collection of forigner key
+
+Dimension table
+
+		==>character value(like book name)
+		===>Each dimension table has its own primary key
+		==>context/descriptive information
+		==>smaller than fact table
+		Pure dimension table is collecytion of primary key
+
+=============================================================================
+
+Multidimensional data modelling
+		===>data stored in multidimesional database
+		===>storage is like cube
+		===>
+		===>Data is in denormalised form
+		==>Mainly used for analytical purpose(OLAP)
+		==>MDX lang uage is used to manipulate data
+		==>Non-volatile and time Invariant
+
+Relation data modelling
+		==>data is stored in RDBMS
+		===>2-d Tables
+		==>Normailsed
+		==>OLTP
+		==>SQL
+		==>late data
+		==>volatile and time variant
+
+_________________________________________________________________________________________________________________________________
+
+L-41
+
+KDD V/S Data mining
+
+KDD is the overall process that involves various steps such as 
+
+		1) Selection
+		2) Data Cleaning
+		3)Preprocessing
+		4) Data Transformation
+		5) Data mining and so on ===>is one of the step in KDD process whereas KDD is overall process
+
+	====>Extraction of useful and understanding knowledge
+
+===>in data mining ==>we identifying patterns from data
+
+
+======================================================
+
+DBMS V/S Data mining
+
+DBMS
+	===>
+	==>Query language
+	==>can work alone without Data mining
+	==>Basic elements==>which language, data structure, transfer mechanism
+
+
+Data mining
+	===>extracting interesting and unknown information from raw data. 
+	===>automatic searching of data
+	===>may not work with DBMS	
+	==>basic tasks ==>classification, Regression, Clustering, Association
+
+==========================================================
+
+OLAP v/s Data mining
+
+OLAP
+	==>data summarisation takes place
+	===>prior knowledge about information is required
+	===>Summarised Data
+	==>gives answer to question on past information
+	==>small no of attributes
+	==>less size of data
+	==>user driven
+	==>widely used
+
+Data mining 
+	===>automated discovery of pattern and knowledge
+	==>No prior knowledge
+	==>Detailed data
+	==>can predict future
+	===>many dimension attributes
+	===>very large data
+	==>data driven
+	==>emerging
+
+_________________________________________________________________________________________________________________________________
+
+L-42
+
+Dataware house v/s data mining
+
+data warehouse
+	===>integrate data from vaious sources
+	==>organisation with storage medium.
+	==>must take place before Data mining
+	==>carried out by engineers
+	e.g social website ==>gathering all information about user and store them in central repository
+
+Data mining 
+	==>extaract and identifying useful pattern and relationship from huge data
+	==>techniques are applied on data to discover useful pattern
+	==>After data warehouse process
+	==>bussiness user with help of engineers
+	==>e.g extracting information from data==>like user interest
+
+
+_________________________________________________________________________________________________________________________________
+
+
+L-32
+
+OLAP Server model (MOLAP) ==>multidimensional OLAP
+
+	==>has 3-tier architecture
+	==>uses specialised data structure multidimensional dtabase
+	==>Arrays are used (array value = cell loctn)
+	==>compression is used
+	==>e.g oracle Express server
+
+# diagram
+
+flat files and OLTP==>	MDDB(multi dimensional DB) LOader ====>multi-dimension DB cube ==>OLAP server==>user by WEB/LAN
+
+Advantages
+	===>Query response time is very fast==>as it has pre -aggregated data
+	===>complex calculation (easy)
+	===>less disk space(compression)
+	===>Retrieval of data==>FAST[slice n DICE]
+
+Disadvantage
+	==>handle only limited of data
+	==>large and additional investment
+	==>high complexity
+	==>Serious overhead oin processing or loading of data
+		
+
+
+_________________________________________________________________________________________________________________________________
+
+L-30
+
+OLAP server model ROLAP
+
+	ROLAP(relational OLAP)==>ROLAP has  a 3-tier architechture
+	==>worksdirectly with relational dat base
 
 
 
