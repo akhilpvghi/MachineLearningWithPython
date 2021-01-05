@@ -4,11 +4,12 @@ unit -3 ===> software maintenance===>Reverse Engineering
 ===================
 L-58
 
-RE ==>process followed so as to find unknown and difficult information about a software
+Reverse Engg. ==>process followed so as to find unknown and difficult information about a software
 
 Uses of reverse engineering===>
 
-when s/w lapse certain document requirement, proper documentation,
+when s/w lapse certain document requirement, 
+proper documentation,
 ==> recovering of design details
 ==>identify reusable component
 ==>business rules implied on SW
@@ -40,14 +41,15 @@ L-53
 
 S/W Maintenance
 
-incluses===>
+includes===>
 ===>error correction
 ===>enhancement of capability
 ===>deleteion of obselete operation
 ===>optimization
 
 
-to change the S/w after it is in operation is considerde to be maintenance work
+to change the S/w after it is in operation 
+is considerde to be maintenance work
 
 purpose===>
 
@@ -95,15 +97,18 @@ L-54
 
 Software reliability
 
-==>it is the probability of failure free operation for a given time duration
+==>it is the probability of failure 
+free operation for a given time duration
 
 ===>dynamic system charateristics===>depends on failure that are encountered
 
-===>It is an excution event where the software behaves unexpectedly
+===>It is an excution event where 
+the software behaves unexpectedly
 
 Not all SW  faults have equal probability of manifestation/execution
 
-==>Removing SW faults from those SWparts which are rarely used makes little improvement in Reliabaility
+==>Removing SW faults from those SW parts which are rarely used makes 
+little improvement in Reliabaility
 
 Operation Profile of S/W===>the way in which the S/W is used by the user
 			===>the kind of input that are supplied to the SW.
@@ -128,7 +133,8 @@ Reliability Metrics
 
 Types
 
-1) Probability of failure on Demand ===>system will behave unexpected way when some demand of user is made on it
+1) Probability of failure on Demand ===>system will behave unexpected way
+		when some demand of user is made on it
 
 2) Rate of occurence of Failure (ROCOF) ===> e.g 9/100 ==>softeare will fail 9 times out of 100 operational unit times
 
@@ -143,6 +149,69 @@ mean time between failure = Mean time to failure + Mean time
 Availabilty = (mean time to failure /(mean time to failure + mean time to repair))*100
 
 
+_____________________________________________________________________________________
+
+L-56
+
+Unit-2 (Software project planning)
+
+Putnam Resource allocation model===> based on rayleigh curve ==>Rayleigh curve given by Norden of IBM for hardware development==>
+
+===>putnam observed same behaviour for S/W project and S/W subsystem development
+
+it measures manpower in terms of person per unit time as a function of time
+
+--->person-year/year
+
+m(t) = dy/dt = 2Kate^(-at^2)
+
+
+t = elapsed time
+a = parameter affecting shape of curve
+K = area under curve[0-infty.] (total Software project cost/effort)
+
+cummulative manpower = y(t) = K[1-e^(-at^2)]
+
+y(0) = 0 y(infty) = K
+============================
+Importance of a
+
+dimensuion of a = 1/time^2 
+
+===>a plays important role in determination of peak 
+	manpower
+
+====>larger the value of 'a', earlier will be the occurence of peek & steeper is the person-profile
+
+d2y/dt2 =  => td^2 = 1/2a
+
+td ==>represents the total project development time
+
+
+m(td) = mo = K/(td*e^(1/2))
+_____________________________________________________________________________________
+
+L-57
+
+Putnam Numerical
+
+peak manning (peak manpower) ==?
+
+K = 95PY 
+
+peak development time = 1 + 9/12 = 1.75 yr
+
+mo = K/(td*e^(1/2)) = 33 person
+
+Average rate of software team build up = mo/td = 33/1.75 person/year
+
+=====================================
+
+peak time is same as development time
+
+y(t) = K[ 1-e^(-at^2)]
+
+	a= 1/2td^2
 
 
 _____________________________________________________________________________________
@@ -236,12 +305,902 @@ to remember ===> First Semester of College Provided Tough & Long Curriculum
 
 _____________________________________________________________________________________
 
+L-26 
+
+Unit -3 
+
+Function oriented design ===>  when software design is seen as functional point of view===>desgn is decomposed into 
+											a set of interacting units where each unit has a clearly
+											defined functions.
+
+
+Top down approach ===>when we use functional viewpoint==> problem => each module must be used by atmost one other module
+
+							solution ==> designing of reusable modules
+
+
+
+
+
+functional oriented design can be represented/implemented by
+
+1) DFD
+2) Data Dictionaries
+3) Structure charts
+4) Psuedocode
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-29 ===>UNIT 1 & 3
+
+
+
+
+Data flow diagrams/ Bubble Chart / Data flow Graph
+
+===>technique for function oriented design
+===>shows the flow of data through the system
+==>also used for modelling the requirement
+
+Symbols used in DFD
+
+====>Circle ===>depicts a process that transforms data input
+		to outputs
+
+===>curved arrow===>shows flow of data into or out 
+			of a process or data store
+
+===>Rectangle ====>An external entity (SOurce or sink of system)
+
+===> two curved on two horizontal line ===> Data store ===>represents data repository
+
+
+Some important points
+===> Unique names are important
+===>DFD depicts flow of data  and not order of events like a flow chart
+===>Decision path(diamond nodes) represents logical expressions are not specified
+
+
+Levelling in A DFD
+
+===>represents different level of abstraction
+===>Higher level(Initial level) DFD are partioned/refined into lower levels -->that have more information & functional details
+
+Level-0 (Context Diagram or Fundamental System model)
+
+===>level 0 DFD==>represents the entire system as a single bubble with input and output data indicated by incoming & outgoing arrows
+
+===>no of input must be same for all level DFD as initial level
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-30 ===>UNIT 1 & 3
+
+Example of DFD==>
+
+Level 0 DFD===>major input ==> 1 process and outputs , No data store in level 0 DFD
+
+Level 1 DFD ==> can have more than one arrow on processes
+
+Level 2	===> Represent single module by expanding in detail
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+COTS
+
+https://www.youtube.com/watch?v=4xLYJNtB1ME
+
+Specialised Process models==>
+
+		==>component based development
+		==>The formal methods Model
+		==>Aspect-Oriented Software development
+
+
+component based development
+
+==>Commercial off-the-shell (COTS) ==>ready to use
+			==>developed by different vendors
+			===>provide target functionality
+			==>well-defined interfaces it can integrate into the software
+	
+
+Component-based development model incorporates many characteristics of the spiral model
+
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-11
+
+Software Requirement engineering===>
+
+steps and process
+_____
+
+Consist of two things
+ ===>understanding requiremnents of the customer
+ ===> and documenting the requirements so that it can be referred by developer or customer itself
+
+ ==>it is feature of the system or description of something the system is capable of doing in order to fulfil the requiremnet..
+
+	===>tells what to do and not How to do it.
+
+Software Requirement specification(SRS): work product
+
+Input to RE : Problem statement prepared by customer
+		overview of the existing system + new or additional functionality to be added
+
+==>can also be used as validation to customer after submission of system to the customer
+
+4 steps of Requirement Engineering===>
+
+	1) Requirement Elicitation(gathering) ==>requirements are identified with the help of customer
+
+	2) Requirement Analysis ===>check inconsistency in requiremnet and contradiction in requirement
+				==> find defect and omission
+				==>can also be prioritize
+	
+	3) Requiremnet Documentation ===> end of first two product leads two
+						==>preparation of SRS
+						==>becomes foundation for design of SW
+
+	4) REquirement Review or verification ==>to improve the quality
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-12
+
+SOftware requirement Elicitation (Requiremnet Gathering) ===>
+
+===>it is an activity that helps to understand what problem has to be solved and what customer expect from us.
+
+Foundation ==>effective communication between customer and developer
+
+Method: developer questions the customer 
+	==>customer respones to the answer and then cross questioning
+
+Hurdles===> misunderstanding/conflict
+	===>Communication Gap 
+
+Reason for COnflicts between concerned people
+
+1) Developer is efficient in the knowledge of his domain while customer is efficient only in his domain(different from dev. domain)
+
+2) Lack of proper communicayion skills.
+
+
+Requiremnet Elicitation Methods
+
+1) Interviews ==>purpose: understanding each other
+
+Reqmt engineers acts as mediator between customer and developement team.
+
+Types of Interview ===>open ended ===>no pre- set agenda, no pre-defined list of questions prepared
+
+		   ===>Structured ===> there is a pre-set agenda.
+				===>questions may be prepared
+
+==>question may be short
+==>both parties should be open for any direction
+
+Types of satkeholders to interview.
+1)Interviewa
+
+1.1) Entry level Personnel
+	===>do not have much domain knowlwdged
+	===>they have new  ideas/perspectives.
+
+1.2) Mid level Stakeholders ==>e.g project lead/manager
+	==>experienced people with good domain knowledge
+	===>they know thw criticality of the project
+
+1.3) Manager and higher Management
+	==>useful insight about project
+
+1.4) Users of S/W
+	===> most important -> they will be using the S/W max # of times.
+
+2. BRAINSTORMING SESSIONS
+
+	===>Group decision techniques
+	===> Promotes Creative thinking & new Ideas
+	===>platform to express and share your views and expectations and difficulties in implementation
+
+	==>facilittaors
+		===>ego clashes/conflicts to avoid them
+		===> encourage people to participate as much as possible
+
+
+* all ideas are documented to be visible to everyone
+*detailed report, in simplelanguage
+*Priority is also done
+
+3) Facilitated Appliction Specification Techniique
+4) Quality Function deployment
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-13
+
+Desirable characteristics of SRS==>
+
+1) Consistent ===> same requirement if repeated
+2) Correct
+3) Complete
+4) Understandable ==> to both developer and customer
+5) Basis for design and testing
+6) Acts as a contract ==>between customer and developer
+7) Modifiable
+8) Verifiable
+9) Traceable
+10) Unambiguous
+
+Types Of Requirement
+
+1) Functional and Non-functional Reqmts.
+2) User and system Requiremnets
+3) Interface Specification
+
+Stakeholders
+
+Functional Requirement (Product Feature)
+			
+	===>expectation from system
+	===>What are the expectation from the software
+	===>what the s/w should not do
+
+	e.g. features of a game
+
+Non-Functional Requirement ==>how well system will respond, mostly quality requiremnet
+			===>like usability
+
+			for user ==>high performance, reliability, usability
+
+			for developers ==>maitainability, testability, portability
+
+USER REQUIREMENT
+	===>written for user who are not experts of S/W field
+	==>Highlight the overview of system without design description
+	==>Specifies --->funtional + non-functional
+			->constraint
+			->Quality
+			->External behaviour
+
+
+What to avoid?
+	===>complex language in user reqirement
+	===>design detail
+	==>technical terms
+
+System Requirement
+	===>expanded form of user requirement
+	===>used as input to designer so that they can prepare software design document
+
+Both user & system reqmts are part of SRS.
+
+INTERFACE SPECIFICATION
+	===>API
+	==>What kind of interface customer desire
+
+
+FEASIBILITY STUDIES
+
+====>if software is workable or not
+===>Work Product : Feasibility Report
+use ===>it helps the mgmt/project team /customer to decideif the s/w should be built
+
+What factors are considered?
+
+1)===>current practices vs proposed system
+2) Amount of resource that are needed
+3) Major risks that can occur
+4) Cost and schedule
+5) Technical skill that are required
+
+Benefits
+1) 10% failure vs 80% failure
+2) More accurate estimates can be prepared(more realistics)
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-18
+
+COCOMO ==>constructive cost model
+
+	===>software cost estimation
+	===>developed by Barry Boehm
+	===>Hierarchy of  SW cost Estimation model
+		==>BAsic model
+		==>Intermediate
+		==>detailed model
+
+BASIC MODEL
+	==> estimate the software in a rough and quick manner
+	==>Mostly useful for small-medium sized software
+	==> 3 modes of development
+		==>Organic ==> size is small(2-50Kloc) ==>team size(small) ===>
+				==>developer experienced (Experienced developer)
+				==>environemnt(Familiar environment)
+				==>Innovation(Little)
+				==>Deadlines( flexible)
+				e.g. Payroll System
+
+		==>semi-detatched ==>size is small(50-300Kloc) ==> team size(medium size)
+				==>developer experienced (Average Experienced developer)
+				==>==>environemnt(less familiar environment)
+				==>Innovation(Medium)
+				==>Deadlines( medium)
+				e.g. Utility system (compilers)
+				
+		==>embedded ===>size is small(<= 300Kloc) ===> team size(Large team)
+			===>developer experienced (very little previous Experienced developer)
+			==>==>environemnt(significant environment changes , almost new environment)
+			====> Innovation(Major innovation required)
+			==>Deadlines( Tight)
+			e.g. Air Traffic monitoring System
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-19
+
+COCOMO =>BASIC MODEL
+
+	1) Effort = a(KLOC)^b ==>unit=>person-month
+
+	2) Development Time = c(Effort)^d ==>unit=>months
+
+	3) Avg. Staff size = effort/dev. Time ==>unit=> person 
+
+	4) Productivity = KLOC/Effort ==>unit=> KLOC/PM
+
+
+	Mode		a	b	c	d
+
+	organic		2.4	1.05	2.5	0.38
+
+	semi-detached	3.0	1.12	2.5	0.35
+
+	Embedded	3.6	1.20	2.5	0.32
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+L-20
+
+cocomo 2nd type--->intermediate model
+
+===>basic model gives rough model
+==>intermediate models gives more accuracy as it considers 15 cost drivers(predictors)
+===>takes development environment into account during cost estimation
+
+USE OF COST DRIVERS
+
+	===>cost drivers adjsut NOMINAL cost of project to actual project environment
+
+			==>increasing the accuracy of estimation.
+
+15 COST DRIVERS
+
+ I Product Attributes
+	Relaibility
+	DATA
+	CPLX
+ II Computer attributes
+	TIME
+	STOR
+	VIRT
+	TURN
+ III Personnel Attributes
+	Analyst capability
+	experience
+	PCAP
+	virtual machine experience
+	LEXP
+ IV Project Attributes
+	modern pgmg practice
+	use of s/w tools
+
+table for intermediate model in cocomo
+
+Effort Adjustment Factor(EAF): 
+	calculate by multiplying by all the values that have been obtained after categorising each cost driver in appropriate category
+
+Equation for COCOMO:
+	
+		Effort = ai(KLOC)^(bi)* EAF in person-month
+
+		Development time = Ci(Effort)^(di) in month
+
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+L-23
+
+COCOMO-II
+
+	====>extended/revised version of COCOMO
+	====>Also Developed by Barry boehm
+	===>includes 3 stages
+		==>Application Composition Estimation
+		==>Early Design Estimation
+		==>Post-Architecture Estimation
+
+Application Composition Estimation
+	===>focuses on those Application which can be quickly developed using interoperable component
+		e.g. GUI, Database manager, control package for specific domains.
+	
+	==>used during prototyping phase of an application
+	===>estimates size by object points
+			====>Assess Object COunt (screens )
+			====>classify complexity levels of each object
+				==>simple,medium or difficult
+				==># of views
+
+		Screens
+		-------
+
+		a table..?will be given to calculate complexity
+
+		Reports
+		------
+
+		a table..?will be given to calculate complexity
+
+   
+   3. Assign complexity weight to each object
+
+   4.Determine object points ==>add all the complexity weight to get object point count
+
+
+   5. compute new object point(by considering reusable point)
+
+	NOP = ((object points) * 100-% reuse)/100
+
+   6.Calculate Productivity Rate(PROD)
+
+	calculated depending on the past project data
+
+   7. Compute effort in person-month
+
+	effort = NOP/PROD (unit person-month)
+
+
+
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+L-15
+
+Software size estimation : 
+
+	1) LOC (Lines of code): 
+		==>Declaration, actual code including logic
+				and computation
+
+	==>not LOC then why to include
+	
+		==>Blank lines
+			==>included to increase readability of pgms
+		==>Comments
+			===>included so that can be used for future references
+			==>helps in code understanding as well as during maintenance
+
+why they are not considered as LOC
+		===>Do not contribute to any kind of functionality
+		===>misused by developer to give a false notion about productivity
+
+Advantage using LOC as size estimation tool
+		===>easy to calculate and count
+
+Disadvantage using LOC as size estimation tool
+		===>like indentation with bracket
+		===>Language dependent + technology dependent
+		==>what constitues as LOC ==>may differ from organisation to organisation
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-16
+
+Software size Estimation:
+	
+	===>measures functionality from users point of view
+			==>like calculator of two type will be having same fn point
+			==>what user receives from the sw   + what the user request from sw
+			==>focusses on what functionality is delivered
+
+System has 5 functional units
+	==>Internal logical files ===> inside system ===>Data functional types
+	==> External Interface ===>control data communicates with other application ===>Data functional types
+	==>external Input ==>coming from external source ===>transaction function types
+	==>External output ==>going to external soyrces==>transaction function types
+	===>External Enquireis ==>transaction based===>transaction function types
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+
+L-17
+
+
+functional units	LOW	AVG	H
+EI			
+EO
+EQ
+ILF
+EIF
+
+===>dependent on the organisation===>using past project
+
+Unadjusted FUnction POint = summision(1 to 5) count of # functional units 
+			    summision(1 to 3) of category classified * corresponding weight
+
+Calculate function foint = UFP * CAF(complexity adjustment factor)
+
+			CAF is calculated by questioning 14 defeerent question on scale of 0 to 5
+
+			CAF = [0.65 + 0.01*summision(fi)]
+
+Comparison with LOC
+	===>FP is independent of language
+	==>we get estimate before major design or coding happens
+	==>change can be reflected in FP
+
+	===>useful even for those user without technical expertise because FP based on external structure of the sw to developed
+
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+L-43
+
+SPiral shows different type of testing ===>with corresponding phases
+
+--->software is developed by moving INWARDS in the spiral
+--->testing is conducted by moving outward
+
+
+
+unit testing ===> code that has been written--->each component is giving desirable output-->path testing is also done
+
+Integration testing  ===>design architecture
+
+validation testing ===> Requirement satisfaction(vaidated)-->behaviour, performance and validation criteria(rules that were assigned initially)
+
+System Testing(integrating modules) ===> System Engineering
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+L-44
+
+UNit Testing ===>each component is tested individually
+
+		====>process of taking a module and testing it in isolation from the rest of the software 
+			and comparing the actual results with the results defined in the specifications and
+			design of module.
+
+why to test independently ???
+	==>fault isolation and debugging becomes easier during unit testing
+
+what to test??
+
+==>module interfaces --->check the correct flow of information in and outside the module.
+==>chechking of local data structure
+==>Independent/basis path==>to ensure all paths
+==>Boundary condition ==> output/computation is correct at boundary values
+==>Internal Logic==>loops, precedence, comparison of data
+==>Error handling path 
+
+Problems with UNIT TESTING
+	==>How to test w/o anything to call it?
+	==>how to test it w/o any module to be called by it.
+
+
+this problem is solved by driver and stub.
+_______________________________________________--
+
+
+L-45 (unIT 4)
+
+Unit testing ==>
+
+Driver ==> driver calls the test module
+
+	==>driver is main pgm that accepts the test case data and passes the data 
+		to the component to be tested
+
+STUB ==>called by the module to be tested
+	==>minimal data manipulation
+	==>provides verification of entry
+
+Scaffolding 
+	===>the overhead code
+	===>driver and stub
+	===>A test harness (used to automatically generate scaffolding )
+	===>It allows us to test our module in isolated environment by simulating the rest of software
+		functionalities.
+	
+
+_______________________________________________________________________
+
+
+
+L-46 (UNIT 4)
+
+Integration testing ===>2nd level of testing
+
+		==>focus of integration ==>determining the correctness of the interface 
+
+Why integration tests required?
+
+	==>Data may be lost during interfacing
+	==>Global data may also cause problem
+	==> different subfunction may not work properly when combined
+
+Methods to integrate and test
+	==>unit tested component are taken one by one and integrated incrementally
+		==>debugging and fault isolation becomes easier
+
+TYPES OF INTEGRATION
+
+1) TOP down integration
+	==>upper module is calling sub modules
+	==>calling module is always available
+	==>No drivers required
+
+2) Bottom up Integration
+	==>module called by upper modules
+	==>Drivers are required
+	==>Stubs are not required
+
+3) Sandwich testing
+	==>combination of top down and bottom up
+
+### every time new module is added  new i/o may occur, new data flow paths and control logic may cause problem
+	that previously working fine. And hence integration testing is required.
+
+_______________________________________________--
+
+
+L-47 (UNIT 4)
+
+
+Integration technique ==>
+
+	==>Top-Down Integration
+
+		==>Start with main module and integrate the sub module
+
+			Depth first ==>integrate the units on a major control path
+
+			Breadth-first ==> combines all component directly subordinate to a given module.
+
+INTEGRATION STEPS
+
+1. starting with the main control module, stubs are substituted for all components subordinate to it.
+
+2. Deepending on type of integration stubs are replaced one at a time with actual components
+
+3. Tests are conducted as each component is integrated
+
+4. On completeion, another stubs are replaced with actual component
+
+5. Regression testing ensures no new errors
+
+PROBLEMS
+	===>stub leads to extra effort in form of overhead head.
+
+BOTTOM-UP INTEGRATION
+
+===>BEGIN TESTING THE modules at lowest levels
+
+==>drivers required but no stubs needed
+
+	==>the processing at lower level is always available
+
+STEP 1. lower level mcomponents are combined into cluster or builds
+ 
+	2) Driver coordinates the test case i/p-o/p.
+	3) the cluster is tested
+	4) Driver is removed and the clusters are combined with new module/other clusters moving up in the hierarchy.
+
+
+______________________________________________________________________________________________--
+
 L-26
 
+Function Oriented design
+
+===> modules and functionalities before designing
+
+===>functional point of views, where each interacting unit of system is from  functional view
+
+
+A GENERIC PROCEDURE
+
+	===>TOP DOWN STRUCTURE
+
+Problem 
+	==>each module is used by atmost one other module
+
+Solution 
+
+	==>reusable modules
+
+Function oriented design can be referesented by
+	1) DFD
+	2) Data dictionary
+	3) Structure charts
+	4) Psueducode
 
 
 
 
+______________________________________________________________________________________________--
+
+L-27
+
+Structure chart ==>function oriented type
+	
+	==>hIERARchical representation of system
+	==>partiotions into BLACK BOXES(functionalities are known to user but inner details are not known)
+	==>Inputs are given to black boxes and appropriate outputs generated.
+
+______________________________________________________________________________________________--
+
+
+L-32 (UNIT 4)
+
+Functional testing===>tests the functionality of  the programme
+
+	===>also known as black box testing(contents of the SW are hidden from user/tester)
+
+	===>not concerned with the internal structure or code of the prgm
+
+	===> No code Analysis 
+
+	==>concerned with the output with specific set of inputs
+
+
+# small block diagram
+
+Advantage
+
+
+Disadvantage
+
+===>non functional requirement not handled like maintenance, robustness 
+===>will not tell about exceptional handling
+
+TYPES OF FUNCTIONAL TESTING
+
+1) Boundary value analysis
+2) Robustness technique
+3) Worst case testing
+4) Equivalence class testing
+5) Decision table
+6) cause effect graphing
+7) Special value testing
+
+______________________________________________________________________________________________--
+
+
+L-33 (UNIT 4)
+
+Boundary Value ANalysis ===>functional testing technique
+
+	===>based on the facts that values near the boundary have higher chance of error
+
+==>range (1 to 10) then 1 and 10 are boundary values
+
+===>value lying on boundary
+===>Values just above the boundary(lower boundary)
+===>Values just below the boundary(upper boundary)
+
+Single fault assumption ==>holding the values of all but 1 variable at their nominal value and letting that variable 
+			assume extreme value
+
+for n values === 4n+1 test cases
+
+______________________________________________________________________________________________--
+
+
+L-34 (UNIT 4)
+
+numerical on boundary value analysis
+
+==>middle value should be less than median
+==> bracket should be noticed carefully
+
+
+
+month 
+
+1900
+1901
+
+______________________________________________________________________________________________--
+
+
+L-35 (UNIT 4)
+
+Robustness testing ==>extended version of boundary value analysis
+
+		=>cosiders value slighter grater than maximum
+		==>cosiders value slighter less than minimum
+
+		==>6n+1 (n is no. of variable)
+
+
+		
+______________________________________________________________________________________________--
+
+
+L-36 (UNIT 4)
+
+Worst case testing(type of functional testing)
+
+==>in boundary value analysis only 1 variable can be changed at time while other will be at nominal value
+
+	==>worst case testing reject the single fault assumption: more than 1 variable can have extreme value
+
+	==>extensio of boundary value analysis
+
+	==>total test cases 5^n (n is no. of input variable)
+
+	===>write down all possible combination of variables 
+
+______________________________________________________________________________________________--
+
+
+L-37 (UNIT 4)
+
+Equivalence class testing
+
+	==>input and output domain is partitioned into mutually exclusive parts called equivalence classes
+
+	==>Anyone sample from a class represents the entire class
+
+
+STEPS TO MAKE TEST CASES
+
+	==>identify equivalence classes by taking each input condn and o/p condn and partitioning it into valid and invalid classes
+	==>Generate test cases using Equivalence classes
+
+
+
+
+______________________________________________________________________________________________--
+
+
+L-38 (UNIT 4)
+
+Equivalence class testing==> triangle example
+
+
+
+
+
+
+
+		
 
 
 

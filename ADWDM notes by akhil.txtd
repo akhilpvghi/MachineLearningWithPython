@@ -155,7 +155,580 @@ Join Vs merging
 
 
 
+_________________________________________________________________________________
 
+https://www.youtube.com/watch?v=KL331JCvNHI&list=PLV8vIYTIdSnb4H0JvSTt3PyCNFGGlO78u&index=34
+
+L-34
+
+Dimensional modelling==>multidimensions ===>measures and dimensions
+
+	measures ===>measure some value and can be aggregated
+
+
+Facts ==>numeric value /measure ===>can analyse relationship b/w dimesions
+
+Dimesion ==> logical related attribute ==>
+
+
+_________________________________________________________________________________
+
+L-43,44,27,29,28,51,52 ---link analysis,53,54,26
+
+Data mining
+
+
+_________________________________________________________________________________________________________________________________
+
+L-43
+
+Introduction to Data mining ===>discovering or mining knowledge from large amount of data.
+
+	===> Knowledge discovery data (also known as KDD)
+
+	===>attempts to extract hidden pattern
+
+	===>supports automatic exploration of data
+
+Need--
+	==> Extracting meaningful data
+	==>finding hidden information
+	==>to manually analyse large amount of data
+	===>we need automatic analysis of data
+
+Evolution of data mining
+	==>statistics ---> consist regression analysis, cluster analysis, standard deviation etc. [lay the foundation of data mining]
+
+	==>Artificial Inteligence (AI): Applying of human thoughts
+
+	==>MAchine learning = union of AI and statistics
+			===>learn from data
+
+
+
+_________________________________________________________________________________________________________________________________
+
+L-52 -->Link analysis in Data mining
+
+like airlines(like cities) etc.
+
+===>useful for finding patterns in relationship
+
+e.g bread with better...
+
+Application
+	==>Association Discovery
+		==>support  and confidence
+
+	==> Sequential Pattern Discovery(we also consider time in this discovery)
+	
+	==> SImilar time Sequence Discovery
+		==>deriving sequence using another sequence
+
+
+
+_________________________________________________________________________________________________________________________________
+
+L-51
+
+Neural Networks ==>
+
+	===>mimics the human brain by learning from training data set
+		and applying the learning to generalise patterns for classification 
+		and prediction.
+
+i/p	weight		summarization unit
+
+x1  ->	w1  ->		 process            
+
+x2  ->  w2  ->
+
+					
+
+sum = X*W
+     =summision of(xiwi)
+
+Layers
+	==>input layer ==>contains input unit
+	==>Hidden layer ==>provide non linearity to the network
+	==>Output layer 
+
+
+
+_________________________________________________________________________________________________________________________________
+
+L-53
+
+Genetic algorithm ===>similar to neural network
+		====> every model competes with every inheriting traits from previous one
+			until only the most predictive model survives
+
+			e.g how many mail should be sent to grow business
+			
+
+
+_________________________________________________________________________________________________________________________________
+
+L-12
+
+K-means algorithm==>
+
+==>e.g do it as ywo cluster
+
+calculate eucledian distance
+
+1) Initialise two clusters
+
+	==>calculate centroid
+
+
+_________________________________________________________________________________________________________________________________
+
+L-27
+
+Memory based resoning (data mining technique) ===>
+	
+		==>instances of a model to predict unkown instances
+			==>maintains a dataset of known records
+			==>ALgo knows the characteristics of the records in this training set
+			==>when new record arrives for evaluation, the algo finds the neighbors to the new record, then uses characteristics of the neighbors for prediction and classification.
+
+	-->distance between new records and records in the training data set is calculated
+
+ISSUES
+	===>finding suitable records
+	===>establishing way to compose records
+	===>distance function and combination functions
+
+
+_________________________________________________________________________________________________________________________________
+
+L-28
+
+Decision Trees (Data mining major techniques)
+
+	==>applies to classification and predicrtion
+	==>used to visually define rules which are simple interpreted and understood
+
+
+	Root Node (Main Question)
+	   |
+	Branch Nodes (Intermediate nodes)
+	   |
+	Leaf Nodes (Answer)
+
+factors
+	==>Information gain ===>measure of how much the answwer to a specific question provides
+	==>Entropy ===>measure of uncertainity there is in information
+
+	###information gain is inversely proportional to entropy
+
+e.g ID3 Algorithm
+e.g credit score example
+
+ISSUE
+	==>finding splitting attribute
+
+_________________________________________________________________________________________________________________________________
+
+L-29
+
+Clustering Detection(major data mining technique)
+	===>unsupervised learning (we don't know the class labels and no. of labels)
+	===>earliest data mining technique
+	===>searches for similar data elements
+	===>e.g. K-means cluster
+
+	Distance measure
+		==>Euclidean distance
+
+Advantages of using clustering
+	===>not affected by new object
+	===>no need to worry about sign
+	===>computation process is simple
+
+Application of clustering
+	===>Establish taxonomy of disease,cure and symptoms
+	===>Social network communities
+	===>Seismology ==>Epicentre of earthquake
+	===>Business marketting==>targetted customer finding
+
+_________________________________________________________________________________________________________________________________
+
+L-12
+
+K-Means clustering
+	==>using eucledian distance divide into clusters
+
+	===>observed value 
+	===>centroid value
+
+	==>after adding new point to cluster the centroid will change again
+
+	==>centroid = (a+b)/2
+
+
+_________________________________________________________________________________________________________________________________
+https://www.youtube.com/watch?v=OTt8z8VAQCw
+
+Aprior algorithm ==>algorithm for mining frequent itemset n given transaction
+
+	===>uses bottom-up approach
+
+	==>rejection takes place based on minimum support
+
+	
+	L1, L2 ...are formed after rejection
+
+	===>now form association rules
+
+_________________________________________________________________________________________________________________________________
+
+L-13
+
+K-Means clustering
+
+c1={Row #, }
+c2={Row #, }
+	
+c1 and c2 are divided clusters
+
+--->to be done..
+
+_________________________________________________________________________________________________________________________________
+
+L-14
+
+P(A|B) = (P(B|A)*P(A))/P(B)
+
+
+_________________________________________________________________________________________________________________________________
+
+L-15
+
+P(A|B) = (P(B|A)*P(A))/P(B)
+_________________________________________________________________________________________________________________________________
+
+L-37 (UNIT-2)
+
+OLAP -->introduced by E.F Codd
+
+	===>analysing historic and time variant data
+
+	===>complex data derived
+
+	==>business datwarehouse
+
+	==>can be alalysed by data mining, Analytics Decision making
+
+	==>Information
+
+
+FEATURES OF OLAP:-
+	1) FAst
+
+	2) Analysis: lets user to enter query in interactive tool
+	
+	3) Shared
+
+	4) Multidimensional ===>measure and dimensional
+
+	5) Information
+
+OLTP-->characterised by large no. of short online transaction
+
+	==>business process
+
+	==>operations
+
+
+_________________________________________________________________________________________________________________________________
+
+L-38 (UNIT-2)
+
+OLAP OPerations
+
+	1) Pivoting ==>changing from one dimesion orientaion to another or ROTATION
+
+	2) SLICE and DICE ==>   slice =>cross tabulation is done for specific value other than all for fixed third dimension
+				dice ==>in dice two or more dimension are fixed
+
+	3) ROll up and Drill down ==>roll up ==>individual to confined data==>finer granularity to confined data
+				     drill down ==>confined data to finer granulaity
+
+_________________________________________________________________________________________________________________________________
+
+L-39 (UNIT-2)
+
+Diff b/w OLTP and OLAP
+
+OLTP
+
+	==>very fast
+
+	==>aim is to control & run basic business task
+
+	==>highly normalised database
+
+	==>simple and standard queries
+OLAP
+
+	==>speed depends on data
+
+	==>decision support
+
+	==>data in denormalised form
+
+	==>deals with consolidated data(hetrogenous data source)
+
+	complex queries with aggregation data
+
+
+OLAP
+
+	===>multidimensional
+
+	===>transparency ==>to improve efficiency and production
+
+	==>Accessibility ===>provides restricted access
+
+	===>consisitency ===>handle managemnet when increases(should not effect other aspects)
+
+	===>client server model
+
+	==>Generic Dimensionality
+
+	===>Dynamic sparse matrix (distribution of data dynamically)
+
+	===>Multiuser 
+
+	===>Unrestricted
+
+	===>Intuitive manipulation
+
+	===>FLexible
+
+
+
+_________________________________________________________________________________________________________________________________
+
+L-45 (unit-3)
+
+DAta Transformation (data cleaning aspect)
+		==>it is data preprocessing technique that transforms or consolidate the data into 
+		alternate forms appropraiate for mining
+
+
+INVOLVED PROCESSES (# SANG)
+	1) SMoothing: Removing the noise from data (binning, regression, clustering)
+
+	2) Aggregation: Summary or aggregate function
+			==>constructing a data cube (helps in OLAP)
+
+	3) Generalization: low-level concepts are replaced with higher level
+
+	4) Normalisation : Attributes value are normalised by scaling their values so that they fall in specified range.
+
+			==> Normalisation methods
+					
+					1) Min-Max Normalisation: V' = (V-min(x))/max(x)-min(x)
+
+					2) Z-Score Normalisation  ==>(zero mean normalisation) V' = V - (mean of attribute)/ standard deviation of attribute
+
+
+_________________________________________________________________________________________________________________________________
+
+L-49 (unit-3)
+
+Dimensionality REDUCZTION
+
+	==>it represents the original data in the compressed or redusec form by applying data encoding or transformation
+
+		LOSSLESS ==>if original data can be reconstructed from compressed data without losing any information
+
+		LOSSY	===> if reconstructed data is the approximation of compresses data
+
+Numerosity Reduction 
+
+	==>It reduces the data volume choosing smaller form of representation
+
+		PARAMETRIC ==>only parameters of data and outliers are stored instead of actual data...e.g Regression, log-linear models
+
+		NON-PARAMETRIC ===>data is stored in form of histograms, clustering, sampling etc
+
+
+_________________________________________________________________________________________________________________________________
+
+L-50 (unit-3)
+
+Data Discertization: (concept hierarchy)
+
+	==>divides range of attributes into intervals so as to reduce numer of values for a given continous attribute.
+
+	TECHNIQUES
+		
+		==>Splitting : top-down(attribute is splitted into range of values)
+
+		==>Merging : Bottom-up (initially we consider later remove some during merging)
+
+		===>Supervised ==>class information is known
+
+		===>Unsupervised ==>class information is not known
+
+
+CONCEPT HIERARCHY
+
+	===>it also helps in reducing data
+
+	==>by replacing low-level concepts with higher level concepts.
+
+	mobile no. and landline no. ==>low level
+
+	telephone ===>higher level
+
+how they are applicable on numerical data
+
+	1) binning ===> sepearate in different bins
+
+	2) Histogram
+
+	3) CLuster analysis
+
+_________________________________________________________________________________________________________________________________
+
+L-16
+
+Y= aX+b
+
+a= n*sumsn(xy)-sumsn(x)sumsn(y)/n*sumsn(x^2)+ (sumsn(x))^2
+
+b = 1/n(sumsn(yi)-a*sumsn(xi))
+
+
+
+
+_________________________________________________________________________________________________________________________________
+
+L-17
+
+Y= aX+b
+
+a= n*sumsn(xy)-sumsn(x)sumsn(y)/n*sumsn(x^2)+ (sumsn(x))^2
+
+b = 1/n(sumsn(yi)-a*sumsn(xi))
+
+_________________________________________________________________________________________________________________________________
+
+L-20
+
+Data mart ==>data store which is designed for a department of an organistaion, or data mart is subset of the D.W that is usually oriented to a specific purpose.
+
+#diagram
+
+Reason for Creating Data mart
+	
+	===>Easy Access of frequent data
+	===>Improved end-user response time
+	===>Easy creation of data mart
+	===>Less cost
+
+Different type of Data Mart
+
+	DEPENDENT DATA MART: In this data mart is built by drawing data from central data datawarehouse that
+				already exists.
+
+	
+	INDEPENDENT DATA MART: In this, the data mart is built by drawing from operational or
+				external sources of data or both.
+
+				==>Data mart is created without help of Data warehouse
+
+
+ADVANTAGES OF DATA MART:
+
+	1) Simpler, more focussed & flexible
+	2) Low cost s/w and H/w
+	3) Faster and cheaper to build
+	4) stores data closer that enhances performance
+
+
+
+Disadvantages of Data mart
+
+1) unorganised development
+2) difficult process of data access, cleansing
+3) NOt much thorough design as data warehouse
+4) increase in data mart size leads to problem such as performance
+	degradation, data inconsistency.
+
+Difference  between data warehouse and data mart
+
+
+data warehouse
+	==>corporate wise
+	==>union of Data mart
+	==>recives functions from staging area
+	==>centralised control and management of data
+	==>Keeps all historical data
+	
+data mart
+	===>departmental wise
+	==>subset of DW
+	==>it has star join concept means fact and dimension
+	==>Technology optimal for dat access and analysis
+	==>STRUCTURED to suit the departmental view of data
+
+_________________________________________________________________________________________________________________________________
+
+L-33
+
+Extract, Transform, Load (ETL)
+
+Extracting
+	==>it is process to collect data from various source then transform and then load
+	==>1st is extracting the data==>brought up from external sources
+	==>Involves connecting to source, collecting necessary data needed for analytical processing.
+
+	problems:  Data integrity(different names for same thing)
+
+Transforming
+
+	==>fit the data as std.
+	==>series of steps are performed on extracted data to convert into standard format.
+	==>conversion, cleaning duplicates, filtering the data, standardizing the data
+
+
+
+Loading
+	==>send the data to warehouse
+	==>imports transformed data into large database or date warehouse
+
+
+# diagram
+
+data sources ==>ETL ==>Data warehouse staging ==>Data warehouse ====> then into different Data mart
+
+
+
+Comparison of OLTP and data warehouse
+
+data warehouse
+
+	==>Adhoc queries(we dont know intially but on run time)
+	==>regular updation using ETL tools (may be monthly)
+	==>generally uses denormalised data
+	==>Query accesses thousand or millions of records
+	==>store historical data
+
+OLTP 
+	==>supports only predefined operations
+	==>always upto date
+	==>fully normalised data
+	==>few records at a time
+	==>No historical data	
+
+
+_________________________________________________________________________________________________________________________________
 
 
 
