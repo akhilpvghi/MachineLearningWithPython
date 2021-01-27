@@ -454,7 +454,7 @@ OLAP OPerations
 				dice ==>in dice two or more dimension are fixed
 
 	3) ROll up and Drill down ==>roll up ==>individual to confined data==>finer granularity to confined data
-				     drill down ==>confined data to finer granulaity
+				     drill down ==>confined data to finer granulaity (like breaking quarter into months)
 
 _________________________________________________________________________________________________________________________________
 
@@ -621,7 +621,8 @@ ________________________________________________________________________________
 
 L-20
 
-Data mart ==>data store which is designed for a department of an organistaion, or data mart is subset of the D.W that is usually oriented to a specific purpose.
+Data mart ==>data store which is designed for a department of an organistaion, 
+or data mart is subset of the D.W that is usually oriented to a specific purpose.
 
 #diagram
 
@@ -677,6 +678,146 @@ data mart
 	==>it has star join concept means fact and dimension
 	==>Technology optimal for dat access and analysis
 	==>STRUCTURED to suit the departmental view of data
+
+_________________________________________________________________________________________________________________________________
+
+L-21
+
+STEPS IN IMPLEMENTING DATA MART (#MAP CD inverse way)
+
+	Designing
+		==>first step and covers all the task from initiating the request for data mart through gathering
+		information about the requirement
+			==>gathering business/technlogy information
+			==>identifying data sources
+			==>selecting appropriate subset of data
+			==>Designing both logical/physical str.
+	2) COnstructing		
+		==>include creating physical database and logical structure associated with the data mart.
+			==>creating db, tablespaces, other reltn
+			==>creating schema object =>table,index.
+			==>Determining best table access strategy.
+	3) Populating (ETL)
+		==>mapping of data sources 
+		==>extracting the data
+		==>cleansing and transforming the data
+		==>loading the data
+
+	4)Accesing 
+		==>it involves putting the data to use
+		==>frontend development
+		==>maintainging and managing bussiness interfaces
+		==>setting up db structure==>summarised table.
+
+	5) Managing
+		==>involves managing the data over its lifetime
+			==>Secure access the data.
+			==>Managing the growth of data
+			==>optimising the system for better performance
+			==>data availability
+
+_________________________________________________________________________________________________________________________________
+
+L-22
+
+DATA WAREHOUSE
+
+	NEED
+		==>for taking quick and effective decision
+		==>provides necessary information
+		==>creating and managing efficient data repository
+
+
+	GOAL OF Data warehouse
+		===>secured and easy access of infon to user.
+		==>consistent informationto be improved
+		==>clean and authentic data for analysis
+		==>collected data must be accurate, verified.
+		==>data must be adaptive in nature
+	
+	ADVANTAGES
+		==>historical informtn is provided to analyst.
+		==>Increase quality of data
+		==>helps in recovering from DB failure
+		==>helps in data mining process
+
+
+	BENEFITS
+		==>increases in product inventory turnover
+		==>decrease in cost of productn
+		==increase sales with improved target market selection
+		==>better business intelligence
+
+Difficulties/problem
+
+	1) construction of D.W for large organisation is a complex task 
+		and can take years to complete(is accomodate to changes.)
+
+	2) Administration of D.W is also complex and requires higher level skills and team with technical expertise.(complexity increase with size)
+
+
+	3)Quality conrol of DW issues both quality and consistency of data.(data should be correct,clean and authentic)
+
+
+_________________________________________________________________________________________________________________________________
+
+L-24
+
+Distributed DW
+
+	==>Data are shared across multiple data repositries,
+		for the purpose of OLAP and where each data warehouse
+		may belong to one or more organisation.
+
+	==>It covers a complete enterprise data warehouse but have tiny data that
+		that are built seperately.
+
+	==>These data stores are connected physically over a network to provide users access 
+		to the relevant reports.
+
+	==>It is the core of all enterprise data which is used to send relevant data to 
+		individual data marts.
+
+Categories of distributed data warehouse
+	
+	1)Local and global data	warehouse: 
+		data is unique to local Operating system
+
+		global is integrated data
+
+	2) Technologically distributed DW:
+		logically single data warehouse but physically 
+		many distributed data warehouse 
+
+	3) Independently evolving distributed DW:
+		uncordinated environment DW ==(DW increases one by one)
+		
+ADVANTAGES AND DISADVANTAGES OF Distributed DW
+
+	1) Faster : local DW has its own control
+
+	2) No Limits: 
+
+	3) Cost is much less than centralised structure
+
+Disadvantages of distributed DW
+
+	1) Metadata : overhead increases (info of metadata) as data increases
+
+
+	2)multiple development efforts
+
+
+	3) The roles and responsibilities are not clearly defined
+	4)Excessive network traffic starts
+	5) coordinating development becomes complex and less effective
+
+	6) Interconnectivity could be problematic in case of traffic congetion
+
+
+
+
+
 
 _________________________________________________________________________________________________________________________________
 
@@ -736,7 +877,7 @@ Difference between fact table and dimesion table
 
 
 Fact table 
-		==>contains numerica values
+		==>contains numerical values
 		==>primary key of fact table is formed from primary key of dimension table
 		==>provides measurement of an enterprise
 		==>large size
@@ -889,7 +1030,693 @@ L-30
 OLAP server model ROLAP
 
 	ROLAP(relational OLAP)==>ROLAP has  a 3-tier architechture
-	==>worksdirectly with relational dat base
+	==>works directly with relational database
+	==>FACTS and DIMENSION Table are stored as Relations.
+	==>New Relations are storing aggregate information
+
+
+flat files ===> ETL server ===>DW star schema ===>OLAP server==>end user
+
+#ROLAP structure
+
+Advantages
+	==>handle large amount of data base
+	==>2-d relational table can be viewed in multi-dimensional form
+	==>database security through form authorisation
+	==>Any SQL reporting tool can access data
+
+Disadvantages:-
+
+	===>difficult to perform complex calculation.
+	===>Long QUery time for large data size
+	===>Additonal development time & more code support are needed
+	===>doesn't have complex and complicated function
+
+
+_________________________________________________________________________________________________________________________________
+
+L-31
+
+OLAP server models (HOLAP hybrid OLAP): this system includes the best of ROLAP and MOLAP
+
+flat files ===>ETL server ===>DW schema ==>OLAP Server
+
+Comparison OF OLAP Servers
+
+
+			ROLAP			MOLAP			HOLAP
+
+
+Detailed data		Relational DB		MDDB			Relational DB
+storage locn
+
+
+Aggregate data		Reln DB			MDDB			MDDB
+storage Locn
+
+
+Space requirment	Large			medium			Small
+
+
+Query response time	slow			fast			medium	
+
+
+Processing time		slow			fast			medium
+
+latency			low			high			medium
+
+
+_________________________________________________________________________________________________________________________________
+
+L-23
+
+Data warehouse architecture
+
+2-Tier Architecture
+	==>client server architecture
+	==>sepearate physical data source and DW
+	===>not expandable
+	==>doesn't support large no. of end user
+	==>Easy to maintain
+	==>fast Commn.
+
+
+#diagram
+   
+	req/res
+cleints=======>>data source 
+		(DW)
+
+============================
+3-Tier Architecture
+
+Bottom tier
+		===>has data base in 3-Tier architecture
+		===>after cleaning,transformation data is loaded
+
+Middle Tier
+		==>OLAP server
+		===>business logic is there
+
+Top Tier
+		===>front-end client layer.
+		==>Query tools
+
+#diagram
+end users ===>OLAP========>Data source
+(top)		(middle)	(bottom)
+
+==================================
+
+4 Tier architecture
+
+	===>database
+	===>Application
+	===>Presentation
+	===>Client
+
+#diagram
+
+end user ===> controllers  ===>view ===> business objects and models ===>data objects <==> Database
+
+		(    Presentation   )       (business logic )
+
+
+_________________________________________________________________________________________________________________________________
+
+L-26
+
+Data mining application
+
+	==>customer segmentation ==>to understand customer
+
+	==>market basket analysis	==>used in retail industry (buying pattern)
+
+	==>Risk Management	==>used in insurance companies
+				==>credit score	
+
+	==>Fraud Detection	==>used by credit cards company
+				==>like abnormal spending
+
+	==>Demand prediction
+				==>Reatil and online 
+				==>like inn stock management
+
+BENEFITS
+
+	==>manufacturing	==>uncovering of variations b/w purchase order
+
+	==>mail order
+		==>mail promotion
+
+	==>supermarket
+		==>sell together
+
+	==>Airlines
+		==>discount
+
+	==>Department store
+		==>like during festivals
+
+
+	===>Insurance
+		===>save money by detecting frauds
+
+	===>Banks
+		==>increase business by direct marketting
+
+
+DATA MINING TASKS
+
+	PREDICTIVE TASKS
+		==>predict values of data by making use of known results from a different set of sample data
+	
+		CLASSIFICATION
+			===>predefined set of classes
+		REGRESSION
+			==>Forecasting future data values
+		PREDICTION
+			==>predicting future state (like flood)
+		TIME SERIES ANALYSIS
+			==>predicting future values based on time(stock market)
+		
+		
+	DESCRIPTIVE TASKS
+		==>enables you to determine patterns and relationship 
+			in a sample data
+		CLUSTERING
+			==>No classes known (Grouping)
+			(Marketing)
+		SEQUENCE DISCOVERING
+			==>similar to ARM but time dependent(web page linking)
+		SUMMARIZATION
+			==>subset of data (TRS value-TV viewership)
+		ASSOCIATION RULE
+			==>market baket analysis
+
+		Mining
+			==>Analysis
+
+
+_________________________________________________________________________________________________________________________________
+
+L-34
+
+Dimensional modelling
+
+	==>data in a DW is multidimensional having measure and dimension attributes.
+	===>measure attributes ==>meaure some values and can be aggregated upon those values.
+	==>DImension attribues==>those attributes which defineson which the measure attributes and their summary 
+
+FACTS
+	==>facts re the numerical measure by which one can analyse relationship b/w dimensions
+		the relation containg such multidimensional data are called FACT TABLE
+
+
+DIMENSIONS
+	==>collection of logically related attributes and is viewed as an axis for modelling the data.
+		A DIMENSION TAble is a table associated with each dimension helps in describing the dimension further.
+
+_________________________________________________________________________________________________________________________________
+
+L-35
+
+DATA WAREHOUSE SCHEMA
+	==>schema is a collection of database object, including tables, views, indexes etc
+
+1) STAR SCHEMA OR STAR JOIN SCHEMA :- It consist of FACT Table with a single table for each dimension(dimension table)
+
+Advantages
+	==>Simplest and easiest 
+	==>it optimizes the navigation through DB
+	==>SImple queries
+	==>Suitable for query processing
+
+SNOWFLAKE SCHEMA
+	==>cariation of star schema , which has multi level of simension table.[Dimesion tables are normalised]
+
+Advantages
+
+	==>less redundance due to normalised dimension table
+	==>Dimesion table are easier to maintain
+
+Disadvantages==>complex schema
+
+
+FACT CONSTELLATION SCHEMA
+	==>also known as galaxy schema. In this multiple FACT Tables shares the DIMENSION TABles
+
+disadv
+==>complex as it is having multiple fact tables
+==>difficult to manage
+==>Dimesiona tables are very large
+
+STAR v/s SNOWFlake schema
+
+Star 
+	==>highly denormalised
+	==>category wise single dimension table
+	==>more data dependency and redundancy
+	no need of complicated join
+
+SNowflake
+
+	==>normalised (in dimesion table)
+	==>dimension table further splits into additional table
+	==>less data dependency and redundancy
+	===>complicated joins are required
+
+_________________________________________________________________________________________________________________________________
+
+L-36
+
+Type of keys in STAR SCHEMA
+
+PRIMARY KEYS: Each row in a domension table is identified by a unique
+	value of attributes designated as primary key of the dimension.
+
+SURROGATE KEYS: The surrogate keys are simply  system generated sequence numbers.
+		===>no built-in meanings
+
+FOREIGN KEYS: Primary keyof each dimension table must be a froreign key in 
+	the fact table.
+
+
+_________________________________________________________________________________________________________________________________
+
+L-46
+
+Data preprocessing 
+	==>to improve quality in Data warehouse
+	==>increses efficiency
+	==>ease of mining process
+	==>Removes Noisy data, inconsistent data and incomplete data
+		==>data with missing values.
+
+Data cleaning
+	==>It cleans the data by filling in the missing values, smoothing noisy data
+		,resolving the inconsistencyand removing the outliers.
+
+WAYS TO HANDLE MISSING DATA DURING CLEANING
+	==>manual entry of missing data
+	==>using the attribute mean
+	==>using most probable value ==>using Decion tree, Regression (in this we are predicting)
+	==>using global constant(like N/A or unknown)
+	==>ignore the tuple
+
+
+_________________________________________________________________________________________________________________________________
+
+L-47
+
+Data Integration (Data preprocessing method)
+	==>it is preprocessing method that involves merging of data from different sources (flat files, multi dimensional database, data cubes) in order to 
+	form a data store like data warehouse.
+
+ISSUES IN DATA INTEGRATION
+	==>schema integration and object matching
+		==>like attribute name mismatch
+	==>Redundancy
+		==>unwanted attributes
+	==>Detection and resolution of data value conflicts
+		==>$ and rupees converter need to modify
+
+
+_________________________________________________________________________________________________________________________________
+
+L-48
+
+Data Reduction
+	==>preprocessing technique that helps in obtaing reduced representation of dataset from the 
+	available data set.
+	==>Integrity of the original data should even after redn in data volume
+	==>it should produce same analytics result as on original data
+
+
+
+	Data cube aggregation
+		==>process in which information is gathered and expressed in a summary
+		form.
+		==>dataset in smaller volumes
+		==>used for statistical analysis.
+
+	Dimensionality reductn 
+		==>we remove redundant attributes.
+		==>data compression
+			==>encoding of data
+		==>Numerosity reduction
+			==>data is replaced by estimated value/alternative
+		==>Discertisation and concept hierarchy
+			==>data is replaced by range of values or higher conceptual level
+
+_________________________________________________________________________________________________________________________________
+
+
+L-25
+
+Decision tree numerical
+
+
+	info gain = I(P,n) = -(sumsn(i=1 to n)(P/S) *log2(P/S) + (n/S)*log2(n/S))
+
+
+	S= P+n
+
+	E = sumsn(i=1 to v) (pi+ni)/(p+n) I(p,n)
+	
+	Gain(A) = I(P,n)-E(A) 
+
+
+
+find splitting attribute
+
+	==>select attribute with highest gain 
+
+
+_________________________________________________________________________________________________________________________________
+
+
+L-19
+
+_________________________________________________________________________________________________________________________________
+
+L-11
+
+FP growth algo
+
+Item	freq	 priority
+
+remove item which have freq less than given support
+
+==>assign priority as higher freq= higher priority
+
+
+============
+
+trans id		ordered item considering priority
+
+
+==>now draw fp growth tree
+
+
+_________________________________________________________________________________________________________________________________
+
+L-43
+
+Data mining introduction
+
+	==>it is process of discovering or mining knowledge from a large amount of data
+
+	==>extracting useful information for business purposes
+
+	==>extract hidden patterns and trends from large database
+
+
+Evolution of data mining
+
+	==>data mining term introduced in 1990
+
+	==>Statistics ==>Regression analysis, cluster analysis, Standard deviation etc.
+		[lay the foundation of data mining]
+	
+	==> Artificial intelligence ==>applying of human thought like processing
+
+
+	==>Machine Learning => union of statistics and AI
+			===>Learning by the software about data
+
+
+_________________________________________________________________________________________________________________________________
+
+L-44
+
+Steps in Data mining/phases of KDD in database
+
+	1) Data selection
+		==>retrieves the data from various sources which is relevant
+
+	2) Data Preprocessing
+		==>consistent state
+		==>removal of unnecessary information
+
+	3) Data transformation 
+		==>converting data into standard/suitable format
+
+	4) Data mining
+		==>by applying various algorithm
+
+	5) Pattern evaluation
+		==>pattern to knowledge
+
+	6) Knowledge presentation
+		==>data visualisation
+
+	
+Architecture of data mining system
+#diagr
+
+	various data sources
+		|	=====>data cleaning,integrate, selection
+	database or DW server
+		|
+	Data mining engine
+		|
+	Pattern evaluation
+		|
+	User interface
+	
+
+
+_________________________________________________________________________________________________________________________________
+
+L-54
+
+Asoociation Rule mining (ARM)
+
+	==>used in retailing
+	==>also known as market basket analysis
+
+	A (antecedent) => B (consequent)
+
+	Support and confidence
+
+	Support ==>percentange of transaction
+		P(A intersection B) ==>measures the frequency of association
+
+	Confidence ==> C = P(B/A) = P(A intersection B)/ P(A)
+
+		===>measures strength of association
+
+
+Parameters
+	1) FInding all parameters that appears frequennctly in transaction ==
+		==>min. support count
+
+	2) finding strong association among frequent items
+		==>confidence
+
+Problems in ARM
+	==>finding strong asscoiation
+	
+FUnctions 
+	==>collating information from numerous transn.
+	===>genrating rules from counts in transaction
+
+
+APriori Algorithm
+	==>genrate candidate itemset of a given size 
+	==>less than support value is eliminated
+	==>iterative process
+	
+
+
+_________________________________________________________________________________________________________________________________
+
+
+L-03
+
+Data warehouse features		(# NSIT)
+
+	defn of Bill Inmon
+		==>subject oriented
+		==>Integrated
+		==>Non-volatile
+		==>time variant
+
+
+subject oriented
+	==>saved as subjects
+	==>like total sales
+
+	
+
+Integrated
+	==>data in DW comes from several operational systems.
+	==>like itegrating different types of account
+
+	==>Remove inconsistency
+		==>naming convention
+		==>different codes
+		==>data attributes
+		==>measures
+
+	==>Transformation
+	==>Integration of source data
+
+
+Time variant Data
+	==>has to contain historical data, not just current value.
+	==>contains time element
+	==>allows the analysis of past
+	==>relates info. to the present
+	==>enables forecast to future
+
+
+
+Non-volatile
+	==>not update/delete from DW in real time
+
+Data Granularity
+	==>in DW, it is efficient to keep data summarised at different levels
+	==>like monthly, quarterly etc
+
+
+_________________________________________________________________________________________________________________________________
+
+
+L-05
+
+KNN classification numerical
+
+eucledian distaance is calculated using observed value and actual value
+
+==>calculate k distance, and check class according to k distance
+
+_________________________________________________________________________________________________________________________________
+
+
+L-06
+
+KNN numerical 
+
+if value of k is not given, then based on only one distance, we can classify the class
+
+_________________________________________________________________________________________________________________________________
+
+L-07
+
+FP growth algorithm numerical
+
+item	freq	priority
+
+# higher the freq, higher the priority(or we can also say it as rank)
+
+==>order the item as priority
+
+==>root is always null in FP-tree
+
+_________________________________________________________________________________________________________________________________
+
+L-04
+
+Data warehouse components
+
+#diagram
+
+Source		Management & control		Information Delivery
+Data		
+
+		DW				Data mining
+		DBMS				OLAP
+		Data marts			Report Query
+Production	multidimensional
+data
+
+Internal
+data
+
+Archived 
+Data
+
+External
+Data
+
+		Data
+		Staging
+
+		  ETL
+
+
+_________________________________________________________________________________________________________________________________
+
+L-01
+
+Aprior algorithm
+
+support = freq/total transaction
+
+confidence (A->B) = supp(A unioun B)/support(A)
+
+_________________________________________________________________________________________________________________________________
+
+
+L-02
+
+Aprior algorithm
+
+with three itemset rule
+
+_________________________________________________________________________________________________________________________________
+
+
+L-25
+
+Noise in data
+
+random error or variance in a measured variable
+
+Techniques to remove noise
+
+1) Binning :
+
+	1) sort the data 
+
+	2) divide the data into bins(bucket of range of values)
+
+	3) bin size should be same
+
+		1) smoothing by bin means
+
+		2) bin medians
+
+		3) bin boundaries
+
+2) Regression
+	:Prediction(used to fit an equation to a data set)
+
+	Linear regression = y(predicted value) = mx(given value) +b
+
+
+3) Clustering:	
+
+steps of data cleaning process
+	1) detection of discrepancy
+		==>manual error
+	2) transformation of data
+
+
+
+_________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -226,7 +226,7 @@ high coupling ==> more dependent
 
 less coupling ===> less dependent or independent modules
 
-ensures low coupling ===>low coupling is desired
+ensures low coupling ===>low coupling is desired (#think of populattion)
 
 ===>high coupling leads to more error, and debug/isolation of error is more difficult, 
 
@@ -1190,13 +1190,204 @@ STEPS TO MAKE TEST CASES
 ______________________________________________________________________________________________--
 
 
+L-14 
+
+Characteristics of good SRS
+
+Consistency ==>No conflicts between the requirement
+
+		==>every requiremnent must be specified using a standard terminology
+
+Correctness ==>what is stated is exactlt what is desired
+
+	=====>Expected functionality matches the requirements present in SRS
+
+
+Unambiguos
+	===>Every stated requirement has only 1 unique meaning
+
+	===>words with multiple meaning
+		==>these words should be specified with their intended meaning
+
+	===>software requirement specification language can be used
+
+		Advantages
+			==>language processors exist which tells different kind of errors
+
+		Disadvantages
+			==>understanding of this language is not for everyone
+
+
+Complete
+	===>includes all functional + non functional requirement + constraint
+
+	===>specifies expected o/p from all kinds (valid/invalid) inputs from the user
+
+Traceable
+	==>origin of each requirement should be clear
+	==>It is important because future referencing may be required for development/maintenance
+
+Verifiable
+	==>SRS verifiable iff each requirement verifiable
+
+	==>iff there is a process to check if the SW meets each of its reqmnts
+
+	==>"Good", "Fast" ==>ambiguos reqmts can never be verified
+
+Modifiable
+	==>easy to make changes in SRS retaining its structure 
+
+	==>correctly modified(keep all cross references)
+
+Ranked For stability/Importance
+
+	==>each reqmnts sould be ranked
+	
+
+
+
+______________________________________________________________________________________________--
+
 L-38 (UNIT 4)
 
 Equivalence class testing==> triangle example
 
+______________________________________________________________________________________________--
+
+L-31
+
+Error
+	==>defined in 2 ways
+		==>REFER TO difference between  ACTUAL observed output of a s/w and the correct expected o/p
+		==>refer to human action that result in SW containing fault or defect
+
+
+Faults (feel it like a characteristics)
+	==>condition that cause a system to fail in performing its required functionality
+
+	==>It is a static characteristics of S/W
+	==>also known as software bug
+
+
+Failure
+	==>Inability of a system/component to perform a required function 
+		according to its specification
+
+	==>Failure occurs when fault is present in the system
+
+	==>presence of a fault does not guarantee a failure
+		=but fault is necessary conition for a failure
+
+	==>Failure is a dynamic characteristics/attribute if program behaviour
+		==>failure occurs only when a fault is executed
+
+	
 
 
 
+______________________________________________________________________________________________--
+
+
+L-21
+
+Cocomo Intermediate numerical
+
+E = a(KLOC)^b * EAF
+
+E = 2.8(400)^1.20 * EAF
+
+case 1: Effort Adjustment Factor
+
+	EAF = 0.84 * 1.14
+
+Development time(D) = C(E)^d = 2.5(3470)^0.32 = 33.9M
+
+CASE II: 
+	EAF = 1.29 * 0.95
+		= 1.22
+
+	E = 3412 * 1.22
+		=4528PM
+
+	D = 2.5(4528)^0.32
+		=36.9M
+
+COCOMO : Detailed Development Mode
+	==>calculates the of cost driver on each phase of SDLC
+
+	==>use phase sensitive effort multiplier for each cost driver
+
+	==>to determine the ammount of effort  required to complete each 
+	phase of SDLC
+
+	==>It establishes Module-subsystem-system Hierarchy
+		==>The rating of cost drivers is done at that level only where the cost driver is most 
+		susceptible to variable
+
+Adjustment factor(A)
+	A= 0.4(Design documentation DD) + 0.3(code C) + 0.3(testing I)
+
+Size equivalent
+	=(S*A)/100
+
+Effort = Up E
+
+development Time =Tp * D
+
+______________________________________________________________________________________________--
+
+L-22
+
+cocomo numerical
+
+File i/p and o/p =1KLOC
+cursor movmt =2kLOC
+SCreen movmt = 3KLOC
+
+
+in detailed mode
+
+new parameter is multiplied according to different phases
+
+Up in effort
+	=>Up * E
+
+Tp in development time
+	=>Tp*D
+
+______________________________________________________________________________________________--
+
+L-39
+
+Decision table based testing
+	==>is useful when we have variety of condition
+		and we need to take particular action
+
+	1) Condition Stub
+
+	2) Action STUB
+
+	3) Condition entries
+
+	4) Action entries
+
+# condition, entry action table
+
+==>if all enteries are binary then the decision table is called LImited ENTRY Table
+
+==>if conditions can have several values then the decision table is called Extended Decision Table.
+
+# it is like if c1 , c2, c3 all conditions are true then what are the action needs to be performed
+
+
+
+______________________________________________________________________________________________--
+
+L-40
+
+decision table based testing 
+
+	==>#set table with different input condition 
 
 
 
