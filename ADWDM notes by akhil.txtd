@@ -1708,6 +1708,44 @@ steps of data cleaning process
 
 _________________________________________________________________________________________________________________________________
 
+L-08
+
+Agglomerative algorithm
+
+plot a dendogram
+
+==>using single linkage
+
+===>dendogram is like bar graph
+
+
+_________________________________________________________________________________________________________________________________
+
+L-09
+
+Agglomerative algorithm
+
+plot a dendogram
+
+==>using single linkage
+
+===>dendogram is like bar graph
+
+in each step find closest pair cluster and merge them
+
+==>can draw cluster based on that dendogram
+
+_________________________________________________________________________________________________________________________________
+
+L-10
+
+
+
+
+
+
+
+
 
 
 
