@@ -233,17 +233,626 @@ _____________________________________________________________
 
 L-26
 
+customer acquisation relationship management
+
+	==>used to gain new propects and customers
+
+		==>use of website to acquire new customers
+
+		==>migrating existing customers to online
+
+	Focuses
+
+		==>search marketting
+			=>search engine optimisation
+			=>Pay per click
+			=>paid for feeds inclusion
+
+		=>Online PR
+			==>Blogs
+			==>social media
+			==>Brand promotion
+
+		=>Online Partnership
+			==>affliate marketting
+			==>link building
+
+		=>Interactive ads.
+			=>sponsorship, targeting
+		
+		=>Opt-in-email
+			=>newletter
+			=>Viral marketting =>Buzz marketting
+			=>offline communication =>Direct mail, mouth-to-mouth publication
+			
+_____________________________________________________________
+
+L-27
+
+CRM
+
+Goals of customer retention
+
+	==>Repeat customers
+	==>Repeat visits (customer visiting web site)
+
+E-marketing tools that help to retain customers:
+	
+	==>repeat visits=>email marketting
+	==>Online communities
+	==>Discounts
+
+Focus on Excelling in e-commerce service quality
+
+	==>Quality of sevice is key determinant of loality
+	
+Improving online service quality
+	=>Dimension of service quality
+		==>Tangibles==>physical visual appearance
+		==>Reliability ==>consistency and accuracy
+		=>responsiveness ==>promptness
+		==>assurance ==>trust
+		==>empathy==>caring
+
+
+
+	Lovality vs Satisfaction graph
+
+		==>affection zone
+		==>defection zone
+		==>indiffernce zone
+
+
+customer extension
+	==>has the aim of increasing the lifetime value of the customer
+		to the  company.
+
+Credit card
+	==>loan/depositor account
+
+cross-selling
+
+Direct-email
+
+			
+_____________________________________________________________
+
+L-06
+
+Electronic payment methods
+
+	problems with conventional payment methods
+
+	==>lack of convenience
+	==>lack of security
+	==>lack of support for micro transanction
+
+
+	==>payment clear system (PCS)
+
+	merchant or service provider
+
+Ecommerce Security issue
+
+	Database vulnerabilities
+		==>Sql injection attack
+			can lead to database leak
+
+	Shopping cart vulnerability
+		==>price modification
+		==>transaction modification
+		==>merchants id and info leakage
+		==>destrying the repurtaion
 
 
 
 
 
+	==>customer forgets their password
+	==>steal of password
+
+
+_____________________________________________________________
+
+L-07
+
+secure payment system
+	=>security of financial trasactions done on the internet is ensured to be safe and confidential
+
+	SET (Secure Electronic Transaction)
+		==>Encrypts the payment info
+				==>private
+
+
+	Benefits
+		==>convinience
+
+		==>lower cost 
+
+
+_____________________________________________________________
+
+L-08 (UNIT-3)
+
+Electronic data exchange (EDI)
+
+	==>interprocess communication of business information in standardised form
+
+		EDI helps in
+			==reduction in transmission cost
+			==>better relationship b/w trading
+
+
+
+		==>electronic document transfer
+		==>using XML can incorporate security also
+		
+EDI layered Architecture
+
+	EDI semamntic layer ==>application layer service
+
+	EDI standard layer
+		==>EDIFACT business form standards
+		==>ANSIX12 business form standard
+
+	EDI Transport layer
+		email
+		=>point to point
+		=>www
+		=>HTTP
+	=>Physical layer
+		=>broadband
+
+flow information in EDI (#diagram)
+
+	purchase request ==>purchase dept==>EDI enabled computer==>finance dept
+
+
+EDI applications
+
+	==>role of EDI in international exchange
+
+	==>Interbank EFT(electronic fund transfer)
+
+	==>Health care/Insurance
+
+	==>Manufacturing/retail
+
+EDI over the internet (EDIINT)
+
+	by IETF(Internet engineering task force)
+
+	==>earlier dedicated cable
+
+	==>now internet using XML format
+			==>now cheap
+
+	==>Security
+
+	==>Increased liability
+
+	==>low cost
+
+	==>higher accesible
+
+	==>low cost
+
+	==>highly accesible
+
+	==>Globalisation
 
 
 
 
+_____________________________________________________________
 
 
+L-12
+
+features of Ecommerce
+
+	==>available everywhere anytime
+
+	==>global reach
+
+	==>universal standards
+
+	==>Interactivity
+
+
+Security threats in E-commerce
+
+	==>SQL Injection
+	
+	==>Price manipulation
+
+	==>Buffer overflow
+
+	==>cross site scripting
+
+	==>Remote command execution
+
+	==>weak authentication and authorization
+
+
+ELECTRONIC PAYMENT SYSTEM
+
+	==>financial exchange that takes place online
+
+	==>decreases technology cost
+
+	==>reduced operational and processing cost
+
+	==>increasing online cost
+
+ADv.
+
+	==>covenience
+
+	=>time saving
+
+	==>secure
+
+DisAdv.
+
+	==>identity theft
+
+	==>losing of smart cards
+
+E-cash
+
+	==>computer generated funds
+
+	==>disgital signature is used
+
+
+_____________________________________________________________
+
+
+L-10
+
+Firewall
+
+	==>network security system that control s incoming and outgoing n/w traffic
+
+		==>Software firewall
+
+		==>Hardware firewall
+
+
+characteristics
+	==>all traffic should pass through firewall
+
+	==>allow only authorised traffic
+
+	==>firewall should be strong
+
+
+Types of firewall
+
+	==>N/w Layer firewall
+
+	==>Application layer
+
+	==>proxy Server
+
+	==>NAT (N/w address translation)
+
+
+limitations
+	==>insider intrusion
+	==>Direct internet traffic
+	==>Virus attack
+
+
+
+N/w Layer firewall or packet filter
+
+	==>operates on TCP/IP
+
+	==>based on ip addr or port or protocol etc
+
+		==>Stateless
+			Access control list
+
+		==>Stateful
+			more memory
+			==>monitor ongoing traffic
+
+2) APplication layer firewall
+		
+		==>works on apllication level
+
+		==>operates on process that is sockets
+
+	
+
+3) Proxy server(application gateway)
+
+	==>Acts as a relay node.
+
+4) NAT (Network address translation)
+
+	==>allows same set of IP addresses to be reused in different parts
+	of internet
+
+	==>NAT offers some degree of natural firewall capability
+
+
+
+_____________________________________________________________
+
+
+L-11
+
+Digital payment system
+
+paypal 
+
+	==>largest payment system
+
+	==>in form of digital currency
+
+	==>developed by David chaun
+
+	==>digi cash also known as e cash
+
+
+Cyber- cash
+
+	==>credit card payment without knowing card
+
+smart cards
+
+
+
+_____________________________________________________________
+
+
+L-02
+
+Driving forces for ecommerce
+
+	1) market and economic pressure
+
+		==>Frequent changes in market demands
+
+		==>Awareness among consumers
+
+	2) Societal and environmental pressure
+		
+		==>goernment regulation
+
+		==>political change
+
+		==>Reduction in govt subsidies
+
+
+	3) Technological process
+
+		==>Rapid Technoligical change
+
+		==>new technologies
+
+		==>information overload
+
+_____________________________________________________________
+
+
+L-03
+
+components of e-commerce
+
+	1) Istitution
+
+		=>govt
+	
+		=>Merchant
+
+		=>Suppliers
+
+		=>consumers
+
+		=>Banks
+
+	2) Process
+		
+		=>Marketing
+
+		=>sales
+
+		=>payment
+
+		=>support service
+
+	3)Network
+
+		==>backbone of e-commerce
+
+_____________________________________________________________
+
+
+L-04
+
+Advantages of E-commerce
+
+	=>ease of doing business
+
+	==>Efficient pricing
+
+	==>Reach of business
+
+	==>EFT (ELectronic fund transfer)
+
+	==>SCM (Supply chain management)
+
+
+DisAdv
+
+	==>Security
+
+	==>EDI (Electronic Data interchange)
+		==>costlier for small enterprise
+
+	==>depersonalize shopping experience
+
+	==>fullfilment problems
+
+Categories of ecommerce
+
+1)Electronic markets
+
+2) EDI (electronic data interchange)
+
+3) Internet Commerce
+
+Features
+
+	==>ubiguity
+		==>appearing everywhere
+
+	==>Global Reach
+			==>anywhere
+	==>Unoversal standard
+		==>one standard
+	==>Interactivity
+		==>consumer can interact
+	==>Information Density
+		==>cost of processing lot of information
+	
+	==>Customization
+
+		==>can customize the product
+
+
+_____________________________________________________________
+
+
+L-09
+
+Online shooping
+	
+	==>images, services
+
+Techniques
+	=>for security purpose
+
+	==>use credit card with low limits
+
+	==>unsolicitated/scam offers
+
+	==>use only reputale websites
+
+	==>read privacy policy
+
+	==>running on secure server
+
+	==>use only verified selleres
+
+	==>paper-trail of each transaction
+
+	==>check delivery date
+
+Online selling
+
+	==>by merchants
+
+	==>reduces the cost
+
+	==>simplification
+
+	==>global instantly
+
+	==>business runs 24*7
+
+	==>payments are faster
+
+	==>e marketting
+
+Online selling techniques
+
+	==>Analysing top loading page
+
+	==>promote the strongest prduct
+
+	==>seasonal or ocasional promotion
+
+	==>newsletters or magazine
+
+	==>multiple pricing plans
+
+	==>affliate marketting ==>promoters
+
+	==>review
+
+
+_____________________________________________________________
+
+
+L-13
+
+E-procurement
+
+	==>obtaining items from supplier
+
+	==>assemblling
+
+key procuremet activities
+
+	=>right price
+
+	=>right time delivery
+
+	=>quality
+
+	==>right quantity
+
+	==>right source
+
+
+
+
+types of procuremnet 
+
+	==>production related procurement
+
+	==>Operating related procuremnet
+
+participant in online procurement
+
+
+	=>traditional manufacture
+
+	=>direct sales manufacturer
+
+	=>value added manufactures
+
+	=>knowledge hub
+
+
+_____________________________________________________________
+
+
+L-14
+
+benefits of online procurement
+
+	==>reduce time
+
+	==>increase buyer productivity
+
+barriers 
+
+	=>competitoin issue
+
+	=>long process
+
+	=>cultural change
+
+
+DRIVERS of e-procurement
+
+	=>COST REDUCTION
 
 
 
