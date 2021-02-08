@@ -1,0 +1,190 @@
+Learn Cryptography Basics in Python
+_______________________________________________________
+
+
+S1E1
+
+cryptography fundamental
+
+	=>private and public key
+
+Caesar cipher
+
+Vigenere cipher
+
+detecting language
+
+frquency analysis
+
+Kasiski-algorithm
+
+DES ==>able to hack
+
+AES ==>not able to hack
+
+
+_______________________________________________________
+
+
+S2E1
+
+Cryptography
+
+	==>practice or study of technique for securing communication
+
+	==>message read exclusively
+
+	==>storing password
+
+terms
+
+	==>plain text ==>mesage itself
+
+	==>cipher text ==>encrypted message
+
+	==>encryption ==>process to ensure onlyto authorise person
+
+	==>decryption ==>
+
+	==>key ==>sequece need for encryption and decryption
+
+	cipher_text = f(plain_text,key)  ==>encrypt function
+
+	plain_text = F-1(cipher_text,key) ==>decryption function
+
+
+
+
+_______________________________________________________
+
+
+S2E2
+
+types of encryption
+
+	==>symmetric encryption
+
+		==>private key cryptography, only one key is used
+		==>disadv. =>key must be exchanged
+		==>algorithm deffie hellman==>key exchange algorithm, caesar-cipher,AES,DES
+
+
+_______________________________________________________
+
+
+S2E3
+
+public key cryptography
+
+	==>to overcome problem of key exchange algo
+
+	==>also known as asymmetric encryption
+
+	==>same person public and private key should be used for encrption and decryption
+
+	==>e.g RSA or Elliptic Curve Cryptography
+
+
+
+_______________________________________________________
+
+
+S3E1
+
+Caesar-cipher
+
+	==>private key cryptography by julius caessar
+
+	==>first assign alphabet to integer
+
+
+_______________________________________________________
+
+
+S3E2
+
+	==>key in caesar cipher is integer to chift
+
+	
+	Encryption ==>En(X) = (x+n) mod 26
+
+	decryption ==> En(x) = (x-n) mod 26
+
+
+_______________________________________________________
+
+S3E3
+
+Caesar cipher example
+
+	if key = 3
+
+	then plain text = THIS IS AN EXAMPLE
+
+	cipher text = WKLV LV DQ HADPSOH
+
+	Dn(X) = (x-n) mod 26
+
+	
+
+_______________________________________________________
+
+S3E4
+
+def caesar_encrypt(plain_text):
+	ALPHABET = ' ABCDE....'
+	key = 3
+
+	cipher_text = ''
+	plain_text = plain_text.upper()
+
+	for c in plain_text:
+		index = ALPHABET.find(c)
+		index = (index+key) %len(ALPHABET)
+		cipher_text = cipher_text + ALPHABET[index]
+
+	retrun ciphet_text
+
+
+_______________________________________________________
+
+S3E5
+
+caesar decryption implementation
+
+def caesar_decrypt(cipher_text):
+	plain_text = ''
+
+	for c in cipher_text:
+		index = ALPHABET.find(c)
+		index = (index-key)%len(ALPHABET)
+		plain_text = plain_text + ALPHABET[index]
+
+	return plain_text
+
+
+_______________________________________________________
+
+S4E1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

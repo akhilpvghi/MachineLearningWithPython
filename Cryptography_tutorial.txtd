@@ -1,0 +1,88 @@
+Cryptography and Encryption
+
+________________________________________________________________________________________________________
+TutsNode
+
+S1E1
+
+Diffie hellman key exchange algorith
+
+if key can be send directly then why not message ....?
+
+==>Key exchange algorithm
+
+	==>deffie hellman ==>two mathematician
+
+		==>to exchange key
+
+		==>let p,q be two prime numbers (public)
+			
+			X = p^r mod q
+			K = Y^r mod q
+
+
+________________________________________________________________________________________________________
+
+S2E1 (BLock cipher)
+
+Data encryption standars
+
+==>satellite view of algorithm (diagram)
+
+	==>we work on chunk of data
+
+	Steps in DES
+	
+	1) initial permutation	==>transpose or shuffle or to change position acc. to fixed key (like first key go 38th position) ==>new chunk is formed
+
+	2) 16 feistel rounds (eacg feistel has its own key) ==>
+
+		64bit permuted text ==>divide in two blocks==>left and right 
+
+		==>right block is passed through fn(heart of DES) along with 48 bit key and result is absorbed with left block
+
+			==>fn(heart of DES)
+
+				==>1) Expansion (32 bit) to 48bit
+					
+					==>divide into 8 blocks (of 4 bit each)
+						==>conver each block of 4 bit to 6 bit (hence now 48)
+						==>last is first and first is last while converting
+
+				==>xor with 48 bits
+
+				==>substitute box(s-box)
+					==>divide 48 into 8 blocks
+					==>first and last digit will give row no.
+					==>in between ==column no. will be calculated
+					==>calculate row no and column no
+					==>s box table
+
+	3) left right swap
+
+	4) final permutation
+
+
+// what happened to 64 bit key 
+
+drop parity bit(8,16,24....position bits)
+
+	==>now 28 bit each
+
+	==>rotate shift left and right to both block resp
+
+At round 1,2,9,16 = 1 bit shift
+rest all = 2 bit shift
+
+
+
+plain text ---> cipher text
+
+==>double DES can also be performed
+
+==>triple des ==>encrypt ==>decrypt with another key ==>then encrypt
+
+
+________________________________________________________________________________________________________
+
+S2E2 (BLock cipher)
