@@ -1,0 +1,148 @@
+cryptography and encryption - made Easy
+
+______________________________________________________________________________________________________
+S1E17
+
+public key infrastructure (PKI) and digital certificate
+
+	==>supports distribution and identification of public key encryption
+	==>enable parties to securely exchange the data
+	==>can include hardware,software, policies etc
+
+Key elements
+
+	==>CA(certificate authority)
+		==>ensures the issue of digital certificate
+				==>owner key
+				==>owner id
+		==>trusted third party organisation
+
+
+	==>Registration authority
+
+	==>A certificate database
+
+	==>a certificate store
+
+
+
+______________________________________________________________________________________________________
+
+S1E18
+
+Hashing
+
+	==>core method for message integrity
+
+	miraclesalad.com/webtools/md5.php
+
+
+______________________________________________________________________________________________________
+
+S1E19
+
+Digital signature
+
+	==>DIgital signature(INtegrity control)
+
+	==>high level of assurance
+
+	==>Non-repudiation ==>disallow to deny someone
+
+digital certificates can be created using digital signature
+
+
+______________________________________________________________________________________________________
+
+S1E4
+
+cryptography Goals
+
+CIA and non repudiation
+
+
+Authentication
+	==>proof of identity claims
+
+
+non repudiation
+	==>verifiable origin of a message
+
+
+______________________________________________________________________________________________________
+
+S1E5
+
+ciphers
+	==>manipulate plain text
+
+	==>Stream ciphers
+		==>operate on one character or a  bit
+	==>block ciphers
+		==>operates on large segment
+			ADv.
+				==>high diffusion
+				==>immunity to tampering
+			
+			Disadv
+				==>slowness
+				==>error propogation
+
+			Substituion cipher
+
+			Transposition cipher
+					==>enigma is an example
+
+code ==>substitue one word for another
+
+______________________________________________________________________________________________________
+
+S1E6
+
+Key Life cycle management
+
+	==>types of keys
+
+	==>corresponding usage
+
+	==>key generation
+
+	==>how long should life cycle of key should be?
+
+	==>what is key used for?
+
+	==>crypto period
+
+Basic phases
+
+	==>Generation
+		==>by key management system
+		==>HSM
+		==>or by third party
+
+
+	==>Backup and storage
+		==>must be encrypted with master key
+		==>activation data etc.
+		==>if loss, secure backup
+
+	==>Distribution and loading
+		==>critical phase
+		==>must be done by authorised
+		==>PCI DSS is best practice key management
+
+	==>Archival
+		==>must be encrypted
+
+
+	==>End of Key's Life cycle
+		==>key destruction
+		==>key deletion
+		==>key termination
+
+
+
+
+
+
+
