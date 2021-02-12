@@ -2,8 +2,6 @@ ________________________________________________________________________________
 https://www.downvids.ne-------->for downloading youtube playlist
 
 
-sanandreas ----->change fm using INSERT and track by FN + F5------------->VROCKPOKEY--->for car----->W,A,S,D for driving car
-
 ____________________________________________________________________________________________________________
 program basics
 https://www.thecrazyprogrammer.com/plsql-programs-examples
@@ -40,6 +38,9 @@ English phrase
 could tell joke to fill time
 
 ____________________________________________________________________________________________________________
+
+
+
 
 shortcut of vscode
 
@@ -350,6 +351,58 @@ rm -r dirname
 	MessageQueue.offer(getStyleTypeRequest);
 	return result;
 	}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+linux command
+
+to rename file===>
+
+mv (option) file1.ext file2.ext
+
+where “file1.ext” is the “old” name of the file, and “file2.ext” the new name.
+
+And to remove, you can use the command:
+
+rm -f filename
+
+=================================>
+
+to remove directory
+
+rm -r -f directory
+
+=================================>
+see username
+
+>>>whoami
+
+in termux >>>>>id -un
+
+set username
+
+
+=================================>
+
+List all packages:
+
+pkg list-all
+
+
+
+=================================>
+
+Other package managers
+Some programming languages have their own package manager. Everything that can be installed with such a manager is not packaged with Termux, but should be available on-the-fly on device.
+
+Node.js Package Management (npm)
+Perl Package Management (cpan)
+Python Package Management (pip)
+Ruby Package Management (gem)
+TeX Live Package Management (tlmgr)
+
+=================================>=================================>
+
 
     --->ALexaCodeNewMsgAdded------>branch for alexa skill
 
@@ -746,4 +799,14 @@ Set-Location "Q:\My Test Folder"
 ______________________________________________________________________________________________________________________________________
 
 
++=================================================================================================
+
+Games
+
+
+sanandreas ----->change fm using INSERT and track by FN + F5------------->VROCKPOKEY--->for car----->W,A,S,D for driving car
+
++=================================================================================================
+
+______________________________________________________________________________________________________________________________________
 

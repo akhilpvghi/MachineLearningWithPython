@@ -1,0 +1,256 @@
+Intro to network and cryptography
+
+___________________________________________________________________
+
+S1E1
+
+
+networking
+
+	==>conection of more than one node
+
+OSI model
+
+	==>physical layer
+		=>cables and wires
+		=>
+
+	==>data link ==>
+		
+		==>bytes into frames
+		==>MAC address(cant be changes, spoofing is different)
+	==>Network
+
+		==>using IP address
+		==>logical address
+
+	==>Transport
+
+		==>manage and control
+		==>TCP and UDP
+		==>TCP guaranteed
+		==>UDP ==>Unreliable
+		==>split commnication into packages
+
+	==>session 
+		==>traffic control
+		==>coordinate communication
+		==>when and how much to send
+		
+
+
+	==>presentation
+
+		==>format data
+		==>Encryption/Decryption
+
+	==>application
+		==>SMTP
+		==>HTTP
+		==>FTP
+
+___________________________________________________________________
+
+S1E2
+
+IP address 
+	==>logical address
+	==>based on router
+
+	types
+		==>public IP
+			===>showing outside world
+
+		==>private IP
+			==>within router
+IPV4
+	==>32 bit address
+	==>4 set of 8 binaries
+	
+	cons.
+		==>only 4 billion addresses
+		==>and we have tooo many connected devices
+
+IPV6
+	==>128 bit address
+	==>:: ==>means 4 hexadecimal zeroes
+
+
+
+___________________________________________________________________
+
+S1E3
+
+link
+
+
+___________________________________________________________________
+
+S1E4
+
+MAC Address
+
+	==>Media Access Controller
+	==>unique physical address
+	==>ipconfig /all
+	==>macvendorlookup.com
+	==>to get IP
+
+UNICAST
+	==> 1 to 1
+
+multicast
+	==>1 to many
+
+broadcast
+	any computer in braodcast domain
+
+___________________________________________________________________
+
+S2E1
+
+Routing and switching
+
+	Hub
+		==>dump device
+		==>receive data and sends to everyone
+
+
+	Switch
+		==>smart hub
+		==>track MAC
+
+
+	Repeater
+		==>making signal stronger
+		==>Amplify
+		==>clean up signals(reduces inteferances)
+		
+		
+	ROuter
+		==>real smart devices
+		==>manages traffic flow
+		==>has two IP addresses
+		==>many have built in routers
+		==>DHCP server built in
+
+___________________________________________________________________
+
+S2E2
+
+LInk
+
+___________________________________________________________________
+
+S2E3
+
+TCP/IP
+
+	==>coomon protocols between two device
+	==>in order to communicate
+
+___________________________________________________________________
+
+S2E4
+
+TCP vs UPD
+
+	TCP
+
+		==>Transmission control protocol
+		==>one to one
+		==>3 way handshake (before connection establishment)
+		
+		==>in one direction
+		
+		TCP packets
+			20 bytes header and (dynamic)bytes body
+	UDP
+		==>not limited to one - n - one connection
+		==>no three way handshake
+		==>no verify connection
+		==>like streaming
+
+___________________________________________________________________
+
+S2E5
+
+Wireshark network analysis
+
+==>wireshark.org
+
+___________________________________________________________________
+
+S3E1
+
+wireshark and protocol
+
+  ==>see packets as TCP and UDP 
+
+___________________________________________________________________
+
+S3E2
+
+Ports and protocols
+
+	65,535 ports per connection
+
+	FTP : 21
+	SFTP:22
+	SMTP: 25
+	POP3: 110
+	HTTP: 80
+	HTTPS: 443
+		==>encrypted http
+		==>certificate between client/server
+
+
+
+___________________________________________________________________
+
+S3E3
+
+DNS (Domain name server)
+
+	Fully Qualified DOmain name (FQDN) ==>IP
+
+___________________________________________________________________
+
+S4E1
+
+Wifi Security
+
+Wireless Encryption
+	
+	==>WEP(Wired Equivalent Privacy)
+		==>easily broken
+		
+	==>WPA (wifi Protected access)
+		==>temporary enhancement
+
+	==>WPA2 (wifi Protected access 2)
+		==>use AES- Advanced Encryption Standard
+
+	
+___________________________________________________________________
+
+S4E2
+
+VPN (Virtual private network)
+
+	==>tunnel/encrypted connection over a public network
+
+	Types
+
+	Client to Site(VPN)
+		==>remote access VPN
+	
+	Site to Site(VPN)
+		
+___________________________________________________________________
+
+S4E3
+
+
+
+
