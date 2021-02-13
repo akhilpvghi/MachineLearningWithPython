@@ -1,0 +1,610 @@
+WinDbg ===>Window debugger tool
+
+________________________________________
+
+Advanced Malware Analysis by Munie Njenga
+
+S1E1
+
+course introduction
+
+	what malware is?
+	==>Malware advanced technique
+	==>user mode and kerner mode
+	==>how to deal with malware
+	
+
+________________________________________
+
+S1E2
+
+exploring malware functionalities
+
+	what backdoors are?
+
+	==>Keylogger and information stealer
+
+	==>Downloaders
+
+	==>Ransomware
+
+	==>Rootkits
+
+Backdoors
+	==>element access to system remotely
+	==>types
+		==>hardware
+		==>software
+
+hardware based backdoor targets
+	==>ICS
+	Newtwork Devices
+	==>ACS
+	==>Surveillance system
+	==>communication Infrastructure
+
+
+software based backdoor targets
+	==>computer system
+	==>user credential
+	==>peripheral devices
+	==>sensitive document
+
+DSL backdoor (hardware)
+ProFTPD backdoor (software)
+NSA TAO backdoors (hardware)
+CMS backdoor (software) ==>content management system
+
+
+________________________________________
+
+S2E1
+
+malware technique
+
+privelege escalation
+persistence methods
+data encoding
+
+privelege escalation (PE)
+	==>ask to someone more privilege 
+	
+types
+
+	==>vertical PE
+	==>horizontal PE
+
+________________________________________
+
+S2E2
+
+Persistence malware technoique
+
+	==>ability of malware to stay for longer time
+
+		
+
+________________________________________
+
+S3E11
+
+using a debugger
+==>overview of windows environment
+
+debugger
+	==>program that test another progrma within memory runs on instruction set
+	==>involves high use of breakpoint
+
+USer mode
+	==>uses API calls
+	==>not direct acces to hardware
+	==>safer side
+
+Kernel mode
+	==>can direct excute CPU instruction
+________________________________________
+
+S3E12
+
+overview of windows environment
+
+	Application ==>User mode ==>Kernel mode ==>Hardware
+
+	Application
+		==>WIn32
+		==>Posix
+		==>OS/2 (alternate to DOS appln)
+
+	User mode
+		==>Integral subsystem
+		==>Environmental Subsystem
+		==>to pass input output request to kernel mode
+
+	Kernel MOde
+		==>Executive ==>holds no of services
+				
+		==>kernel mode Drivers
+			==>will help to relate hardware abstraction layer
+			==>act as a middleman
+
+		==>Microkernel
+			
+		==>Hardware Abstraction Layer
+
+
+
+user mode debugging
+	
+kernel-mode debugging
+
+________________________________________
+
+S3E13
+
+User mode debugging
+	==>what is it??
+	==>characteristics
+	==>how they interact ? whats are API
+
+tools
+
+==>OllyDng
+==>WinDbg
+==>IDA pro
+
+________________________________________
+
+S3E17
+
+Malware analysis using WinDbg
+
+bcedit
+
+
+________________________________________
+
+V1
+Windbg in user mode
+
+
+
+Symbols 
+process
+thread
+breakpoints
+Tracing and stepping
+call stack
+Registers
+Memory
+
+________________________________________
+
+V2
+
+download from WDK
+==>can be downloaded from ms store
+
+==>search winver
+
+==>go to file==>>open note pad==>attach to process
+
+________________________________________
+
+V3
+
+types of commands
+
+Built in commands
+
+	==>to get controls and information from the debugging target
+	e.g g,k,~
+
+
+Meta commands 
+	==>used for controlling debugger itself
+	e.g	.cls
+		.reboot
+
+Extension Commands
+	==>debugger extensions
+
+	e.g !dumpstack
+		!threads ==>display all managed thread in process
+
+________________________________________
+
+chapter3
+
+Symbols
+
+	.sympath	==>display or set symbol search path
+
+	.sympath+	==>
+
+	.symfix		==>
+
+	.symfix+		==>
+
+	x[options] module!symbol ==>
+
+file ==>launch executables
+________________________________________
+
+chapter4
+
+Modules
+	
+	lm ==>list modules
+	!lmi
+	!dlls ==>all loaded modules with detailed count
+	
+
+________________________________________
+
+chapter5
+
+
+
+________________________________________
+
+
+	==>pretty intimidating tool
+
+
+Demo-Debugger model
+
+	==>dx Debugger
+
+		==>find attributes
+
+	==>dx @$curseesion.Processes
+	
+	==>dx @$curseesion.Processes.Select(p => p.name)
+
+	==> -g ==>for grid flag
+
+	==>dx -r 
+
+Time Travel Debugging or reverse debugging
+
+	==>either printf debussing
+
+	==>or break points
+
+	==>trace execution
+
+==>ctrl+alt+h ==>to show access voilation
+
+https://www.pentesteracademy.com/course?id=52
+
+aka.ms/WinDbgBasics
+
+__________________________________________________________________________
+
+https://channel9.msdn.com/Shows/Defrag-Tools/Defrag-Tools-182-WinDbg-Preview-Part-1
+
+
+setting ==>theme ==>light/Dark
+
+write script in Watch window
+
+like
+
+@$currProcess.Modules.Where(x => x.BaseAddress > 1000)
+
+
+__________________________________________________________________________
+
+to interact with data model
+
+	==>rectangles.Select(r => r.left)
+	==>dx rectangles // in command window
+
+	==>dx -g rectangles //in notepad
+
+__________________________________________________________________________
+
+video from Defrag
+
+network layer 
+
+and 
+
+IPv4 and IPv6 protocol
+
+
+__________________________________________________________________________
+
+
+V1
+
+intro to WinDbg
+
+	==>single most powerful tool 
+	==>freely downloaded
+	==>can put break points
+
+Demo
+
+file 
+	==>open executables
+		
+F9 ==>to add or remove break point
+
+	==>memory 
+	==>registers
+	==>call stacks
+	==>Disassemble ==>will open assembly language
+
+Advantages
+	==>very light weight
+	==>just copy binary
+	==>huge number of commands and extensions
+	==>dump analysis
+	
+Challenges
+	==>poor documentation
+	==>not work everything as it supposed to be 
+
+It is silent guardian
+
+__________________________________________________________________________
+
+
+V2
+
+Modes 
+	==>user mode
+	==>kernel mode 
+	==>dump analysis (not live)
+	==>open a binary
+	==>use 32 bit debugger with 32 bit winDbg
+	==>use 64 bit debugger with 64 bit winDbg
+
+---
+-->file
+	==>attach to process
+		==>now process wont come
+			==>as it is being debugged
+
+we can also open exe
+
+_________=====================
+
+if kerner mode
+	then you will see 
+	
+	 kd>
+	
+________________________________________
+
+open binary
+
+	==>never open executables
+
+High very level of debugger
+
+==>we can read/write access to memory
+
+compiler, liner, loader works parallel with debugger
+
+
+________________________________________
+
+
+itroduction to debug  symbols
+
+	==>generated by linker
+	==>PDB is not run time environmet
+	
+
+why we need symbols
+	
+	==>binary generate by linker do not have variable or function name
+	==>thats why debugger needed symbols
+
+	==>if we have pdb of that binary
+		==>we could transalte its to true variable or functtion name, in short we can translate
+	
+	==>visual generate pdb with binary
+		==>it was automatically getting loaded in VS
+		pdb is generated at time of release
+
+	PDB = program database
+	
+================
+
+start notepad
+
+	==>attach to process
+
+	==>k ==>for call stack
+
+	set symbol as   srv*local_cache
+
+	==>lmvm notepad ==>tells about the binary and will give path to pdb for notepad
+
+	==> .sympath ==>will give full symbol path
+
+	==> .symfix ==>microsoft path
+
+
+	==>x name_of_the_symbol==>used to get address of the symbol
+
+	==>x notepad!*Main* ==>using wild cards
+
+	==>ln address_==>find symbol from address
+
+	
+
+________________________________________
+
+
+V4
+
+troubleshooting symbol mismatch
+
+________________________________________
+
+V5
+
+debugger commands
+
+	1) Native commands or Built in commands
+
+		==>comes with debugger
+	
+	2) meta commands
+		==>configuration
+
+	3) Extension commands
+		==>
+	all start with ! mark
+
+	==>logic
+		==> .for, .while ..etc
+
+		.hh	==>help ==>debugger refernce ==>meta commands or native commmands or extension commands
+		k	==>
+		dv	==>
+		kM	==>
+
+________________________________________
+
+
+V8
+
+basic commands 
+
+	concept of call stack
+
+		==>stack back trace
+		==>stack of functions
+
+	==>k
+		==>many variants of k like kb, kvn, kM
+		==>mostly takes 3 parameter
+			===>works in both mode(user and kernel)
+			==>without parameter
+
+		kvn	==>stack number is there, with parameter in hexa decimal
+		?12c ==>to evaluate this parameter in deciamal
+		kM	==>DML based ==>to see arguement, by framing(that is hyper link) ==>in 64 bit it may different
+
+
+________________________________________
+
+V9
+
+r commands
+	==>for registers, saved cpu context of thread
+
+d*	==>dump memory
+
+	variants==>dc,du,dd,dp,dq
+====================
+
+#include "stdafx.h"
+
+int _tmain(int argc, _TCHAR* argv[]){
+	char *p = "hello world";
+	printf(p);
+
+	_asm int 3;
+	return 0;
+}
+
+++====================================
+
+r ==>will show all register
+
+dc p or dc 01020202 or dc poi(p)==>p is pointer
+
+dps 08398 039493 ===> dump pointer from this value to that value
+
+ln 0438902 ==>
+
+________________________________________
+
+V10
+
+
+dv and .frame
+
+dv wont work in 64 bit==>as it is fast
+
+.frame	=>to switch to new frame
+
+kM ==>has dml or link for dv or .frame
+________________________________________
+
+V11
+
+dt	==>dump type
+
+	==>will tell class or structure or 
+
+	==>variance
+
+		dt <type>
+		dt <local variable>
+		dt <type><pointer>
+
+	==>dt MY_STRUCT ==>will get type informatiom
+	==>dt var_name	==>willl give value
+	==>dt p#var_name ==>
+	==>dt nt!_PEB value(if want something special )3490342 ==>
+	
+	==>x ListEntryDlist!#name ==>to get the address
+
+________________________________________
+
+V12
+
+e ==>edit memory
+
+f10 ==>to move to next line
+
+	==>dc #string_name
+
+	==>ea 089842389 "edit string"
+
+	==>#eip is ending statement
+
+	==>r eip = #updated_address (# we got jumped and bypassed)
+
+
+________________________________________
+
+V13
+
+unassemble of code
+
+u*
+	==>to see the disassembly of code
+
+uf
+ub
+uf /c
+
+	==>uf name_of_function
+	==>u 0430234 L20 ==>upto to 20 addr
+	==>k
+	==>ub 034534(return address) ==>to go backwords
+	uf /c Helloworld!wmain ==>all function called from
+	.asm no_code_byte ==>after that you will not get any code
+
+
+
+
+
+
+
+_______________________________________________________
+
+windbg has disassembler
+
+
+_______________________________________________________
+
+
