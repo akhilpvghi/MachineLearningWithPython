@@ -276,3 +276,167 @@ Digital signature
 digital certificates can be created using digital signature
 
 
+
+
+______________________________________________________________________________________________________
+
+______________________________________________________________________________________________________
+
+
+Cryptography after filter
+
+	Digital signature ==>electronic signature
+	
+					==>highest level of assurance
+					
+					==Non-Repudiation (cant deny)
+					
+					==>Digital certificate ==>created with digital signature
+					
+					
+
+______________________________________________________________________________________________________
+
+
+L-17
+
+PKI
+
+	==>assure to share data over public channel
+	
+	==>hardware, software, policies etc
+	
+		==>CA
+		
+		==>Registration AUthority
+		
+		==>Certificate database
+		
+		==>Certificate store
+		
+			CA
+				==>issues Digital certificate
+				
+				==>public key owner information
+				
+				==>trusted third party organisation
+				
+	identrust.com/igc
+	
+______________________________________________________________________________________________________
+	
+	L-7
+	
+	DES 
+		==>by IBM initially in 1970
+		
+		==>==>64 bit data to 64 bit cipher
+
+		==>EXOR operation is used
+		
+		==>56 bit key or 7 character long
+		
+		==>No longer considered secure
+		
+		
+______________________________________________________________________________________________________
+	
+	L-1
+	
+	DES
+
+		First algorithm in block cipher
+		
+			==>64  plain text
+			
+			==>64 bit cipher text
+			
+			==>initial permutation (transposition ==>just transpose on fixed key)
+			
+				==>16 fiestel rounds rounds
+						
+						==>permuted text divided into left and right block
+						
+						==>heart of DES(right block, 48 bit key)
+						
+						==>expansion  ==> then xor ==>compression function is S box
+				
+				==>left right swap
+				
+			==>final permutation
+				
+		
+	
+	
+
+______________________________________________________________________________________________________
+	
+	L-8
+	
+	3DES
+	
+		DES ==>INVERSE DES ==>DES 
+		
+		==>only two key
+		
+______________________________________________________________________________________________________
+	
+	L-13
+
+		==>CSR
+		
+			==>do not use online CSR
+			
+			==>first step is to public private key
+			
+			==>OPen SSL ==>to generate key
+			
+			==>openssl genrsa -out domain.key 2048(# key length)
+			
+			==>openssl req -new -key domain.key -out domain.csr
+			
+				=>will ask for information
+			
+			==>to check our signing request
+			
+					==>openssl req -text -in ssltes.csr -noout
+					
+			==>csr contains public key + some information about us
+			
+				==>to enable ssl certificates
+				
+				 ==>we will sub,it csr to get certificate
+				 
+				==>private key we will keep on our web server to enable encode and decode
+				
+					with puclic key
+				
+				 
+		
+______________________________________________________________________________________________________
+	
+	L-1 Hash
+
+			==>variable to fix length
+			
+			==>compresses
+			
+			==>irreversible process
+			
+			==>even single bit chamge result into tremendous change
+			
+	==>First algorithm to achieve these properties 
+	
+	Message digest 5 or MD5
+	
+		==>arbitrary length to 128 bits
+	
+		==>even if it is maximum of 2^64 bits  it will turn into 128 bits
+		
+	....to watch
+		
+		
+		
+	
+
+
