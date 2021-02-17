@@ -411,8 +411,62 @@ ________________________________________________________________________________
 				
 					with puclic key
 				
-				 
+
+______________________________________________________________________________________________________
+	
+	L-2
+
+		AES (Advanced Encryption Standard)
 		
+			==>pre round transformation
+			
+					==>block into states (like continous array into 2 d array)
+					
+					===>like car number allotment
+					
+					
+			
+			9 fiestel round (means everytime new key)
+			
+				==>sub bytes
+				
+					==>unlike DES we will look column first, then change the value
+					
+					==>0th row no byte circular left shift (note here we are talking in terms of bytes not bits)
+					
+					==>1st row 1 byte circular left shift
+				
+					==>2nd row 2 byte circular left shift
+					
+					==>3rd row 3 byte circular left shift
+				==>shift rows
+				
+				==>mix columns
+				
+					==>each column is multiplied by new 4 constant resp.
+					
+			==>add this new seperatte 4(1*4) with 4*4 key
+					
+					
+
+			last round
+			
+				==>in last round there is no mix columns
+				
+				
+	How we deal with 192 and 256 keys
+	
+			==>exor with temporary word to get key every time
+			
+			temporary word 
+				==>last word ==>substitute word then modulo addition with fixed word
+				
+				
+			
+			
+			
+	
+	
 ______________________________________________________________________________________________________
 	
 	L-1 Hash
