@@ -810,3 +810,41 @@ sanandreas ----->change fm using INSERT and track by FN + F5------------->VROCKP
 
 ______________________________________________________________________________________________________________________________________
 
+vi editor
+
+Exit Without Saving Changes in Vi / Vim
+To exit Vim without saving changes:
+
+1. Switch to command mode by pressing the ESC key.
+
+2. Press : (colon) to open the prompt bar in the bottom left corner of the window.
+
+3. Type q! after the colon and hit Enter to exit without saving the changes.
+
+
+============================================================================================================
+
+exit with Save
+
+ a command that will also save a file and exit the text editor is:
+
+:wq
+In which case the w stands for write (=save) and q stands for quit
+
+============================================================================================================
+
+Save file without exiting
+
+Type w after the colon and hit Enter. This will save in Vim the changes made to the file, without exiting.
+
+:w
+
+
+============================================================================================================
+
+Renaming
+
+You can also rename an existing file by adding the new name after the commands.
+
+:w [newfilename]
+

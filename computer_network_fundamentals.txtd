@@ -251,6 +251,127 @@ ___________________________________________________________________
 
 S4E3
 
+VPN - uses web protocol
+
+	==>SSL (Secure socket layer) ==>oldest one
+			==>web based vpn HTTPS
+			==>based on certificates
+			==>Old school now
+			
+	==>TLS==>Transport layer security
+			==>certificates
+			
+	==>TLS 1.2
+			==>Enhanced Security
+			==>Tighter security
+			
+L2TP =>Layer 2 Tunneling protocol
 
 
+		
+___________________________________________________________________
 
+S4E4
+
+IP sec ==>IP security
+
+		==>has 5 sub protocols
+		
+			==>ESP(Encapsulating Security Payload)
+			==>AH(Authentication Header)
+			==>IPcomp 
+			==>IKE(internet key exchange)
+			
+
+___________________________________________________________________
+
+S4E5
+
+Authentication
+
+		==>proving who we are
+		
+Multi factor authentication
+
+	==>something you have
+	==>something you are
+	==>something you know
+	
+	==>SSO (Single sign on)
+		==>like login google everywhere
+		
+
+___________________________________________________________________
+
+S5E1
+
+Encryption 
+
+	==>plain text to cipher text
+	==>only key and passphrases are getting changed
+	
+	
+___________________________________________________________________
+
+S5E2
+
+Symmetric and Asymmetric key
+
+	
+___________________________________________________________________
+
+S5E3
+
+link
+
+	
+___________________________________________________________________
+
+S5E4
+
+Data Hashing
+
+	==>one way mathematical algorithm
+	
+	==>Like a fingerprint
+	
+	==>File verification/PKI
+	
+	==>Password Hashing
+	
+	
+___________________________________________________________________
+
+S5E5
+
+Data hashing is also used in PKI (Public key Infrastructure)
+
+	==>toolsfornoobs.com/online_tols/hash
+
+	
+___________________________________________________________________
+
+S5E6
+
+link
+
+	
+___________________________________________________________________
+
+S5E7
+
+Public key Infrastructure(PKI)
+		==>based on Asyymetric
+		
+		CA authority ==>is trusting party for both party ==>Root authority
+		
+		CA will sign their private key with their public key
+		
+		==>then other third party will ask CA to decrypt
+		
+		
+		
+		
+		
+	
+	
