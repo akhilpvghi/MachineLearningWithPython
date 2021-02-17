@@ -14,6 +14,7 @@ git stash apply
 _________________________________________________________________________
 
 git config --global user.name "Frances Totten"
+git config --global user.password "your password"
 git config --global user.email "frances_t@fabrikam.com"
 git config --list 
 
