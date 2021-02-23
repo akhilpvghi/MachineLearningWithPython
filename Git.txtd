@@ -14,10 +14,11 @@ git stash apply
 _________________________________________________________________________
 
 git config --global user.name "Frances Totten"
+git config --global user.password "your password"
 git config --global user.email "frances_t@fabrikam.com"
 git config --list 
 
-
+Great done
 ________________________________________________________
 
 to find about last commit on git
@@ -106,7 +107,8 @@ To remove a commit you already pushed to your origin or to another remote reposi
 
 1
 $git push origin +master
-Notice the + sign before the name of the branch you are pushing, this tells git to force the push. It is worth to mention that you should be very careful when deleting commits because once you do it they are gone forever. Also, if you are deleting something from a remote repository make sure you coordinate with your team to prevent issues.
+Notice the + sign before the name of the branch you are pushing, this tells git to force the push. It is worth to mention that you should be very careful when deleting commits because once you do it they are gone forever.
+ Also, if you are deleting something from a remote repository make sure you coordinate with your team to prevent issues.
 
 
 _____________________________________________________________________________________
@@ -178,6 +180,71 @@ git push -f origin branch_name
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==
 
 git branch -a  // to check all branch name
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==
+
+
+How to set up an SSH key and use it for GitLab
+
+https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1
+
+
+ ssh-keygen -t rsa -C "your_email@example.com"   or  ssh-keygen -t rsa -b 2048 -C "<comment>"
+ 
+ 
+ to update pass phrase at later time
+ 
+ ssh-keygen -p -f /path/to/ssh_key  	(#  https://docs.gitlab.com/ee/ssh/)
+ 
+ 
+ 
+ Go and open the id_rsa.pub file (you can use any text editor you want).
+Copy the entire content of that file and then open https://gitlab.com/profile/keys.
+
+5) Try to git clone or git push.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ssh -i "Desktop\Quincus\APIbluerhino (3).pem"  ec2-user@54.229.133.99
+eval "$(ssh-agent -s)"
+ ssh-add ~/azure_key
+ git pull origin JsonFormatter
+ 
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+ Add the private SSH key to the ssh-agent
+If you don’t want to type your passphrase each time you use your SSH keys, you need to add it to the ssh-agent, which is a program that runs in background while you are logged in to the system and stores your keys in memory.
+
+To start the ssh-agent in background, run the following:
+
+$ eval "$(ssh-agent -s)"
+That command outputs the ssh-agent process identifier:
+
+Agent pid 2887
+Then, add your SSH private key to the ssh-agent:
+
+$ ssh-add ~/.ssh/id_rsa
+Type your passphrase and press Enter:
+
+Enter passphrase for /home/your_user_name/.ssh/id_rsa:
+The command confirms that the private SSH key has been added to the ssh-agent:
+
+Identity added: /home/your_user_name/.ssh/id_rsa (your_email@example.com)
+
+
+now push the code
+
+(# https://kamarada.github.io/en/2019/07/14/using-git-with-ssh-keys/#.YC0sHY8zaUk)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
 
 
 

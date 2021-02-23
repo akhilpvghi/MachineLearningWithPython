@@ -1,56 +1,5 @@
 cryptography and encryption - made Easy
 
-______________________________________________________________________________________________________
-S1E17
-
-public key infrastructure (PKI) and digital certificate
-
-	==>supports distribution and identification of public key encryption
-	==>enable parties to securely exchange the data
-	==>can include hardware,software, policies etc
-
-Key elements
-
-	==>CA(certificate authority)
-		==>ensures the issue of digital certificate
-				==>owner key
-				==>owner id
-		==>trusted third party organisation
-
-
-	==>Registration authority
-
-	==>A certificate database
-
-	==>a certificate store
-
-
-
-______________________________________________________________________________________________________
-
-S1E18
-
-Hashing
-
-	==>core method for message integrity
-
-	miraclesalad.com/webtools/md5.php
-
-
-______________________________________________________________________________________________________
-
-S1E19
-
-Digital signature
-
-	==>DIgital signature(INtegrity control)
-
-	==>high level of assurance
-
-	==>Non-repudiation ==>disallow to deny someone
-
-digital certificates can be created using digital signature
-
 
 ______________________________________________________________________________________________________
 
@@ -141,8 +90,407 @@ Basic phases
 		==>key termination
 
 
+______________________________________________________________________________________________________
+
+S1E7
+
+DES (Data encryption standard by IBM)
+
+	==>uses 56 bit key
+	
+	==>16 iteration
+	
+	==>adopted in US 1977
+	
+______________________________________________________________________________________________________
+
+S1E8
+
+3DES
+
+______________________________________________________________________________________________________
+
+S1E9
+
+
+AES blowfish, twofish
+
+		AES
+			==>6 times faster than 3DES
+			
+			==>most popular symmetric encryption
+			
+			==>block cipher
+			
+			==>128 bit data
+			
+			128bit key== 10 rounds
+			
+			192bit key== 12 rounds
+			
+			256bit key== 14 rounds
+			
+		Blowfish
+			
+			==>symmetric
+			
+			==>one fastest block ciphers
+			
+			==>uses a feistel network
+			
+			==>combines substitution and transposition
+			
+		Twofish
+		
+			==>derived from blowfish
+			
+			==>key legth 128bit 192 bit and 256 bit key
+
+______________________________________________________________________________________________________
+
+S1E10
+
+
+RC4
+
+				==>developed by RSA scientist	
+					==>by Ron Rivest
+					==>Ron's Code
+				==>Byte oriented stream cipher
+				==>used by IEEE 802.11 and WEP
+				
+				==>Faster than DES
+				==>No longer considered secure
+						==>no longer use
+______________________________________________________________________________________________________
+
+S1E11				
+				
+	RSA cryptography
+	
+		==>public key cryptography
+		principle
+			===>difficulty in factoring very large prime nos
+		by Ron rivest, ADil sherman
+		
+		
+			==>math ideas
+				==>prime numbers
+				==>GCD
+				==>Eulers theorem
+				
+
+p,q
+n=p*q
+phi(n) = (p-1)*(q-1)	
+
+==>considered secure
+______________________________________________________________________________________________________
+
+S1E12
+
+
+Elliptic curve Cryptography
+
+		==>does not depend on prime facactorisation
+		
+		==>properties of elliptic curve
+		
+		y^2 =x^3 +ax +b
+		
+		
+
+______________________________________________________________________________________________________
+
+S1E18
 
 
 
+			
+			
+			
+	
+	
+
+______________________________________________________________________________________________________
+S1E17
+
+public key infrastructure (PKI) and digital certificate
+
+	==>supports distribution and identification of public key encryption
+	==>enable parties to securely exchange the data
+	==>can include hardware,software, policies etc
+
+Key elements
+
+	==>CA(certificate authority)
+		==>ensures the issue of digital certificate
+				==>owner key
+				==>owner id
+		==>trusted third party organisation
+
+
+	==>Registration authority
+
+	==>A certificate database
+
+	==>a certificate store
+
+
+
+______________________________________________________________________________________________________
+
+S1E18
+
+Hashing
+
+	==>core method for message integrity
+
+	miraclesalad.com/webtools/md5.php
+______________________________________________________________________________________________________
+
+S1E14
+
+Diffie-hellman key exchange==>also known as exponential ??
+
+	==>over apublic channel
+	
+	==>choose common color
+	
+	
+	
+	 
+
+______________________________________________________________________________________________________
+
+S1E19
+
+Digital signature
+
+	==>DIgital signature(INtegrity control)
+
+	==>high level of assurance
+
+	==>Non-repudiation ==>disallow to deny someone
+
+digital certificates can be created using digital signature
+
+
+
+
+______________________________________________________________________________________________________
+
+______________________________________________________________________________________________________
+
+
+Cryptography after filter
+
+	Digital signature ==>electronic signature
+	
+					==>highest level of assurance
+					
+					==Non-Repudiation (cant deny)
+					
+					==>Digital certificate ==>created with digital signature
+					
+					
+
+______________________________________________________________________________________________________
+
+
+L-17
+
+PKI
+
+	==>assure to share data over public channel
+	
+	==>hardware, software, policies etc
+	
+		==>CA
+		
+		==>Registration AUthority
+		
+		==>Certificate database
+		
+		==>Certificate store
+		
+			CA
+				==>issues Digital certificate
+				
+				==>public key owner information
+				
+				==>trusted third party organisation
+				
+	identrust.com/igc
+	
+______________________________________________________________________________________________________
+	
+	L-7
+	
+	DES 
+		==>by IBM initially in 1970
+		
+		==>==>64 bit data to 64 bit cipher
+
+		==>EXOR operation is used
+		
+		==>56 bit key or 7 character long
+		
+		==>No longer considered secure
+		
+		
+______________________________________________________________________________________________________
+	
+	L-1
+	
+	DES
+
+		First algorithm in block cipher
+		
+			==>64  plain text
+			
+			==>64 bit cipher text
+			
+			==>initial permutation (transposition ==>just transpose on fixed key)
+			
+				==>16 fiestel rounds rounds
+						
+						==>permuted text divided into left and right block
+						
+						==>heart of DES(right block, 48 bit key)
+						
+						==>expansion  ==> then xor ==>compression function is S box
+				
+				==>left right swap
+				
+			==>final permutation
+				
+		
+	
+	
+
+______________________________________________________________________________________________________
+	
+	L-8
+	
+	3DES
+	
+		DES ==>INVERSE DES ==>DES 
+		
+		==>only two key
+		
+______________________________________________________________________________________________________
+	
+	L-13
+
+		==>CSR
+		
+			==>do not use online CSR
+			
+			==>first step is to public private key
+			
+			==>OPen SSL ==>to generate key
+			
+			==>openssl genrsa -out domain.key 2048(# key length)
+			
+			==>openssl req -new -key domain.key -out domain.csr
+			
+				=>will ask for information
+			
+			==>to check our signing request
+			
+					==>openssl req -text -in ssltes.csr -noout
+					
+			==>csr contains public key + some information about us
+			
+				==>to enable ssl certificates
+				
+				 ==>we will sub,it csr to get certificate
+				 
+				==>private key we will keep on our web server to enable encode and decode
+				
+					with puclic key
+				
+
+______________________________________________________________________________________________________
+	
+	L-2
+
+		AES (Advanced Encryption Standard)
+		
+			==>pre round transformation
+			
+					==>block into states (like continous array into 2 d array)
+					
+					===>like car number allotment
+					
+					
+			
+			9 fiestel round (means everytime new key)
+			
+				==>sub bytes
+				
+					==>unlike DES we will look column first, then change the value
+					
+					==>0th row no byte circular left shift (note here we are talking in terms of bytes not bits)
+					
+					==>1st row 1 byte circular left shift
+				
+					==>2nd row 2 byte circular left shift
+					
+					==>3rd row 3 byte circular left shift
+				==>shift rows
+				
+				==>mix columns
+				
+					==>each column is multiplied by new 4 constant resp.
+					
+			==>add this new seperatte 4(1*4) with 4*4 key
+					
+					
+
+			last round
+			
+				==>in last round there is no mix columns
+				
+				
+	How we deal with 192 and 256 keys
+	
+			==>exor with temporary word to get key every time
+			
+			temporary word 
+				==>last word ==>substitute word then modulo addition with fixed word
+				
+				
+			
+			
+			
+	
+	
+______________________________________________________________________________________________________
+	
+	L-1 Hash
+
+			==>variable to fix length
+			
+			==>compresses
+			
+			==>irreversible process
+			
+			==>even single bit chamge result into tremendous change
+			
+	==>First algorithm to achieve these properties 
+	
+	Message digest 5 or MD5
+	
+		==>arbitrary length to 128 bits
+	
+		==>even if it is maximum of 2^64 bits  it will turn into 128 bits
+		
+	....to watch
+		
+		
+		
+	
 
 

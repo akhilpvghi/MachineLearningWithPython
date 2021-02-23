@@ -117,7 +117,695 @@ what you need?
 
 ________________________________________________________________________________________________________
 
+S2E3
+
+SSl  certifies
+
+	==>certifies the ownership of public key
+		
+			==>organnisation
+			
+			==>URL
+			
+			==>State, country
+			
+			==>Valid date range
+			
+			==>Issuer
+			
+			.crt = is configuration file for certificate
+			
+	Purpose
+			==>Encryption
+			
+			==>Identity
+			
+			==>Trustworthiness
+			
+			
+	
+	==>certificate doesnt care about the protocal
+
+	==>many names
+	
+	
+	
+
+________________________________________________________________________________________________________
+
+S2E4
+
+public key role
+
+		==>handshake
+		
+		==>
+		
+SSL/TLS handshake
+		
+________________________________________________________________________________________________________
+
+S2E5
+
+the urgent need for https
+
+			ISRG goal to make all to HTTPs
+			
+________________________________________________________________________________________________________
+
+S3E6
+
+CA
+	==>certifies ownership
+	
+	==>and will give you public key
+	
+	==>public key with URL mapping
+	 
+	 chain of trust
+	 
+	Root certificate authority ==> Intermediate CA ==> URL public key
+	
+		==>till 2016 list of CA companies
+		
+	
+________________________________________________________________________________________________________
+
+S3E7
+
+lets Encrypt is free ca
+
+	letsencrypt.org
+	
+	==>non profit organisation
+	
+	==>valid for 90 days and auto renewable
+	
+	letsencrypt.org
+________________________________________________________________________________________________________
+
+S3E8
+
+self signed certificates
+
+	==>not been aproved by CA but you
+	
+	==>allow encryption
+	
+	==>No third-party trust
+	
+	==>useful when already trusted
+	
+	
+	
+________________________________________________________________________________________________________
+
+S3E9
+
+types of certificate
+
+	how they are issued	
+		==>domain scoped
+		==>if you want for sub domain==>use wildcards
+		
+	==>validation level
+		
+________________________________________________________________________________________________________
+
+S4E10
+
+certbot
+	client for letsencrypt
+	
+	letsencrypt, ACME protoc, EFF
+		step
+			=>generate public- private key pair
+			
+			==>use public key to create CSR
+			
+			==>visit website of a certificate authority
+			
+			==>submit information and CSR
+			
+			==>wait for validation
+			
+			==>you will recieve a certificate
+			
+			==>manually install certificate file on server
+			
+			
+________________________________________________________________________________________________________
+
+S4E11
+
+...to watch	
+	
+
+
+	
+	
+_________________________________________________________________________________________________________________
+
+Cryptography by Lisa bock
+
+
+S0E1
+
+
+Principles of cryptography
+
+confidentiality
+
+accountability
+
+Hashing 
+
+message digest
+
+_________________________________________________________________________________________________________________
+
+S0E2
+
+prior knowledge
+
+	==>networking
+	
+_________________________________________________________________________________________________________________
+
+S0E3
+
+exercise file is there
+
+_________________________________________________________________________________________________________________
+
+S0E4
+
+challenges are opportunity
+
+_________________________________________________________________________________________________________________
+
+S1E1	
+
+Network security
+
+encryption turns plain text to cipher text
+
+	==>atom.smasher.org/pgp
+	
+	==>to secure didtal data
+	
+	symmetric is also knoe=wn as conventional
+	
+	==>in early 1980s
+	
+	==>networksdls.com/articles/keylength.pdf
+	
+_________________________________________________________________________________________________________________
+
+S1E2
+
+five services
+
+		==>providine adequate services
+		
+			==>confidentiality,Integrity,authentication, non-repudiation
+
+			==>confidentiality ==>by encryption
+			
+			==>Integrit ==>ensures data has not been changed,destroyed, or lost
+			
+					==>by using hash function
+					
+			==>Accountability
+					==>provides protection against false denial of involvement in a communication
+					==>by digital signature
+					
+			==>Authentication ==>confirms identity of system
+			
+			==>availability
+				==>services are accesible available to authorised user
+				
+that is why cryptography and network security go hand in hand
+
+
+
+_________________________________________________________________________________________________________________
+
+S1E3
+
+				==>everyones responsibility
+				
+				computerhistory.org
+				
+				==>ENIAC
+				
+				passive attack ==>non-invasive==>eavesdropping
+				
+						==>hard to detect
+						
+						==>reconniance attack
+							
+							=>ping scan
+							
+							==>port scan
+							
+							
+				
+				active attack
+			
+						==>attcker tries to break in system
+						
+						==>session hijacking
+						
+						==>bufferflow
+						
+						==>password ==>bruteforce, frequency analysis
+						
+						
+
+_________________________________________________________________________________________________________________
+
+S1E4
+
+Symmetric =>single key
+
+ciphermode
+
+Asymmetric => public key and private key
+
+	public key ==>we should trust that we are getting from right party
+
+godaddy ===>provides certificate sercvices
+
+
+Certificates
+	==>provide proof of identity
+
+public key infrastructure
+
+		==>framework used to generate, manage, distribute, store and revoke digital certificate
+		
+		
+	Bruce Schneir ==>his study in cryptography
+	
+
+	
+_________________________________________________________________________________________________________________
+
+S1E5
+
+History of cryptography
+
+	classic Encryption
+	
+	transposition ciphers ==>transpose character
+	
+	letter frequency =>
+	
+	polyalphabetic cipher ==>vigenre==>
+	
+	cs.du.edu/~snarayan/crypt/vigenee.html
+	
+The enigma machine
+
+		==>
+	
+	
+_________________________________________________________________________________________________________________
+
+S1E6
+
+enigma machine challenge
+
+enigmaco.de/enigma/enigma.html
+	
+_________________________________________________________________________________________________________________
+
+S1E7
+
+cipher done
+
+_________________________________________________________________________________________________________________
+
 S2E1
+
+symmetric encrypton ingredients
+
+		==>plain text
+		
+		==>enc algo 
+		
+		==>secret key
+		
+		==>decryption algo
+		
+		==>output
+		
+	DES ==>changed to 128bit to 56bit
+	
+	64 bit data using 56 key
+	
+	16 round processing
+	
+	longer the key, better is security
+	
+triple DES ==>168 bit key
+
+other block cipher
+
+==>blowfish
+==>IDEA
+==>RC6
+==>two fish
+
+_________________________________________________________________________________________________________________
+
+S2E2
+
+fiestel in 1973
+
+claude shanon ==>permutation and combination
+
+	fiestel ==<elegant cipher==>fast
+	
+		==>splits the block
+		
+		==>multiple rounds
+		
+_________________________________________________________________________________________________________________
+
+S2E3
+
+AES ==>Advanced encryption standards
+
+			requiremnet ==>efficient, flexible and simple
+			
+			==>a block size is 128 bites
+			
+			==>key length 128bit 192 and 256bit
+			
+			AES is used in IEEE 802.11i
+			
+			==>not a fiestel network
+			
+			formaestudio.com
+			
+			==>row and column thing
+			
+_________________________________________________________________________________________________________________
+
+S2E4
+
+Symmetric Encryption
+
+	block ciphers
+	
+	stream ciphers ==>if we add memory in block cipher it is stream cipher
+	
+	chaining mode
+	
+	Electronic codeBook(ECB)
+	
+	Cipher block chaining(CBC) ==>exor
+	
+	Cipher feedback(CFB)
+	
+	output feedback(OFB)
+	
+	RC4  ==>stream cipher
+
+
+Topics to study told by Asish Sir
+
+Public key Infrastructure (PKI)
+key management life cycle
+cryptographic certificate formats (PKCS 11..etc)
+
+
+stream ciphes ===>wireless communication
+
+WEp ==>wired Equivalent privacy ==>in wireless communication
+
+				
+	
+WEP is weak and deprecated
+
+
+_________________________________________________________________________________________________________________
+
+S2E5
+
+
+wireshark ==>to crack wep
+
+_________________________________________________________________________________________________________________
+
+S3E1
+
+Symmetric Encryption
+
+		==>fast , efficient
+		==>same sender n reciever key
+		
+Asymmetric Encryption
+	
+		uses
+			==>key exchange
+			
+			==>encrytpyion
+			
+			==>Authentication 
+			
+			==>digital signature
+			
+
+		Digital signature  ==>does not provide confidentiality as it does not encryot entire message
+		
+			==>assurance of authentication
+			
+_________________________________________________________________________________________________________________
+
+S3E2
+
+public key technologies (key exchange, encryption, and digital signature)
+
+	==>RSA 
+	
+	==>Deffie hellman 
+	
+	==>PGP
+	
+share secret key over public channel
+
+RSA
+	==>three mathematician
+	
+	==>block cipher (used)
+	
+	==>used in ssl and TLS
+	
+PGP
+
+	==>in 1991
+	
+	==>provides all function of asymmetric encryption
+	
+	
+
+_________________________________________________________________________________________________________________
+
+S3E3
+
+Diffie hellman example
+
+_________________________________________________________________________________________________________________
+
+S3E4
+
+Managing keys
+
+	==>web of trust =>PGP ==>trust third party
+	
+Public key Infrastructure
+
+		==>it is not a protocol instead it is framework
+		
+		==>a framework used to provide trust
+		
+		==>uses trusted third party or certificate authority
+		which ensures authenticity by providing certificate for each entity
+		
+		==>certificate authority
+		
+		==>companies can only have its own issued by certificate authority
+		
+		X.509 certificate ==>widely used standard for digital signature
+		
+		
+		
+		PKI uses X.509 certificate from CA (certificate authority) to provide assurance that a 
+		public key belongs to entity within the certificate.
+		
+
+		
+_________________________________________________________________________________________________________________
+
+S3E5
+
+certificate authority
+
+			has its own CA public and private key
+			
+_________________________________________________________________________________________________________________
+
+S4E1
+
+Hash
+	
+	==>one way unlike encryption
+	
+	==>authentication
+	
+	==>message Integrity
+	
+	==>Storing Passwords
+	
+	Hash ==>takes variable input and gives fixed length output
+	
+	===>Algorithm
+	
+		==>SHA(Secure hash algorithm)
+		
+		==>MD5 (Message digest algorithm) ==>output 128bits
+		
+		==>esrg.sourceforge.net/utils_win_up/md5sum/
+			
+				==>gfsw.exe
+				
+
+_________________________________________________________________________________________________________________
+
+S4E2
+
+hash values
+
+	Non-repudiation and accountability
+	
+			==>used digital signature
+			
+	Integrity
+		
+			==>finger print of original message called as mmessage digest
+			
+	Authentication
+		
+			==>use the message digest along with a shared secret
+			
+			MAC(Message authentication code)
+			
+	Accountability
+	
+			==>using public key encryption with digital signature
+			
+		#table
+		
+		
+_________________________________________________________________________________________________________________
+
+S4E3
+
+passwords
+
+rainbow tables
+	
+	==>database of password in hash format
+
+Salt
+
+	=>salt is added as part of hash string to reduce rainbow table attack
+	
+
+_________________________________________________________________________________________________________________
+
+S4E4
+
+passwordmeter.com
+
+_________________________________________________________________________________________________________________
+
+S4E5
+
+passwordmeter.com 
+
+	==>practical
+	
+	
+	sha1-online.com
+	
+	hashkiller.co.uk
+	
+_________________________________________________________________________________________________________________
+
+S5E1
+
+SSL
+
+Encryption at various places	
+
+		MIME
+		
+			==>at application layer
+
+		At transport layer
+		
+				==>SSL (Secure socket layer) by netscape==>to make use of TCP to prvide reliable end-to-end secure
+				service
+				
+					==>confedintoialty
+					
+					=>Integrity
+					
+					==>between browser and web server
+					
+
+_________________________________________________________________________________________________________________
+
+S5E2
+
+when you decrypt SSL then you will get http header n all..
+aa=nd html page
+
+_________________________________________________________________________________________________________________
+
+S6E1
+
+	emails security
+	
+		SMTP in MIME format
+		
+		S/MIME ==>secure MIME
+		
+			==>digitally signed MIME
+			
+			==>Authentication
+			
+			==>Integrity
+			
+		PGP ==>
+		
+		GPG ==>
+
+
+_________________________________________________________________________________________________________________
+
+S6E2
+
+GNU key generation
+
+_________________________________________________________________________________________________________________
+
+S7E1
+
 
 
 
