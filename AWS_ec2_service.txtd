@@ -1,0 +1,338 @@
+AWS EC2 container service By Linux Academy
+
+_________________________________________________________________________________________________________________________
+S1E1
+
+Container service ..?
+
+==>setup and configuration
+
+	==>will create user
+
+		=>>will create role
+
+		==>==>will create Key
+
+		==>VPC for our cluster (virtual private cluster)
+
+		==>AWS CLI
+
+	==>Component and usage
+
+		==>cluster
+
+		==>container instance
+
+		==>the agent
+
+		==>scheduling task
+
+		==>Repositries
+
+		==>IAM policies and roles
+
+Conclusion
+
+	==>Troubleshooting
+
+		==>through AWS console
+
+		==>logging and service limits
+
+		==>conclusion and summary
+
+summary
+
+	==>manage safety
+
+
+_________________________________________________________________________________________________________________________
+S1E2
+
+What is container?
+
+	==>are virtual machine
+
+	==>emulation of specific computer type
+
+	==>underlying guest operating system
+
+	==>isolation of system from within
+
+	==>manage it from the instances
+
+
+_________________________________________________________________________________________________________________________
+S1E3
+
+COntainer architecture
+
+		==>will also talk about docker
+		
+		==>docker is like wrapper 
+
+			==>communicates via socket or rest api..
+
+			docker componenet
+				
+				==>Daemon
+				==>client
+				==>docker.io registry
+
+
+			in VM architecture===>server ==>HOST OS ==>hypervisor ==>on which multiple VM can run
+
+			==>in container architecture ==>application runs on docker engine
+
+
+_________________________________________________________________________________________________________________________
+S1E4
+
+Amazon Ec2 Container service
+
+	
+	what makes up the ECS??
+
+		==>CLusters
+
+		==>Container Instances
+			==>EC2 Instances
+
+		==>Task Definition
+			
+	
+		==>Scheduling
+			==>how to get our tasks
+
+		==>Services
+			==>to maintain no. of instances
+
+		==>Task
+			==>instance of task definition
+
+		==>COntainers
+			==>linux container(docker for example) which is create as part of task
+
+
+_________________________________________________________________________________________________________________________
+S2E1
+
+Amazon ECS ec2 container
+
+	==>on linux system
+
+create user group and then user ==>to get security in some way
+
+go to ==>aws.console management
+
+	==>under security & identity
+
+		==>identify & Access management
+
+			==>go to dashboard
+
+				==>go to user
+
+					==>set up new user
+
+						name: ecsadmin
+
+						==>will get key
+
+						==>show security credential
+
+							==>get access key id
+								and secret access key 
+
+							==>download credential ==>to setup command line later
+
+							==>we will get csv file
+
+							==>copy that key, only one time will be shown as key
+
+					==>now go to group
+
+						==>create group
+
+						==>name : ecsadmins
+
+							==>attach policy==>adiminstrator Acess
+
+							==>now add user to that group ==>so we dont have manage at user level
+
+
+_________________________________________________________________________________________________________________________
+S2E2
+
+==>signing up with free account
+
+amazon web services console ==>root account
+
+	==>users
+
+		ecsadmin
+
+			==>security credential
+
+				=>sign in credential
+
+					==>manage password
+
+						==>asign a custom pasword
+							==>it will ask for new password everytime , I suppose
+							==>create account allias
+
+						==>copylink from dashboard
+
+						==>then go to other browser
+
+							==>user will create new user and password
+
+							==>now this new user will see its new console
+
+							==>like we did assign granular access
+
+
+_________________________________________________________________________________________________________________________
+S2E3
+
+continue with EC2 container service
+
+	==>remember we have csv file of credential to access cli
+
+	==>using ssh
+
+	==>we will use pem file with ssh
+
+	=>to create that
+
+		==>login to any of our user
+
+		aws.console.management
+
+		==>go to EC2 virtual server
+
+			==>in left
+
+				==>go to network and security
+					==>go to key pairs
+
+				==>create key pair
+
+				==>key pair name: ecsadmin-key-pair-us-oregon
+
+				==>click create
+
+				==>browser will ask to download
+
+		==>we have to associate key with some instance
+
+		==>we can have IP of instance once when its started
+
+		==>ssh -->agent needs to be added like bash
+
+		==>then add ssh key to that agent
+
+		==>add your identity with ssh i key_path user@IP
+
+_________________________________________________________________________________________________________________________
+S2E4
+
+console.aws.amazon.com
+
+	==>create VPC for use for our cluster
+
+	==>go to VPC ==>create VPC(VIrtual private cloud)
+
+		==>name tag: ECS_VPC
+
+		==>CIDR block: 10.17.0.0/16
+
+		tenancy ==>dedicated ==>no ip will be there for anyone (will cost)
+			==>default ==>will be free
+
+			there will be always default VPC with 172.31.0.0/16
+
+_________________________________________________________________________________________________________________________
+S2E5
+
+security group and ECS instances (like firewall)
+
+	==>go to ECS container service ==>can have one video
+
+	==>go to EC2 in dashboard
+	
+		==>in network and security
+
+			==>go to security groups
+
+				==>now we want like firewall service for all instance
+
+			==>create security group
+
+				security group name: ecs-sg-oregon
+				description:	US Oregon security group
+
+				VPC: 
+
+				inpound: is like incoming
+
+				type: SSH
+				protocol: TCP
+				port rannge: 22
+				source : anywhere 0.0.0.0/0
+				
+				click add rule for inbound
+
+				outbound
+
+				TYPE: SSH(20) or HTTP(80) or HTTPS(443)
+				protocol: TCP
+				
+			==>to secure limited SSH type
+
+
+
+_________________________________________________________________________________________________________________________
+S2E6
+
+configuration options
+
+	==>setup command line interface
+
+	==>sudo yum install epel-release
+
+		==>//we can download in epel repository
+
+		==>sudo yum update
+
+		==>sudo yum install python-pip
+
+		==>sudo pip install awccli
+
+		==>which aws
+
+		==>aws cofigure
+
+			==>access key ID
+
+			==>access secret key
+
+			==>region name : us-west-2
+
+			==>format : default json
+
+		==>aws ec2 describe-regions
+
+
+==============================
+		==>ls *.csv
+
+
+_________________________________________________________________________________________________________________________
+S2E7
+
+sudo yum install docker
+
+
+
