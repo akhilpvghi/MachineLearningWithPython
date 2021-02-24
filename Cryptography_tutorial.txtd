@@ -41,7 +41,7 @@ Data encryption standars
 
 		==>right block is passed through fn(heart of DES) along with 48 bit key and result is absorbed with left block
 
-			==>fn(heart of DES)
+			==>fn(heart of DES) ==>(Expansion, XOR, Substituion function all these take place in this function only)
 
 				==>1) Expansion (32 bit) to 48bit
 					
@@ -67,12 +67,14 @@ Data encryption standars
 
 drop parity bit(8,16,24....position bits)
 
-	==>now 28 bit each
+	==>now 56 bit each (divide in 28 and 28)
 
 	==>rotate shift left and right to both block resp
 
 At round 1,2,9,16 = 1 bit shift
 rest all = 2 bit shift
+
+===>then compression box is used
 
 
 
@@ -807,8 +809,68 @@ ________________________________________________________________________________
 S7E1
 
 
+_______________________________________________________________________________________________________________________________________________________________________________________
 
 
+
+Unacademy
+
+
+		==>we need key and algorithm for encryption
+		
+		==>readable to unreadble format
+		
+	Cryptanalysis
+	
+		==>analyse the no. of transformation without knowing the encryption
+		
+	Brute force attack
+		==>check every possible key
+		
+	Techniques
+	
+		Symmetric 
+		
+		Asymmetric 
+
+		
+_______________________________________________________________________________________________________________________________________________________________
+
+Block size
+
+	==>generally multiple of 8
+	
+	==>even if blocks are identical we will get different ciphers
+	
+			=>coz output of one will be used to next block to encrypt
+			
+	==>Fiestel structure
+	
+		==>same structure will be used
+		
+		
+		
+		
+_______________________________________________________________________________________________________________________________________________________________
+AES
+
+	==>to replace DES
+	
+	==>more secure
+	
+	key size
+	
+	128bit key = 10 rounds
+	
+	192bit key = 12 rounds
+	
+	256 bit key = 14 rounds
+	
+	==>block cipher and also we will be considering byte not bits
+	
+	
+	
+	
 
 
 
