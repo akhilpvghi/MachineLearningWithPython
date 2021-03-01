@@ -9,7 +9,7 @@ Container service ..?
 
 	==>will create user
 
-		=>>will create role
+		=>>will create role (in IAM=> Identity and Access management)
 
 		==>==>will create Key
 
@@ -333,6 +333,41 @@ ________________________________________________________________________________
 S2E7
 
 sudo yum install docker
+
+
+_________________________________________________________________________________________________________________________
+S3E1
+
+aws.amazon.com/ecs/home ==>lab lab...
+
+EC2 container service wizard
+
+	==>ECS is EC2 container service
+
+	task definition name: ecs-sample-web-app-static
+
+	container name: ecs-sample-web
+
+	==>instance within cluster
+
+
+https://judsonian.com/content/netapp-ontap-cloud-in-aws-full-deployment-guide/
+
+http://docs.netapp.com/us-en/occm/task_setting_up_kms.html
+_________________________________________________________________________________________________________________________
+S3E2
+
+S3 ==>scalable storage ==>quite cheaper
+
+
+
+
+
+
+
+
+
+
 
 
 
