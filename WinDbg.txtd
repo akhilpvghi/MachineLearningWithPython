@@ -403,6 +403,14 @@ itroduction to debug  symbols
 	
 	.sympath srv*c:\MyServerSymbols*https://msdl.microsoft.com/download/symbols
 	
+	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\MyApp\Debug\ 
+	
+		then ==>.symfix+ c:\symcache
+!sym noisy
+.reload /f
+
+==>above is correct one ==>just copy it symbol path
+	
 	srv*c:\symCache*https://msdl.microsoft.com/download/symbols
 	
 			==>above is correct one ==>just copy it symbol path
