@@ -359,6 +359,84 @@ S3E2
 
 S3 ==>scalable storage ==>quite cheaper
 
+EC2
+	==>Instances
+
+terminal
+	>>clear
+	>>ls -al *pem
+	>>ll
+	>>ssh-agent bash
+	>>ssh-add _file.pem
+		==>if error
+	then >>chmod 600 _file.pem
+	>>ssh-add _file.pem
+	>>ssh -i _file.pem ec2-user@IP_addr
+
+		==>error connection time out==>as we are using default security
+
+		==>lets change
+	
+_________________________________________________________________________________________________________________________
+S3E3
+
+Amazon ec2 container servece
+
+	task definition name:	console-task-def-latest
+	Container name* :	container-latest-webapp
+	Image*		:	httpd:2.4
+	port mappings*	:	80 80 tcp
+				443 443 tcp
+	
+	==>next step
+		service name*:	service-latest-webapp
+		desired no. of task :	1
+
+		Elastic load balancing :	container_name:80 (#it is port)
+
+		selectIAM role :	ecsServicerole
+	configure cluster
+		cluster name* :	cluster-latest-webapp
+
+instance has==>cluster has ==> service
+
+	
+_________________________________________________________________________________________________________________________
+S3E4
+
+==connection timeout error
+	thugh instance is running on browser
+	==>what if we need to change the build
+
+Security group
+	
+_________________________________________________________________________________________________________________________
+S3E5
+
+Ec2 scaling is like ==>creating new same instance with different task
+
+_________________________________________________________________________________________________________________________
+S3E6
+
+EC2 container service
+		==>distribute load since it is scaled
+
+		load balancer uses ==>round robin
+
+_________________________________________________________________________________________________________________________
+S3E7
+
+docker is like git like to manage version
+
+>>docker --version
+>>docker images
+
+==>hub.docker.com
+
+
+_________________________________________________________________________________________________________________________
+S3E8
+
 
 
 
