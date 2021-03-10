@@ -1,0 +1,96 @@
+VM Ware ESXi
+
+______________________________________________________________________________________________________________________________________________
+
+S1E1
+
+==>overview of installing vSphere5.1
+
+==>Installation and initial configuration
+
+==>Network
+
+==>Storage
+
+==>Virtual machines
+
+==>vCentres
+
+==>vSphere web client
+
+==>Performance
+
+==>vMotion / Storage vMotion
+
+______________________________________________________________________________________________________________________________________________
+
+S1E2
+
+about the author
+
+______________________________________________________________________________________________________________________________________________
+
+S1E3
+
+	why virtualization??
+
+		==>
+	Hypervisor (ESXi)
+
+	ESXi
+
+
+Challenges of physical servers
+
+	==>incompatibility b/w application
+
+Benefits of virtualisation
+
+	==>more dynamic
+	==>Advanced lifecycle ==>Quick deploy
+	
+Hypervisor
+	==>not talking about emulation
+	==>ESXi provides official support for specific physical hardware
+
+ESXi
+	==>type 1 hypervisor
+	==>replaces VMWare ESX
+	==>Does not support running Linux tools, applications or management agents
+
+______________________________________________________________________________________________________________________________________________
+
+S1E4
+
+vSPhere iprovides centralised managemnet for multiple ESXi
+
+______________________________________________________________________________________________________________________________________________
+
+S1E5
+
+Vmotion and Storage vMotion
+
+	==>we can move one server to another
+
+	=>HA monitors to reHost in case of failure
+
+	==>NFS cant have shared storage unlike VMFS
+
+	
+______________________________________________________________________________________________________________________________________________
+
+S1E6
+
+installing VMware ESXI
+
+NFS ==>native file system
+
+	
+______________________________________________________________________________________________________________________________________________
+
+S1E7
+
+
+
+
+
