@@ -848,3 +848,40 @@ You can also rename an existing file by adding the new name after the commands.
 
 :w [newfilename]
 
+_________________________________________________________________________________________________________________________________________________
+
+install docker on RHEL
+
+check rhel OS verion
+
+	===>cat /etc/os-release
+	
+	sudo yum-config-manager --save --setopt=docker-ce-stable.skip_if_unavailable=true
+
+
+	
+	
+_________________________________________________________________________________________________________________________________________________
+
+	
+	not able to ping Ec2 Instance
+	
+	What you need to do is that you need to add a rule to the security group. Steps Given below.
+
+Go to EC2 Dashboard and click "Running Instances"
+on "Security Groups", select the group of your instance which you need to add security.
+click on the "Inbound" tab
+Click "Edit" Button (It will open an popup window)
+click "Add Rule"
+Select the "Custom ICMP rule - IPv4" as Type
+Select "Echo Request" as the Protocol (Port Range by default show as "N/A)
+Enter the "0.0.0.0/0" as Source
+Click "Save"
+
+
+_________________________________________________________________________________________________________________________________________________
+
+	get your public IP in linux
+	
+	$ wget -qO- http://ipecho.net/plain | xargs echo
+$ wget -qO - icanhazip.com

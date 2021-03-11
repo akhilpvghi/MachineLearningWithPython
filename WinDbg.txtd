@@ -405,9 +405,17 @@ itroduction to debug  symbols
 	
 	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\MyApp\Debug\ 
 	
+	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\MyApp\Release
+	
+	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\MyApp\x64\Release
+	
+	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\divideByZero\x64\Release
+	
 		then ==>.symfix+ c:\symcache
 !sym noisy
 .reload /f
+
+!sym quiet = once it is checked stop searching
 
 ==>above is correct one ==>just copy it symbol path
 	
@@ -424,6 +432,15 @@ itroduction to debug  symbols
 		==> .reload /f 
 		
 		==>and check k ==>call stack again
+							==>check from top (updated) to bottom
+							
+					==>instance of notepad
+		
+		===> r ==> for registers
+		
+		==> db _address==>is display bytes
+		
+		
 		
 		lmvm ==>information about binary
 		
@@ -661,7 +678,7 @@ V15
 
 breakpoints
 
-bp	address_==> 
+d	address_==> 
 bm
 bu
 ba
@@ -724,7 +741,9 @@ meta commands
 	.sympath 
 	.symfix
 	
-!analyse -v
+!analyse -v  ==>for bugcheck analysis, exception analysis
+
+
 
 	first section==>key value strings
 	second section =>context ==>set of registers
@@ -734,4 +753,8 @@ meta commands
 	
 	
 	https://oalabs.openanalysis.net/2019/02/18/windbg-for-malware-analysis/
+_________________________________________________________________________________________________________
+
+qd ==>detach and quit
+
 

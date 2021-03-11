@@ -251,7 +251,7 @@ console.aws.amazon.com
 		tenancy ==>dedicated ==>no ip will be there for anyone (will cost)
 			==>default ==>will be free
 
-			there will be always default VPC with 172.31.0.0/16
+			there will  always be default VPC with 172.31.0.0/16
 
 _________________________________________________________________________________________________________________________
 S2E5
