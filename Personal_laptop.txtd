@@ -1,0 +1,427 @@
+DOcker and jenkins Integration
+
+________________________________________________________________________________________________________________________________
+
+S1E1
+
+by Viktor Farcic
+
+	==>prerequisite
+
+		==>Docker
+
+		==>Docker machine
+
+		
+		==>git
+
+
+		===>jq
+
+
+
+===>why docker...?
+
+	==>Portable
+
+	==>low on resources usage
+
+	==>pretty scalable
+
+	==>Isolation of processes
+
+	==>self-sufficient
+
+	==>docker containers are immutable ==>same behaviour anywhere, any environment
+
+
+
+________________________________________________________________________________________________________________________________
+
+S1E2
+
+Docker hub
+
+	$ docker container run --rm mongo (--rm is for to remove container as long as image stops)
+
+	==>ctrl + c will stop it
+
+	==>docker container ls -a (ls all container)
+
+	==>now we are gonna run it in touch mode (that is background)
+
+		===>docker container run -d --name mongo mongo (will return id of created instance)
+
+	==>docker container ls
+
+	==>but container is not exposing any port
+
+	$ docker container logs mongo (mongo is name of container)
+
+	$ docker container stop mongo
+
+	$ docker container ls -a (it is there but stopper)
+
+	docker container rm mongo (mongo is name of container)
+
+	$ docker container ls -a
+
+	$ docker container run -d --name mongo -p 8081:27017 mongo (-p is publish ==>expose 8081 and map to 27017)
+
+	==>hardcoring port is not good idea
+
+	$ doncker container rm -f mongo (-f forcefully will automatically stop first then remove)
+
+	now we will let docker decide the port
+
+	$ docker container run -d --name mongo -p 27017 mongo (this time docker will decide)
+
+	$ docker container ls
+
+	$ docker container rm -f mongo
+
+	database is stateful
+
+
+	$ docker container run -d --name mongi -p 27017 -v /tmp/mongo:/data/db mongo (-v is volume, where do you want to persist, now it is mounted to that directory)
+
+		==>now it is stored in local directory
+
+	$ doker container inspect mongo
+
+	$ ls -l /tmp/mongo/
+	
+	$ docker container -rm -f mongo
+
+
+
+________________________________________________________________________________________________________________________________
+
+S1E3
+
+how to operate containers
+
+	==>in YAML format
+
+	==>execute YAML file using Docker ...
+
+	$ docker-compose --help
+
+	$ docker-compose up --help
+
+	$ git clone repo_url
+
+	$ cd repo
+
+	$ cat docker-compose.yml
+
+	$ docker-compose up -d
+
+		==>will be running in network
+
+	$ docker-compose ps (ps is name of service)
+
+		==>without exposing port every service can be used in the defined network
+
+	$ docker container inspect godemo_app_1 | jq '.' (jq is tool to look in json)
+		
+			==>get port of container 
+
+			==>network settings ==>look at port
+
+	$ PORT=$(docker container inspect godemo_app_1 | jq -r '.[0].NetworkSettings.Ports."8080/tcp"[0].HostPort')
+
+	$echo $PORT
+
+	$ curl localhost:$PORT/demo/hello
+
+	$ docker-compose ps
+
+	$ docker-compse down (stop all the service in that project)
+
+docs.docker.com/compose/compose-file/
+
+
+
+________________________________________________________________________________________________________________________________
+
+S1E4
+
+Manage docker Images
+
+	==>where and how to store them
+
+	==>benefits of building images
+
+	==>allows third party services easily
+
+	==>store everything in images
+
+
+________________________________________________________________________________________________________________________________
+
+S1E5
+
+	==>push images
+	
+	==>single command that builds docker file to docker image
+
+	$ cat Dockerfile
+
+build images
+
+
+________________________________________________________________________________________________________________________________
+
+S1E6
+
+running docker service
+
+	==>push,pull etc
+
+
+	==>docker registry
+		
+$ docker image go-demo user_name/go-demo  (user_name after registering)
+
+$ docker login
+
+	user_name and password
+
+
+$ docker image push vfarcic/go-demo
+
+$ docker image pull vfaarcic/go-demo
+
+$ docker container run -d --name registry -p 5000:5000 registry
+
+$ docker container ls
+
+$ docker image tag go-demo localhost:5000/go-demo
+
+$ docker image push localhost:5000/go-demo
+
+$ docker image rm localhost:5000/go-demo
+
+$ docker image tag go-demo localhost:5000/go-demo:1.1 (1.1 is release number)
+
+$ docker container rm -f registry
+
+	container cluster operations
+
+		==>schedulers
+
+		==> Scaling
+
+		==> Fault tolerance
+
+		==> Service and discovery and networking
+
+
+
+________________________________________________________________________________________________________________________________
+
+S2E1
+
+	by Allan Espinosa
+
+	course overview
+
+		==> multiple environment
+
+		==> advanced jenkins
+
+		==> production mode
+
+		==>CentOs 7 and docker 17
+
+
+________________________________________________________________________________________________________________________________
+
+S2E2
+
+
+we will setup two docker environement
+	
+	==>prepare dev environment in docker
+	
+		==>set up docker container
+				
+				==>application source in docjker hub
+
+		
+			cat > Dockerfile
+
+			$ docker build -t dockerhp/git .
+
+			mkdir !/source
+
+			$ cd source
+
+			$ docker run -v ~/source:/source dockerhp/git git clone https://github...... -b volume1/video-1.1 /source
+
+					bind mount concept
+
+			$ docker pull node:8
+
+			$ docker run -v $(pwd):source -it node:8 bash
+
+			
+
+	==>final deploy
+
+			
+________________________________________________________________________________________________________________________________
+
+S2E3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
+
+AWS S3
+
+_______________________________________________________________________________________________________________________
+S4E21
+
+
+Managing S3 buckets
+
+	==>globomantics
+
+	==>tagging
+
+	==> Analyse S3 logs
+
+	==> AWS cloud watch ==>can be for alarm
+
+
+
+_______________________________________________________________________________________________________________________
+S4E22
+
+globomantics 
+	==>categorise
+
+	==>log S3
+
+	==>monitor bucket matrix
+
+	==>COntrol S3 
+
+
+TAGGING
+	
+	==>object tagging allows categorizing
+
+	==>tags not limited to S3
+
+rules for tags
+
+	==>can assign upto tags
+
+	==> key value fair
+
+	==>keys and values are case sensitive
+
+_______________________________________________________________________________________________________________________
+S4E23
+
+AWS console
+
+	services 
+		==>S3
+
+			==>nucket ==>properties
+
+				==>tags
+					==>add tags
+						==>name and value
+
+				object dont inherit tags from bucket
+						==>hence add new tags for buckets
+
+>>> aws s3 ls
+
+	==>get bucket list
+
+>>>aws s3api get-object-tagging --bucket _bucket_name  --key _name_of_object (may be file (object name))
+
+>>>aws s3api put-object-tagging --bucket _bucket_name  --key _name_of_object --tagging file://tagging.json (structure for s3 tag to change can get from net)
+
+_______________________________________________________________________________________________________________________
+S4E24
+
+AWS cloudTrail
+	
+	==> action recorded 
+
+	==> who or what
+
+	==> enabled by default
+
+
+
+
+_______________________________________________________________________________________________________________________
+S4E25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+todo ==>checkout as it is==>in git scm
+
+
+	==>what is persistent cache
