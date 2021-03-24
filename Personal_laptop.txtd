@@ -425,3 +425,231 @@ todo ==>checkout as it is==>in git scm
 
 
 	==>what is persistent cache
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Virtualisation
+
+By Rick Criscie
+
+
+microsoft hyper vlab
+
+	==>physical server
+
+	==>comes with adapter
+
+	==>Host ==>no OS ==>its hypervisor (ESXi)
+	
+					==>acts as intermediary
+				
+					==>utilising CPU of host
+
+					==>hypervisor manages VM
+
+________________________________________________________________________________________________________________
+
+E2
+
+types of hypervisor
+
+	==>TYPE -1 (you will see in datacentre)
+		
+		==>generally known as bare metal hypervisor
+
+		==>VMware, Microsoft HyperV, RedHAt
+
+		==>you buy a physical server
+
+		==>direct access to H/W
+
+	==>TYPE-2
+
+		==>do not have direct access to hardware
+
+		==>e.g VMware player , VMware workstation (on top of another working system)
+
+		==>VM ==>VM workstation (hypervisor) ==>another OS ==>then H/W
+
+
+
+
+________________________________________________________________________________________________________________
+
+E4
+
+	===>virtual disk information
+
+	==>live state (what hardware is being used)
+
+	==>files of virtual machine will always be there like (snapshot img)
+
+
+________________________________________________________________________________________________________________
+
+E5
+
+
+Food Group #CPU virtualisation
+
+	==>VM access to CPU
+
+	==>you have ability to use two core (not sure its always yours)
+
+	==>share physical core
+
+	==>CPU utilisation handling smoothly
+
+
+
+________________________________________________________________________________________________________________
+
+E6
+
+
+Food Group #Memory virtualisation
+
+	==>VM will have its guest physical memory which maps to physical host memory
+
+	==>hypervisor efficiently shares memory
+
+	===>concept of reservation memory is poosible but not a good idea
+
+
+________________________________________________________________________________________________________________
+
+E7
+
+
+Windows on VM ==>will look for drivers==> has its virtual vNIC (not physical) ==>Physical switch which will have port group
+
+
+		==>traffic can be sent from 1 VM to another
+
+		==>virtual swich has its pNIC (Physical NIC (Network Interface card)) for uplink
+
+		==>trick OS to give picture that it has pNIC
+
+
+________________________________________________________________________________________________________________
+
+E8
+
+storage Virtualisation
+
+	vSCSI (small computer system interface) ==>hypervisor (Layer of abstraction)==>storage adapter ==>data store
+
+		==>different hypervisor can share same resources (data store)
+
+
+
+________________________________________________________________________________________________________________
+
+E9
+
+	Gym Analogy
+
+		==>you cant move to cloud without virtualisation
+
+		==>consolidate workload
+
+		==>we prevent resource wastage
+
+
+
+________________________________________________________________________________________________________________
+
+E10
+
+Virtualisation benefi ==>MOBILITY
+
+	==>mobility to different host/hypervisor
+
+	==>so that maintenance can easily be done
+
+	==> vmotion or live migration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
