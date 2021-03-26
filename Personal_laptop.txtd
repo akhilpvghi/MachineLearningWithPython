@@ -558,6 +558,7 @@ E9
 
 
 
+
 ________________________________________________________________________________________________________________
 
 E10
@@ -570,21 +571,250 @@ Virtualisation benefi ==>MOBILITY
 
 	==> vmotion or live migration
 
+________________________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________
+
+
+S1E1
+
+
+Virtualisation and cloud computing
+
+by monjur Ahmed
+
+	why..?
+
+		==>latest computing approach
+
+		==>massive shift to cloud computing worldwide
+
+	why learn about virtualisation..?
+		
+		==>without virtualisation cloud computing is nothing
+
+		==>to reduce IT infrastructure cost
+
+
+________________________________________________________________________________________________________________
+
+
+S1E2
+
+course overview
+
+
+________________________________________________________________________________________________________________
+
+
+S2E1
+
+	cloud computing ==using of remote resources
+
+			==>on demand service 
+
+			==>cloud computing is an approach
+
+
+	dual booting is different from virtualisation
+
+	virtualisation ==>type 1 hypervisor (bare metal)
+
+
+	example of cloud computing ==>email
+		
+				===>any online storage
+
+				==>High performance computing
+
+				Cloud types
+					public cloud
+						==>owner is someone else
+					private cloud
+						==>owned by self organisation
+					Commmunity cloud
+
+					hubrid cloud
+
+				Cloud service model
+					IaaS : infrastructure as a service
+
+					Paas : platform as a service
+
+					SaaS : software as a service
+
+					SecaaS : Security as a service
+
+					DaaS : database as a service
+
+
+
+
+________________________________________________________________________________________________________________
+
+
+S2E2
+
+type -2 hypervisor practical
+
+________________________________________________________________________________________________________________
+
+
+S2E3
+
+
+...incomp
+________________________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________
+
+E1
+
+Computer Architecture
+
+	4 main types of IC
+		
+		==>CPU or processor (dual core or core duo)
+
+		==>GMCH (Graphics memory controller hub) IC
+		
+			==>aka north bridge
+
+			==>RAM is connected to north bridge
+
+			==>VGA is connected to northbridge
+
+		==>ICH (input controller hub) 
+			
+			==>printer port
+
+			==>USB port
+
+			==>COM port 
+
+			==>LAN port
+
+			==>AUdio
+
+			==>SATA
+
+			==>IDE
+
+			==>PCI slot
+
+			==>FLoppy disk
+
+			
+				==>GMCH and ICH both combined known as chipset
+
+
+
+
+		===>Super IO IC
+
+			==>mouse
+
+			==>keyboard
+
+			==>CPU FAN
+
+			==>BIOS IC
+
+		
+
+
+________________________________________________________________________________________________________________
+
+S1E2
+
+	==>4 important IC in motherboard
+
+	==>platform controller hub (PCH)
+
+	==>now processor will have ==>ram and VGA/DIsplay
+
+	==>advanced PCH handles north and south bridge
+
+		===>BIOS IC is co to PCH IC
+
+	==>IO Ic acts as power controller for motherboard
+
+
+
+________________________________________________________________________________________________________________
+
+S1E3
+
+SMPS ==>switch mode power supply gives upto 60% power
+
+	rest motherboard manages itself
+
+
+________________________________________________________________________________________________________________
+
+S1E4
+
+	===>parallel BIOS IC is replaced by serial BIOS IC
+
+
+
+________________________________________________________________________________________________________________
+
+S2E1
+
+System memory
+	
+	primary memory
+			
+			==>ROM
+				==>non volatile
+
+				==>PROM
+				==>EPROM
+				==>EEPROM
+				==>PROM
+
+			==>RAM
+				==>volatile(supply neeeded)
+	
+				==>SRAM (static RAM)
+					==>speed more than DRAM
+					==>CACHE
+				
+				==>DRAM
+					==>SDRAM (synchronous DRAM)
+						==>DDR1 (Double Data rate 1) ==>in one cycle , double data bit
+						==>DDR2
+						==>DDR3
+						==>DDR3L (DDR3 with low voltage)
+						==>DDR4
+					
+					pins are increased as DDRversion increased
+
+
+	secondary memory
+			==>permanent memory
+			==>non volatile memory
+			==>HDD
+			==>SSD (solid state drive)
+			==>CD/DVD
+			==>Pendrive 
+			==>Floppy
 
 
 
 
 
 
+________________________________________________________________________________________________________________
 
+S3E1
 
+SMPS wires speicfication
 
+________________________________________________________________________________________________________________
 
-
-
-
-
-
+S4E1
 
 
 
