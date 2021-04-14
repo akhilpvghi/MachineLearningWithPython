@@ -662,8 +662,571 @@ ________________________________________________________________________________
 
 S2E3
 
+	==>practical of VM virtual box
+
+
+
+________________________________________________________________________________________________________________
+
+
+S2E4
+
+service models
+
+________________________________________________________________________________________________________________
+
+
+S3E1
+
+intro to Computer networks
+
+________________________________________________________________________________________________________________
+
+
+S3E2
+
+
+IP addressing
+
+________________________________________________________________________________________________________________
+
+
+S3E3
+
+VPN
+
+________________________________________________________________________________________________________________
+
+
+S3E4
+
+
+
+
+
+
 
 ...incomp
+
+
+
+
+
+________________________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________
+
+S1E2
+
+
+Jenkins
+
+	==>automate server
+
+	==>used for continous integration/continous delivery
+
+
+________________________________________________________________________________________________________________
+
+
+S1E5
+
+	==>installing centOS
+
+
+________________________________________________________________________________________________________________
+
+
+S1E6
+
+	$ ip a
+
+	==>connected to centOS using putty
+		
+		==>in saved session of putty , you can save ip to login
+
+
+
+________________________________________________________________________________________________________________
+
+
+S1E7
+
+	==>docker is availabe for some platforms only
+
+	==>get download script from docker site for centOS
+
+	==>sudo usermod -aG docker jenkins (add jenkins user to docker group)
+
+		==>then relogin
+
+		==>now check $ docker ps
+
+
+________________________________________________________________________________________________________________
+
+
+S1E8
+
+	install docker compose
+
+	==>google.com	==>install docker compose
+
+		==>copy paste the command
+
+	$sudo chmod +x /usr/local/bin/docker-compose
+
+
+
+________________________________________________________________________________________________________________
+
+
+S1E9
+
+
+	docker uses image
+
+	jenkins image server will be running soon
+
+	==>gogSrch ==>jenkins docker image
+
+	$ docker images
+
+	$ sudoo du sh .... ==>to know how much space is consumed by app
+
+
+________________________________________________________________________________________________________________
+
+
+S1E10
+
+ $mkdir jenkins
+
+ mv jenkins/ jenkins-data (renaming)
+
+ $ vi docker-compose.yml
+
+	version: '3'
+	services:
+		jenkins:
+			container_name: jenkins
+			image: jenkins/jenkins
+			ports: 
+				- "8080:8080"
+			volumes: 
+				- "$PWD/jenkins_home:/var/jenkins_home"
+			networks:
+				- net
+	networks:
+		net:
+
+________________________________________________________________________________________________________________
+
+
+S1E11
+
+	start jenkin server
+
+	volume must have required permisssions
+	
+	$id
+
+	$sudo chown 1000:1000 jenkins_home -R
+
+	$docker-compose up -d
+
+	$docker ps
+		==>to see server running
+	
+	$ docker logs -f 
+
+	$ docker logs -f jenkins
+
+	hit_ip ==> ip:8080
+		
+		==>administartor password from logs
+
+________________________________________________________________________________________________________________
+
+
+S1E12
+
+
+	==>create a local dns for jenkins
+
+	==>open notepad as runadministrator
+
+	==>go to system 32/etc ==>choose hosts file
+
+		==>paste_ip_address jenkins.local
+________________________________________________________________________________________________________________
+
+
+S1E13
+
+	ssh jenkins@jinkine.local
+
+________________________________________________________________________________________________________________
+
+
+S1E14
+
+jenkiks-data
+	==>docker-compose.yml
+	==>jenkins-home
+
+$ docker-compose stop
+$ docker ps
+$ docker-compose start
+$ docker-compose restart jenkins
+$ docker-compose down (will delete everything but not from volume)
+$ docker-compose up -d (create the service)
+
+________________________________________________________________________________________________________________
+
+
+S2E2
+
+	look at jenkins UI
+
+	new Item 
+		==>
+
+	people
+		==>like user details
+		==>resrict permission n more
+	
+	build history
+		==>test analysis
+	
+	manage jenkins
+		==>
+
+________________________________________________________________________________________________________________
+
+S2E3
+
+	==>create a job
+
+	==>new item
+		==> _my_first_job
+		==> task is known as job
+		
+		==>go to build in UI
+			==>add shell
+				==>in shell 
+					==>echo Hello world
+
+		==>you can check it in console and build history in UI
+
+
+		$ docker exec -ti jenkins bash
+
+			==>we have java installed in container
+
+
+________________________________________________________________________________________________________________
+
+S2E4
+
+	keep playing with our first job
+
+	$ docker exec -ti jenkins bash
+
+	$ echo "Current date is $(date)"
+
+	$ whoami
+
+		==>in UI of jenkins
+		==>save
+
+		==>build now
+
+			==>builds history then console now
+
+		==>console output
+	
+
+________________________________________________________________________________________________________________
+
+S2E5
+
+	==>redirect output
+
+		$ NAME = AKHIL
+
+		$ echo "Hello, $NAME .cureent date and time is $(date)"
+
+			echo "hello $NAMME" > /tmp/info
+
+			cat tmp/imfo
+
+			==>file created on jenkins can be seen in CLI
+
+			==>file is going to be saved in jenkins container
+
+			==>file can also be shared with host, we will see it later
+
+
+________________________________________________________________________________________________________________
+
+S2E6
+
+	==>execute bash script from jenkins
+
+	==>container doesnt have vi
+
+		create file outside of container
+
+		$ vi bash_file.sh
+
+		#!/bin/bash
+		echo "hello, $NAME $LASTNAME"
+
+		==>if we run , permission denied
+
+		chmod +x ./bash_file.sh
+
+		$ ./bash_file.sh 
+
+		get parameter in sh file
+
+
+		#!.........
+
+		NMAE= $1
+		LASTNAME=$2
+
+		$ ./script akhil kumar
+
+		$ docker cp file_to_be_copied:/tmp/fiel_name.sh
+
+		$ docker exec -ti kenkins bash
+
+			==>go to job
+
+				==>configuration
+
+				==>copy /tmp/file.sh akhil kumar
+
+				==>save
+
+				if we are using variable
+					==>space should not be there
+
+
+
+
+
+
+________________________________________________________________________________________________________________
+
+S2E7
+
+	==>add parameter to your job
+
+		==>go to configure
+
+			==>in general section
+
+			==>this project is parameterized
+
+			==>string parameter
+
+			==>give name to string parameter
+
+				_FIrst_name
+
+				==>can add more parameter
+
+				==>we can give default value
+
+
+			==>now build_with_parameters
+
+
+________________________________________________________________________________________________________________
+
+S2E8
+
+	==>choose parameter type of choice parameter
+
+
+________________________________________________________________________________________________________________
+
+S2E9
+
+	==>Adding basic logic to our script
+
+	if [ "$SHOW" = "true" ]; then
+		echo "Hello, $NAME $LASTNAME"
+	else
+		echo "please mark first"
+	fi
+
+	$./file.sh AKhil kumar true
+
+
+________________________________________________________________________________________________________________
+
+S3E2
+
+	==>to execute job remotely
+
+	$ mkdir centos7
+
+	$ cd centos7
+
+	vi Dockerfile
+
+	~from centos
+	~
+	~RUN yum -y install openssh-server
+	~
+	~RUN useradd remote_user && \
+		echo "1234" | passswd remote_user --stdin && \
+		mkdir /home/remote_user/.ssh && \
+		chmod 700 /home/remote_user/.ssh
+	
+	
+
+________________________________________________________________________________________________________________
+
+S3E3
+
+in centos7
+	$ ssh-keygen remote-key
+	
+	vi Dockerfile
+
+	~.....
+	.
+	.
+	.
+	COPY remote-key.pub /home/remote_user/.ssh/authorised_keys
+
+	~RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
+	~chmod 600 /home/remote_user/.ssh/authorised_keys
+
+	~RUN /usr/sbin/sshd-keygen
+
+	~CMD /usr/sbin/sshd -D
+
+________________________________________________________________________________________________________________
+
+S3E4
+
+	along with jenkins user
+
+	jenkins:
+	.
+	.
+	.
+	remote_host:
+		container_name: remote-host
+		image: remote-host
+		build:  (as we are not having image yet)
+			context: centos7 (where dockerfile will be searched)
+		networks:
+			- net
+networks:
+	net:
+
+~docker-compose build
+~docker images
+
+we dont have any container tio that image
+
+~docker-compose up -d
+
+~docker exec -it jenkins bash
+~ ssh remote_user@remote_host
+
+//you can also cp the key in jenkin user and login to remote_host directly
+
+________________________________________________________________________________________________________________
+
+S3E5
+
+install plugins in jenkins
+
+	==>manage jenkins
+
+	=>manage plugins
+
+	==>available
+
+		==>SSH
+
+			==>install withour restart
+
+			==>mark restart now
+________________________________________________________________________________________________________________
+
+S3E6
+
+ connections are only in container
+
+	jenkins
+
+	==>manage jenkins
+
+		==>configure system
+
+		==>ssh host
+
+		hostname : remote_host
+		port 22
+
+________________________________________________________________________________________________________________
+
+S3E7
+
+new item
+
+	==>build
+
+	==>execute shell scripts on remote host using ssh
+
+	now this file will be created at remote_host
+
+
+________________________________________________________________________________________________________________
+
+S4E1
+
+
+
+
+
+..incomp
+
+________________________________________________________________________________________________________________
+
+S12E2
+
+	Continous integration
+
+	code ==> build ==> testing ==> deploy/promote to production ==>all goes to coding again
+
+
+________________________________________________________________________________________________________________
+
+S12E3
+
+continous delivery
+
+________________________________________________________________________________________________________________
+
+S12E4
+
+production
+
+
+
+
+...incomp
+
 ________________________________________________________________________________________________________________
 
 ________________________________________________________________________________________________________________
@@ -816,17 +1379,586 @@ ________________________________________________________________________________
 
 S4E1
 
+	==>incomp
+
+================================================================================================
+
+______________________________________________________________________________________________________________________
+S1E1-E7 (CCSK\[ DevCourseWeb.com ] Lynda)
+
+CCSK certificate course
+
+	VPC peering
+
+
+	===>VPC > Subnet > instance
+
+	==>new peeing
+
+	==>new internet gateway
+
+	==>new route table
 
 
 
+______________________________________________________________________________________________________________________
+S1E8
+
+Network security
+
+ACL (Access control list)
+
+	==>by VNIC
+
+	==>Virtual network sucnets
+	==>use of security groups
+
+	
+
+______________________________________________________________________________________________________________________
+S1E9
+
+	VPC
+		
+		==>network ACL
+
+			==>create new N/w ACL
+
+			==>Associate VPC
+
+			==>add inbound rules
+
+			==>rule no is like priority here
+
+				==>inorder to activate it aaosiate with subnet
+
+			
+
+______________________________________________________________________________________________________________________
+S1E10
+
+	VPN 
+		==>encrypted network tunnel
+
+		==>client-to-site VPN
+
+		==>Site- to-site VPN
+
+
+______________________________________________________________________________________________________________________
+S1E11
+
+client to site vpn 
+
+	==>mutual authentication reqires PKI certificate
+
+		go to VPC
+
+			==>client VPN end point
+
+				==>give name
+
+				==>client IPv4 addresss
+
+
+______________________________________________________________________________________________________________________
+S1E12
+
+	==>incomp
+
+==========================================================================================================================================================
+
+ ([Coursezone.net] Complete Linux Bash Shell Scripting Thru Real Life Examples)
+
+by Imran Afzal
+____________________________________________________________________________________________________________________________________________
+
+S1E1
+
+course syllabus overview
+
+	==>Lab setup
+
+		==>what is virtual machine
+
+		==>linux installation
+
+	section 2
+		==>shell scripting
+
+		==>interaction with kernel
+
+		==>different shell
+
+		==>starting a shell
+
+	section 3(scripting standards)
+		
+		==>proper naming convention
+
+		==> permissions
+
+		==>shell script format
+
+	setion 4
+		==>basic shell scripts
+
+	section 5
+
+		==> Real life scripts
+
+
+____________________________________________________________________________________________________________________________________________
+
+S1E2
+
+	==>to automate your task
+
+
+____________________________________________________________________________________________________________________________________________
+
+S2E1	
+
+	lab setup
+		
+		what is virtual environment or machine..?
+
+		==>what is Oracle virtual box ..?
+
+		==>installing virtual box
+
+		==>creating first virtual box  ...?
+
+		==>linux installation
+
+		==>CentOS
+
+
+____________________________________________________________________________________________________________________________________________
+
+S2E2
+
+what is oracle virtual box..?
+
+	==>centOS linux operating system
+
+	==>it is open-source hypervisor for x86 computers
+
+	hardware ==>OS ==>Oracle virtual Box ==> (linux , windows , mac)
+
+
+____________________________________________________________________________________________________________________________________________
+
+S2E3
+
+	==>google type ==>oracle virtual box download
+
+	==>go to download
+
+	==>windows hst
+
+	==>save the file
+
+	==>leave everything default
+
+	(109 mb exe it is)
+
+
+____________________________________________________________________________________________________________________________________________
+
+S2E4
+
+	==>creating first virtual box
+
+	==>like cntainer
+
+	==>click on new
+
+		==>name
+
+		==>linux 64
+
+		==>size of memory (ram)
+
+
+____________________________________________________________________________________________________________________________________________
+
+S2E5
+
+install linux
+
+	===>will do later
+
+
+____________________________________________________________________________________________________________________________________________
+
+S3E1
+
+	shell scripting basics
+
+	==>what is kernel ..?
+
+	==>what is shell  ...?
+
+	==>what is shell scripting?
+
+	==>types of shells
+
+	==> starting a shell
+
+	==>how to run a shell script
 
 
 
+____________________________________________________________________________________________________________________________________________
+
+S3E2
+
+	linux kernel
+
+		==>interfaces between hardware and shofware
+
+
+		==>OS == kernel + shell
+
+
+____________________________________________________________________________________________________________________________________________
+
+S3E3
+
+what is shell?
+
+	==>like container ==>contains information
+
+	==>echo $0 ==>to find your shell
+
+	==> cat /etc/shells ==>list all shell
+
+	==>cat /etc/passwd
 
 
 
+____________________________________________________________________________________________________________________________________________
+
+S3E4
+
+what is shell scripting ...?
 
 
+	put instruction in a shell and run it
+
+	like blowing air in shell
+
+	
+
+____________________________________________________________________________________________________________________________________________
+
+S3E5
+
+Types of shells
+
+	==>Gnome
+
+	==>KDE
+
+	==>sh   (it is original by stephen born)
+
+	==>bash (born again shell)
+		==>more enhanced features
+
+	==>csh and tcsh
+
+		==>tcsh (doesn't run bash script)
+
+	==>ksh (by David Korn)
+
+		===>compatible with shell and bash
+
+
+____________________________________________________________________________________________________________________________________________
+
+S3E6
+
+	start a shell
+
+	==>simply type shell name
+
+	==>echo $0  ==>(to check shell)
+
+	==> view contents of home
+
+		==>it is in gnome environment
+
+	if you want to channge shell just give name
+
+	$sh
+	echo $0
+
+	to exit ==>$exit
+
+
+____________________________________________________________________________________________________________________________________________
+
+S3E7
+
+how to run a shell script
+
+	==>absolute path or relative path
+
+	~ => /home/user/dir/file_name
+
+	when you are inside directory you have to specify that you to run it from here
+
+	==> ./script_name
+
+	==>only if you are giving script name
+
+
+____________________________________________________________________________________________________________________________________________
+
+S4E1
+
+welcome to scripting standards
+
+____________________________________________________________________________________________________________________________________________
+
+S4E2
+
+Script Naming conventions
+
+____________________________________________________________________________________________________________________________________________
+
+S4E3
+
+Script File permissions
+
+	chmod a+x ==>giving excuutable permission to all users
+
+____________________________________________________________________________________________________________________________________________
+
+S4E4
+
+Script format
+
+	==>first is define a shell
+
+		==> #!/bin/bash
+	
+		==> # comments
+
+		==>define variables (e.g name = Akhil)
+
+		==>commands (echo, cp, grep etc.)
+
+		==>statements (if, while, for etc.)
+
+		==>vim is updated of vi
+
+		==>but vi supports everywhere
+
+			#!/bin/bash
+			# Pupose: Testing script format
+			# Date: 14/04/2021
+			# Modification: 14/04/2021
+			a='My name is AKhil'
+			
+			echo $a
+
+____________________________________________________________________________________________________________________________________________
+
+S4E5
+
+Sequence of script execution
+
+	==>top to bottom
+
+			
+____________________________________________________________________________________________________________________________________________
+
+S5E1
+
+	Basic shell scripting
+
+
+____________________________________________________________________________________________________________________________________________
+
+S5E2
+
+create basic script
+
+	you will only delete if dir is created by user not root otherwise only root can delete it
+
+	vi bashfile  ==>we add bash extension if we want
+	#!bin/bash
+	# Author: AKhil
+	# Date Created: 14/04/2021
+	# Description : 
+	# Date Modified: 
+
+	echo Hello World
+
+	$ls -ltr
+	$chmod a+x bash_file
+	$ /home/akhil/scripts/bash_file ==>with absolute
+
+	$./bash_file ==>//absolute path
+
+		echo
+		echo Hello world
+		echo
+
+			==>to give like \new line
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+S5E3
+
+					
+	Basic task script
+	
+		==>pwd
+		ls
+		whoami
+		date
+		cal
+		touch a b c ==>create three file in same directory
+
+	==>write script
+
+		==>$vi basic_task
+			#!/bin/bash
+			# Author: Akhil
+			# Date: 
+			# Description:
+			# Date Modified:
+
+			echo 
+			echo This Script will run basic tasks
+			echo
+			pwd
+			ls
+			whoami
+			date
+			cal
+			touch a b c
+
+			:wq!
+
+			ls -ltr ==>the order in which they are created
+
+
+____________________________________________________________________________________________________________________________________________
+
+S5E4
+
+Basic administrator task
+
+	top
+	df -h ==>when was the system reboot
+	free -m
+	uptime
+	iostat
+
+	>>>vi admintask
+		#!/bin/bash
+		#Author:
+		#Date:
+		#Description
+		#Date modified:
+
+		echo
+		echo This script will run basic administrator commands
+		echo
+		top		==>will keep your session open and run in real time
+		echo
+		df -h
+		echo
+		uptime
+		echo
+		iostat
+		echo
+		echo end of script
+
+		>>$chmod a+x admintask
+		
+	
+		hence now
+
+		top | head -10 ==>now it will pipe/give only 10 lines
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+S5E5
+
+	...incomp
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Udemy - Bash Scripting for Beginners Learn to Script!
+
+____________________________________________________________________________________________
+S0E1
+
+	==>introduction
+
+	==>traffic monitoring
+
+
+____________________________________________________________________________________________
+S1E1
+
+	utilities iused in this couse
+
+	echo
+		==>$echo hello world
+
+	grep
+		==>used to search for sring in file
+
+		$ grep echo file_name
+
+			==>searched for echo string in file
+
+		$ grep echo
+
+			==>will be searching string echo whatever you will be entering
+
+		$ awk '{print $1,$3}' filename ==>will print first and third string in file
+
+		$man cat ==>to get help
+
+____________________________________________________________________________________________
+S1E2
+
+	script structure
+
+	#!/bin/bash
+	
+	#this simple script echoes some text
+	
+	echo this is the first siimple text
+
+	function second_simple_text()
+	{
+		echo this is second function
+	}
+
+	second_simple_text
+
+	// function needed to be called after defining
+
+____________________________________________________________________________________________
+S1E3
+
+
+	..incomp
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
