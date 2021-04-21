@@ -1,0 +1,23 @@
+
++++++++++=++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Slack incoming webhook integration
+
+workspace ==>akhilpvghiportfolio
+user account gmail ==>akhilpvghi@gmail.com
+
+slack app
+	===>more
+		===>Apps
+			==>incoming webhook
+				==>configuration
+					==>configuration
+						===>edit configuration
+							==>webhook URL ====> show setup instruction===>example
+								
+
+curl -X POST --data-urlencode "payload={\"channel\": \"#general\", \"username\": \"webhookbot\", \"text\": \"This is posted to #general and comes from a bot named webhookbot.\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/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
+
+https://www.webfx.com/tools/emoji-cheat-sheet/
++++++++++=++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
