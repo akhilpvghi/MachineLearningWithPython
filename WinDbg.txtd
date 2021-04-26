@@ -95,7 +95,7 @@ debugger
 	==>program that test another progrma within memory runs on instruction set
 	==>involves high use of breakpoint
 
-USer mode
+User mode
 	==>uses API calls
 	==>not direct acces to hardware
 	==>safer side
@@ -120,7 +120,7 @@ overview of windows environment
 		==>Environmental Subsystem
 		==>to pass input output request to kernel mode
 
-	Kernel MOde
+	Kernel Mode
 		==>Executive ==>holds no of services
 				
 		==>kernel mode Drivers
@@ -313,7 +313,7 @@ and
 IPv4 and IPv6 protocol
 
 
-__________________________________________________________________________
+____________________________________________________________________________________________________________________________________________________
 
 
 V1
@@ -371,7 +371,7 @@ we can also open exe
 
 _________=====================
 
-if kerner mode
+if kernel mode
 	then you will see 
 	
 	 kd>
@@ -411,6 +411,9 @@ itroduction to debug  symbols
 	
 	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\divideByZero\x64\Release
 	
+	
+	.sympath srv*c:\Users\t0250359\Desktop\winDbg_code_debug\divideByZero\x64\Debug
+	
 		then ==>.symfix+ c:\symcache
 !sym noisy
 .reload /f
@@ -420,6 +423,10 @@ itroduction to debug  symbols
 ==>above is correct one ==>just copy it symbol path
 	
 	srv*c:\symCache*https://msdl.microsoft.com/download/symbols
+	
+	srv*;C:\MyApp\x64\Debug
+	
+	.sympath srv*c:\MyServerSymbols*https://msdl.microsoft.com/download/symbols
 	
 			==>above is correct one ==>just copy it symbol path
 	
@@ -446,7 +453,10 @@ itroduction to debug  symbols
 		
 		=>~0s ==>to start from base address
 		
-		e.g ==>lmvm notepad
+		e.g ==>lmvm notepad  
+						==>you can check where symbols are loaded
+						
+			==>to check loaded symbols of notepad ===>x notepad!*
 
 why we need symbols
 	
@@ -622,7 +632,7 @@ dt	==>dump type
 	
 	==>x ListEntryDlist!#name ==>to get the address
 
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 
 V12
 
@@ -639,8 +649,7 @@ f10 ==>to move to next line
 	==>r eip = #updated_address (# we got jumped and bypassed)
 
 
-________________________________________________________________________________________________________________________
-
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 V13
 
 unassemble of code
@@ -757,4 +766,16 @@ ________________________________________________________________________________
 
 qd ==>detach and quit
 
+___________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________________________________________
+
+dynamic analysis of executables or simply reverse engineering
+
+after adding executables
+
+! ==>extensions commands
+
+.hh !dh ==>help with dh
+
+bc * ===>clear breakpoints
 

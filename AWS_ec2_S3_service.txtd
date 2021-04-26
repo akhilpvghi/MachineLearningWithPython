@@ -438,14 +438,184 @@ ________________________________________________________________________________
 S3E8
 
 
+====>incomp
+
+
+_____________________________________________________________________________________________________________________________________________________________________________
+
+
+VPC
+
+	===>pay as you go service
+	
+	===>services like storage, memory, CPU, networking, Customer support, Security
+	
+	
+
+	
+_____________________________________________________________________________________________________________________________________________________________________________
+
+S2E6
+
+provisioning AWS S3
+
+	==>aws.amazon.com
+	
+			==>sign into console
+			
+			==>storage 
+					===>s3
+
+			==>create bucket
+			
+				==>name
+				
+				==>region
+				
+				==>choose bucket from existing setting like permission
+				
+				==>block all public access ==>uncheck it otherwise you wont make changees later ==>uncheck under its sub categgories
+				
+				==>disable versioning
+				
+				==>key ==>mauy be for different department
+				
+				==>default encryption disable
+				
+				==>object locks ==>disable ==>under advanced setting
+				
+	==>can be uploaded directly
+	
+		===>object action ==>download files
+		
+		==>object url
+		
+		==>client should have credential tto acces it
+		
+		==>permission ==> edit  
+		
+		bucket name===>  permisssion ==> unblock all access  also need to make it public
+		
+		==>updating file ==>updates permission as it compares to bucket
+		
+		
+		
+		
+					
+
+	
+_____________________________________________________________________________________________________________________________________________________________________________
+
+S2E7
+
+
+create bucket using AWS	CLI
+
+				in cmd===>
+				
+				>>aws s3 ls
+
+				service  kkkk iam users new user ==> programmaatic access 
+				 no need of console acess
+				 
+				 get access key id and secret access key
+				 
+				 aws configure 
+				 
+				 fill credebtial
+				 
+				 enater andd enter
+				 
+				  ==>access denied again
+				  
+				  Iam ==> group == new group 
+				  s3-user-rw ==> s3 full access
+				add user to group ==
+				  aws s3 ls
+				  
+				  aws s3api create-bucket -- bucket _name --region _name
+				  
+				  storage class for bucket  later in this module 
+				  
+				  
+	
+_____________________________________________________________________________________________________________________________________________________________________________
+
+S2E8
+
+AWs EBS ==>block storage plural soght 
+
+aws s3 cp s3 url _file name
+
+source destination
+
+any machine with right credential can have acces in S3 but it is not case with EBS
+
+==>sync
+
+	sync recursively copies 
+	
+	all the file
+	  aws S3 sync . s3://mybucket
+	  
+	  
+	  
+	
+_____________________________________________________________________________________________________________________________________________________________________________
+
+S2E9
+
+copy file machine from EC2 to S3
+
+synching EC@ to S3
+
+==>can also have access S3 for public websites
+
+AMI are template file stord in aws
+
+
+==>services   ==ec2 kkk misc==ceosoft window server 16 base  --> t2.large 
+
+RDP==>remote desktop ==>3389
+
+
+http ==>all port
+
+==>launch instance
+
+key pair
+
+connect ==>remote desktop file ==>get password===>upload key file==>decrypt password
+
+==>click on rdp file==>enter password login==>
+
+>>aws configure
+
+	access id
+	==>secret key
+	==>region
+	
+	>>aws s3 ls
+	
+services ==>s3==>create bucket ==>name==>next==>next==>
+
+aws s3 cp src s3://
+go to bucket==>see ur file
+
+aws sync ==>will make same ==>not rewrite again				  
+				
+static website ==>make bucket and file public
+
+
++===========================
+
+services==>ec2==lanch instances==>list of amis
 
 
 
+___________________________________________________________________________________________________________________________________________________________________________
 
-
-
-
-
+S2E10
 
 
 

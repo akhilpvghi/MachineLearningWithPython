@@ -885,3 +885,102 @@ ________________________________________________________________________________
 	
 	$ wget -qO- http://ipecho.net/plain | xargs echo
 $ wget -qO - icanhazip.com
+
+
+myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+echo "My WAN/Public IP address: ${myip}"
+
+_________________________________________________________________________________________________________________________________________________
+
+
+cygwin is CLI at windows level itself, we can untar it...without using administrator acsess
+
+
+_________________________________________________________________________________________________________________________________________________
+
+firewall-cmd --zone=public --add-port=22/tcp --permanent
+firewall-cmd --reload
+iptables-save | grep 22
+
+
+_________________________________________________________________________________________________________________________________________________
+
+  curl upload
+  
+			===>curl -k -T C:\Users\t0250359\Desktop\Importantlinks.txt -u admin:admin123 http://10.164.14.135:8081/repository/CTI_Integrations/Importantlinks.txt
+  
+
+
+
+_________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+curl -O http://10.164.14.135:8081/repository/CTI_KSP/protectapp_ms_cngprovider_32bit_V8.9.2.exe
+
+curl -O -u jenkins:user https://10.164.8.225/repository/jenkins/OpenPGP/CSP_PROVIDER_64BIT_V8.4.3p01.exe
+
+https://10.164.8.225/repository/jenkins/OpenPGP/CSP_PROVIDER_64BIT_V8.4.3p01.exe
+
+
+http://10.164.14.135:8081/#browse/browse/assets:CTI_KSP:31c950c8eeeab78306539615831a9ac0
+
+
+
+
+
+
+http://10.164.14.135:8081/repository/CTI_KSP/protectapp_ms_cngprovider_32bit_V8.9.2.exe
+
+http://10.164.14.135:8081/repository/CTI_KSP/protectapp_ms_cngprovider_32bit_V8.9.2.exe
+
+
+_________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+openssl
+	
+			===>https://www.mkssoftware.com/docs/man1/openssl_enc.1.asp
+			
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+json view chrome extension
+
+
+
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
