@@ -1,3 +1,436 @@
+Udemy - Bash Scripting for Beginners Learn to Script!
+
+____________________________________________________________________________________________
+S0E1
+
+	==>introduction
+
+	==>traffic monitoring
+
+
+____________________________________________________________________________________________
+S1E1
+
+	utilities iused in this couse
+
+	echo
+		==>$echo hello world
+
+	grep
+		==>used to search for sring in file
+
+		$ grep echo file_name
+
+			==>searched for echo string in file
+
+		$ grep echo
+
+			==>will be searching string echo whatever you will be entering
+
+		$ awk '{print $1,$3}' filename ==>will print first and third string in file
+
+		$man cat ==>to get help
+
+____________________________________________________________________________________________
+S1E2
+
+	script structure
+
+	#!/bin/bash
+	
+	#this simple script echoes some text
+	
+	echo this is the first siimple text
+
+	function second_simple_text()
+	{
+		echo this is second function
+	}
+
+	second_simple_text
+
+	// function needed to be called after defining
+
+____________________________________________________________________________________________
+S1E3
+
+
+variable and environments
+
+	==>set  ==>to check all variables in environment
+
+	==>by default it is a type of string
+
+	#!/bin/bash
+
+	A="This is variable A"
+	B="This is variable B"
+
+	echo $A
+	echo $B
+
+	chmod +x variables
+
+===>only execution permission is needed once
+
+	echo "this will expand: $B" ==>correct value of variable b will be printed
+
+	echo 'This will NOT expand: $B' ==>single quotes does not print value
+
+	or 
+
+	echo "this will expand: $A. this will not expand: \$B"
+
+========================
+
+A="30"
+B=4
+
+C=$(($A + $B))
+
+echo $C //34 ==>arithmetic evaluation
+
+____________________________________________________________________________________________
+S1E4
+
+
+	script and function parameter
+
+	echo $@ ==> we are expecting parameter when script runs
+
+	echo $# ==>no of parameter we have received
+
+	echo $1 ==>will print first parameter we have received
+
+	echo $0 ==>will give script name
+
+	shift ==>shift will shipt parameter while accessing except $0 parameter
+
+	+===================
+
+	function func_param() {
+	
+		echo func_param: $@
+		echo func_param: $#
+
+
+	}
+
+func_param $1 $3 ==>now it doesnt matter how many parameter we re passing we are using only 1st and 3rd paramets 
+
+____________________________________________________________________________________________
+S1E5
+
+ls -l >ls.output
+
+		==>will put output of this to given file name
+
+echo"this is a test file" > test_file ===>will be over written
+
+inorder to append ==>use double sign " >>"
+
+=================
+
+grep "aug 15" < ls.output
+
+or
+
+
+grep "aug 15" ls.output ==>now here file is used as parameter
+
+____________________________________________________________________________________________
+S1E6
+
+pipes
+
+	==>output to one and input to second command
+
+	ls -l | grep "aug 15"
+
+		===>input used | by this command
+
+	cat /proc/cpuinfo | grep "model name" | cut -d':' -f 2  ==>d is delimeter ==>f is representing which parameter to use
+
+
+
+____________________________________________________________________________________________
+S1E7
+
+command susbstitution 
+
+	==>emacs file.bash ==>like vi editor tool
+
+	#!/bin/bash
+
+	read A
+	read B
+
+	C=`expr $A + $B`
+
+	echo $C
+	
+	echo "the result of $A + $B is `expr $A + $B`"
+
+	OR
+
+	echo "the result is $(($A +$B))"
+
+
+			===>addition happened
+
+
+
+____________________________________________________________________________________________
+S1E8
+
+if statements
+	
+	==>basic control case
+
+	#!/bin/bash
+	
+	if[[ $# -ne 1]]
+	then
+		echo Wrong number of arguements. should be one.
+		exit 2
+	fi
+
+		==>checks for only one parameter, no more than one parameter should be there
+
+	if [ -e $1 ] ==>// OR if test -e $1
+	then
+		echo The file exists.
+	else
+		echo the file doen not exist
+	fi
+
+==========================
+
+if [[ -e $1 && $1 -nt $0 ]]
+then
+echo the file exist and newer version
+else
+echo file doen not exist or new newer version
+fi
+
+
+____________________________________________________________________________________________
+S1E9
+
+case satements
+
+	#!/bin/bash
+	if [ $# -ne 1]
+	then 
+		echo I only know to greet exactly one person
+		exit 2
+	fi
+
+	case $1 in
+		Andrew)
+			echo Hi there, $1
+			echo How are you today?
+			;;
+
+		Newman)
+			echo Hello, $1
+			;;
+		*)
+			echo Nice to meet you
+			;;
+		esac
+
+			==>//break is like automatically 
+
+
+____________________________________________________________________________________________
+S1E10
+
+while until structure
+
+	#!/bin/bash
+	
+	while [ "$REPLY" != YES]
+	do
+		echo Welcome to the meeting!
+		echo Do tou agree with the same way I want to do things?
+
+		read
+
+		sleep 2
+	done
+
+=====
+until ["$REPLY" == Yes ]   //===>kind of opposite way of while
+
+____________________________________________________________________________________________
+S1E11
+
+for loop
+	
+	#!/vbin/bash
+
+	for((i=1;i<10;i++))
+	do
+		echo -n "192.168.1.$i"	===>-n will allow next to print in same line
+		if ping -W 1 -c 1 192.168.1.$1 > /dev/null
+		then
+			echo check!
+		else
+			echo no
+		fi
+	done
+
+
+
+====================================================================================================
+
+2nd form of for loop
+
+	for i in 192.168.1.1 192.168.1.2 www.google.com 192.168.1.7
+	do
+		echo -n "$i "
+		if ping -W 1 -c 1 $i > /dev/null
+		then
+			echo check!
+		else
+			echo no
+		fi
+	done
+
+=================================================================================
+
+rm -f my_example_file_*
+
+for ((idx=0;idx<20;idx++))
+do
+	touch my_example_file_$idx
+done
+
+for myFilw in my_example_file_*
+do
+	echo "This is $myFile file" > $myFIle
+done
+
+=====>if we want to wrie only file number greater than 10
+
+for myFIle in my_example_file_??
+do
+	echo "this is $myFIle file" > $myFile
+done
+
+	
+____________________________________________________________________________________________
+S2E1
+
+#!/bin/bash
+
+filename=
+interface
+
+function usage() {
+	echo $0 -i interface -f filename
+	exit 1
+}
+
+function extract_params() {
+	if [ $# -ne 4]
+	then
+		usage
+	fi
+
+	while [$# -gt 1]
+	do
+		case $1 in
+			-f)
+				filename=$2
+				;;
+			-i)
+				interface=$2
+				;;
+			*)
+				usage
+			esac
+			shift
+			shift
+		done
+}
+
+extarct_params $@
+
+echo interface $interface
+echo filename $filename
+
+____________________________________________________________________________________________
+S2E2
+
+..cont from S2E1
+
+extract_params $@
+
+DATE = `date + "%Y-%m-%d %H:%M"`
+
+date_string = `cat /proc/net/dev | grep -w $interface | cut -f 2 -d':' | awk `{print $1,$2,$9,$10}``
+
+if [-z "$data_string"]
+then 
+	echo interface $interface does not exist
+fi
+
+rx_bytes = echo $data_string | awk '{print $1}'`
+
+rx_packets = echo $data_string | awk '{print $2}'`
+
+if [! -e $filename]
+then
+	echo "data" > $filename
+fi
+
+____________________________________________________________________________________________
+S2E3
+
+
+cron tab
+
+	==>in specific time
+
+	==>cron daemon ==>prescheduled time
+
+	
+	#!/bin/bash
+
+	date +"%Y-%m-%d %H:%M:%S" >> dates.txt
+
+	===================
+
+	emacs myCrontab
+
+	# m h dom mon dow usercommand   ==>//min hour day_of_month  
+	* * * * * /home/mortal/date_me.bash
+	
+	==>//given script must be executable
+
+	$crontab myCronTab
+
+	crontab -l ==>to check if its installed
+
+	crontab -r ==>will remove crontab
+
+	crontab -l ==>will be cleaned now
+
+____________________________________________________________________________________________
+S2E4
+
+	 cron check interface
+
+
+
+			....done
+
+=====================================================================================================================================================================================
+
+=====================================================================================================================================================================================
+
 
  ([Coursezone.net] Complete Linux Bash Shell Scripting Thru Real Life Examples)
 
