@@ -1,0 +1,363 @@
+==========================================================================================================================================================
+
+ ([Coursezone.net] Complete Linux Bash Shell Scripting Thru Real Life Examples)
+
+by Imran Afzal
+
+_________________________________________________________________________________________________________
+S7E3
+
+	wildcards ==> character can be user for substitute
+
+		* ===>0 or more character
+
+		? ==>represents a single character
+
+		[] ==> represents a range of character
+
+
+	==>create 9 files like abc#.txt
+
+		==>touch abc{1..9}-xyz
+
+			abc1-xyz
+			abc2-xyz
+			...
+			...
+		==>ls -l ?bcd*
+
+		==>ls -l *[cd]* | more
+
+			==>any file having cd in it
+
+_________________________________________________________________________________________________________
+S7E4
+
+soft links nad hard links
+
+	inode ===> is pointer or number of a file on the hard disk
+
+	soft link ==> link will be removed if file is removed or renamed
+
+	hard link ===>deleting or renaming doesnt affect
+
+	ls -ltri  ==>i will give inode number
+
+	=====
+
+	now test hard link
+
+	in home
+
+		==>touch file_name
+
+		cd tmp
+
+		==>ln /home/user/file_name
+		
+		===>ls -ltr ===>to check, you will not see any pointning in this case
+
+		==>cd home
+
+			==>you can delete file from home and it will be there in tmp ==>as it is hard linked, not ln -s ," not with -s flag"
+_________________________________________________________________________________________________________
+S7E5
+
+files ownership
+
+	=>ownership creates on user and group level
+
+	==> -R
+		==>recursively
+		
+		==>will change ownership inherently
+
+	==>su -
+		==>is to switch to root
+
+	==>chown root file_name
+
+	==>chgrp root file_name
+
+	==>to get out of root
+		==>exit
+
+	==>if parent dir is in your control , then no matter whats permission inside, you can do everything
+
+_________________________________________________________________________________________________________
+S7E6
+
+	tab key ==>auto completion
+
+_________________________________________________________________________________________________________
+S7E7
+
+combining and splitting files
+
+	cat file1 file2 file3 > file4
+
+			===>in above command, we are combining content
+
+	cat filename | wc -l
+			==>will gve line number in file
+
+	split -l 2 filename_to_split create_paater_of_file
+	
+		==>will create two line spits with abcd pattern
+
+_________________________________________________________________________________________________________
+S7E8
+
+linux file editor
+
+vi ==>visual editor
+ed ==>standard line editor
+ex ==>extended line editor
+
+.
+.
+.
+
+1 - insert
+r --replace
+d - delete==>will delete a line
+:wq! ==>write and quit
+u ==>undo
+o ==>will give new line and open it inserts mode
+
+
+==>in command mode cursor navigates easily
+
+===>by default , vi is in command mode
+
+==>grep word filename
+
+==>/word ==>to search in vi in command mode
+
+	
+_________________________________________________________________________________________________________
+S7E9
+
+sed command is ==>to substitute, replaces string in file
+
+	==>find and delete a line
+
+	==>remove empty lines
+
+	==>remove the first or n lines in a file
+
+	==>to replace tabs with spaces
+
+	==>show defined lines from a file
+
+	==>substitute within vi editor
+
+====>
+
+replace kenny to lenny
+
+>> sed 's/Kenny/Lenny/g' name_of_file    ==>/g means globally==>every where in file
+
+	==>the above command will only show the preview
+
+	==>in order to make changes in file
+
+		==>use ==>>>sed -i  .........  //-i is for insert
+
+		////'s/word1/word2 ===>s is for substitute==>word1 will be replaced with word2
+
+====>
+>>sed '/word/d' file_name ==>it will delete the line which will have the word==>only preview is shown
+					as it is not used with -i
+
+>>>sed '/^$/d' file_name ===>//anything which is starting (^) and having end ($) ==>nothing in between just delete ==>simply will remove emty line
+
+>>sed '1d' file_name ===>will remove first line
+
+>>sed '1,2d' ==>will remove 1st and 2nd line
+
+>>>sed 's/\t/ /g' file_name ==>will remove tab from file
+
+
+>>>sed -n 12,18p file_name ==>will show you from line mo 12 to 18 line
+
+>>>sed 12,18d file_name ==>will show you everything except from line  no 12 to 18
+
+>>sed G filename ==>everyline will have space ==>will show you preview only
+
+>>>sed '8!s/word1/S/' ===>everything will be replaced with s, except line 8
+
+in vi editor
+
+:%s/word_to_be_replaced/word2 
+
+		
+
+_________________________________________________________________________________________________________
+S7E10
+
+date ==>will show you date 
+ifconfig ==>will show you ip addr
+uptime ==> will show you how long time is system up for, and user
+hostname ==>will show you hostname
+uname ==> will show you unix version, -a can be used
+which ==> will show you where this command is located 
+cal ==> will show you  calendar
+bc ===>will show you binary calculator
+	==>can use calculator on terminal
+
+
+
+ls -l | wc -l ===>will give you line number
+cal 9 1977 ==>will show you september of 1997
+
+_________________________________________________________________________________________________________
+S7E11
+
+Log monitoring
+
+log directory	==> /var/log
+boot
+chrony ===>d =NTP
+cron  ==>> 
+maillog
+secure   ==>will give you login detail in running time
+messages  ==>to monitor system activities
+httpd	===>apache application log
+///
+more filename ==>will show you file slowly
+
+tail -f filename ===>will give duntime logs
+
+>>grep -i error filename //i ignores case sensitivity
+
+_________________________________________________________________________________________________________
+S7E12
+
+terminal commands
+
+	==>help you to manage terminal
+
+	>>>clear ==>will clear terminal screen
+
+	>>exit ==>//allows you to exit from session
+
+	>>script ==>stores terminal activity by user name
+		
+		>>script file_name.log   ===>log file active will be created in same directory
+
+				====>will keep all recording and output
+
+				==>its like a log book will be created
+
+_________________________________________________________________________________________________________
+S7E13
+
+Aliases
+
+	alias ls="ls -al"
+
+	alias pl="pwd; ls"
+
+		==>alias will run two commands
+
+	alias dir="ls -l| grp ^d" ==>output that starts with d
+
+	df -h | awk '{print $6}' | cut -c1-4 ==>will cut character from 1 character to 4
+
+	alias d = "df -h | aws '{print \$6}' | cut -c1-4 "
+
+	===>where are aliases created
+
+	>>>alias
+			==>will give all alias
+
+	what if we want to remove alias
+
+	>>unalias alias_name
+
+		su - user_name ===>to login as another user
+
+
+_________________________________________________________________________________________________________
+S7E14
+
+NIC bonding
+
+	Network interface card
+
+	==>merge two nic to get more efficiency
+
+
+_________________________________________________________________________________________________________
+
+S7E15
+
+file transfer
+
+scp ===>secure copy
+
+rsync ==>backup
+
+
+>>ftp destination_server_ip
+
+==========
+
+scp file_to_copy remote_mchn_ip:/where_to_copy
+
+	==>you may get connection refused
+
+	===>you can check >>>cat /etc/hosts
+
+rsync >>will give you help how to get file system backups
+
+
+_________________________________________________________________________________________________________
+
+S7E16
+
+RAID 
+
+	==>Redundant Arrau of Independent Disk
+
+	==>extensive disk
+
+TYpes of RAID
+
+	==>we will cover 
+		==>RAID0
+		==>RAID1
+		==>RAID5
+
+
+_________________________________________________________________________________________________________
+
+S7E17
+
+facts about IT
+
+	==>IT is growing
+
+	
+
+_________________________________________________________________________________________________________
+
+S7E18
+
+differnece between linux 5,6 and 7
+
+CentOs v/s RHEL
+
+	==>exactly same , rhel only supports customer
+
+	==>total version==>redhat 0 to 7
+
+
+
+
+
+
+
+		....done
+

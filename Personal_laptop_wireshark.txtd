@@ -1,0 +1,95 @@
+
+
+[TutsNode.com] - Network Protocol Analysis Using Wireshark Part-1
+
+________________________________________________________________________________________________________
+S1E1
+
+intro
+
+________________________________________________________________________________________________________
+S1E2
+
+selecting a capture interface
+
+	==>select interface
+
+	==>after capturing packets, stop
+
+________________________________________________________________________________________________________
+S1E3
+
+capture 
+	==>capture filter
+
+select interface(double click)
+	==>capture filter ==>//tcp or udp
+
+________________________________________________________________________________________________________
+S1E4
+
+if you want to save filtered packets
+
+	==>file
+		==>EXPORT SPECIFIED PACKETS
+			==>ALL PACKETS DISPLAYED
+
+save marked packets
+	==>packet right click (mark them)
+		==>export specified packets
+			===>marked
+
+save range of packets
+	==>export specified packets
+		==>range [1-50,53-60]
+
+________________________________________________________________________________________________________
+S1E5
+
+navigate through menus and status bar
+
+	==>help ==>about ==>version
+
+		{QT is updated platedform}
+
+	==>to start the capture
+			==>dolphic back
+			==>reset (like refresh on dolphin back)
+
+//all related to navigation to specified packets
+
+
+
+________________________________________________________________________________________________________
+S2E1
+
+to find low ttl value meaning
+
+	packet select
+
+		==>internet layer
+
+			==>time to live
+
+	less ttl means ==>spmeone is tracing your network/ it is not desirable
+
+________________________________________________________________________________________________________
+S2E2
+
+
+finding a text string in a trace file
+
+	go to fina a packet (magnifying glass)
+
+		==>select string
+
+			==>then search string
+
+
+________________________________________________________________________________________________________
+S2E3
+
+
+
+
+	...incomp

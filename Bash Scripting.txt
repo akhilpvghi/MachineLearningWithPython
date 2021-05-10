@@ -429,8 +429,7 @@ S2E4
 
 =====================================================================================================================================================================================
 
-=====================================================================================================================================================================================
-
+==========================================================================================================================================================
 
  ([Coursezone.net] Complete Linux Bash Shell Scripting Thru Real Life Examples)
 
@@ -853,5 +852,825 @@ Basic administrator task
 		top | head -10 ==>now it will pipe/give only 10 lines
 
 
+
+____________________________________________________________________________________________________________________________________________
+
+S5E5 (defining variables)
+
+	cal 2018 ==>calendar
+
+____________________________________________________________________________________________________________________________________________
+
+S5E6 (6. InputOutput Script)
+
+read 
+echo
+
+==========
+
+echo what is your name?
+read namecont  //===>will automaticalyy will be convert into variable
+echo hello $namecont
+
+	==>// if you want to use variable direcly is echo ==>you need  `` tilde operator while assigning variable
+
+____________________________________________________________________________________________________________________________________________
+
+S5E7. ConditionsIf else statements Scripts
+
+	...skipped
+
+____________________________________________________________________________________________________________________________________________
+
+S5E8. Case Statements Script
+	
+	...skipped
+
+____________________________________________________________________________________________________________________________________________
+
+S5E9. For loop Script
+
+	...skipped
+____________________________________________________________________________________________________________________________________________
+
+S5E10. do-while Scripts
+
+	...skipped
+
+____________________________________________________________________________________________________________________________________________
+
+S5E11
+
+==>exist status
+
+	status code 0 to 255
+
+0 ==>OK or successful
+
+1 ==> minor problem
+
+2 = serious problem
+
+3-255 = everything else
+
+==>echo $? ===>get status of last running command
+
+____________________________________________________________________________________________________________________________________________
+
+S6E1
+
+Real life shell cripting
+
+	==>intro
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E2
+
+Accessing data from file
+
+	su -    ==>to login as root
+
+	chown user_name filename
+
+	chgrp user_name filename
+
+	exit ==>exit out of root
+
+	
+		==>
+		#!/bin/bash
+		#Description find errors only
+
+		grep -i error /home/user_name/professional-scripts/messages
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E3
+	
+
+	==>checking other server connectivity
+
+	==>script writing
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E4
+
+	Crontab
+
+==>crontab -e ///(e is for edit)
+
+34 20 * * * /script_name > output_file
+//min hr day_of_month month_of_year day_of_week
+
+
+we can also notify(email) via crontab 
+____________________________________________________________________________________________________________________________________________
+
+S6E5
+
+Script to delete files
+	
+	==>to check this script , we will create file older timestamp
+
+	==>find and rename old files
+
+	==>$ touch -t "Thu, 1 March 2018 12:30:00" a /////===>creting file with ourtimestamp
+	
+	==> find /path -mttime +90 -exec ls -l {} \;
+
+		==>/the above command file will file 3 months olde file
+
+	$ vi deleteOlderfiles
+
+	#!/bin/bash
+	# Author Akhil
+	# Date: 22/04/2021
+	# Description: This is to delete older files
+	
+	
+	find /path -mttime +90 -exec rm {} \;
+
+		==>will delete all files
+
+
+	==>// to rename
+	find /path -mttime +90 -exec mv {} {}.old \;
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E6
+
+	==>that will backup our file system
+
+	==>will be cretaing backup /etc  and /var
+
+	==>compress the backup .tar file using gzip command
+
+	==>write a script to automate backups
+
+	$su -   //==>to become root
+	$whoami //
+	$tar cvf /tmp/backup.tar /etc /var  ==>will be backig up /etc and /tar
+
+	$gzip /_path/backup.tar ==> backing up is different from compressing
+
+	vi backupfs //==>fs =>filesystem
+
+	#!//bin/bash
+	# Author:  AKhil
+	# Date: 22/04/2021
+	# Description: to create backup
+
+	tar cvf /backup_location_to store/filename.tar /etc /var
+
+	gzip /tmp/backup.tar  //==>absolute path is needed
+
+	find backup.tar.gz -mtime -1 -type -print &> /dev/null
+
+	if [ $? -eq 0 ]
+		then
+		echo Backup was created
+		echo
+		echo Archiving Backup
+		scp /tmp/backup.tar.gz root@IP:path
+		else
+		echo Backup failed
+	fi
+$chmod a+x backupfs
+
+____________________________________________________________________________________________________________________________________________
+
+S6E7
+
+vi simplecount
+
+#!/bin/bash
+#Author
+# Date:
+# Description
+# Modified
+
+for i in {1..10}
+do
+	echo $i
+	sleep 1   //its in second
+done
+
+chmod a+x simplecount
+>>> ./simplecount
+
+==============================
+
+//create multiple files with script
+
+vi createfiles
+
+#!/bin/bash
+...
+...
+
+for i in {1..10}
+do
+	touch imran.$i
+done			//touch creates file too
+
+
+:7 ===>will go to line no 7
+
+//create multiple files with input
+
+read num_of_files
+for i in $(seq 1 $num_of_files) //.. only works with integer, seq is sequence
+do
+	touch akhil.$i
+done 
+
+===============================================================================================
+
+assign write permission to everyfile
+
+chmod a+w akhil.*
+
+for i in imran.*
+do
+	chmod a+w $i
+	sleep 1
+done
+
+==================================================================================================
+
+total = `ls -l akhil* ? wc -l`  ==>//will give total no of file start with akhil
+
+echo it will take $total seconds to assign permissions..
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E8
+
+==>rename all *.txt to none
+==>to check if file exists or not
+
+vi renamefiles
+
+#!/bin/bash
+# Author:
+# Date:
+# Description:
+# Modified: 
+
+for filename in *.txt
+do
+	mv $filename ${filename%.txt}.none
+done
+
+chmod a+x renamefiles
+
+>>touch akhil.txt amit.txt ==>//will create multiple files
+
+=========================================================================================
+
+check to see if file exists
+
+vi checkforfiles
+
+FILES ="/etc/passwd
+/etc/group
+/etc/shadow
+/etc/fake"
+
+echo 
+for file in $FILES
+do
+	if [ ! -e $file ]
+	then
+	echo the $file does not exist
+	echo
+	fi
+done
+
+____________________________________________________________________________________________________________________________________________
+
+S6E9
+
+copy file to remote host
+
+vi copyfilestoremote
+
+#!/bin/bash
+# Author
+# Description:
+# Date:
+# modified:
+=========
+a=`cat /home/user/filename`
+for i in  $a
+===========
+OR
+==========
+for i in redhat1 redhat2 redhat3 redhat4
+do
+	scp file_name $i:/tmp
+done
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E10
+
+
+Directory assignment
+
+cd /home
+mkdir junos
+
+cd /tmp
+vi chkdir
+
+#!/bin/bask
+# Author:
+# Date:
+# Description:
+# Modified:
+
+cd /home
+for DIR in *
+do
+	CHK=$(grep -c "/home/$DIR" /etc/passwd)
+	if [ $CHK -ge 1 ]
+	then
+	echo $DIR is assigned to a user
+	else
+	echo "$Dir is NOT assigned to a user"
+	fi
+done
+
+chmod a+x checkdir
+
+____________________________________________________________________________________________________________________________________________
+
+S6E11
+
+==>to list of user who logged in
+==>logged on some specific date
+
+#!bin/bash
+# Author:
+# Date:
+# Description:
+# Modified:
+
+//last | grep Mon
+
+today = `date | awk '{print $1,$2,$3}'`
+last | grep "$today" ==>quote is necessary since it is one string
+
+=================
+
+echo "Please enter day (e.g. Mon)"
+read d
+echo 
+echo "please enter month (e.g. Aug)"
+read m
+echo
+echo "Please enter date (e.g. 28)"
+read da
+echo
+
+last | grep "$d $m $da"
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E12
+
+grep -i error ==>/// ignore case sensitivity
+
+tail -fn0  //-f is live, n0 ==>only look for latest
+
+#!/bin/bash
+
+tail -fn0 /var/log/message | while read line
+do
+echo $line | egrep -i "refused|invalid|error|fail|lost|shut|down|offline"
+	if [ $? = 0 ]
+	then
+	echo $line >> /tmp/filtered-messages
+	fi
+done
+===========
+to put something in var/logs  file
+logger -t error "akhil is testing"
+
+===================
+
+==>send message to IT pf errors
+
+IT = "akhil@hotmai.com akhilpvghi@gmail.com"
+
+if [ -s /tmp/filtered-messages ]
+	then
+	cat /tmp/filtered-messages | sort | uniq | mail -s "syslog message" $IT
+	rm /tmp/filtered-messsages
+	else
+	fi
+==============
+____________________________________________________________________________________________________________________________________________
+
+S6E13
+
+
+1 - Create User Account
+
+#!/bin/bash
+
+echo "Please provide a username?"
+read u
+echo
+
+useradd $u
+echo $u account has been created
+
+====================================================
+
+2 - Error out if user exist
+ #!/bin/bash
+
+echo "Please provide a username?"
+read u
+echo
+
+grep -q $u /etc/passwd
+        if [ $? -eq 0 ]
+        then
+        echo ERROR -- User $u already exist
+        echo Please choose another username
+        echo
+        exit 0
+        fi
+
+useradd $u
+echo $u account has been created
+
+====================================================
+
+3 - Add user description
+#!/bin/bash
+
+echo "Please provide a username?"
+read u
+echo
+
+grep -q $u /etc/passwd
+        if [ $? -eq 0 ]
+        then
+        echo ERROR -- User $u already exist
+        echo Please choose another username
+        echo
+        exit 0
+        fi
+
+
+echo "Please provide user description?"
+read d
+echo
+
+useradd $u -c "$d"
+echo $u account has been created
+
+====================================================
+
+4 - Add User ID
+#!/bin/bash
+
+echo "Please provide a username?"
+read u
+echo
+
+grep -q $u /etc/passwd
+        if [ $? -eq 0 ]
+        then
+        echo ERROR -- User $u already exist
+        echo Please choose another username
+        echo
+        exit 0
+        fi
+
+
+echo "Please provide user description?"
+read d
+echo
+
+echo "Do you want to specify user ID (y/n)?"
+read ynu
+echo
+        if [ $ynu == y ]
+        then
+        echo "Please enter UID?"
+        read uid
+
+        useradd $u -c "$d" -u $uid
+        echo
+        echo $u account has been created
+
+        elif [ $ynu == n ]
+        then
+        echo No worries we will assign a UID
+        useradd $u -c "$d"
+        echo
+        echo $u account has been created
+        fi
+
+====================================================
+
+5 - Add User ID check
+#!/bin/bash
+
+echo "Please provide a username?"
+read u
+echo
+
+grep -q $u /etc/passwd
+        if [ $? -eq 0 ]
+        then
+        echo ERROR -- User $u already exist
+        echo Please choose another username
+        echo
+        exit 0
+        fi
+
+
+echo "Please provide user description?"
+read d
+echo
+
+echo "Do you want to specify user ID (y/n)?"
+read ynu
+echo
+        if [ $ynu == y ]
+        then
+        echo "Please enter UID?"
+        read uid
+                grep -q $uid /etc/passwd
+                if [ $? -eq 0 ]
+                then
+                echo ERROR -- UserID $uid already exist
+                echo
+                exit 0
+                else
+                useradd $u -c "$d" -u $uid
+                echo
+                echo $u account has been created
+                fi
+        elif [ $ynu == n ]
+        then
+        echo No worries we will assign a UID
+        useradd $u -c "$d"
+        echo
+        echo $u account has been created
+        fi
+
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E14
+
+Script to disable users accounts
+
+
+
+Test Commands
+
+lastlog -b 90
+
+lastlog -b 90 | tail -n+2
+
+lastlog -b 90 | tail -n+2 
+
+lastlog | tail -n+2 | grep 'test' | awk '{print $1}'
+
+
+
+
+Disable account with For loop
+
+#!/bin/bash
+
+a=`lastlog | tail -n+2 | grep 'test' | awk '{print $1}'` // tail -n+2 ==>ignore top line, grep -v 'test' ===>ingore test and accept everything else
+
+for i in $a
+do
+usermod -L $i
+done
+
+
+
+
+Disable using xargs
+
+lastlog | tail -n+2 | grep 'test' | awk '{print $1}' |
+  xargs -I{} echo {}
+
+
+lastlog | tail -n+2 | grep 'test' | awk '{print $1}' |
+  xargs -I{} usermod -L {}
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E15
+
+
+kill zombie process, kill child process if parent process stops
+
+==>create a dummy process
+==>then find process id
+==>create a script to kill it
+
+==>
+sleep 600 ==>a process is created
+
+duplicate sessiom
+
+>>ps -ef | grep "sleep 600" | grep -v grep
+
+>>>ps -ef | grep "sleep 600" | grep -v grep | awk '{print $2}' | xargs -I{} kill {} //==>we can do echo in place of kill
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E16
+
+disk space status
+
+find disk space using df command
+
+df -h		===>use % should be less than 90
+
+a = `df -h | egrep -v "tmpfs|devtmpfs" | tail -n+2 | awk '{print $5}' | cut -d'%' -f1`  ///===>cut will remove percentage sign
+
+for i in $a
+do
+	if [ $i -ge 90 ]
+	then
+	echo check disk space
+	fi
+done
+
+=========
+
+df -h | egrep -v "tmpfs|devtmpfs" | tail -n+2 | awk '{print $5}' | cut -d'%' -f1  ///===>cut will remove percentage sign
+
+====================
+
+df -h | awk '0+$5 >= 10 {print}' // anything greater than 10 in 5thn column
+
+
+____________________________________________________________________________________________________________________________________________
+
+S6E17
+
+status on total number of file
+
+==>create a script to perform comparison
+
+touch file{1..20}.txt //will create 20 files
+
+ls -l file* | wc -l //wc -l is to get count number
+
+a=`ls -l | wc -l`
+
+if [ $a -eq 20 ]
+	then 
+	echo yes there are $a files
+	else 
+	echo Files are less than 20
+fi
+
+____________________________________________________________________________________________________________________________________________
+
+S6E18
+
+create system inventory
+
+>>touch database  //to create input files
+vi add-records
+
+#!/bin/bash
+#
+#
+#
+#
+
+echo please enter hostname?
+read host
+echo
+	grep -q $host /home/user/ps/database //--->-q is for silent, no output print i suppose
+	if [ $? -eq 0 ]
+	then
+	echo ERROR -- Hostname $host already exist
+	echo
+	exit 0
+	fi
+echo Please enter IP address?
+read IP
+echo
+	grep -q $IP /home/user/ps/database
+	////already exist check
+
+echo $host $IP >>/home/user/ps/database
+echo the provided record has been added
+
+chmod a+x add-record
+=======================================
+
+//delete records
+
+#!/bin/bash
+#
+#
+#
+#
+clear
+cp add_records delete_records
+echo please enter hostname or IP address
+read hostip
+echo
+	greap -q $hostip /home/user/ps/database
+	if [ $? -eq 0 ]
+	then
+	echo
+	sed -i '?'$hostip'/d' /home/user/ps/database ==// '/'$hostip'/d' ==>trying to find hostip, replace it with d that is delete, '/s/'$hostip'/old' ==>will replace with old like regEx
+	echo $hostip has been deleted
+	else
+	echo doesnot exist
+	fi
+
+=======================================
+
+
+ ==>third scripy will combine bith the script
+
+ read choice
+ case $choice in
+
+ a)	/home/user/ps/add-record;;
+ d)	/home/user/ps/delete-record;;
+*)	echo Invalid choice - bye
+
+esac
+	
+
+____________________________________________________________________________________________________________________________________________
+
+S6E19
+
+	==>use all online resources
+
+	==>precise search
+
+	==> 2nd opinion ==>listen advice
+
+	==>Ask questions
+
+	==>create documents and help others
+
+===> linux exit status ==> in google
+
+____________________________________________________________________________________________________________________________________________
+
+S7E1
+
+Important things to remember
+
+root is like Admininstrator in windows
+
+	==> root is admin 
+	==> case sensitive system
+	==>does not spaces in file system
+
+____________________________________________________________________________________________________________________________________________
+
+S7E2
+
+Linux file types
+
+=- =>Regular file
+=d =>directory
+=l =>link
+=c =>device file
+=s=>socket file
+=p =>name pipe
+=b=>block device
 
 ____________________________________________________________________________________________________________________________________________

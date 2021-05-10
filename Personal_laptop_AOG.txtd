@@ -1,0 +1,72 @@
+Assistance on google
+
+https://developers.google.com/learn/pathways/aog-basics
+
+------------------------------------------------------------------------------------------------------------------
+
+E1
+
+
+	touch, text , voice
+
+	==>action invocation
+
+	main invocation
+
+		==>user ==>action
+				==>natural language interaction
+
+					==>prompt
+
+						==>prompt delivery
+
+			1) natural language understanding
+
+			2) converstaion logic
+
+			3) generate response
+
+				==>fulfilment
+
+				==>make API call
+
+				==>database query
+
+------------------------------------------------------------------------------------------------------------------
+
+E2
+
+
+Action builder
+
+	==>developer
+		==>test
+			==>build
+
+------------------------------------------------------------------------------------------------------------------
+
+E3
+
+	Action projects
+
+		==>info
+			==>display name
+
+		invocation
+			==>main invocation
+
+		converation
+			==>back and forth action
+
+		web services
+			==>wehhook handlers
+
+
+	
+	...incomp
+
+
+
+
+
+
