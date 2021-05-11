@@ -18,7 +18,7 @@ git config --global user.password "your password"
 git config --global user.email "frances_t@fabrikam.com"
 git config --list 
 
-Great done
+Great done (detect some missing==>on 10-05-21)
 ________________________________________________________
 
 to find about last commit on git
