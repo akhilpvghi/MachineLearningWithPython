@@ -1,0 +1,814 @@
+Learn C Sharp from scratch to advance level
+
+	by Sajid amin mughal
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+	history of C#
+
+	syntax
+
+	assignment
+
+	control action
+
+	switch and jump
+
+	access modifier
+
+	OOps
+
+	inheritance
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E2
+
+	C# by microsoft in june 2000
+
+	==>similar to C++ and java
+
+	==> more primitive data dypes
+
+	==>safer enumeration types
+
+=======
+
+google.com
+
+	microsft visual studio
+
+
+	=======
+
+	static void main(String[] args){
+		
+		Console.WriteLine("Hello world!! this is my first program");
+		Console.ReadLine();
+	}
+	
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E3
+
+	compiler setting to run programs
+
+
+	environment variable set
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E4
+
+using System;
+class Hello{
+	static void main(){
+		Console.writeLine("Hello World !! this is my 1st program in C sharp");
+	}
+}
+=============	
+cmd
+
+>> csc pgm_name.cs
+>>pgm_name
+
+//it is purely object oriented
+__________________________________________________________________________________________________________________________________________________________
+
+S2E1
+
+
+
+
+	
+
+
+
+		.....incomp
+	
+
+=====================================================================================================================================================
+
+C Sharp and Visual Studio 2017 Create your first apps
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+
+	Intro
+__________________________________________________________________________________________________________________________________________________________
+
+S2E2
+
+	what is .Net
+
+		==>.Net framework ==>web service strategy 
+
+		==>gives ability to C# to build application fast
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E3
+
+	what is C#?
+
+		==>main pgms language for .Net framework
+
+		==>based on C programming language
+
+		==>similar to C++ and java
+
+		==>create application for desktop, mobile , web application
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E4
+
+
+	==>video not working 
+	
+__________________________________________________________________________________________________________________________________________________________
+
+S2E5
+
+	==>different object
+
+	==>class  ==> blueprint
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E6
+
+	variables 
+
+		==>identifier
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E7	
+
+	methods 
+		==>to talk to object
+		==>object presents interface to outside world
+__________________________________________________________________________________________________________________________________________________________
+
+S2E8
+
+Inheritance in programming
+
+	is a relationship ==> Inheritance
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E9
+
+	Encapsulation in programming
+
+		budling of methods
+
+		==>like off button in calculator
+
+		==>and we dont know about inner structure
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E1
+
+
+
+
+
+		.....incomp
+==================================================================================================================================================
+
+==================================================================================================================================================
+
+\[FreeAllCourse.Com] Udemy - C# Intermediate Classes, Interfaces and OOP
+
+	by Mosh Hamedeni
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+	intro
+
+	==>interfaces are not to create multiple inheritance solely
+
+	==>interface improves extensibility
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E2
+
+	About Instructor
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E1
+
+	Introduction to classes
+
+		==>building block of softwarae
+
+			==>each responses for particular behavior
+
+	Anatomy of a class (inside class)
+
+		==>data
+
+		==>methods/functions
+
+	Object 
+		==>An instance of class
+
+====================
+
+public class Class_name{  //class name is identifier==>pascal for class
+	
+	public string Name;  // in real donot declare it with public
+
+	public void Introduce(){
+	
+		COnsole.WriteLine("hello"+ Name);
+
+	}
+}
+	
+
+=======================
+
+clas_name object_name = new CLass_name();
+
+var object_name = new Class_name(); //now compiler knows its of same class
+
+	===>class Members
+
+		==> Instance
+
+		==> Static
+	
+			static is used when member is always same , like date and time, writeLine
+
+===============================================
+
+namespace Classes
+
+{
+
+	public string Name;
+
+	public void Introduce(strint to){
+		Console.WriteLine("Hi {0}, I am {}",to, Name);
+	}
+
+	public Person Parse (string str){
+	var person = new Person();
+	person.Name = str;
+
+	return person;
+	}
+
+	class Program{
+		static void Main(string[] args){
+		var person = new Person();
+		person.Introduce("Akhil");
+		}
+	}
+
+}
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E2
+
+Constructor
+
+	==>to put object in initial state
+
+	public class Class_name{
+		
+		public string Name;
+		public Classs_name(string name){  //does not have return type
+		
+		this.Name = name;
+							// the invisible parameter set values to default like int to 0
+		}
+
+	}
+
+
+===========
+
+construtor overloading is there in C#
+
+	==>different signature
+	===>so that makes initialissation easy, sometime we may not know all the parameters
+
+========================
+
+namespace Anything
+
+{
+	public class Customer{
+		
+		
+
+		public List<another_Class_name> another_Class_name;
+		
+			public Customer(){
+				Orders = new List<Order>();  // otherwise we would not be able to add something in that list, nothing can be added to null referenced 
+			}                                    //we always need to make sure thar list is initialised
+						// but what if we want to use with anothre overloaded constructor, do we really need to initialise it in every construcor...?
+							==>solution is this key word
+
+			public CUstomer(int id)
+				: this()         //now very time this constructor gets called, it will first call , constructor with no paramets and then list of orders will be initialised
+			{
+				this.Id = id;
+			}
+		
+			//code snippet ==>cw then tab ==>shortcut 
+			//f9 ==>to set debugger
+			//f5 to debug
+			//shift + f5 ==>to stop debug
+			//ctrl+tab ==>to go to classes
+			//ctor ==>code snippet ==>short cut ==>then tab
+
+		public Customer(int id){
+			this.Id =id;
+		}
+
+		
+			// we only create constructor when we need default values
+			//
+	}
+}
+
+
+// always initialise list to some default value
+
+
+var customer = new Customer();
+Console.WriteLine(customer.id);
+
+=============
+
+
+	// when we create custom constructor , compiler does not detect default connector
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E3
+
+
+object initialiser
+
+	var person = new Person
+			{
+				FirstName ="Mosh",
+				LastName = "Hamedani"
+			};
+
+		// in this case object will be initialised with having  structure of constructor in that way
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E4
+
+	methods
+
+		==>signature
+				==>name, no of parameter , type of parameter
+				
+						
+
+		==>method overloading
+				public int Add(int[] numbers){}  // to avoid overloading
+					===================
+						var result = Calculator.Add(new int[]{1,2,3,4});
+
+							//in this case we have to initialise, new integer array again and again
+
+							// to reslove that we can add params modifier
+
+							public class Calculator{
+								public int Add(params int[] numbers){}
+							}
+
+							//now
+
+							var result = calculator.Add(new int[]{ 1,2,3,4});
+							var result = calculator.Add(1,2,3,4);
+	
+							// both cases are acceptable with params modifier
+							
+							
+
+
+		==> params modifier
+
+		==>ref modifier
+
+			public void fn_name(ref int a){
+				a+=2;
+			}
+
+
+			var a=1;
+			class.fn_name(ref a);  //now it is like sharing address and works as global
+
+		==>out modifier
+
+			public void method(out int result){
+				
+				result =1;
+			}
+
+
+				//
+				int a;
+				class.method(out a);
+
+					// out modifier can return a more than one value
+
+					
+						//select class name ==>alt + enter ===>and it will move to the next file
+					public void Move(point newLocation){
+				if (newLocation == null)
+					throw new ArguementNullException("newLOcation");  //it is known as defensive programming
+					}
+
+					//try ==>tab ==>code snippet
+					
+							try{
+							
+							}
+							catch(Exception){
+							
+							Console.WriteLine("an exception occured");
+
+
+							}
+
+
+							=================
+
+							public int Add(params int[] numbers){
+							
+							var sum =0;
+							foreach (var number in numbers){
+							
+							sum+=number;
+							}
+							return sum;
+
+
+
+							}
+
+
+		=================
+
+		main(........){
+
+			var calculator = new Clculator();
+			Console.WriteLine(calculator.Add(1,2,3......));
+
+
+		}
+
+=============================================================================
+
+
+
+	main(............){
+
+		var number = int.parse("abc");
+		// we will get exception
+		int number;
+		var result = int.TryParse("abc", out number);
+		if (result)
+		Cw(number)
+		else	
+			cw("conversion failed");
+	}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E5
+
+Fields
+
+	fields is variable at class level
+
+	==>initialisation
+
+		{
+
+			List<Order> orders = new List<Order>(); 
+		}
+
+
+	==>read only fields
+
+
+	
+			readonly List<Order> orders = new List<Order>();
+
+					// it will be created only once
+					// can not be reinitialised
+
+
+
+=======================================================================================
+
+	public class Customer{
+
+		public int Id;
+		public string Name;
+		public readonly List<Order> Orders = new List<Order>();
+	}
+
+	public Customer(int id){
+
+		this.Id = id;
+	}
+	
+	pubic Customer (int id, string name)
+		: this(id){
+
+			this.Name = name;
+		}
+									
+public void Promote(){
+
+		 Orders = new List<Order>(); // now we will get error as it is read only now
+												//now this line is not acceptable
+}				
+
+}
+
+===========================================
+
+main(.........){
+
+	var customer = new Customer(1);
+	customer.Orders.Add(new Order());
+	customer.Orders.Add(new Order());
+
+	cw(customer.Orders.Count);
+	
+}
+
+	publci class Order{
+
+
+	}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E6
+
+
+	Access modifier : way to control access to class and its members
+
+				PIE  ==>encapsulation we will be talking
+
+						===> getters and setters
+
+						if(!String.IsNullOrEmpty(name))
+
+						//private field starts with _(underscore)
+
+
+
+		public
+
+		private
+
+		protected
+
+		internal
+
+
+		protected internal
+
+
+=========================
+
+public class Person{
+
+	private DateTime _birthdate;
+
+	public void SetBirthdate(DateTime birthdate){
+
+		_birthdate = birthdate;
+	}
+
+	public DateTime GetBirthdate(){
+
+		return _birthdate;
+	}
+
+}
+
+==========================================
+
+
+main(..........){
+
+	var person = new Person();
+	person.SetBirthdate(new DateTime(1982, 1, 1));
+	cw(person.GetBirthDate());
+
+}
+
+
+
+	///their fields are internal and should be hidden outside world
+
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E7
+
+
+Properties
+
+	==>property 
+
+		==>to create getter and setter
+
+		==========================================
+
+		private DateTime _birthdate;
+
+		public DateTime Birthdate
+		{
+			get{return _birthdate; }
+			ser {_birthdate = value; }
+
+		}
+
+==========================================================================
+
+auto implemented properties
+
+public class Person{
+
+	public DateTime Birthdate { get; set; }
+	public int Age {
+
+		get {
+		var timeSpan = DateTime.Today - Birthdate;
+		var years = timeSpan.Days/365;
+
+			return years;
+		}
+	}
+}
+
+// this will create private fiels and cretae getter and setter
+==================================================================
+
+ ===>open command prompt in visual studio===>if we dont have it open , visual studio productivity tool
+
+ ====>go to tools 
+
+	==>extension amd update
+
+		==>online
+
+			==>search box type productivity power tool
+
+
+===>right click to namespace and open command prompr
+
+
+cd bin
+
+cd Debug
+
+ildasm Properties.exe     //il diassembler
+
+
+=========================================================================================
+
+
+Main(......){
+
+	var person = newPerson();
+	person.Birthdate = new DateTime(1982, 1, 1);
+	cw(person.Age);
+}
+
+
+	///what if we want to set field only once 
+
+
+
+			///now birth date can only be set once that is in constructor
+
+	public DateTime Birthdate { get; private set;}
+	public Person(DateTime birthdate){
+
+		Birthdate = birthdate 
+	}
+
+	   ///with private its only read and can be changed in constructor once
+
+
+	//prop ==>tab ==>code snippet
+
+	.....now Main(...){
+
+		var person = new Person (new DateTime (1982,1 ,1));
+		cw(person.Age);
+	}
+
+
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E8
+
+
+Indexers
+
+	==>way to access
+
+	var array = new int[5];
+	array[0] = 1;
+
+	var list = new List<int>();
+	list[0] = 1;
+
+	==================================================================
+
+	var cookie = new HttpCookie();
+	cookie.Expire = DateTime.Today.AddDays(5);
+
+	cookie["name"] = "Mosh";
+	cookie.SetItem("name","Mosh");
+
+	=================================================
+
+public class HttpCookie{
+
+	private Disctionary<string, string> _dictionary;
+
+	public HttpCookie(){
+
+		_dictionary = new Dictionary<string, string>();
+	}
+
+	public string this[string key]{
+		get { 
+			return _dictionary[key];
+		}
+		set {
+			_disctionaru[key] = value;
+		}
+
+	}
+
+
+}
+===============================================
+
+main(......)
+cookie["name"] = "mosh";
+cw(cookie["name"]);
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E1
+
+
+
+		....incomp
+
+
+
+
+
+
+
