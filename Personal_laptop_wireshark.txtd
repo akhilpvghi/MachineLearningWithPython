@@ -89,7 +89,52 @@ finding a text string in a trace file
 ________________________________________________________________________________________________________
 S2E3
 
+	Global configuration
 
+	edit ==>preferences
+			==>appearance
+				==>layout
+				
+				(main window, detail window, (hex and ascii window))
+
+
+
+	
+
+________________________________________________________________________________________________________
+S2E4
+
+merge pcap files
+
+	==>open files
+
+file
+
+	==>merge
+
+		==>select file to merge
+
+==>if you want to merge more than you have save the first merge
+
+________________________________________________________________________________________________________
+S2E5
+
+	display different colour for different interface traffic packets
+
+	view 
+		===>colouring rules
+
+________________________________________________________________________________________________________
+S2E6
+
+	analyse time display and seconds format
+
+		view
+
+			==>time display format
+		
+________________________________________________________________________________________________________
+S3E1
 
 
 	...incomp

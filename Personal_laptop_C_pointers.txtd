@@ -1,0 +1,288 @@
+[Tutsgalaxy.com] - Mastering Advanced C Programming Pointers (In Depth)
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+By Ravi kishore
+
+	==>data variables and pointer variables
+
+		==>pinter variable==>holds address of same type of data
+
+		==>size of pointer will be same as architecture of processor
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E2
+
+int a
+
+		//garbage value is like junk value
+
+int *p  ==>* is for defining a pointer variable
+
+p = &a
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E1
+
+	doc
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E1
+
+	single pointer
+===============================
+	#include<stdio.h>
+
+	int main(){
+		int a = 10;
+		int *p;
+		p =&a;
+		printf("a = %d, p=%x, &a=%x, *p = %d\n", a, p, &a, *p)
+		return 0;
+	}
+
+	================
+
+	gcc file_name.c
+
+	>>./a.out
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E2
+
+c supports 12 level of pointer ==>like nesting pointer
+
+int **q ==>two level pointer, it is defining
+
+*(***r)  ===>it is two access like this
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E4.5
+
+practical
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E1
+
+Lvalue and RValue 
+
+	lValue at compile time==>represents address
+
+	rValue at runtime==>represents value
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S5E1.7
+
+	type needs to be matched, as we can inrement pointers too
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E1.8
+
+
+Arithmetic operations in pointers
+
+	+,-,*,/
+
+	==>performed in same type of pointers
+
+	segmentation faults ===>when resultant address is not there in memory(after performing arithmetic operations)
+
+	p1 * p2 and p1/p2  ==>is not poosible
+	
+	==>p + 1*(size of ptr)
+
+	
+__________________________________________________________________________________________________________________________________________________________
+
+S7E1.9
+
+	pre and post increment of pointers
+
+	int a[3] = {10,20,30};
+
+	int *p =a;
+
+	res = *p++;  //increment to pointer and we will get incremented address
+
+		=*++p // in this we will get value of incremented pointer
+
+		=++*p //we will get incremeted value
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E2.10
+
+	int main(){
+	
+	int a[3]={10,20,30};
+	int *p;
+	int res = -1;
+	p =a;
+
+	res = *p++; //result is incremented pointer
+	res =*++p; //result is 20
+	res = ++*p; //res eill be 11
+
+	}
+		
+__________________________________________________________________________________________________________________________________________________________
+
+S8E1.11
+
+generic pointers
+
+	==>earlier we had same pointers
+
+		==>no mis match allowed earlier
+
+	==>generic pointer is compatible with any type of data
+
+	==>it is represented with void*
+
+	==>it only knows how many bytes of address is using
+
+==================================
+	int arr[5]={10,20,30,40,50};
+
+	void *p;
+
+	p=arr; // here it does not know what type of data it is holding, but it knows that it have 20 bytes as size of array
+
+
+	printf("%d",*p) //error
+
+			==>now we need to type cast 
+
+	printf("%d",*(int*)p) ==>//we type casted and then retrieving
+
+	===================
+
+	dereferencing ==>is getting the value from pointer
+
+	==>no data loss using generic pointer, no extra memory needed
+
+	==========================================
+	int main()
+	{
+		int a = 10;
+		float f = 4.8;
+
+		void *p;
+
+		p =&a;
+		printf("a =%d ",*p); //wwe will get error
+		printf("a =%d ",*(int *)p); // now we will get the value
+		printf("a = %d\n",*(char *)p); //it will print 0, as its knowing that it holds one character
+			//if int a =257 // then it will give 1, if we try to get value from char pointer type
+
+		return 0;
+	}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E1.12
+
+null pointer
+
+	===>PAS ==>process address space is given by OS, every time program starts
+
+	==>segments that process have
+
+		==>code segment
+			===>text section
+			==>instruction
+
+		===>Data segment
+			==>.data section (initialised memory for static and global variables)
+			==>.bss section (uninitialised, default initialised to 0)
+
+		==>Stack segment
+			==>Stack section(used for program execution & memory for local variables)
+			==>Heap section (runtime memory allocation)
+
+			
+==>when program crosses PAS, we get segmentation fault
+
+__________________________________________________________________________________________________________________________________________________________
+
+S10E1.13
+
+	significance of initialisation of pointer to null
+
+		==>if it is not initialised with null we will get some different value
+			or we will get segmentation fault
+
+		int *p = (int *)0;
+
+		or
+
+		int *p = (void *)0;
+
+		#define (void*)0 NULL
+
+			==>now  we will ger NULL pointer dereferenced
+
+__________________________________________________________________________________________________________________________________________________________
+
+S10E2.14
+
+	vi nullpointer.c
+
+	#include<stdio.h>
+
+	int main(){
+	
+		int a; //garbage value
+		int *p; //garbage value
+
+		printf("a= %d, p=%u",a,p);
+		
+
+		return 0;
+	}
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S11E1.15
+
+
+
+
+
+		.....incomp
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

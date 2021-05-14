@@ -32,4 +32,19 @@ Electricity bill payment ==> https://uppcl.mpower.in/wss/QuickBillPay.htm
 
 ===>login ==> http://jtp.uppcl.org/online/frmLoginCOT.aspx
 
+==================================================================================================
+
+
+check status of adhaar
+
+	====> https://ssup.uidai.gov.in/checkSSUPStatus/checkupdatestatus
+
+
+
+==================================================================================================
+
+
+update adhaar
+
+		====>https://ssup.uidai.gov.in/ssup/login.html
 
