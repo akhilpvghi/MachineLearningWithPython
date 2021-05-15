@@ -178,9 +178,87 @@ S2E9
 
 __________________________________________________________________________________________________________________________________________________________
 
-S3E1
+S3E10
 
 
+	==>download visual studio official site
+
+		==>visual studio community
+
+			==>free download
+			
+			check all this in workloads
+				==>universal window platform development
+				==>.Net desktop
+				==>ASP.net and web development
+				==>azure
+				==>data storage
+				==>mobile development
+				
+__________________________________________________________________________________________________________________________________________________________
+
+S3E11
+
+	==>restart system while installation everytime it asks
+
+	==>development setting ==>general
+
+	==>color theme ==> dark
+			
+__________________________________________________________________________________________________________________________________________________________
+
+S3E12
+
+change setting of visual studio
+
+	==>tools
+
+		=>>options
+
+			==>environment
+
+				==>can change theme
+
+		==>text editor
+
+			==>all languages
+
+				==>line number should be checked
+
+			
+__________________________________________________________________________________________________________________________________________________________
+
+S4E13
+
+	Basics of C#
+
+			
+__________________________________________________________________________________________________________________________________________________________
+
+S4E14
+	
+	==>file
+
+		=>new 
+
+			==>project
+
+		==>C#
+			==>windows
+
+				==>windows Forms application
+
+	
+================
+
+view
+	==>tool box
+
+	==>property window
+
+	==>solution explorer
+
+==>drag_n_drop
 
 
 
@@ -801,6 +879,281 @@ cw(cookie["name"]);
 __________________________________________________________________________________________________________________________________________________________
 
 S3E1
+
+class coupling
+
+	==>what if we want to change the name of the class
+
+		tightly coupled ==> when dependency is more
+
+		loosely coupling ==>
+
+			but how
+				
+				=>encapsulation
+
+				==>the relationship between classes
+
+				==>Interfaces
+
+
+Types of  relationship
+
+	==>Inheritance
+
+	==>Composition
+
+==>Favor composition over Inheritance
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E2
+
+	What is inheritance
+
+		==>is-A
+
+		==>inherit code from another
+
+		==>we get code re-use
+
+		==>we get polymorphic behaviour
+
+UML representation
+
+	==>we need to figure out common behaviour
+
+=================================
+
+public class Parent
+
+{
+
+}
+
+
+public class Child_class : Parent_class{
+
+}
+
+================================================================================================================
+
+Main(....){
+
+var text = new Text();
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E3
+
+	Composition
+
+		==>Has-a relationship
+
+		==>we get code re-use
+
+		==>more flexible
+
+		==>e.g DbMigrator requires logging
+
+			==>installer requires logging
+
+	UML representation with composition ==>represented by black diamond
+
+	=====
+
+	syntax
+
+	public class Installer
+
+	{
+		private Logger _logger;
+
+		public Installer (LOgger logger){
+			
+			_logger = logger;
+		}
+	
+	}                              //ctor ==>tab==>and constructor will be generated
+
+	===>//we declare common functionality, in same
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E4
+
+Favor composition over inheritance
+
+	problem with inheritance
+
+		==>easily abused by mature developers
+
+		==>large hierarchy
+
+		==>fragility
+
+		==>tightly coupling
+
+
+Benefits of Composition
+
+	==>great flexibility
+
+	==>Loose coupling
+
+		==>we can create class to Interface in composition
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E1 (INHERITANCE - 2nd pillar of OOP)
+
+	Access modifiers
+
+		==>why they are important
+
+		==>Blackbox metaphor
+
+		=>types
+
+			==>public
+				
+				==>can access from anywhere
+				==>like promote function
+			==>private
+				==>is only accessible from that class
+
+			==>protected
+				===>is accessible from class andd its derived class
+			
+			==>internal
+				==>interanal class Class_name
+
+					==>accesible only from same assembly
+
+
+				
+			
+			==>protected internal
+					==>access  from same assembly and derived class
+
+============================================================
+		// bool some_var;
+
+
+calling_of_functions(var_name: true);
+=========================================================================
+
+	//alt+enter ==>to get class in new file
+=========================================================================
+
+using another_namespace;
+
+Main(...){
+another_namespace.class object = new clas();   //internal class can not be accessed
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E2
+
+Constructor and inheritance
+
+	==>base class executed first
+
+	==>base class constructor are nor inherited
+
+	child constructor()
+		:base(arguement)
+	{}
+
+	//parent and child constructor should match parameterization
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E3
+
+upcasting and downcasting
+
+	==>conversion of derived to parent class and vice versa
+
+		///InvalidCastException
+
+		//as and is keyword
+
+
+=========================================
+
+public class Shape{
+	public int WIdth { get; set; }
+	
+	public int Height { get; set; }
+}
+
+
+public class Text: Shape{
+	
+	public int fontSIze;
+}
+
+Main(...){
+Text text = new Tex();
+Shape shape = text;
+
+	// this is upcasting, they are referncing to same object
+}
+
+========
+view ==>object browsee
+======
+using System;
+using System.IO;
+
+Main(...)
+{
+	StreamReaderreader = new StreamReader(new MemoryStream());
+
+	ArratList list = new ArrayList();
+	list.Add(1);
+	list.Add("Mosh");
+
+	var anotherList = new List<int>(); //generic class
+
+	shape shape = new Text();
+		//f9 to put break point
+		//f5 to run debug
+	Text text = (Text) shape; // downcasting
+
+	//WPF project for desktop application
+	
+
+}
+__________________________________________________________________________________________________________________________________________________________
+
+S4E4
+
+Boxing and unboxing
+
+	==>value types 
+
+		primitive===> byte, int, float, char
+
+	==>reference type
+
+		==>stored in heap
+		==>any class, object
+
+		//typecasting
+
+__________________________________________________________________________________________________________________________________________________________
+
+S5E1
 
 
 

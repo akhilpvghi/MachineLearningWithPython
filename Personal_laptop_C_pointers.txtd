@@ -264,13 +264,269 @@ ________________________________________________________________________________
 
 S11E1.15
 
+contant pointers
+
+ const char *p; ==> pointer can be updated, data can not
+
+ char const *p; ==>pointer can be updated, data can not
+
+ char * const p; ==> data can be updated, pointer can not
+
+ const char * const p; ==> pointer can not be updated,also data can not
+
+
+## think it like char word is not there
+
+__________________________________________________________________________________________________________________________________________________________
+
+S11E2.16
+
+main(){
+
+char arr[4] = {'A', 'B', 'C'};
+const char *p = NULL;
+return 0;
+
+char * const p; //ptr is constant but *ptr is not constant
+
+
+}
+
+////>>> gcc filename.c
+>>>./a.out
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E1.17
+
+Allocate memory dynamically
+
+	//stack memeory is for static memory
+			
+			==>local variables
+			==>Heap Section
+
+	//heap section is for dynamic memory
+			
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E2.18
+
+whenever main function gets called
+
+	==>stack segment comes into picture
+
+		==>stack section
+			==>it has more memory in whole stack segment
+
+		==>heap section
+			==>we will get the base address of heap , and will store in stack section
+
+			==>we have to free all the written data in heap, and it will not be used as OS will think it is attached to some process
+
+			==>So we have to free in heap, as only stack gets released by OS after completeion of pgm
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E4.19
+
+
+function to allocate dynamic memory 
+
+	void* malloc(size_t size);
+
+		==>will allocate in sequence
+
+		==>on success, will give return address (generic address , needs to be type casted)
+		
+		==>on failure , return NULL
 
 
 
+__________________________________________________________________________________________________________________________________________________________
 
-		.....incomp
+S12E5.20
+
+#include<stdlib.h> //else you will get warning
+
+	in malloc ==>new created memory will not be initialised
+
+	main(){
+	
+	char *p = NULL;
+	//hello
+	p = (char *) malloc(6*sizeof(char));
+	//above stmt will create 6 block of m/m in heap
+
+	if (p==NULL){
+		printf("memory allocation using malloc failed\n");
+		return -1;
+	}else{
+		printf("m/m allocation success\n");
+	}
+	
+	char *p1=p;
+
+	*p ='h';
+	++p;
+	*p ='e';
+	++p;
+	*p ='l';
+	++p;
+	*p ='l';
+	++p;
+	*p ='o';
+	++p;
+	*p='\0';
+
+	printf("data stored in dynamic memory is %s\n", p1); // we will get all characters
+
+	free(p1); //now it will maintain all the m/m from base address
+	//*p1; // now we have released it from our program
+
+	return 0;
+	}
+
+//valgrind ==>is tool to find memory leaks
+
+>>>valgrind --tool=memcheck --leak-check=yes ./a.exe
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E7.21
+
+calloc (sixe_tnum_elements,size_telement_size)
+	
+	//in this case we dont have multiply how many char we need
+	// as it asks while calling
+	//also it initialises , every byte with 0 in case of int, and '\0' in case of char
+ 
+	// it also returns void * ===>generic pointer , hence we need to type cast
+===========================================
+	//hello
+	char *p;
+	p = (char *) calloc (6, sizeof(char));
+	
+	// if p is NULL , m/m allocation failed
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E9.22
+
+
+*realloc(void *ptr, size_t_new_size)
+	
+	// first parametr is base address from where we need to make change
+	==>extend or reduce the existing memory in heap
+
+	//like we have 5 blocks earlier
+	
+	realloc(base_addr, 10*sizeofc(char))
+
+		//==>it will return void*, then we need to type cast
+
+		// if it is possible
+		//if not possible, then it tries to get some other location, and copy old m/m to new blocks
+			//and in this case, it will be freed by realloc automatically, and it will return new address
+		
+		===================
+
+		now if not able to extend anywhere our request,
+			//in case of failure it will return NULL, otherwise we would have gotten some address
+			// and also we will lose the refernce, and there is memory leak
+				// in that case experiment with othercase in case of realloc
+
+//problem of above solution and in case we are not able to proceed
+		if(p1==NULL){
+			free(p);
+			return -1;
+		}
+			
+
+===>realloc also used reduce the allocated m/m
+
+earlier 
+
+ptr = (int *) malloc (2*sizeof(int)); //i.e we have asked for 8 bytes
+
+now
+
+ptr = (int *)realloc(ptr,4);
+
+//if base address is null, then it is equivalent to malloc
+
+if size is 0 ==>then it is like free(ptr)
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E10.23
+
+#include<string.h>
+
+if (p ==NULL){
+printf("failure state")
+}
+
+strcpy(p, "hello");
+
+//requirement for increase to 10 bytes
+
+	char *p1 =NULL;
+	p1=(char *)realloc(p,10*sizeof(char));
+	
+	if(p1==NULL){
+		printf("realloc failder")
+		free(p);
+		return -1;
+	}else{
+		printf("realloc is successfully allocated new memory\n");
+		p=p1;
+
+	}
+
+strcpy(p,"helloravi");
+
+printf("p=%p",p);
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S13E1.24
+
+Memory leak
+	==>memory is existing but pointer is not there
 	
 
+
+Dangling refernce
+	==>memory is not there but refernce is still there, even after free the memory with some other refernce
+	==>we should avoid of copying the pointers
+			==>instead we could copy the same data in some other ptr at some other location
+
+what have we discusser
+
+	===>pointers
+	==>level of pointers
+	==>lvalue and rvalue
+	==>arithmetic operations with pointers
+	==>generic pointers and casting of pointers
+	==>NULL pointer
+	==>pointers with constant
+	==>Dynamic memory allocation
+		==>malloc
+		==>calloc
+		==>realloc
+	==>free(address)
+
+
+		...done
 
 
 

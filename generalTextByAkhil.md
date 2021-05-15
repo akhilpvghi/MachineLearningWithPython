@@ -957,10 +957,29 @@ epub to pdf converter online   ===> https://pdfcandy.com/epub-to-pdf.html
 
 ==============================================================================
 
+auto wrong indentation in vi editor solution
+
+There're two reasons:
+
+Auto insert comment
+Auto indenting
+For pasting in vim while auto-indent is enabled, you must change to paste mode by typing:
+
+:set paste
+Then you can change to insert mode and paste your code. After pasting is done, type:
+
+:set nopaste
+to turn off paste mode. Since this is a common and frequent action, vim offers toggling paste mode:
+
+set pastetoggle=<F2>
+You can change F2 to whatever key you want, and now you can turn pasting on and off easily.
+
+
+https://unix.stackexchange.com/questions/199203/why-does-vim-indent-pasted-code-incorrectly
 
 
 
-			
+==============================================================================			
 			
 			
 			
