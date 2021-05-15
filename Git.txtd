@@ -18,6 +18,17 @@ git config --global user.password "your password"
 git config --global user.email "frances_t@fabrikam.com"
 git config --list 
 
+OR 
+
+if problem persists
+
+	==>go to credentia manager in windows 
+	==>delete git password from window credentials
+	==>generate token from developer setting on git
+	==>and copy the token as password and it will be saved as in your git bash
+
+
+
 Great done (detect some missing==>on 10-05-21)
 ________________________________________________________
 
