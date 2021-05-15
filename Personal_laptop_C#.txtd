@@ -77,8 +77,76 @@ cmd
 //it is purely object oriented
 __________________________________________________________________________________________________________________________________________________________
 
-S2E1
+S2E6
 
+	Data types in C#
+
+	predefined data types(DT)
+
+		==>boolean
+
+		==>numeric DT
+			
+			==>floating
+
+			==>integral
+				==>signed 
+				==>unsigned
+
+			==>decimal
+		
+		==>character
+	
+===========================================
+
+use System;
+
+class Datatype{
+	static void main(string[] args){
+		int a, b;
+		Console.WriteLine("integer calue of a and b",a+b);  //23
+	}
+}
+
+if float
+//a=2.3f
+//b=3.6f
+
+//otherwise do double
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E7
+
+type casting
+	
+	==>implicit type casting
+		==>by compiler itself
+		e.g. int to float
+	==>explicit type casting
+		==>its done by user
+	
+int a= 20;
+float b=a;
+
+	//will run fine, as it is implicit, small DT to Large DT
+
+==========================
+
+float a= 20.5f;
+int b=a; //error
+
+int b=Convert.ToInt32(a); //20
+
+============
+char a='2';
+int b =Convert.ToInt(a); //not checked
+
+========================
+__________________________________________________________________________________________________________________________________________________________
+
+S2E8
 
 
 
