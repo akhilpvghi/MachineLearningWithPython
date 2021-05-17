@@ -1223,13 +1223,580 @@ ________________________________________________________________________________
 
 S5E1
 
+method overriding
+
+	==>overide in child class
+
+	public class Circle : Shape{
+	
+	public override vod Draw(){
+	
+	}
+	
+	}
+===================================================
+
+public enum ShapeTYpe{
+	Circles,
+	Rectangles,
+	Triangles
+}
+
+===============================
+
+public class Circle : Shape{
+}
 
 
-		....incomp
+public class Rectangle : Shape{
+}
+
+public class Shape{
+	
+	public int Width { get; set; }
+	public int Height { get; set; }
+	public Position Position { get; set; }
+	
+	public virtual void Draw(){ // virtual will aloow to override in child class
+	
+	}
+
+//base.Draw() // can be called to call parents method
+
+
+	
+}
+==========================================
+
+public class Canvas {
+	
+	public void DrwShapes(List<SHapes> shapes){
+		foreach (var shape in shapes){
+			shape.Draw();
+		}
+	}
+}
+====>
+this will allow flexibility to add new shapes
+
+	==>this is what we call loosely coupling
+__________________________________________________________________________________________________________________________________________________________
+
+S5E2
+
+	Abstract class and modifiers
+
+	Abstract modifier
+
+		==>when we dont know the implementation
+
+		public abstract class Shape{
+			
+			public abstract void Draw(); 
+		}
+	
+		//abstract method needs to have in abstract class and needs to be implemented in child class
+
+		==>abstract method do not include body
+
+		==>child class needs to implement all abstract method of parent class
+
+		==>abstract class can not be intianiated
+
+		==>we use abstract to follow common behaviour
+
+			==>we have to leave method empty in parent abstract class==>curly braces will not be there
+
+	=====================
+
+	namespace Absract{
+	
+	public abstract class shape{
+	
+	//it can have abstract as well as non abstract methods
+
+	// but this class can not be intianted , can only be used(non abstrac methods) via child instnces
+	} 
+
+	}
+
+
+//stream class is abstract class
+__________________________________________________________________________________________________________________________________________________________
+
+S5E3
+
+sealed class and members
+
+	sealed modifier (like final key word in java)
+
+		==>if applies to method , can not be overridden
+
+		//very less use
+
+		//but faster
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E1
+
+Interface
+	
+	==>declare 
+	==>Implementation
+	==>benefits
+
+===================================
+
+public interface ITaxCaluclator{
+
+	int Calculate();
+}
+
+
+	//Interface starts with I in C#
+	//they do not have implementation
+	//they do not have access modifiers
+	//to build loosely coupled
+	==>improves the testability and extensibility
+	//similar to systax of class
+	//components are not tightly related to eacg other
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E2
+
+interface improves the testability
+
+//in main function we are passing the helper class , which is accepted as Interface instance, and that interface is implemented by the sae class that we 
+	passed in main, and using instance of that interface, we are calling required function
+// when interface function is implemented in another class, it has to be public only
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E3
+
+interface improves the extensibility
+
+
+
+public class ConsoleLogger : ILogger{
+
+public void LogError(string message){
+	
+	Console.ForegroundColor = ConsoleColor.Red;
+	Console.WriteLine(message)
+}
+
+
+public void LogError(string message){
+	
+	Console.ForegroundColor = ConsoleColor.Green;
+	Console.WriteLine(message)
+}
+
+}
+
+
+
+	 class Dbmigrator 
+	 
+
+{
+
+		private readonly ILogger _logger;
+
+		public DBMigrator(ILogger logger){
+			_logger = logger
+		}
+
+		public void Migrate(){
+	
+		_logger.LogInfo("migrating started at {0}"+DateTime.Now)
+		Console.WriteLine("migrating date {0}", DateTime.Now);
+
+
+			}
+
+//class that actually implements interface iscalled as concrete class
+
+and the other class which uses instance of Interface, we ssay its dependency injection is happening
+===================================
+
+public interface ILogger{
+
+	void LogError(string message);
+	void LogInfo(string message);
+
+}
+
+
+====================================
+
+static void Main(){
+	
+	var console_logger = new ConsoleLogger ();
+
+	var dbmigrator = new DBMigrator(console_logger);
+
+	dbMigrator.Migrate();
+
+/// lets say if we want to log essages into file
+// then create a new class
+
+public class FIleLogger : ILogger{
+	private readonly string _path
+
+	public FIleLogger(string path){
+		_path =path;
+	}
+
+	public void LogError(string message){
+		
+		using(var streamWriter = new StreamWriter(_path, true))
+		  //true is for append
+		{
+		streamWriter.WriteLine("ERROR: " +message);
+	}
+		//problem file resource is not managed by CLR, common language runtime, and hence we should use using
+	}
+
+	public void LogError(){
+	}
+	public void LogInfo(){
+		}
+
+
+}
+
+//var dbMigrator = new DBMigrator("C:\\projects\\log.txt")
+
+
+}
+		
+\\\\\total review
+
+	==>one main program
+	==>one class to inject dependeny
+	==>one interface
+	===>and many concrete class
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E4
+
+interface is not for multiple inheritance
+
+can have multiple interfaces
+
+	==>only for loosely coupled
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E5
+
+Interface and polymorphism
+
+open closed principles ====>	open for extension, and closed for modification
+
+public class CLaawhichwillHaveDependencyInjection{
+
+private readonly ILisy<IInterface_name> _instanceName;
+
+public constructor(){
+ 
+ _instanceName = new List<IInterface_name>();
+
+}
+
+public void ToAccessAllList(CLass instance){
+	foreach(var channel in _instanceName)
+		channel.method_name(new CLass());
+
+
+}
+}
+
+
+//events and delegates is another solution to handle theses problems
+
+
+---------------------------------------------------------------------
+extra https://www.youtube.com/watch?v=jQgwEsJISy0
+
+using System.Threading;
+
+
+
+Thread.SLeep(3000);
+
+
+---------------------------------------------------------------------
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E1
+
+final words
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E2
+
+other courses
+
+	==>double your coding speed
+
+	==>C# advanced course
+
+__________________________________________________________________________________________________________________________________________________________
+
+S8E1
+
+stop watcher exercise
+
+	==>make properties as private
+	==>dont use get and set, if we dont need them
+
+	//DateTime.Now;
+	//DateTime.Today.AddDays(1);
+	//Thread.Sleep(1000)  //1s
+
+__________________________________________________________________________________________________________________________________________________________
+
+S8E2
+
+using System.Collection.Generic;
+
+private List<object> _list = new List<objec>();
+
+_list.Add(obj);
+_list.Remove(obj);
+_list.Clear()
+
+_list.RemoveAt(_list.Count -1);
+
+		
+		//_ is for private fields in class
+
+__________________________________________________________________________________________________________________________________________________________
+
+S8E3
+
+IEnumarable<IInterface>  ==>read only version of list
+			//usinf System.Collection.Generic
+
+
+		....done
+
+__________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
+
+
+[FreeTutorials.Us] [UDEMY] C Sharp Advanced Topics Prepare for Technical Interviews [FTU]
+
+
+__________________________________________________________________________________________________________________________________________________________
+S1E1
+
+
+About this course
+
+__________________________________________________________________________________________________________________________________________________________
+S1E2
+
+	instructor is Mosh Hamedani
+
+
+__________________________________________________________________________________________________________________________________________________________
+S1E3
+
+how this course is organised?
+
+
+__________________________________________________________________________________________________________________________________________________________
+S2E2
+
+Generics
+
+public class ListOfObjects{
+
+public void Add(object value){
+
+	
+	//in case of object we have box and unbox or type cast or uncast
+	}
+}
+
+public class GenericList<T>{
+	public void Add(T value){
+	
+	}
+
+	public T this[int index]{
+		
+	}
+}
+
+public class GenericDictionary<Tkey, Tvalue>{
+	public void Add(Tkey key, TValue value){
+	
+	}
+}
+
+Main(....){
+
+var numbers = new GenericList<int>();
+numbers.Add(10);
+
+var books = new GenericList<Book>();
+books.Add(new Books());
+
+var  dictionary = new genericDIctionary<string, Book>();
+dictionary.Add("1234", new Book());
+
+
+//Syste,Collection.Generic.
+//above you will get all the generics
+
+}
+
+==============================================
+
+public class utilities{
+
+public int max(int a, int b){
+	return a<b ? a : b;
+
+	public T Max<T>(T a, T b) where T : IComparable
+	{ 
+		// as it does not know where it is comparable 
+		return a.CompareTo(b) > 0 ? a : b;
+	}
+}
+
+//it can be "where " declared to class level as well
+
+//where T : IComparable
+//where T :product
+//where T :struct
+//where T :class
+//where T :new()
+
+
+}
+
+============
+
+public class Nullable<T> where T : struct{
+
+public Nullable (T value)
+{
+	_value = value;
+}
+
+public bool HasValue{
+
+get {return _value!= null; }}
+}
+
+public T GetValueorDefault(){
+if (HasValue)
+	return (T)_value;
+
+	return default(T); // will give default value of that generic that come
+
+}
+
+========================================================
+
+public class GenericDictionary<TKey, TValue>{
+	public void Add(Tkey key, TValue value){
+	
+		
+	}
+}
+
+=============
+
+Main(....){
+
+	var dictionary = new GenericDictionary<string, Book>();
+	dictionary.Add("1234", new Book());
+
+
+}
+===============================================================
+
+
+when we want to limit the constraint
+
+
+public class Utilities<T> where T : IComparable{
+	
+	public int Max(int a, int b){
+		return a>b ? a: b;
+	}
+
+	public T Max(T a, T b) {
+		return a.COmpareTo(b) > 0 ? a: b; // in this case we dont know which is comparable
+	}
+}
+=================================================================
+
+public class DiscountCalculator<TProduct> where TProduct : Product{
+	public float CalculateDiscount(TProduct product)
+{
+	return product.price;
+}
+}
+
+=================================================================
+
+	public class Nullable <T> where T : struct{
+	
+		private object _value;
+
+		public Nullable(T value){
+			_value = value;
+		}
+
+		public bool HasValue{
+			get { return _value != null; }
+		}
+
+		public T GetValueOrDefault(){
+			if(HasValue)
+				return (T)_value;
+			return default(T);
+		}
+	}
+
+
+=================================
+
+
+
+Main(....){
+	var nmber = new Nullable<int>(5);
+	Cnsole.WriteLine("has value ?" + number.HasValue);
+	Console.WriteLine("Value" + number.GetValueOrDefault()); 
+}
+
+===============================================================
+
+// can add more than one constraint using ,
+
+
+__________________________________________________________________________________________________________________________________________________________
+S2E3
 
 
 
 
 
-
-
+	....icomp
