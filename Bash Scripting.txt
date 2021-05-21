@@ -1674,3 +1674,57 @@ Linux file types
 =b=>block device
 
 ____________________________________________________________________________________________________________________________________________
+
+grep -e pattern1 -e pattern2 
+
+==========================================================================================================================================================================================================================================================================================
+
+#first working script
+
+#!/bin/bash
+#Author: Akhil Kumar
+#Date: 26/04/2021
+#Modified: 26/04/2021
+#Description: To delete multiple keys from CM
+
+echo "Enter CM IP from which keys are to be deleted"
+read CM_IP
+
+curl -k -i --location --request POST "https://${CM_IP}/api/v1/auth/tokens/" --header 'Content-Type: application/json' --header 'Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIwZDc3NGFkNi1jMWEzLTRiMzYtYmJjYS03MGU1MTVkNmNiNzkiLCJzdWIiOiJsb2NhbHxmMzA1ZThiOC0yYzliLTRiYjgtOTRiZi0wOGYxN2FkMDM5OTkiLCJpc3MiOiJreWxvIiwiYWNjIjoia3lsbyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiY3VzdCI6eyJkb21haW5faWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJncm91cHMiOlsiYWRtaW4iXSwic2lkIjoiYmQ0OTEyYjAtZWU3Yi00YzI5LThiYWYtMTViZTc0MjZkYTdjIiwiem9uZV9pZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9LCJqd3RpZCI6IjM1ZjA3MTJkLTcwZGItNGI4ZS05ZDRmLWU4M2EwZWI2MWNlMiIsImlhdCI6MTYxOTQzMDU5NCwiZXhwIjoxNjE5NDMwODk0fQ.KLXsj8NxQcgMQ3QH80Igf_vAqKqngT7twnjkozAYr6w; refresh-token=q28n76QRWMdkLfrElNnO5dvmqkkUmeaniBdiAnOVE7eY6fgXGeHkLNK7jtWOhT9z' --data-raw '{
+    "connection": "local_account",
+        "cookies": true,
+	    "grant_type": "password",
+	        "password": "Asdf@1234",
+		    "refresh_token_revoke_unused_in": 30,
+		        "username": "admin"
+			    }' > output.txt
+			    	
+					cat output.txt
+						
+							jwt=$(cat output.txt |grep -e jwt | cut -d"=" -f2 | cut -d";" -f1 | cut -d"'" -f2)
+								
+									rtoken=$(cat output.txt| grep -e refresh-token | cut -d"=" -f2 | cut -d";" -f1)
+										echo
+											echo "jwt is $jwt"
+												echo
+													echo "rtoken is $rtoken"
+														
+															echo 
+																echo $(Cookie: $token; jwt=$token; refresh-token=$rtoken)
+																	echo
+																		cat keys.txt | while read line 
+																			do
+																				   # do something with $line here
+																				   	   url="https://${CM_IP}/api/v1/vault/keys2/${line}?type=id"
+
+																					   	   output=$(curl -k --location --request DELETE ${url} \
+																						   --header 'Cookie: "'"$jwt"'"; jwt="'"$jwt"'"; refresh-token="'"$rtoken"'"')
+																						   	   echo
+																							   	   echo "output for key $line is $output"
+																								   	done
+																										
+																											echo
+																												echo $output
+
+																												
+==========================================================================================================================================================================================================================================================================================

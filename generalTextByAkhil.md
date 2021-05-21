@@ -54,6 +54,8 @@ ctrl +shift + {,}----->to hide unhide function block
 
 alt + side arrow(<- , ->)----->to jump to code 
 
+alt + click   OR alt + shift + click ==>to get more cursor
+
 ____________________________________________________________________________________________________________
 
 to remove unnecessary extension files from windows where F is disk location
@@ -949,6 +951,10 @@ openssl
 json view chrome extension
 
 ==============================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ctrl +insert ===>copy in ubuntu with terminal interruption
+
 
 
 epub to pdf converter online   ===> https://pdfcandy.com/epub-to-pdf.html
