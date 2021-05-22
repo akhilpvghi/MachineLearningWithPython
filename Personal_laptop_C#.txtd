@@ -1795,6 +1795,125 @@ Main(....){
 __________________________________________________________________________________________________________________________________________________________
 S2E3
 
+Delegate
+
+	==>calling a function by its address
+
+	class PhotoProcessor{
+	
+	public delegate void PhotoFilterHandler(Photo photo);
+	
+	public void Process(string str1, fn_name reference_name){
+	
+		var photo = Photo.load(path);
+
+		var filters = new Photofilters();
+
+		
+		//filters.ApplyBrightness(photo);
+		//filters.applyContrast(photo);
+		//filters.Resize(photo);
+
+//instead
+		filterHandler(photo);
+
+		photo.save();
+	}
+	}
+
+
+=======================================================
+
+main(.......){
+	var processor = new PhotoProcessor();
+	var filters = new PhotoFilters();
+	PhotoProcessor.PhotoFilterHandle filterHandler = filters.ApplyBrightness;
+
+	filter+=filter.ApplyContrast;
+
+	processor.Process("photo.jpg", filterHandler);
+}
+
+
+//what we are doing here is , we have all the function in one class but not anymore which  have delegates, and  we are choosing which all functions to call at main
+
+//we are adding function having same structure, and all are independent I suppose
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+S2E4
+
+Lambda expressions
+	
+	==>method having no name
+
+	==>no modifer
+
+	==>used for convinent
+
+	
+//args lambda operator and expression
+
+number => number*number //it needs to be assigned to delegate
+
+//if we dont want parameters
+
+
+
+Func<int, int> square = number => number*number  //first represent arguemnet, 2nd one is return typr
+
+Console.WriteLine(square(5));
+
+	//func<>
+	//Actions<> ==>does not return value
+
+
+==================================================
+cons int factor = 5;
+
+Func<int, int> multiplier = n => n*factor;
+
+var res = multiplier(10);
+
+Console.WriteLine(res);
+
+==================================================
+
+
+new List<Book>{
+	
+	new Book(){Title ="dfd", price=50},
+	new Book(){Title ="this", price=501},
+	new Book(){Title ="is", price=502}
+
+}
+
+//this is what we call object initialiser
+
+
+var getFilteredBooks = books.FindAll(// this takes functions which returns boolean)
+
+OR
+
+//books.FIndALl(book => book.price < 10);
+
+
+
+foreach (var book in getFilteredBooks){
+Console.WriteLine(book.title);
+}
+//predicate ==>a deligate or small small functions
+
+
+__________________________________________________________________________________________________________________________________________________________
+S2E5
+
+
+
+
+
+
 
 
 
