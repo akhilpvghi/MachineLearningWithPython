@@ -1,0 +1,1382 @@
+[Tutsgalaxy.com] - Mastering Advanced C Programming Pointers (In Depth)
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+By Ravi kishore
+
+	==>data variables and pointer variables
+
+		==>pinter variable==>holds address of same type of data
+
+		==>size of pointer will be same as architecture of processor
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E2
+
+int a
+
+		//garbage value is like junk value
+
+int *p  ==>* is for defining a pointer variable
+
+p = &a
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E1
+
+	doc
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E1
+
+	single pointer
+===============================
+	#include<stdio.h>
+
+	int main(){
+		int a = 10;
+		int *p;
+		p =&a;
+		printf("a = %d, p=%x, &a=%x, *p = %d\n", a, p, &a, *p)
+		return 0;
+	}
+
+	================
+
+	gcc file_name.c
+
+	>>./a.out
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E2
+
+c supports 12 level of pointer ==>like nesting pointer
+
+int **q ==>two level pointer, it is defining
+
+*(***r)  ===>it is two access like this
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E4.5
+
+practical
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E1
+
+Lvalue and RValue 
+
+	lValue at compile time==>represents address
+
+	rValue at runtime==>represents value
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S5E1.7
+
+	type needs to be matched, as we can inrement pointers too
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E1.8
+
+
+Arithmetic operations in pointers
+
+	+,-,*,/
+
+	==>performed in same type of pointers
+
+	segmentation faults ===>when resultant address is not there in memory(after performing arithmetic operations)
+
+	p1 * p2 and p1/p2  ==>is not poosible
+	
+	==>p + 1*(size of ptr)
+
+	
+__________________________________________________________________________________________________________________________________________________________
+
+S7E1.9
+
+	pre and post increment of pointers
+
+	int a[3] = {10,20,30};
+
+	int *p =a;
+
+	res = *p++;  //increment to pointer and we will get incremented address
+
+		=*++p // in this we will get value of incremented pointer
+
+		=++*p //we will get incremeted value
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E2.10
+
+	int main(){
+	
+	int a[3]={10,20,30};
+	int *p;
+	int res = -1;
+	p =a;
+
+	res = *p++; //result is incremented pointer
+	res =*++p; //result is 20
+	res = ++*p; //res eill be 11
+
+	}
+		
+__________________________________________________________________________________________________________________________________________________________
+
+S8E1.11
+
+generic pointers
+
+	==>earlier we had same pointers
+
+		==>no mis match allowed earlier
+
+	==>generic pointer is compatible with any type of data
+
+	==>it is represented with void*
+
+	==>it only knows how many bytes of address is using
+
+==================================
+	int arr[5]={10,20,30,40,50};
+
+	void *p;
+
+	p=arr; // here it does not know what type of data it is holding, but it knows that it have 20 bytes as size of array
+
+
+	printf("%d",*p) //error
+
+			==>now we need to type cast 
+
+	printf("%d",*(int*)p) ==>//we type casted and then retrieving
+
+	===================
+
+	dereferencing ==>is getting the value from pointer
+
+	==>no data loss using generic pointer, no extra memory needed
+
+	==========================================
+	int main()
+	{
+		int a = 10;
+		float f = 4.8;
+
+		void *p;
+
+		p =&a;
+		printf("a =%d ",*p); //wwe will get error
+		printf("a =%d ",*(int *)p); // now we will get the value
+		printf("a = %d\n",*(char *)p); //it will print 0, as its knowing that it holds one character
+			//if int a =257 // then it will give 1, if we try to get value from char pointer type
+
+		return 0;
+	}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E1.12
+
+null pointer
+
+	===>PAS ==>process address space is given by OS, every time program starts
+
+	==>segments that process have
+
+		==>code segment
+			===>text section
+			==>instruction
+
+		===>Data segment
+			==>.data section (initialised memory for static and global variables)
+			==>.bss section (uninitialised, default initialised to 0)
+
+		==>Stack segment
+			==>Stack section(used for program execution & memory for local variables)
+			==>Heap section (runtime memory allocation)
+
+			
+==>when program crosses PAS, we get segmentation fault
+
+__________________________________________________________________________________________________________________________________________________________
+
+S10E1.13
+
+	significance of initialisation of pointer to null
+
+		==>if it is not initialised with null we will get some different value
+			or we will get segmentation fault
+
+		int *p = (int *)0;
+
+		or
+
+		int *p = (void *)0;
+
+		#define (void*)0 NULL
+
+			==>now  we will ger NULL pointer dereferenced
+
+__________________________________________________________________________________________________________________________________________________________
+
+S10E2.14
+
+	vi nullpointer.c
+
+	#include<stdio.h>
+
+	int main(){
+	
+		int a; //garbage value
+		int *p; //garbage value
+
+		printf("a= %d, p=%u",a,p);
+		
+
+		return 0;
+	}
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S11E1.15
+
+contant pointers
+
+ const char *p; ==> pointer can be updated, data can not
+
+ char const *p; ==>pointer can be updated, data can not
+
+ char * const p; ==> data can be updated, pointer can not
+
+ const char * const p; ==> pointer can not be updated,also data can not
+
+
+## think it like char word is not there
+
+__________________________________________________________________________________________________________________________________________________________
+
+S11E2.16
+
+main(){
+
+char arr[4] = {'A', 'B', 'C'};
+const char *p = NULL;
+return 0;
+
+char * const p; //ptr is constant but *ptr is not constant
+
+
+}
+
+////>>> gcc filename.c
+>>>./a.out
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E1.17
+
+Allocate memory dynamically
+
+	//stack memeory is for static memory
+			
+			==>local variables
+			==>Heap Section
+
+	//heap section is for dynamic memory
+			
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E2.18
+
+whenever main function gets called
+
+	==>stack segment comes into picture
+
+		==>stack section
+			==>it has more memory in whole stack segment
+
+		==>heap section
+			==>we will get the base address of heap , and will store in stack section
+
+			==>we have to free all the written data in heap, and it will not be used as OS will think it is attached to some process
+
+			==>So we have to free in heap, as only stack gets released by OS after completeion of pgm
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E4.19
+
+
+function to allocate dynamic memory 
+
+	void* malloc(size_t size);
+
+		==>will allocate in sequence
+
+		==>on success, will give return address (generic address , needs to be type casted)
+		
+		==>on failure , return NULL
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E5.20
+
+#include<stdlib.h> //else you will get warning
+
+	in malloc ==>new created memory will not be initialised
+
+	main(){
+	
+	char *p = NULL;
+	//hello
+	p = (char *) malloc(6*sizeof(char));
+	//above stmt will create 6 block of m/m in heap
+
+	if (p==NULL){
+		printf("memory allocation using malloc failed\n");
+		return -1;
+	}else{
+		printf("m/m allocation success\n");
+	}
+	
+	char *p1=p;
+
+	*p ='h';
+	++p;
+	*p ='e';
+	++p;
+	*p ='l';
+	++p;
+	*p ='l';
+	++p;
+	*p ='o';
+	++p;
+	*p='\0';
+
+	printf("data stored in dynamic memory is %s\n", p1); // we will get all characters
+
+	free(p1); //now it will maintain all the m/m from base address
+	//*p1; // now we have released it from our program
+
+	return 0;
+	}
+
+//valgrind ==>is tool to find memory leaks
+
+>>>valgrind --tool=memcheck --leak-check=yes ./a.exe
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E7.21
+
+calloc (sixe_tnum_elements,size_telement_size)
+	
+	//in this case we dont have multiply how many char we need
+	// as it asks while calling
+	//also it initialises , every byte with 0 in case of int, and '\0' in case of char
+ 
+	// it also returns void * ===>generic pointer , hence we need to type cast
+===========================================
+	//hello
+	char *p;
+	p = (char *) calloc (6, sizeof(char));
+	
+	// if p is NULL , m/m allocation failed
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E9.22
+
+
+*realloc(void *ptr, size_t_new_size)
+	
+	// first parametr is base address from where we need to make change
+	==>extend or reduce the existing memory in heap
+
+	//like we have 5 blocks earlier
+	
+	realloc(base_addr, 10*sizeofc(char))
+
+		//==>it will return void*, then we need to type cast
+
+		// if it is possible
+		//if not possible, then it tries to get some other location, and copy old m/m to new blocks
+			//and in this case, it will be freed by realloc automatically, and it will return new address
+		
+		===================
+
+		now if not able to extend anywhere our request,
+			//in case of failure it will return NULL, otherwise we would have gotten some address
+			// and also we will lose the refernce, and there is memory leak
+				// in that case experiment with othercase in case of realloc
+
+//problem of above solution and in case we are not able to proceed
+		if(p1==NULL){
+			free(p);
+			return -1;
+		}
+			
+
+===>realloc also used reduce the allocated m/m
+
+earlier 
+
+ptr = (int *) malloc (2*sizeof(int)); //i.e we have asked for 8 bytes
+
+now
+
+ptr = (int *)realloc(ptr,4);
+
+//if base address is null, then it is equivalent to malloc
+
+if size is 0 ==>then it is like free(ptr)
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S12E10.23
+
+#include<string.h>
+
+if (p ==NULL){
+printf("failure state")
+}
+
+strcpy(p, "hello");
+
+//requirement for increase to 10 bytes
+
+	char *p1 =NULL;
+	p1=(char *)realloc(p,10*sizeof(char));
+	
+	if(p1==NULL){
+		printf("realloc failder")
+		free(p);
+		return -1;
+	}else{
+		printf("realloc is successfully allocated new memory\n");
+		p=p1;
+
+	}
+
+strcpy(p,"helloravi");
+
+printf("p=%p",p);
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S13E1.24
+
+Memory leak
+	==>memory is existing but pointer is not there
+	
+
+
+Dangling refernce
+	==>memory is not there but refernce is still there, even after free the memory with some other refernce
+	==>we should avoid of copying the pointers
+			==>instead we could copy the same data in some other ptr at some other location
+
+what have we discusser
+
+	===>pointers
+	==>level of pointers
+	==>lvalue and rvalue
+	==>arithmetic operations with pointers
+	==>generic pointers and casting of pointers
+	==>NULL pointer
+	==>pointers with constant
+	==>Dynamic memory allocation
+		==>malloc
+		==>calloc
+		==>realloc
+	==>free(address)
+
+
+		...done
+
+
+__________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
+
+[TutsNode.com] - Master Class - Multithreading & Thread Synchronization in C
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E1
+
+	what are threads?
+
+		==>basic unit of execution
+		==>every program must have atleast one thread
+		==>we call it main thread
+			==>the main one
+		==>process is main thread
+		==>process needs to be created before thread
+		==>thread can create more thread
+			==>at any point
+		==>parent child and child thread
+		==>we can see branching like structure when we see thread
+		==>fork point
+			==>point where a new thread is created
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E2
+
+	Code Acess
+
+		==>path of hello_world multi threading program
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E3nE4
+
+	basic multithreading program
+
+	#include<pthread.h>
+	#include<unistd.h>
+
+	void thread1_creae(){
+	
+	//every thread is idefied by data structure
+	//opaques to developer, datastructure member to developer
+	pthread_t pthread1; //it is called thread handler
+
+	static char *thread_inpur1 = "I am thread no 1";
+	
+
+	int rc = pthread_create(&pthread1,NULL,thread_fn_callback,(void *)thread_input1) //API provided by POSIX threads library (pthread.h), address of thread_handle, 2nd arguement will discuss later, thread_fn_callback, (void *)thread_input1 =>it is memory provided as input to this thread
+						// this memory must be on heap(dynamic memory allocated) or can be static, must not local memory to this function
+						// locla memory is in stack which can not be passed
+						//the above line is fork point as it is giving birth to child thread
+	if(rc != 0 )  //rc == 0 is success
+	{
+	printf("Error occured, thread could not be created, err no =%d\n", rc);
+	exit(0);
+	}			//negative value represents error
+
+	}
+	
+
+
+	//main thread will create more thread
+
+	int main(){
+	thread1_create();
+	//main thread terminate then all child threat will terminate
+	
+
+	pause(); //#include<unistd.h>
+	return 0;
+	}
+
+		// we can not pass local variable , as once the function is over , all local memory is gone
+
+
+--------------------------------
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E4
+	//thread_fn_callback ==>fn which new thread will execute
+	
+	prototype
+	
+	static void* thread_f_callback(void *args){
+		char *input = (char *)args;
+
+		while(1){
+			printf("input string = %s\n",input);
+			sleep(1);
+		}
+	}
+
+//compile using
+>>gcc -g -c hello_worls.c -o helo_world.o
+>>>gcc -g hello_world.o -o hello_world.exe -lpthread   //with your exe , link with pthread library
+>> ./hello_world.exe
+
+//child thread can not control parent child normally, we have to pause main, otherwise child thread will terminate before its birth
+
+//read Race condition
+
+
+
+===============================================================
+
+
+
+#include<stdlib.h>
+#include<pthread.h>
+#include<unistd.h>
+#include<stdio.h>
+static void * new_thread(void  *msp){
+        char *mess_from_par = (char*)msp;
+while(1){
+printf("message from parent %s\n",mess_from_par);
+sleep(1);
+}
+}
+
+int main(){
+printf("this is main thread\n");
+static char *msg_to_child="this is message from parent";
+pthread_t pthread1;
+int rc =pthread_create(&pthread1,NULL,new_thread,(void*)msg_to_child);
+printf("rc = %d",rc);
+pause();
+return 0;
+}
+
+
+
+gcc -g -c basiC_thread.c -o basiC_thread.o
+
+gcc -g basiC_thread.o -o basiC_thread.exe -lpthread
+
+./basiC_thread.exe
+
+
+
+// if ifinite loop will not be there in that child thread you wont be able to see the output
+
+
+============================================================================
+__________________________________________________________________________________________________________________________________________________________
+
+S1E5
+
+	Race condition
+
+// last arg to thread_create is data input to thread, which is dynamic
+
+//we can not say the sequece of execution after fork point
+
+// still 99.9 % is chance that our already running thread will get chance
+
+//this refers to race condition on thread creation
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E6
+
+	thread termination
+
+	// when a new thread created , how can it be terminated
+
+		==>when thread fn returns
+		==>pthread_exit(0);
+		==>Thread cancellation // by another thread
+	
+
+cont---------------
+
+int a=0;
+while(a<10){
+printf("input string %d",input);
+sleep(1);
+
+//or
+
+if(a==5){
+
+pthread_exit(0);
+
+}
+//
+a++;
+
+
+}
+====================
+
+//cancellation by another thread
+
+T1 will send cancel request to T2 or vice versa ==>and immediate effect can be seen
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E7
+
+main thread tremination
+
+	parent thread wont be terminated because of child termination
+
+	// main thread can also be exit by
+
+	pthread_exit(0); // in main function, but in this  case child will still be executing
+
+	return 0; //irt will terminate all child thread
+
+/////////////
+
+what if child thread terminates, no impact on others
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E8
+
+Resource Sharing
+	
+	what are the resources that all threads share
+
+	==>OS share resource to threads
+
+		==>any thread can ask for memory
+		==>scheduling poicy will be decided by OS
+		==>All threads are siblins
+
+			==>all are siblings 
+			==>they all will have their own life cycle
+			==>when main threa dies, then all will be terminated
+					==>vice versa is not true
+			==>parent only means that it crates new child thread==>other than that thre's no difference
+			==>share same virtual process Address space
+					==>they all have common access to heap
+					==>heap memory, sockets, file descriptor, global variables
+			==>every thread has its exclusive stack memory
+				==>in case of stack memory, it is very private to each thread
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E9
+
+	==>after thread creation 
+		==>no separate virtual memory for new thread
+		==>share same VAS (virtual address space)
+		==>whereas all thread have their own stack memory
+
+__________________________________________________________________________________________________________________________________________________________
+
+S1E10
+
+	Thread Scheduling
+
+		==>kerner do not schedules process, it schedules threads
+
+		==>thread is a schdulable entity, not a process
+
+		==>suppose P1 has two threads t1 and t2, and p2 has two threads t3 and t4
+
+		==>kernel will give threads to cpu to get executed
+
+			==>if threads gives segmentation fault, then entire process is terminated
+
+					==>in that case , other thread of that process also had to suffer and not will be executed
+			
+			==>a signal is delivered per process, not per thread
+					==>like segment fault signal
+			
+			==>race thread is like kernel chooses which thread for CPU
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E1 (Concurrency V/s Parallelism)
+
+
+	==>Context switching
+		==>Concurrency
+			==>doing two or more task
+			==>one at a time
+			==>switching task
+			==>picking it, preempt current task
+			==>picking up next , partially do it and preempt it
+			...and so on
+
+			e.g real world ==>well digger ==>one drill machine
+
+				==>only can dig at a time
+				==>when one take rest, 2nd person starts from there
+				==>and so on
+				==>and they do untill it finishes
+		
+	
+		==>Parallelism
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E2
+
+	Parallelism
+
+		==>e.g
+			from above example they all can drill, as they all are having their own drilling tool
+		
+		time is reduced to = T/3 from previous exmaple
+
+		time taken in paralllelism << time taken in concurrency
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E3
+
+	Singularism
+
+		==>one task at a time
+		==>Dont preempt until the task is complete
+		==>next start his job until previous one completes
+
+	==>e.g. ==>work of all the well-driggers is NOT in progression
+
+	time taken in parallelism << time taken in singularism < time taken in concurrency
+
+		// as handover of tool is not there in singularism
+		//concurrency gives progression
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E4
+
+workers ==> well diggers ==>thread
+
+resources ==>Digging tool ==>CPU & memory etc
+
+Transition ==> One well digger to another ==>context switching
+
+work to accomplish ==>100 ft well ==>work to be done by each thread
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E5
+
+	COncurrent thread execution
+
+	T1		n T2		n T3
+	[1 to 6]        [1 to 6]       [1 to 6]
+
+
+	==>Ready queue ==>if concurrent , after some time they all start to wait
+
+		==>they all show property of progression
+
+==>Parallel threads
+
+	==>non of thread infringes to another
+	==>they all are independent
+	==>now we have to have more resources
+	==>expensive one
+
+==>Singular threads
+	
+	==>no progression
+	==>doesn't exist in real world of threads
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E6
+
+why do we need concurrency ??
+
+	ctrl+shift+esc
+
+		==>go in performance
+
+		==>you can see no. of nores
+
+			and logical processor
+
+		==>hybrid (concurrency and parallelism) is best option for current typical computers
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E7
+
+	==>We need concurrrency because , we can not have many CPU
+	==>we also need to ensure progression
+
+	==>like in case waiting for network packets, waiting for i/p n o/p event from user etc
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E8
+
+	concurrency example 2
+
+		==>when work can be splitted into smaller independent chunks which can be processed by worker threads
+
+		==>TCP server delegates the task to worker threads to entertain the client request
+
+		
+__________________________________________________________________________________________________________________________________________________________
+
+S2E9
+
+	why threads are called light weighted process?
+
+		==>as it uses almost all pre-existing resources of already created thread
+
+		==>also OS doesnt have to take that effort to create isolated environment
+
+				==>page tables are already setup
+				==>shared libraries are already loaded
+				==>sockets are already opened
+		
+		==>when thread dies, OS doen't have clean as it might be already created threads
+
+		==>thread switching is faster than process switching
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E10
+
+Overlapping and non overlapping work
+
+	==>w1(work1) and w2 ==>are overlapped when they operate on same data
+	
+	==>if threads shares the data, say some global data then threads have overlapping work
+
+__________________________________________________________________________________________________________________________________________________________
+
+S2E11
+
+Summarize this section
+	
+	==>when thread cpu shares the same CPU, it is concurrency
+		regardless of data sharing, overlapping or non overlapping
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E1
+
+	Joinable and detachable Threads
+
+	threads can be created in two different modes
+
+		==>joinable threads
+
+			//pthread_create can have arguement for that
+
+			T1 and T2
+
+			T1 calls pthread_join() ==>parent thread gets blocked until child thread complete its execution and join
+						==>parent thread will resume when it will get join signal from parent
+						==>once child joins with parent , then parent can continue its execution
+
+						===>resource of joijnable thread are not released until it joins the parent thread
+						==>a joinable can be converted to detachable while its running or vice versa
+						==>by default, thread runs on joinable mode
+						==>joinable thread may return the result to join thread
+
+			
+
+		==>detachanle threads
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E2
+
+	==>in detachable thread 
+	==>theres no need to join with parent thread
+	==>kernel will automatically released once its complete its execution
+	==>can be converted in between of execution and vice versa
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E3
+
+	// joinable thread in action
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<unistd.h>
+#include<errno.h>
+
+
+
+pthread_t pthread2;
+pthread_t pthread3;
+
+static void * thread_fn_callback(void *args){
+int th_id =*(int *)arg;
+free(arg);
+int rc = 0;
+while(rc != th_id){
+	printf("thread %d doing some work \n ", th_id);
+	sleep(1);
+	rc++;
+
+
+}
+
+int *result = calloc(1,sizeof(int));
+*result = th_id *th_id;
+return (void *)result;
+	//result is also need to be shared as dynamic menmory
+}
+
+void thread_create(pthread_t *pthread_handle, int th_id){
+	pthread_attr_t attr;
+
+	int *_th_id = calloc(1, sizeof(int));
+	
+	pthreada_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);  // PTHREAD_CREATE_DETACHED
+		
+		//we need to get the access to the attribute which we are setting joinable or detached   
+
+	
+
+	pthread_create(pthread_handle,    //this line is fork point 
+			&attr,
+			thread_fn_callback,
+			(void *) _th_id)
+}
+
+
+
+int main(int args, char **argv){
+	
+	void *thread_result2;
+	thread_create(&pthread2, 2);
+	thread_create(&pthread3, 10);
+	
+	//wait to join
+	
+	printf("man fn blocked on pthread join for thread with th_id = 2\n");
+	pthread_join(pthread2, &thread_result2);  //pthread-join is block api
+	
+	if (thread_result2){
+	printf("returned result from thread 2 = %d\n", *(int *)thread_result2);
+
+	free(thread_result2);
+	 // reponsible of parent to release memoru used by child to get result
+
+	 thread_result2 =NULL;
+
+	}
+
+
+	pthreaad_join(pthread3, &thread_result3);
+
+	if (thread_result3){
+	printf("returned result from thread 2 = %d\n", *(int *)thread_result3);
+
+	free(thread_result3);
+	 // reponsible of parent to release memoru used by child to get result
+
+	 thread_result3 =NULL;
+
+	}
+
+	return 0;
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E4
+
+	can it join any thread?
+
+		==>yes, any thread is blocked for joining, it can join anywhere
+
+		==>any joining point with same thread handle , can join
+
+		==>and can join both or any number which thread_handler
+
+		==>only joinable thread gets joined
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E5
+
+Exercise
+
+	Implement Map-Reduce
+	
+	==>count no of words in file of 1200 lines
+
+	==>distribute work and combine
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S3E6
+
+
+	how to choose joinable or detachable
+	
+	joinable
+		==>if thread is supposed to return some value ==>go for joinable thread
+		==>if we want to notify, then go for joinable
+
+	detachable
+		==>waiting for user input
+		==>waiting for networks pkt
+		==>infinite loop
+
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E1
+
+	Inter thread communication
+
+		==>exchange of data b/w threads within a process
+
+		==>various IPC techniques
+
+			==>Sockets
+			==>Msg Queues
+			==>Pipes
+			==>Shared Memory
+
+		==>communication between thread is preferred
+			==>very fast
+			==>No actual tranfer of data but 
+			==>transfer of computation
+			==>No special attention required from kernel, Completely run in user space
+			==>No kernel resource need to be explicitly created
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E2
+
+	Transfer of computation
+
+		==>transfer of logic is feasivible when both entity are in same VAS(virtual address space)
+
+__________________________________________________________________________________________________________________________________________________________
+
+S4E3
+
+	Entity 1 wants to use function of Entity 2
+
+		==>Transfer of registration is reponsibility of Entity 2
+
+		==>fn is used by entity 1, but result is there with Entity 2
+		
+__________________________________________________________________________________________________________________________________________________________
+
+S4E4
+
+publisher subscriber model
+
+	==>also known as notification chain
+
+	==>thread which generates data is called publisher
+
+	==>thread which owns the data processing function is called a subscriber
+
+	==>the activity of TOC is called Callback Registration
+
+	==>the activity od invoking the fn through fn pointers by publisher is called Notification
+
+__________________________________________________________________________________________________________________________________________________________
+
+S5E1
+
+	Vacations
+
+		==>Doubly linked list = Glue based linked list
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E1
+
+	==>Notification chains
+
+		==>architecture concept
+
+		==>to notify all subscriber
+
+
+		==>subscribers are notified
+
+		==>==>subscriber can register or derigister for the event their at will
+
+		==>event is generated by publisher, and pushed to subcribers
+
+
+		==>can be anywhere
+
+			==>within process
+			==>within different or same system
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E2
+
+ Notification chain(NFC)
+
+	==>publisher is incharge of routing table
+
+	like newspaper subscription and publisher
+
+	==>if subscriber wont tell about the specific newspaper subscription , then publisher will give all the events and magzines information
+
+	==>NFC is the detail where publichers keep the information about subscribers
+__________________________________________________________________________________________________________________________________________________________
+
+S6E3
+
+	NFC is a linked list of callbacks (function pointers)
+
+	typedef struct notif_chain_ {
+		char nfc_name[64];
+		glthread_t notif_chain_head; //this is head of linked list
+	} notif_chain_t;
+
+	typedef struct notif_chain_elem_{
+		char key[MAX_NOTIF_KEY_SIZE];
+		size_t key_size;
+		bool_t is_key_set;
+		nfc_app_cb app_cb;   //typedef void (*nfc_app_cb)(void *,size_t);
+		glthread_t glue;
+		
+	} notif_chain_elem_t;
+
+
+==========================================================================
+
+notif.h
+
+#define MAX_NOTIFY_KEY_SIZE 64
+
+typedef void (*nfc_app_cb) (void *, size_t);
+
+typedef struct notif_chain_elem_{
+	
+	char key[MAX_NOTIF_KEY_SIZE];
+	size_t key_size;
+	bool_t is_key_set;
+	nfc_app_cb app_cb;
+	glthread_t glue;
+	
+} notif_chain_elem_t;
+
+GLTHREAD_TO_STRUCT(glthread_glue_to_notif_chain_elem, notif_chain_elem_t, glue);
+
+typedef struct notif_chain_ {
+	
+	char nfc_name[64];
+	glthread_t notif_chain_head;
+} notif_chain_t;
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E4
+
+
+	subscription request ==> need to invoke by the subscriber
+	
+		void nfc_register_notif_chain(notif_chain_t *nfc, notif_chain_elem_t *nfce);
+		
+
+
+	Invoke request
+
+		void nfc_invoke_notif_chain( notif_chain_t *nfc,
+					void *arg,
+					size_t args_size,
+					char *key,
+					size_t key_size);
+
+	
+==============================================================
+
+notif.c
+
+void nfc_register_notif_chain(notif_chain_t *nfc, notif_chain_elem_t *node){
+
+	notif_chain_elem_t *new_nfce = calloc(1, sizeof(notif_chain_elem_t));
+	memcpy(new_nfce, nfce, sizeof(notif_chain_elem_t));
+	init_glthread(&new_nfce->glue);
+	glthread_add_next(&nfc->notif_chain_heaad, &neew_nfce->glue);
+
+}
+
+void nfc_invoke_notif_chain(notif_chain_t *nfc,
+			void *args, size_t arg_size,
+			char *key, size_t key_size){
+			
+
+		glthread_t *curr;
+		notif_chain_elem_t *nfce;
+		
+		assert(key_size <= MAX_NOTIF_KEY_SIZE);
+
+		ITERATE_GLTHREAD_BEGIN(&nfc->notif_chain_head, curr){
+			
+			nfce = glthread_glue_to_notif_chain_elem(curr);
+
+			if(!(key && key_size && nfce->is_key_set && (key_size == nfce->key_size))){
+			
+				nfce->app_cb(arg, arg_size);
+			}
+			else{
+				if(memcmp(key, nfce->key, key_size)== 0){
+				nfce->app_cb(arg, arg_size);
+				}
+			}
+		}ITERATE_GLTHREAD_END(&nfc->notif_chain_head,curr);
+
+			}
+
+
+
+// we can also unsubscribe
+
+
+
+
+	....incomp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
