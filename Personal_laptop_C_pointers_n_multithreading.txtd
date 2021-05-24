@@ -1362,6 +1362,222 @@ void nfc_invoke_notif_chain(notif_chain_t *nfc,
 // we can also unsubscribe
 
 
+__________________________________________________________________________________________________________________________________________________________
+
+S6E6
+
+publisher and subscriber model
+
+	==>1 publisher and 3 are subscriber thread
+
+	
+__________________________________________________________________________________________________________________________________________________________
+
+S6E7
+
+//at publisher end
+
+typedef struct rt_entry_keys {
+	char dest[16];
+	char mask;
+
+} rt_entry_keys_t;
+
+typedef struct rt_entry_{
+
+	rt_entry_keys_t rt_entry_keys;
+	char gw_ip[16];
+	char oif[32]; //output interface, any external data
+	struct rt_entry_ *prev;
+	struct rt_entry_ *next;
+} rt_entry_t;
+
+
+typedef struct rt_table_{   //it caries header pointer
+
+	rt_entry_t *head;
+
+} rt_table_t;
+
+	
+==================================================
+
+// implementation of apis
+
+void rt_init_rt_table(rt_table_t *rt_table);
+
+rt_entry_t * rt_add_or_update_rt_entry(.......)
+
+bool rt_delete_rt_entry(......);
+
+rt_entry_t* rt_look_up_rt_entry(.....)
+
+void rt_dump_rt_table(...)
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E8
+
+#include "rt.h "
+
+
+int main(int argc, char **argv){
+
+	rt_init_rt_table(&publisher_rt_table);
+
+	/*Create Subscriber threads */
+
+
+
+}
+
+
+//rtm_publisher.c
+
+rt_table_t publisher_rt_table;
+
+rt_table_t *
+publisher_gwt_rt_table() {
+
+return &publisher_rt_table;
+
+}
+
+void main_menu() {
+	int choice;
+	while(1){
+		printf("Publisher menu \n");
+		printf("Add/update rt table entry \n");
+		printf("2. Delete rt table entry \n");
+		printf("3. Dump rt table\n");
+		printf("Enter choice \n");
+		choice=0;
+		scanf("%d", &choice);
+		switch(choice){
+			case 1:{
+				char dest[16];
+				char mask;
+				char oif[32];
+				char gw[16];
+				printf("Enter Destination : ");
+				scanf("%s", dest);
+				...get mask
+				...get oif name
+				..get GatewayIP
+
+				rt_add_or_update_rt_entry(...);
+				
+			}
+			case 2:{
+			//delete rt table entry
+			break;
+			}
+
+			case 3:
+			rt_dump_rt_table(publisher_get_rt_table());
+			break;
+
+			default: ;
+		}
+	}
+}
+
+
+
+int main(){
+
+	rt_init_rt_table(&publisher_rt_table);
+
+	create_subscriber_thread(1);
+	sleep(1);
+
+	
+	create_subscriber_thread(2);
+	sleep(1);
+
+	
+	create_subscriber_thread(3);
+	sleep(1);
+
+	pthread_exit(0);
+	return 0;
+}
+
+	...incomp
+__________________________________________________________________________________________________________________________________________________________
+
+S6E9
+
+threaded_subscriber.c
+
+// create_sucbcriber thread ==>invoked by main fn
+	
+	//we need to make subscriber
+//create subscriber_thread_fn
+
+//static void test_cb() //test call back
+
+========================
+#include "rt.h"
+
+void cretae_subscriber_thread();
+
+
+extern rt_table_t *
+publisher_get_rt_table()
+
+static void
+test_cb(void *args,size_t args_size, nfc_op_t nfc_op_code, unit32_t client_id){
+
+	 // this function is in subscriber but will be called by publisher
+
+	 printf("%s() client: %u, notified with opcode %s\n", __FUNCTION__, client_id,nfc_get_str_op_code(nfc_op_code));
+}
+
+static void *
+subscriber_thread_fn(void *args){
+	rt_entry_keys_t rt_entry_keys;
+	memset(&rt_entry_keys, 0, sizeof(re_entry_keys_t));
+	strncpy(rt_entry_keys.dest, "122.1.1.1", 16);
+	rt_entry_keys.amsk = 32;
+
+	//rt_table_register for_notification(....)
+
+	pause();
+	return NULL;
+}
+
+void cretae_subscriber_thread(unit32_t client_id){  //unit32 is unsigned integer value
+
+	pthread_attr_t attr;
+	pthread_t subs_thread;
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	pthread_create(&subs_thread, &attr, subscriber_thread_fn,(void *)client_id);
+	printf("subscriber %u created \n", client_id);
+}
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E10
+
+
+	==>we will be allowing subscriptions
+
+	Notification
+		==>notify subscribers
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E12
+
+rt.c
+
+	void rt_table_register_for_notification(
+	
+	);
 
 
 	....incomp

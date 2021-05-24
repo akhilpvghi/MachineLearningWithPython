@@ -65,5 +65,84 @@ voter_id status
 		=>https://www.nvsp.in/forms/trackstatus
 
 		
+		https://www.nvsp.in/Account/Login
 
+			==>9810938909  ===>Jsm@2302
 =======================================================================================================================
+mummy ===>https://www.nvsp.in/Forms/TrackStatus
+   
+
+Thank you for submitting form on NVSP. Your form reference id is OLC205952964
+You can track form application status here...  
+
+
+
+Astha
+
+	==>
+
+
+	Thank you for submitting form on NVSP. Your form reference id is ODT070755842
+You can track form application status here..
+
+   
+
+
+AKHIL ==>VOTER DELHI INFO
+
+		NLN2413854
+
+		R K PURAM - 44
+
+		NCT OF Delhi
+
+
+		Thank you for submitting form on NVSP. Your form reference id is ODK973364282
+		You can track form application status here..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===============================================
+
+
+	Thank you for submitting form on NVSP. Your form reference id is ODC522089125
+	You can track form application status here... 
+
+
+	
+Thank you for submitting form on NVSP. Your form reference id is OWG682011568
+You can track form application status here... 
+
+
+	
+Thank you for submitting form on NVSP. Your form reference id is OKI570880134
+You can track form application status here...      ===>new one
