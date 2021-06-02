@@ -1254,6 +1254,9 @@ grep -i error ==>/// ignore case sensitivity
 
 tail -fn0  //-f is live, n0 ==>only look for latest
 
+
+tail -n10 log  //will show last 10 line of log files
+
 #!/bin/bash
 
 tail -fn0 /var/log/message | while read line

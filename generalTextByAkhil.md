@@ -986,10 +986,70 @@ https://unix.stackexchange.com/questions/199203/why-does-vim-indent-pasted-code-
 
 
 ==============================================================================			
+
+find file everywhere in linux
+
+find / -name "filename"
+
+find / -name "ldconfig"
+
+tar -cvf oracle_home_24Nov_2020.tar
+
+tar -xzf 610-000679-001_cadp_capi_linux_64b_v8.12.1.0.000-003.tar.gz
+
+tar -xf 610-000679-001_cadp_capi_linux_64b_v8.12.1.0.000-003.tar.xz
+
+unzip master.zip    ===>rhel 
+
+cmake --version   ===>rhel 
+
+
+install cmake   => https://cmake.org/download/
+
+	In the new version of cmake (ex: 3.9.6), to install, download tar file from https://cmake.org/download/. Extract the downloaded tar file and then:
+
+cd /usr
+sudo wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh -P /usr/
+sudo chmod 755 /usr/cmake-3.8.2-Linux-x86_64.sh
+sudo ./cmake-3.8.2-Linux-x86_64.sh
+
+
+cmake installation => https://geeksww.com/tutorials/operating_systems/linux/installation/downloading_compiling_and_installing_cmake_on_linux.php   ==>download only tar.gz
 			
 			
 			
+gcc --version
+
+install gcc ==> https://benjaminberhault.com//post/2018/06/22/install-gcc-on-rhel-centos-7.html		
+
+replace fttp with http ==> https://gcc.gnu.org/legacy-ml/gcc-help/2018-05/msg00123.html ==>to install gcc
+
+			==>we may need to untar again as it gets corrupted sometime
 			
+============================================================================================================================================================================================================
+
+To do so, we will need to do those easy steps:
+
+(1 ) Find where the library is placed if you don't know it.
+
+sudo find / -name the_name_of_the_file.so
+(2) Check for the existence of the dynamic library path environment variable(LD_LIBRARY_PATH)
+
+$ echo $LD_LIBRARY_PATH
+if there is nothing to be displayed, add a default path value (or not if you wish to)
+
+$ LD_LIBRARY_PATH=/usr/local/lib
+(3) We add the desire path, export it and try the application.
+
+Note that the path should be the directory where the path.so.something is. So if path.so.something is in /my_library/path.so.something it should be :
+
+$ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/my_library/
+$ export LD_LIBRARY_PATH
+$ ./my_app
+
+
+			
+============================================================================================================================================================================================================
 			
 			
 			
