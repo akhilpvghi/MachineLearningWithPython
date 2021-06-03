@@ -1,0 +1,415 @@
+	gcc client_registration.c -o client_registration -lcurl -ljson-c
+	 ./client_registration _name_to_register_client
+	 
+	  gcc client_reg_cm_expt.c -o client_reg_cm_expt -lcurl -ljson-c
+		./client_reg_cm_expt
+	
+	https://52.86.120.81/#/console/products
+	
+				==>admin ===>KeySecure_1
+				
+	sudo yum install  libcurl4-openssl-dev
+
+	https://fossies.org/linux/curl/include/curl/curl.h
+
+	https://stackoverflow.com/questions/25057819/how-to-create-restful-web-services-using-c-language-and-json-parser
+
+	===>link to download curl ==> https://fossies.org/linux/www/curl-7.77.0.tar.xz/
+	
+	https://curl.se/docs/install.html  ==>commands to install curl package 
+
+	./configure --with-openssl
+
+	gcc -c test_curl.c -lcurl
+
+	gcc test_curl.o -o output -lcurl ==>this works
+
+	gcc test_curl_auth.c -o output_auth -lcurl  ==>this works
+
+	sudo yum install openssl-dev libcurl-devel.x86_64 ==> libcurl-devel.x86_64 available in our repository
+
+	gcc expt.c -o expt_output -lcurl
+	
+	gcc expt_json.c -o expt_output -lcurl -ljson-c    ===>with json
+	
+	gcc test_curl_auth.c -o output_auth -lcurl -ljson-c    ===>with json
+	
+	gcc client_reg_cm.c -o client_reg_cm -lcurl -ljson-c ===>with json
+	
+	gcc expt_cm.c -o expt_cm -lcurl -ljson-c
+
+	yum install curl
+	
+	yum install openssl-devel   ==>ran on rhel
+
+	https://pranavprakash.net/2014/09/27/using-libcurl-with-ssl/    ==>this boy
+	
+	
+	https://stackoverflow.com/questions/26597257/calling-a-json-webservice-from-c-using-curl-and-json-c/26598850  ===>post fields with json
+	
+	https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html  ==>json.h resource 1
+	
+	
+
+	https://curl.se/libcurl/c/example.html 
+
+	https://www.zabbix.com/forum/zabbix-troubleshooting-and-problems/25043-web-scenario-step-error-error-doing-curl_easy_perform-couldn-t-resolve-host-name   ===>change dns server
+
+
+	https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/manually-configuring-the-etc-resolv-conf-file_configuring-and-managing-networking
+
+
+	https://gist.github.com/connormanning/41efa6075515019e499c   ==>for json parsing (not ours)
+
+	https://integrics.com/enswitch/guides/stable/en/dev/json/samples/c/   ==>json parse and pkg config
+	
+	https://www.daniweb.com/programming/software-development/threads/269500/libcurl-copy-webpage-contents-to-string   ==>to store it in a file
+	
+	https://curl.se/libcurl/c/getinmemory.html  ==>getinmemory
+
+	https://confluence.gemalto.com/display/TKM/Calling+TKM+APIs+using+curl   ==>cert installation 
+	
+	https://gist.github.com/leprechau/e6b8fef41a153218e1f4   ==>our header file example
+	
+	https://progur.com/2018/12/how-to-parse-json-in-c.html ===>simple example of json parse
+
+
+	https://www.xmodulo.com/fix-fatal-error-jsoncpp.html  ==>install json clibrary (not ours)
+	
+	
+	/opt/cmake/bin/cmake -DCMAKE_BUILD_TYPE=debug -DJSONCPP_LIB_BUILD_SHARED=OFF -G "Unix Makefiles" ../../
+-- JsonCpp Version: 1.9.4
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/akhil/rest_client_ssl/json_lib_files/jsoncpp-master/build/debug
+
+
+	===========================================================================================================
+	===========================================================================================================
+/opt/cmake/bin/cmake --version
+cmake version 3.20.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+
+	===========================================================================================================
+	===========================================================================================================
+	
+	cmake --version
+cmake version 2.8.12.2
+
+cmake --version     
+cmake version 2.8.12.2
+
+
+	===========================================================================================================
+	===========================================================================================================
+
+
+https://github.com/json-c/json-c   ===========>json parse
+
+
+https://github.com/json-c/json-c    ===>download json library from git
+
+
+	systemctl reload NetworkManager
+
+
+
+	10.164.32.193 ==> root ==>temp123#
+
+	10.164.12.97   ==>root ==>encint@123
+
+
+	we get the jwt token and refreh token in ==>header response
+
+
+	===========================================================================================================
+
+	//ran successfully
+
+
+	#include <stdio.h>
+	#include <string.h>
+	#include <curl/curl.h>
+	 
+	int main()
+	{
+
+	CURL *curl;
+	CURLcode res;
+	curl = curl_easy_init();
+	if(curl) {
+	  //curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+	  
+	  curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
+	  curl_easy_setopt(curl, CURLOPT_URL, "https://10.164.11.238/api/v1/auth/tokens/");
+	  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+	  curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "https");
+	  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+	  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+	  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYSTATUS, 0);            
+	  curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
+	  curl_easy_setopt(curl, CURLOPT_CAPATH, "cacert.pem");
+	  struct curl_slist *headers = NULL;
+	  headers = curl_slist_append(headers, "Content-Type: application/json");
+	  headers = curl_slist_append(headers, "Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIwZDc3NGFkNi1jMWEzLTRiMzYtYmJjYS03MGU1MTVkNmNiNzkiLCJzdWIiOiJsb2NhbHxmMzA1ZThiOC0yYzliLTRiYjgtOTRiZi0wOGYxN2FkMDM5OTkiLCJpc3MiOiJreWxvIiwiYWNjIjoia3lsbyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiY3VzdCI6eyJkb21haW5faWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJncm91cHMiOlsiYWRtaW4iLCJLZXkgQWRtaW5zIiwiS2V5IFVzZXJzIl0sInNpZCI6IjM0Y2NjMDg3LTgwYmMtNDRlNy04ZjU3LTEyYWEwNTAwYjY1NiIsInpvbmVfaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifSwiand0aWQiOiJmYjZhZTRlOC1mOGZmLTQ2ZjUtOTJmNi1kZDFjMDczMWZiMDciLCJpYXQiOjE2MjI0NjE1NjMsImV4cCI6MTYyMjQ2MTg2M30.CRenNJFVN2TCZC5RroeqC9cmz4VKw8kjHez2Y1avYpc; refresh-token=LTjW7kdZpLmqZWoLo3OhOB31z5V5tpMdf9BdH8xeL9lO6Od74GTTZBnLGE773XmM");
+	  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+	  const char *data = "{\r\n    \"connection\": \"local_account\",\r\n    \"cookies\": true,\r\n    \"grant_type\": \"password\",\r\n    \"password\": \"Safenet.1\",\r\n    \"refresh_token_revoke_unused_in\": 30,\r\n    \"username\": \"admin\"\r\n}";
+	  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
+	  res = curl_easy_perform(curl);
+	  if(res != CURLE_OK)
+		   fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
+	}
+	curl_easy_cleanup(curl);
+
+	return 0;
+	}
+
+
+
+	===========================================================================================================
+
+
+	//delete also working
+
+	#include <stdio.h>
+	#include <string.h>
+	#include <curl/curl.h>
+	 
+	int main()
+	{
+	CURL *curl;
+	CURLcode res;
+	curl = curl_easy_init();
+	if(curl) {
+	   curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+	  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+	  curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+	  curl_easy_setopt(curl, CURLOPT_URL, "https://10.164.11.238/api/v1/vault/keys2/6a0b95eedad944b8814f0c3d6cb3f120f57571e3620a48c7805ba8a374d244ef?type=id");
+	  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+	  curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "https");
+	  struct curl_slist *headers = NULL;
+	  headers = curl_slist_append(headers, "Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIwZDc3NGFkNi1jMWEzLTRiMzYtYmJjYS03MGU1MTVkNmNiNzkiLCJzdWIiOiJsb2NhbHxmMzA1ZThiOC0yYzliLTRiYjgtOTRiZi0wOGYxN2FkMDM5OTkiLCJpc3MiOiJreWxvIiwiYWNjIjoia3lsbyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiY3VzdCI6eyJkb21haW5faWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJncm91cHMiOlsiYWRtaW4iLCJLZXkgQWRtaW5zIiwiS2V5IFVzZXJzIl0sInNpZCI6IjJjMDRmYTJkLTZhNDctNGY5Zi04ZTAxLWRjY2MwNTA0YWFlNyIsInpvbmVfaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifSwiand0aWQiOiI2YWQzMTQ2Yi1lMzNlLTQwYWEtYTcwZi0yYWNlY2MzMDBiODIiLCJpYXQiOjE2MjI0NDc3OTgsImV4cCI6MTYyMjQ0ODA5OH0.mEYSZMs_Z4Y88KkQZD9nCXOb9Ikeq_GleCSiTXIHrAQ; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIwZDc3NGFkNi1jMWEzLTRiMzYtYmJjYS03MGU1MTVkNmNiNzkiLCJzdWIiOiJsb2NhbHxmMzA1ZThiOC0yYzliLTRiYjgtOTRiZi0wOGYxN2FkMDM5OTkiLCJpc3MiOiJreWxvIiwiYWNjIjoia3lsbyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiY3VzdCI6eyJkb21haW5faWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJncm91cHMiOlsiYWRtaW4iLCJLZXkgQWRtaW5zIiwiS2V5IFVzZXJzIl0sInNpZCI6ImNkOGU1MzYyLTAyODAtNDM2ZS1hMGFjLTBhYjY4MjM5ZjBlOSIsInpvbmVfaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifSwiand0aWQiOiI4YzJjNjg0NS1kZTI5LTRlMzItYmJkNS02NWI4ZDkzM2I2YmYiLCJpYXQiOjE2MjI0ODYwODQsImV4cCI6MTYyMjQ4NjM4NH0.McCNGKDpuod2NBaKnpY_TWU9LRCqhZhAebCl85L5J60; refresh-token=5qOwEZ4Oo1bv7AxujiXO3YRnQyXLhg2hMHkjD91mkG624FImXf76VDaKD7P20Isf");
+	  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+	  res = curl_easy_perform(curl);
+	  if(res != CURLE_OK)
+			fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
+	}
+	curl_easy_cleanup(curl);
+
+
+
+	return 0;
+	}
+
+
+	===========================================================================================================
+
+	===================================================================================================================================================================================================================
+
+	Peer certificate cannot be authenticated with given CA certificates
+
+
+
+
+
+
+	sudo yum install ca-certificates
+	sudo update-ca-trust enable
+	sudo cp /path/to/your_new_cert.crt /etc/pki/ca-trust/source/anchors/
+	sudo update-ca-trust extract
+
+===========================================================================================================
+
+===================================================================================================================================================================================================================
+
+	//working  with error codes
+	
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <curl/curl.h>
+#include <json-c/json.h>
+ 
+ 
+ struct MemoryStruct {
+  char *memory;
+  size_t size;
+};
+
+static size_t
+WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+  size_t realsize = size * nmemb;
+  struct MemoryStruct *mem = (struct MemoryStruct *)userp;
+ 
+  char *ptr = realloc(mem->memory, mem->size + realsize + 1);
+  if(!ptr) {
+    /* out of memory! */
+    printf("not enough memory (realloc returned NULL)\n");
+    return 0;
+  }
+  mem->memory = ptr;
+  memcpy(&(mem->memory[mem->size]), contents, realsize);
+  mem->size += realsize;
+  mem->memory[mem->size] = 0;
+ 
+  return realsize;
+}
+
+
+
+int main()
+{
+
+CURL *curl;
+CURLcode res;
+struct json_object *parsed_json;
+struct json_object *codeDesc;
+struct json_object *code;
+struct MemoryStruct chunk;
+ 
+  chunk.memory = malloc(1);  /* will be grown as needed by the realloc above */
+  chunk.size = 0;    /* no data at this point */
+  
+curl = curl_easy_init();
+if(curl) {
+  curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_easy_setopt(curl, CURLOPT_URL, "https://10.164.11.238/api/v1/auth/tokens/");
+  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+  //curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "https");
+  //curl_easy_setopt(curl,CURLOPT_SSLCERTTYPE,"PEM");
+  //curl_easy_setopt(curl, CURLOPT_CAINFO, "./cacert.pem");
+  //curl_easy_setopt(curl, CURLOPT_CAPATH, "./cacert.pem");
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
+  //curl_easy_setopt(curl, CURLOPT_SSL_VERIFYSTATUS, 0);
+  //curl_easy_setopt(curl, CURLOPT_CAINFO, "ca-bundle.crt");
+  //curl_easy_setopt( curl, CURLOPT_WRITEDATA, data );
+  
+  struct curl_slist *headers = NULL;
+  headers = curl_slist_append(headers, "Content-Type: application/json");
+  headers = curl_slist_append(headers, "Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIwZDc3NGFkNi1jMWEzLTRiMzYtYmJjYS03MGU1MTVkNmNiNzkiLCJzdWIiOiJsb2NhbHxmMzA1ZThiOC0yYzliLTRiYjgtOTRiZi0wOGYxN2FkMDM5OTkiLCJpc3MiOiJreWxvIiwiYWNjIjoia3lsbyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiY3VzdCI6eyJkb21haW5faWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJncm91cHMiOlsiYWRtaW4iLCJLZXkgQWRtaW5zIiwiS2V5IFVzZXJzIl0sInNpZCI6IjQwNmVhYmI2LTZhYjYtNGMwNy05MmM1LTRjM2VjMWRjNTkyNSIsInpvbmVfaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifSwiand0aWQiOiIzMWYwOTQ5ZC03NWEwLTQwOWEtOTNiNy04ZWJkNDY2OGI2NjciLCJpYXQiOjE2MjI2MDkxNTMsImV4cCI6MTYyMjYwOTQ1M30.VPH6lcF2Clj9oLzT5o81z2s_3Sg_qrJwQnnttxUcoic; refresh-token=bG1xTdDSwuTmkbczzNNpaouk94rlMbWHxlWPq6LTo3bSyOlzS6HE9yFJ8eqpEAYD");
+  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+  const char *data = "{\r\n    \"connection\": \"local_account\",\r\n    \"cookies\": true,\r\n    \"grant_type\": \"password\",\r\n    \"password\": \"Safenet.1\",\r\n    \"refresh_token_revoke_unused_in\": 30,\r\n    \"username\": \"admin\"\r\n}";
+  //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
+  curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback); 
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
+  res = curl_easy_perform(curl);
+  parsed_json = json_tokener_parse(chunk.memory);
+
+	
+  if(res != CURLE_OK)
+       fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
+}
+
+printf("\n%lu bytes retrieved\n", (unsigned long)chunk.size);
+json_object_object_get_ex(parsed_json, "codeDesc", &codeDesc);
+json_object_object_get_ex(parsed_json, "code", &code);
+printf("code: %d\n", json_object_get_int(code));
+ printf("codeDesc: %s\n", json_object_get_string(codeDesc));
+  
+  printf("%s \n", (char*)chunk.memory);
+
+        
+curl_easy_cleanup(curl);
+
+free(chunk.memory);
+ 
+  /* we're done with libcurl, so clean it up */
+ // curl_global_cleanup();
+ 
+
+return 0;
+}
+
+
+
+
+
+===================================================================================================================================================================================================================
+
+
+all version to run api in C
+
+	gcc --version
+gcc (GCC) 9.1.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+to install json library (https://github.com/json-c/json-c#using)
+
+
+			/opt/cmake/bin/cmake -version
+			cmake version 3.20.3
+			CMake suite maintained and supported by Kitware (kitware.com/cmake).
+			
+			+++++++++++++++++++++++++++
+			$ git clone https://github.com/json-c/json-c.git
+			$ mkdir json-c-build
+			$ cd json-c-build
+			$ /opt/cmake/bin/cmake ../json-c   # See CMake section below for custom arguments
+			Note: it's also possible to put your build directory inside the json-c source directory, or even not use a separate build directory at all, but certain things might not work quite right (notably, make distcheck)
+
+			Then:
+
+			$ make
+			$ make test
+			$ make USE_VALGRIND=0 test   # optionally skip using valgrind
+			$ make install
+			
+						sudo find / -name libjson-c.so
+						LD_LIBRARY_PATH=/usr/local/lib64/
+						
+						
+						
+			+++++++++++++++++++++++++++	+++++++++++++++++++++++++++	+++++++++++++++++++++++++++	+++++++++++++++++++++++++++	+++++++++++++++++++++++++++
+		
+		From Ubuntu wiki help page
+
+Note: You can only set this environment variable inside an interactive shell. [ie a terminal ] Since Ubuntu 9.04 Jaunty Jackalope, LD_LIBRARY_PATH cannot be set in $HOME/.profile, /etc/profile, nor /etc/environment files. You must use /etc/ld.so.conf.d/*.conf configuration files. See Launchpad bug #366728 for more information.
+
+How to fix it:
+
+cd /etc/ld.so.conf.d
+Make a file with the .conf extension here
+
+sudo nano cuda.conf
+Add the paths to it as two lines
+
+/usr/local/cuda-7.5/lib64
+/usr/lib/nvidia-361
+Save and exit. Check with ls -l that the file has the same ownership and permissions as others in the directory, they should be:
+
+-rw-r--r-- 1 root root
+Then run
+
+ldconfig
+This doesn't set the env
+
+			+++++++++++++++++++++++++++++	+++++++++++++++++++++++++++	+++++++++++++++++++++++++++	+++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
