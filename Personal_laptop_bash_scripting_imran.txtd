@@ -361,3 +361,128 @@ CentOs v/s RHEL
 
 		....done
 
+
+==========================================================================================================================================================================================================================================================================================
+
+
+
+
+Linux Administration ([TutsNode.com] - Linux Administration Build 5 Hands-On Linux Projects)
+
+
+________________________________________________________________________________________________________________________________
+S4E1
+
+
+securing and hardening
+
+	==>linux security check
+
+	==>enforce password policy
+
+	==>network and host checking
+
+	==>data at rest protection
+
+
+________________________________________________________________________________________________________________________________
+S4E2
+
+securing a network
+
+	==>security is tradeoff with usability
+
+	==>BIOS protection
+
+	==>secure boot loader
+	
+	==>keep the OS updated
+
+	==>remove unnnecessary packages
+
+	==>use strong passwords and change frequently using John the ripper
+
+	==>do not allow direct root login
+
+	==>set proper file permission
+
+	==>use firewalls
+
+	==>monitor your log
+
+
+________________________________________________________________________________________________________________________________
+S4E3
+
+SSh ==>is common for remote access
+
+	ls -l /etc/ssh
+
+	>>cat sshd_config
+
+			// cretae backup before make any changes
+
+	>>ssh_config  ==>for client
+
+	>>sudo vim /etc/ssh/sshd_config
+
+		//you will see default value as commented
+
+==================
+//split horizontally terminal
+
+===================
+
+//PermitRootLogin no   ==>we can change(uncomment and set it to no) direct access via password to no
+
+
+AllowUsers student toor u1 ==>we can limit users to access
+
+=========================================================
+
+sudo su
+
+>>iptables -A INPUT -p tcp --dport _any_port -s 2.2.4.5 -j ACCEPT //==>now only these ip can access ssh via given port in sshd.config
+
+>>iptables -A INPUT -p tcp --drop _given_port -j DROP
+
+
+
+//idle timeout can also be set to
+
+// CLientAliveInterval 300
+// MaxAuthTries  ==>defines maximu no. can be tried
+
+========================
+
+>>man sshd_config 
+
+
+
+
+________________________________________________________________________________________________________________________________
+S4E4&E5 docs
+
+
+________________________________________________________________________________________________________________________________
+S4E6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1731,3 +1731,652 @@ curl -k -i --location --request POST "https://${CM_IP}/api/v1/auth/tokens/" --he
 
 																												
 ==========================================================================================================================================================================================================================================================================================
+
+
+
+
+Linux Administration ([TutsNode.com] - Linux Administration Build 5 Hands-On Linux Projects)
+
+
+________________________________________________________________________________________________________________________________
+S1E1
+
+Sys admin (intro)
+
+(master linux administration tool ) ==>is part one
+
+==>do not use on smart phone
+
+==>consistency is important
+
+
+________________________________________________________________________________________________________________________________
+S1E2
+
+	==>digital ocean
+
+		==>create droplets
+			
+			==>droplets is server on digital ocean
+			
+			==>must near to your client
+
+			==>deploying single droplets
+
+			===>login as root and password(if password was selected)
+
+			>>ssh -p 22 root@IP_addr //to connect   // -p is port
+
+				>>enter password
+	
+			>>>apt update && full-upgrade -y // upgrade full system (-y it assumes yes for any question)
+
+________________________________________________________________________________________________________________________________
+S1E3
+
+securing via SSH
+
+	==>also helps in automation
+
+	====> terminal split horizontal
+
+	>>ssh-keygen -t rsa -b 2048 -C 'keys genrated on this_date'
+
+
+	>> ls .ssh/
+
+
+	==>digital ocean ==>login ==>setting ==>security ==>paste your public key
+
+	>>ssh-copy-id root@IP
+
+	=================
+
+	>>vim /etc/ssh/sshd_config
+		
+		//ssh deamon config ==>disable passwd auth
+
+		>>systemctl restart ssh
+
+________________________________________________________________________________________________________________________________
+S2E1
+
+Docker in 2013
+
+	==>to run containarised application
+
+	==>overview of docker
+
+	==>docker image
+
+	>>mkdir -p /opt/wordpress/database
+
+	
+	>>mkdir -p /opt/wordpress/html
+
+	>>ip a ==>to check public ip addr
+
+
+________________________________________________________________________________________________________________________________
+S2E2
+
+	containearised application
+		
+	ansible ===>automation tool
+
+
+________________________________________________________________________________________________________________________________
+S2E3
+
+Docker CE vs Docker EE
+
+>>sudo apt remove docker docker.io containerd runc
+
+==>docker gpg signing key by curl command
+
+>>install it from docker repo
+
+>>sudo systemctl status docker  ==>to check if it is running
+
+sudo usermod -aG docker user ==>to add another user to accesss docker
+
+>>su - user
+
+>>docker --version 
+
+labs.play-with-docker.com ==>docker playground (docker pwd (play with docker))
+
+	>>dockker container run -d -it nginx
+
+	>>docker container ps
+
+
+
+________________________________________________________________________________________________________________________________
+S2E4
+
+	doc
+
+________________________________________________________________________________________________________________________________
+S2E5
+
+	the docker client or docker image interacts with docker daemon
+
+	>>docker info  
+
+	>>docker help
+
+	>>docker container help
+
+	>>docker container run hello-world ==>//to test docker installation
+
+		==>if first time , then will pull from its repo
+
+	
+
+________________________________________________________________________________________________________________________________
+S2E6
+
+
+how to pull container images from docker repo
+
+	==>search mysql
+
+	>>docker search mongo
+
+	>>docker image pull image_name:version
+
+	>>docker image pull image_name 
+	
+	//OR 
+
+	docker image pull image_name:latest
+
+	>>docker container run image_name
+
+	====
+
+	//can create new images from existing one
+
+	>>>docker container run -P httpd
+		
+			==>will pull apache and get it start
+
+	>>>alias will show you all making aliases
+
+	>>>docker container ls
+			
+			==>to get the port
+
+
+	>>docker container create -p 80:80 httpd
+
+	>>docker container start container_id
+
+	>>docker container run -it centos
+
+
+	
+
+________________________________________________________________________________________________________________________________
+S2E7nE8
+
+	docs
+
+________________________________________________________________________________________________________________________________
+S2E9
+
+running web service using docker
+
+docker container run -d -p 8080:80 --name mysite nging
+
+	//-d detach and will make process start in background, logs will be in background
+
+	//-p will expose port 80 on docker and 8080 in user
+
+	 //if -P ==>publish all expose all port to random port
+
+	 //--name ==>name given to all container, applicable to all container, if not there it will pick some random
+
+	 >>>docker container ls
+
+	 apche and nginx ==>web server
+
+	 >>docker container run -d -p 8081:80 --name mysite1 nginx
+
+	 >>>docker container run -d -p 8082:80 --name mysite httpd
+
+
+
+	//8081, 8082 are exposed to the outside world in above example in above example 
+
+
+	
+
+________________________________________________________________________________________________________________________________
+S2E10
+
+to see all locally downloaded images
+
+>>docker images ls
+
+>>docker image ls
+
+>>docker pull centos:latest
+
+	//latest is default tag anyway
+
+//display running container
+
+>>docker container run centos
+	//it will start and exit since it doesnot have anything to do
+
+>>docker container run centos ping 127.0.0.1
+
+============>>
+
+>>docker ps ==>process status
+
+OR
+
+>>docker ls // its new command
+
+>>docker container ls -a // to see from docker installation if they are started ever
+
+// if we want to apply some filters
+
+>>docker container ls -a -f status=exited
+
+// if interested in their ids only
+
+>>>docker container ls -a -f status=exited -q
+
+
+
+________________________________________________________________________________________________________________________________
+S2E11
+
+>>docker container run -d -P --name mywebsite  nginx
+
+	//remove both image and container
+
+		//first remove container
+
+		>>docker container stop 326a 
+
+		>>docker conatiner rm id_some_few_letters // can use forcefuly without stopping using -f flag
+
+		list all container
+
+		>>docker container ls -a // running and stopped
+
+			//-f status=exited ==>to filter
+
+		// -q ==>for quite ==>to give you ids only
+
+		>> docker container rm $(sub_commandToget_all_stopped_container)
+
+	//to remove image
+
+	>>docker image ls
+	
+	>>docker image rm centos
+
+	>>docker container stop starting_of_ids //to remove image ==>container should be stopped and removed inorder to delete image
+
+	//dangling images
+
+		//images that do not in use but use disk space
+
+	>>docker system prune //will remove all danglein
+
+	>>docker system prune -a // will remove all images, not just dangling ones
+
+
+
+________________________________________________________________________________________________________________________________
+S2E12 ==>docs
+
+________________________________________________________________________________________________________________________________
+S2E13
+
+>>>docker container run --name=container1 centos
+
+	//you will not find in running list
+
+	//because it will exit immediately since it does not have anything to do
+
+>>docker container run --name=container2 centos cat /etc/password
+
+	==>after opening the file it will exit
+
+>> docker container run --name=container3 -it centos //-it ==>no other container can create with this name
+
+>>yum install nmap
+
+==>Ctrl+p+q ==>exit with running status
+
+>>docket container exec -it contaiN_id bash //to get in container
+
+>>docker container stop cont_name|cont_id
+
+________________________________________________________________________________________________________________________________
+S2E14
+
+//bash is default command
+
+>>docker container run debian
+
+>>docker container run -it debian //now in the container
+
+>>exit // container exits as wee
+
+
+>>docker container start container_id
+
+// connecting to container
+
+>>docker container exec -it container_id bash  //connecting and  getting shell acess
+
+==>ctrl+p+q
+
+
+//execute without getting into container
+
+>>docker container exec container_id cat /etc/shadow
+
+
+________________________________________________________________________________________________________________________________
+S2E15 ==>doc
+________________________________________________________________________________________________________________________________
+S2E16
+
+
+//information about running container
+
+>>>docker container rm -f $(docker conatiner ls -a -q)
+
+>>>docker container run -d -p 8080:80 --name=mysite nginx
+
+>>docker ccontainer ls
+
+//container_is is unique (stop, running removing)
+// 2nd field is IMAGE ==> from which the container started
+
+>>>docker container port mysite // youll see only port
+
+>>>docker container logs container_name
+
+	// add "-f mysite" option to see real time
+
+>>>docker container top mysite
+
+	==>process running in container
+
+>>ps-ef | grep nginx
+
+>>docker container stats ==>//real time
+
+>>docker container stats container_name|id
+
+>>docker container inspect container_name|id //configuration like
+
+>>docker container inspect mysite | grep -i ipaddress
+
+>>ping 172.17.0.2
+
+
+________________________________________________________________________________________________________________________________
+S2E17 ==>docs
+
+________________________________________________________________________________________________________________________________
+S2E18
+
+//changes are not saved in new images
+
+>>docker container run it --name=container1 centos
+
+>>touch /root/xyz.txt
+
+>>yum install nmap
+
+//scanning web server
+
+>>nmap -p 80 scanme.nmap.org
+
+>>exit // container will also be exited
+
+>>>docker container start container1
+
+//get shelll access / or connecting to container
+
+>>docker container exec -it container bash
+
+
+/// from history you see line no
+
+//inorder to execute it 
+
+//just do>> !command_number
+
+//creta enew image
+
+>>docker commit -m "nmap installed" -a "_author" container_id username/name_of_new_image:latest
+
+// see all available images
+
+>>docker image ls
+
+>>docker container run it user_name/new_image
+
+	//container_id is responsible to replicate
+
+// now it will replicate exactly
+
+________________________________________________________________________________________________________________________________
+S2E19
+
+>>docker image ls
+
+//image_id mapped to tags
+
+//official image do not have repository
+
+>>docker image tag nginx user/nginx:custom
+
+//adding one more tag
+
+>>docker image tag username/mycentos:latets username/mycentos:1.0
+
+	//new tag is added to same image
+
+>>docker login
+
+>>username
+>>password
+
+>>docker image push _name_of_image:latest
+
+________________________________________________________________________________________________________________________________
+S2E20 ==>docs
+________________________________________________________________________________________________________________________________
+S2E21
+
+image consist multiple layers
+
+	==>layers are stacked
+
+// to see layer image
+
+>>docker image ls
+
+>>docker image inspect nginx
+
+//located in
+
+to check layers 
+
+>>>sudo ls /var/lib/docker/overlay2
+
+//startin new container from container
+
+>>>docker container run -d -P nginx 
+
+
+>>>docker container run -d -P nginx 
+
+>>docker container ls
+
+
+>>>docker container ps -s  // to check size also
+
+________________________________________________________________________________________________________________________________
+S2E22
+
+//docker file is file to create image
+
+==>go to docker hub
+
+hub.docker.com
+
+//Dockerfile
+
+// -p to publish port
+
+// copy Dockerfile
+
+>>>vim DOckerfile
+
+//paste the content
+
+//save
+
+>> to customize docker file
+
+//before exposing port
+
+WORKDIR /usr/share/nginx/html
+COPY page.html index.html  //will copy to workdirectory
+
+>>>docker image build -t mynginx:1.0 . //. build from this directory docker file
+
+// custom image is buils
+
+>>>docker container run -d -P mynginx:1.0
+
+//-P  will choose random port
+
+________________________________________________________________________________________________________________________________
+S2E23
+
+//persistent data
+
+//data does not exist when container is removed
+
+// sometimes we require data out of data
+
+//volumes and mind mounts
+
+//volume is preferred to get data in host machine
+
+//volume is persistent directory
+	
+	// mapping between docker and host machines
+
+>>docker volume create _vol_anem
+
+>>docker volume ls
+
+>>docker volume inspect _name_of_volume
+
+
+>>docker volume rm _name_of_vol // to remove
+
+>>docker colume prune ==>// will remove unused volumes
+
+>>docker container run -d --name mywebapp -p 80:80 -v mysite:/usr/share/nginx/html _name_of_img  //other directory is dir where container datsa resides
+
+>>docker container ls
+
+sudo cp /etc/passwd /var/lib/docker/volumes/mysite/_data/index.html
+
+ 
+________________________________________________________________________________________________________________________________
+S3E1
+
+docs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+....icomp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

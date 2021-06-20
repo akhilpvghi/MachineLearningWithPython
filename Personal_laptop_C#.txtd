@@ -1909,6 +1909,118 @@ Console.WriteLine(book.title);
 __________________________________________________________________________________________________________________________________________________________
 S2E5
 
+Events and delegates in C#
+		
+	events ==> mechanism for communication b/w objects
+
+		==>helps in loosely coupling
+
+		==>when one class is dependent to another, then recompile is needed
+
+		like encoind method has sending mail line
+
+in subscriber
+
+public void VideoEncoded(object source , EventArgs e)
+
+
+////Thread.sleep(3000) //3seconds
+
+//1- DEfine a delegate
+//2- define an event based on that delegate
+//3- raise an event
+
+public delegate void VideoEncodedEventHandler(object source, EventArgs args); /// EventArgs  an additional data, if we want to send some data, then that class must be inherited from EventArgs
+
+	//apppend EventHandler 
+
+public event VideoEncodedEventHandler VideoEncoded;
+
+pubic void Encode(Video video){
+OnVideoEncoded();
+}
+
+protected virtual void OnVideoEncoded(){
+	//event publisher method should be protected and virtual
+	if(VideoEncoded != null)
+		VideoEncoded(this, EvenntArgs.Empty); //this is the source
+}
+
+
+////////==============================================
+
+//now in subscribers
+
+//signature should be same as delegates
+
+class Program{
+	
+	var videoENcoder = ner VIdeo Encoder();
+
+	videoEncoder.VideoEncoded += mailService.OnVideoEncoded;  //mailService.OnVideoEncoded this is a refernce of function . not we are calling function
+		// video encoder is publisher, we are interested in VideoEncoded event
+	videoEncoder.Encode(video);
+}
+
+public class MailServeice{
+	
+	public void OnVideoEncoded(object source, EventArgs e){
+		
+		COnsole.WriteLine("Mailservicw: sending an email");
+	}
+
+}
+
+
+// resharper plugin==>alt+enter==>will move class to new file
+
+__________________________________________________________________________________________________________________________________________________________
+S2E6
+
+//Extension methods
+
+class Program {
+
+static void main(string[] args){
+	string post = "This is supposed to be a very long";
+	var shortenedPost =  post.Shorten(5);
+
+	
+	}
+
+	public static class StringExtension{
+		public static string Shorten(this String str, int numerOfWords){
+			if(numv=berOfWords < 0)
+				throw new ArguementOutOfRangeException("number should be positive integer");
+			if(numberOfWords == 0)
+				return "";
+			var words = str.Split(' ');
+
+			if(words.Length <= numberOfWOrds)
+				retrn str;
+			
+			return string.Join(" ",words.Take(numberOfWords));
+		}
+	}
+}
+
+//extension method has scope of namespace
+
+//use extension method only you have to
+
+__________________________________________________________________________________________________________________________________________________________
+S2E7
+
+
+
+
+
+
+
+
+
+
+
 
 
 

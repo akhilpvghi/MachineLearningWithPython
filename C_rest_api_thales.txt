@@ -10,6 +10,8 @@
 				
 	sudo yum install  libcurl4-openssl-dev
 
+	apt-get install libcurl-devel     ==>ran in mobaxterm
+
 	https://fossies.org/linux/curl/include/curl/curl.h
 
 	https://stackoverflow.com/questions/25057819/how-to-create-restful-web-services-using-c-language-and-json-parser

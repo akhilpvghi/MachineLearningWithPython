@@ -1572,12 +1572,398 @@ S6E10
 __________________________________________________________________________________________________________________________________________________________
 
 S6E12
+//implementation of subscription process
 
 rt.c
 
 	void rt_table_register_for_notification(
+	rt_table_t *rt_table,
+	rt_entry_keys_t *key,
+	size_t key_size,
+	nfc_app_cb app_cb,
+	unit32_t subs_id
+	){
 	
-	);
+	bool new_entry_created;
+	rt_entry_t *rt_entry;
+	notif_chain_elem_t nfce;
+
+	new_entry_created = false;
+
+	rt_entry = rt_look_up_rt_entry(rt_table, key->dest, key->mask);
+	
+	if(!rt_entry){
+	
+	rt_entry = rt_add_or_update_rt_entry(
+	
+		rt_table, key->dest, key->mask, 0, 0);
+		new_entry_created = true;
+	}
+	memset(&nfce, 0, sizeof(notif_chain_elem_t));
+
+	assert(key_size <= MAX_NOTIF_KEY_SIZE);
+
+	nfce.app_cb = app_cb;
+	nfce.subs_id = subs_id;
+	nfc_register_notif_chain(rt_entry->nfc, &nfce);
+
+	if(!new_entry_create){
+	app_cb(rt_entry, sizeof(rt_entry_t), NFC_ADD, subs_id);
+	}
+
+	//NFC_ADD is code to notify subscriber
+
+	}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E13
+
+Implementing Notification
+
+//notif.c
+
+nfc_invoke_notif_chain()
+
+.
+.
+.
+//after adding entry 
+
+if(gw_ip || oif) {
+
+	nfc_invoke_notif_chain(rt_entry->nfc, (char *)rt_entry, sizeof(rt_entry_t), 0, 0, NFC_MOD);
+
+}
+
+
+bool rt_delete_rt_entry(.....){
+
+rt_entry_remove(rt_table, rt_entry);
+nfc_invoke_notif_chain(rt_entry->nfc, (char *)rt_entry, sizeof(rt_entry_t), 0, 0, NFC_DEL);
+nfc_delete_all_nfce(rt_entry->nfc);
+free(rt_entry->nfc);
+rt_entry->nfc = NULL;
+free(rt_entry);
+return true;
+
+
+
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S6E14
+
+	==>summary and output of interthread communication
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E1
+
+	Thread cancellation
+
+		==>you may want to cancel search on going operation
+
+		==>you may want to stop sending periodic packets
+
+		==>you may want to stop downloading the file
+
+	==>Who cancels the thread
+
+		==>other thread cancels other thread
+
+		==>once the thread is cancelled, it is terminated
+__________________________________________________________________________________________________________________________________________________________
+
+S7E2
+
+	types of cancellation
+		
+		==>Asynchrous cancellation
+
+			==>there were so drawbacks of asynchronous cancellation
+
+			pthread_cancel()  =>api to use cancel request
+
+			==>cancel request (CR) is queued by OS
+
+				==>then OS looks for opportunity to cancel
+
+				==>this is why it is called asynchronous cancellation
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E3
+
+	mastel_slave1.c
+
+program to create 5 thread, where all thread writes string to thread_x.txt, where x is thread id
+
+	==>thread handles are used to cancel threads
+
+	==>Deferred Cancellation
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E4
+
+master_slave_asynch_cancelaation.h
+
+
+case 1:
+	pthread_cancel(slave[thread_num]);
+	break;  //might not cancel immediately
+		//and must be cacellable threads
+
+
+//////////////////////////
+
+//cancellable thread
+
+thread_fn(void *arg){
+
+pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
+
+	//mode of cancel ==>asynch and defer
+
+pthread_setcanceltype( PTHREAD_CANCEL_ASYNCHRONOUS, 0); //it is asynchronous
+
+
+}
+
+=================================================================================
+
+>>> ./master_slave_asynch
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E5
+
+thread asynchronous problem
+
+	==>leave steering wheen while driving a car
+
+		==>resource leaking
+			==>file not closed may be
+			==>sockets may  be in turn on position
+				solution
+					==>cleanup handlers
+						
+
+		==>cause invariants
+			solution 
+				==>cancellation points
+		==>deadlocks
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E6
+
+	Invariant problem ==>when thread is cancelled asynchronously
+
+		==>a data structure in inconsistent state 
+
+			==>suppose doubly linked list
+
+				==>removing nodes
+				==>adjusting pointers
+					==>if cancelled in between ==>we will have another scene
+
+			==>like in balanced tree
+				(red tree or AVL tree)
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E7
+
+Thread cancellation may lead to deadlock
+
+	if mutex is locked and thread got cancelled
+
+	==>Asynchronous cancellation prolem
+
+		==>Resource leaking
+
+		==>invariants
+
+		==>deadlock
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E8
+
+
+	thread cancellation ==>and give chance to clean up
+
+		==>Thread clean up handlers
+
+		==>void (*cleanup_handlers)(void *);
+
+//master_slave_asynch_threadup_cleaner.c
+
+thread_fn(){
+	pthread_cleanup_push(f1,arg); //f1 is pointer to cleanup function, arg is ptr to memory passed to this f1 fn
+		// all these push will go to stack ==>a and execute when we get cancellation 
+
+	pthread_cleanup_pop(0); // as developer you dont have to pop from stack
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E9
+
+master_slave_asynch_threadup_cleaner.c
+
+
+void memory_cleanup_handler(void *args)
+
+void * write_into_file(void *args){
+...
+...
+
+int *thread_id = (int *)arg;
+pthread_cleanup_push(memory_cleanup_handler, arg);
+
+FILE *fptr = fopen(file_name, "w");
+
+pthread_cleanup_push(file_cleanup_handler, fptr);
+
+
+
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S7E10
+
+usage of cleanup handlers
+
+pthread_cleanup_push(f1, arg);
+
+		//>it is macro that means at compile time more code is added with open parethesis
+
+unbalaced of push pop leads to error
+
+pthread_exit(0);  // it invokes clean up activity
+
+OR
+
+goto cleanup:
+
+
+cleanup:
+
+	pthread_cleanup_pop(1);
+
+__________________________________________________________________________________________________________________________________________________________
+
+S8E1
+
+	Deferred cancellation
+		
+		==>programmer has full control to cancel
+
+		==>used to handle problem of invariant
+
+		==>now that points are called cancellation points
+
+	pthread_testcancel()
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S8E2
+
+master_slave1_deferred_cancellation.c
+
+pthread_setcanceltype( PTHREAD_CANCEL_DEFERRED, 0);
+
+
+
+while(1){
+len = sprintf(....); //danger function as it is dealing with buffer
+fwrite(...)
+
+pthread_testcancel(); // now it will be checking for thread cancellation at this line everytime
+}
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E1
+
+Listener threads
+
+	==>threads need to listen external events
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E2
+
+listener_main.exe
+
+pkt_recv_fn(char *pkt){
+	/* process pkt p */
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E3
+
+	pkt recvd via UDP
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S9E4
+
+#include<stdint.h>
+#include "network_utils.h"
+
+
+void pkt_rcv_fn(
+char *pkt,
+uint32_t pkt_size,
+char *sender_ip,
+uint32_t port_no){
+	
+	printf("%s() : pkt recvd =%s, pkt size = %u\n",__FUNCTION__, pkt, pkt_size);
+}
+
+pthread_t *listener1 = NULL;
+pthread_t *listener2 = NULL;
+
+int main(int argc, char **argv){
+	
+	printf("Listening on UDP port no. 3000\n");
+	listener1 = udp_server_create_and_start("127.0.0.1",3000,pkt_rcv_fn);
+
+	
+	printf("Listening on UDP port no. 3001\n");
+	listener2 = udp_server_create_and_start("127.0.0.1",3001,pkt_rcv_fn);
+
+	pthread_exit(0);
+	return 0;
+}
+
+
+__________________________________________________________________________________________________________________________________________________________
+
+S10E1
+
+
+
+	
+
+
+
 
 
 	....incomp
@@ -1589,8 +1975,235 @@ rt.c
 
 
 
++====+===============================================================================================================================================================
 
 
+C/C++ multiple compilation and make file
+
+================================================
+
+
+//https://medium.com/coding-blocks/make-and-cmake-automating-c-build-process-900f569a75db
+
+
+Make and CMake : Automating C++ Build Process
+Deepak Aggarwal
+Deepak Aggarwal
+Follow
+Dec 13, 2017 · 3 min read
+
+
+
+
+
+Many of my students struggle to understand the C++ compilation when applied to multiple files that belong to same project.
+A C++ project, something that will give you one executable, can consists of multiple files. The number could be as large as 1000 for complex projects like Adobe Photoshop or Google Chrome.
+Now, if I give you this source code, would you be able to compile it and get an executable that you can double click; and the software starts running??? This would be painful (if not difficult) even for an expert.
+What about if I give you a list of instructions and a program, that can execute these instructions and do this compilation for you. The end product would be an executable. Isn’t it great. No! Its superb.
+That is what we are going to learn here. How to write the instructions in a file that will be executed by a program to automate the build (or loosely compilation) process.
+The file that we are going to write is named Makefile.
+The program we are going to use is called make.
+C++ Multi-file Programming
+Let us consider a single program to divide 2 numbers. Files that we will require are :
+div.h
+
+2. div.cpp
+
+3. main.cpp
+
+If I want to compile these files and want to transform them into an exectable, i would write the following in terminal :
+# Just translate the files.
+# Result would be div.o main.o in the present working directory
+g++ -c div.cpp
+g++ -c main.cpp
+# Do all the linking stuff
+g++ div.o main.o -o divisonExecutable
+Writing our Makefile
+That’s lot to remember. Now let’s write an equivalent Makefile
+Important : The statements starting with # are for humans and shall not be typed in the terminal. But do read them.
+# Makefile
+# Specify what I need in the end. One single executable
+divisonExecutable : main.o div.o
+# Read this as divisionExecutable depends on main.o div.o
+# But how is it produced??? Hmm...using the below statement
+    g++ main.o div.o -o divisonExecutable 
+# starts with tab, I repeat tab
+#-----------------------------------------------------------------
+# But main.o is not there? So specify how it is produced.
+main.o : main.cpp div.h
+    g++ -c main.cpp
+# Same for test.o
+test.o : test.cpp test.h
+    g++ -c test.cpp
+So, we have written a Makefile that contain instruction to automate the compilation process. The program that understands this is make.
+So simply write
+make
+Yup! Just make. make looks for makefile, if not found, Makefile.
+If you need to specify your own file name, you need to specify
+make -f name-of-my-file-that-make-will-use
+When you will run make, you can see the following in your pwd.
+test.o
+main.o
+divisonExecutable
+If you want to learn more about make do visit these two articles which I found really helpful.
+
+
+
++====+===============================================================================================================================================================
+
+Automating builds (youtube)
+
+.c (source file)  ==> goes via preprocessor ==>compiler ==>will give .s file ==>goes through assembler==>gives object file
+
+	==>goes through linker ===>and produces executable
+
+
+//preprocessor handles header files and strip out comment
+//compiler ==>(.c to assembly file)
+//assembler -==>translates assembly to object file
+//linker brings together object file to produce executables
+
+clang file1.o file2.o -o executable -l m  //-l m id for like having all modules
+
+//////////////////////////////////////
+
+vim Makefile
+
+#_*_ Makefile _*_
+
+#target: dependencies
+#	action
+
+
+// if we use make ===>it will look for top most target
+
+else use
+
+all: target1 target2
+
+target1: target1.o target1_1.o target1_2.h
+	gcc target1.o target1_1.o -o target1 -l m
+
+target1.o: target1.c
+	gcc -c target1.c
+
+target1_1.o: target1_1.c
+	gcc -c target1_1.c
+
+
+// same goes for target 2
+
+clean:
+	rm -f *.o target1 target2 ...
+
+//we can also use 
+
+>>>make target2 //in this case compilation will start from target2
+
+//make only looks for changes
+
+//change in header file can also make recompile
+
+// tab is needed, no space
+
+==================================================================================================
+
+function pointer in C
+
+//https://www.youtube.com/watch?v=TpIuj3Lgho0&list=PLnpfWqvEvRCchcCM-373x2630drhtdWEw&index=9
+
+	==>function is block of instruction
+
+name of the function is itself an address ==>you dont have to use & , though you can use it
+
+==>
+
+to assign a function to a variable
+
+int (*var)(int x) = foo;
+
+// bubble sort ==>in bubble sort in first iteration the largest element is positiones at last of  array
+// compare with succesive and swap if no. is larger with its successive elements
+
+===>
+
+strcmp ==>return positive if, first string comes after second string
+	==>0 if both are equal
+	==>otherwise -1
+
+#include<stdlib.h> ==>>for malloc
+
+//man memcpy
+
+memcpy(src_addr, dest_addr, size);
+
+33:00 min   ....incomp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+file handlinig in c
+
+__________________________________________________________________________
+E3 (https://www.youtube.com/watch?v=7htwsHi60BA&list=PL9FuOtXibFjVzB2Bm8WalF_SZcIhpZB6X&index=4)
+
+#include<stdio.h>
+
+fp = fopen("file_location",mode);  //mode = "r" | "w"
+fprintf(file_pointer,"message %d",_int); //file pointer = fp
+
+do{
+
+fprintf(fp,"dfsdfds");
+}while(condn);
+
+fclose(file_pointer);
+
+}
+
+__________________________________________________________________________
+E4 
+
+rewind(fp);  // will put cursor to begining of file
+
+__________________________________________________________________________
+E5
+
+char ch[100];
+
+while(fscanf(fp,"%s",&a)!=EOF){
+
+sscanf(a,"%d",&x);  ==>return boolean if string can be coverted to  integer
+
+}
+
+
+__________________________________________________________________________
+E6
+
+fprintf(....) => to put string in file
+
+fscanf(....) => to read string from file
+
+
+		.....done
+__________________________________________________________________________
 
 
 

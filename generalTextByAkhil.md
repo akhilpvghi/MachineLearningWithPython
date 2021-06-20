@@ -1017,10 +1017,67 @@ sudo ./cmake-3.8.2-Linux-x86_64.sh
 cmake installation => https://geeksww.com/tutorials/operating_systems/linux/installation/downloading_compiling_and_installing_cmake_on_linux.php   ==>download only tar.gz
 			
 			
+							Download:
+							$ wget http://www.cmake.org/files/v2.8/cmake-2.8.3.tar.gz
+							Extration of cmake source code from downloaded file:
+							$ tar xzf cmake-2.8.3.tar.gz
+							$ cd cmake-2.8.3
+							Configuration:
+							If you want to see the available conifuration options, run command below.
+
+							$ ./configure --help
+							In order to configure cmake before installation, run command below.
+
+							$ ./configure --prefix=/opt/cmake
+							We basically instructed the install script to install CMake in /opt/cmake.
+
+									if getting this error
+									Error when bootstrapping CMake:
+									Cannot find appropriate C compiler on this system.
+										
+											update gcc
+
+
+							Compilation:
+							$ make
+
+							 
+							Installation:
+							# make install
+							Verification:
+							After installation without any errors you can verify the installation by running the command below:
+
+							$ /opt/cmake/bin/cmake -version
+							The output should look something like below (depending upon cmake version you are installing).
+
+							cmake version 2.8.3
+										
 			
 gcc --version
 
-install gcc ==> https://benjaminberhault.com//post/2018/06/22/install-gcc-on-rhel-centos-7.html		
+install gcc ==> https://benjaminberhault.com//post/2018/06/22/install-gcc-on-rhel-centos-7.html	
+
+			wget https://ftp.gnu.org/gnu/gcc/gcc-9.1.0/gcc-9.1.0.tar.gz
+			tar xzf gcc-9.1.0.tar.gz
+			cd gcc-9.1.0
+			./contrib/download_prerequisites
+
+					if you get this error
+	
+				
+					error: Cannot verify integrity of possibly corrupted file gmp-6.1.0.tar.bz2
+
+						./contrib/download_prerequisites --no-verify
+
+			cd ..
+			mkdir gcc-9.1.0-build
+			cd gcc-9.1.0-build
+			../gcc-9.1.0/configure --enable-languages=c,c++ --disable-multilib
+			make
+			sudo make install
+
+
+			if make is not there (apt-get install make)
 
 replace fttp with http ==> https://gcc.gnu.org/legacy-ml/gcc-help/2018-05/msg00123.html ==>to install gcc
 
